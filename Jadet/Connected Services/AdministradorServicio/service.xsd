@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" />
+  <xs:element name="guardarCliente">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="request" nillable="true" type="q1:ClienteRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="guardarClienteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="guardarClienteResult" nillable="true" type="q2:ClienteResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="bajaCliente">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="request" nillable="true" type="q3:ClienteRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="bajaClienteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="bajaClienteResult" nillable="true" type="q4:BaseResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="cargarCliente">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="request" nillable="true" type="q5:ClienteRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="cargarClienteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="cargarClienteResult" nillable="true" type="q6:ClienteResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="subirFotos">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="request" nillable="true" type="q7:ArchivoRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="subirFotosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="subirFotosResult" nillable="true" type="q8:ArchivoResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="cargarHistorialCliente">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="request" nillable="true" type="q9:ClienteRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="cargarHistorialClienteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="cargarHistorialClienteResult" nillable="true" type="q10:HistorialClienteResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="guardarProducto">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="request" nillable="true" type="q11:ProductoRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="guardarProductoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="guardarProductoResult" nillable="true" type="q12:ProductoResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="bajaProducto">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="request" nillable="true" type="q13:ProductoRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="bajaProductoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="bajaProductoResult" nillable="true" type="q14:BaseResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="cargarProducto">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="request" nillable="true" type="q15:ProductoRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="cargarProductoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="cargarProductoResult" nillable="true" type="q16:ProductoResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="listarProductos">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="request" nillable="true" type="q17:BaseRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="listarProductosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="listarProductosResult" nillable="true" type="q18:coleccionProductoResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="listarNotas">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="request" nillable="true" type="q19:BaseRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="listarNotasResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="listarNotasResult" nillable="true" type="q20:coleccionNotasResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="verNota">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="request" nillable="true" type="q21:NotaRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="verNotaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="verNotaResult" nillable="true" type="q22:NotaResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="borrarNota">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="request" nillable="true" type="q23:NotaRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="borrarNotaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="borrarNotaResult" nillable="true" type="q24:NotaResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="generarGuias">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="request" nillable="true" type="q25:GuiaRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="generarGuiasResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="generarGuiasResult" nillable="true" type="q26:GuiaResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="enviarRecordatorios">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="request" nillable="true" type="q27:BaseRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="enviarRecordatoriosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="enviarRecordatoriosResult" nillable="true" type="q28:BaseResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="cambiarEstatusPagina">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="request" nillable="true" type="q29:BaseRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="cambiarEstatusPaginaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="cambiarEstatusPaginaResult" nillable="true" type="q30:BaseResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

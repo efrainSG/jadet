@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Cliente" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ICliente_subirFoto_InputMessage">
+    <wsdl:part name="parameters" element="tns:subirFoto" />
+  </wsdl:message>
+  <wsdl:message name="ICliente_subirFoto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:subirFotoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICliente_agregarACarrito_InputMessage">
+    <wsdl:part name="parameters" element="tns:agregarACarrito" />
+  </wsdl:message>
+  <wsdl:message name="ICliente_agregarACarrito_OutputMessage">
+    <wsdl:part name="parameters" element="tns:agregarACarritoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICliente_quitarDelCarrito_InputMessage">
+    <wsdl:part name="parameters" element="tns:quitarDelCarrito" />
+  </wsdl:message>
+  <wsdl:message name="ICliente_quitarDelCarrito_OutputMessage">
+    <wsdl:part name="parameters" element="tns:quitarDelCarritoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICliente_vaciarCarrito_InputMessage">
+    <wsdl:part name="parameters" element="tns:vaciarCarrito" />
+  </wsdl:message>
+  <wsdl:message name="ICliente_vaciarCarrito_OutputMessage">
+    <wsdl:part name="parameters" element="tns:vaciarCarritoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICliente_generarPedido_InputMessage">
+    <wsdl:part name="parameters" element="tns:generarPedido" />
+  </wsdl:message>
+  <wsdl:message name="ICliente_generarPedido_OutputMessage">
+    <wsdl:part name="parameters" element="tns:generarPedidoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICliente_verPedido_InputMessage">
+    <wsdl:part name="parameters" element="tns:verPedido" />
+  </wsdl:message>
+  <wsdl:message name="ICliente_verPedido_OutputMessage">
+    <wsdl:part name="parameters" element="tns:verPedidoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICliente_listarPedidos_InputMessage">
+    <wsdl:part name="parameters" element="tns:listarPedidos" />
+  </wsdl:message>
+  <wsdl:message name="ICliente_listarPedidos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:listarPedidosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICliente_guardarPedido_InputMessage">
+    <wsdl:part name="parameters" element="tns:guardarPedido" />
+  </wsdl:message>
+  <wsdl:message name="ICliente_guardarPedido_OutputMessage">
+    <wsdl:part name="parameters" element="tns:guardarPedidoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ICliente">
+    <wsdl:operation name="subirFoto">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICliente/subirFoto" message="tns:ICliente_subirFoto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICliente/subirFotoResponse" message="tns:ICliente_subirFoto_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="agregarACarrito">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICliente/agregarACarrito" message="tns:ICliente_agregarACarrito_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICliente/agregarACarritoResponse" message="tns:ICliente_agregarACarrito_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="quitarDelCarrito">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICliente/quitarDelCarrito" message="tns:ICliente_quitarDelCarrito_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICliente/quitarDelCarritoResponse" message="tns:ICliente_quitarDelCarrito_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="vaciarCarrito">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICliente/vaciarCarrito" message="tns:ICliente_vaciarCarrito_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICliente/vaciarCarritoResponse" message="tns:ICliente_vaciarCarrito_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="generarPedido">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICliente/generarPedido" message="tns:ICliente_generarPedido_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICliente/generarPedidoResponse" message="tns:ICliente_generarPedido_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="verPedido">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICliente/verPedido" message="tns:ICliente_verPedido_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICliente/verPedidoResponse" message="tns:ICliente_verPedido_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="listarPedidos">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICliente/listarPedidos" message="tns:ICliente_listarPedidos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICliente/listarPedidosResponse" message="tns:ICliente_listarPedidos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="guardarPedido">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICliente/guardarPedido" message="tns:ICliente_guardarPedido_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICliente/guardarPedidoResponse" message="tns:ICliente_guardarPedido_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ICliente" type="tns:ICliente">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="subirFoto">
+      <soap:operation soapAction="http://tempuri.org/ICliente/subirFoto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="agregarACarrito">
+      <soap:operation soapAction="http://tempuri.org/ICliente/agregarACarrito" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="quitarDelCarrito">
+      <soap:operation soapAction="http://tempuri.org/ICliente/quitarDelCarrito" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="vaciarCarrito">
+      <soap:operation soapAction="http://tempuri.org/ICliente/vaciarCarrito" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="generarPedido">
+      <soap:operation soapAction="http://tempuri.org/ICliente/generarPedido" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="verPedido">
+      <soap:operation soapAction="http://tempuri.org/ICliente/verPedido" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listarPedidos">
+      <soap:operation soapAction="http://tempuri.org/ICliente/listarPedidos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="guardarPedido">
+      <soap:operation soapAction="http://tempuri.org/ICliente/guardarPedido" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Cliente">
+    <wsdl:port name="BasicHttpBinding_ICliente" binding="tns:BasicHttpBinding_ICliente">
+      <soap:address location="http://localhost:8733/Design_Time_Addresses/SernaSistemas.Jadet.WCF/Cliente/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
