@@ -31,103 +31,123 @@ namespace Jadet.Controllers
             listaproductosmodel productos = new listaproductosmodel();
             productos.Items.Add(new productomodel
             {
-                Sku = "A00001",
+                Sku = "A00000",
                 Nombre = "Producto 1",
                 Descripcion = "Producto uno",
                 Existencias = 10,
                 RutaImagen = "../Content/imgs/103373701_745367459536215_6683955577034642454_n.jpg",
                 ErrorNumero = 0,
-                ErrorMensaje = string.Empty
+                ErrorMensaje = string.Empty,
+                PrecioMXN = 150m,
+                PrecioUSD = 7.5m
             });
             productos.Items.Add(new productomodel
             {
                 Sku = "A00001",
-                Nombre = "Producto 1",
-                Descripcion = "Producto uno",
+                Nombre = "Producto 2",
+                Descripcion = "Producto dos",
                 Existencias = 10,
                 RutaImagen = "../Content/imgs/106726574_619939592236905_8451229284513577533_n.jpg",
                 ErrorNumero = 0,
-                ErrorMensaje = string.Empty
+                ErrorMensaje = string.Empty,
+                PrecioMXN = 150m,
+                PrecioUSD = 7.5m
             });
             productos.Items.Add(new productomodel
             {
-                Sku = "A00001",
-                Nombre = "Producto 1",
-                Descripcion = "Producto uno",
+                Sku = "A00002",
+                Nombre = "Producto 3",
+                Descripcion = "Producto tres",
                 Existencias = 10,
                 RutaImagen = "../Content/imgs/106925028_276980433358784_3564958967851603976_n.jpg",
                 ErrorNumero = 0,
-                ErrorMensaje = string.Empty
+                ErrorMensaje = string.Empty,
+                PrecioMXN = 150m,
+                PrecioUSD = 7.5m
             });
             productos.Items.Add(new productomodel
             {
-                Sku = "A00001",
-                Nombre = "Producto 1",
-                Descripcion = "Producto uno",
+                Sku = "A00003",
+                Nombre = "Producto 4",
+                Descripcion = "Producto cuatro",
                 Existencias = 10,
                 RutaImagen = "../Content/imgs/107100168_575722183139154_7671637487869851358_n.jpg",
                 ErrorNumero = 0,
-                ErrorMensaje = string.Empty
+                ErrorMensaje = string.Empty,
+                PrecioMXN = 150m,
+                PrecioUSD = 7.5m
             });
             productos.Items.Add(new productomodel
             {
-                Sku = "A00001",
-                Nombre = "Producto 1",
-                Descripcion = "Producto uno",
+                Sku = "A00004",
+                Nombre = "Producto 5",
+                Descripcion = "Producto cinco",
                 Existencias = 10,
                 RutaImagen = "../Content/imgs/107343952_285192662700377_4387108442096812264_n.jpg",
                 ErrorNumero = 0,
-                ErrorMensaje = string.Empty
+                ErrorMensaje = string.Empty,
+                PrecioMXN = 150m,
+                PrecioUSD = 7.5m
             });
             productos.Items.Add(new productomodel
             {
-                Sku = "A00001",
-                Nombre = "Producto 1",
-                Descripcion = "Producto uno",
+                Sku = "A00005",
+                Nombre = "Producto 6",
+                Descripcion = "Producto seis",
                 Existencias = 10,
                 RutaImagen = "../Content/imgs/107485999_761173144656157_7653469568639381490_n.jpg",
                 ErrorNumero = 0,
-                ErrorMensaje = string.Empty
+                ErrorMensaje = string.Empty,
+                PrecioMXN = 150m,
+                PrecioUSD = 7.5m
             });
             productos.Items.Add(new productomodel
             {
-                Sku = "A00001",
-                Nombre = "Producto 1",
-                Descripcion = "Producto uno",
+                Sku = "A00006",
+                Nombre = "Producto 7",
+                Descripcion = "Producto siete",
                 Existencias = 10,
                 RutaImagen = "../Content/imgs/107700091_605326170114874_5692240400939541068_n.jpg",
                 ErrorNumero = 0,
-                ErrorMensaje = string.Empty
+                ErrorMensaje = string.Empty,
+                PrecioMXN = 150m,
+                PrecioUSD = 7.5m
             });
             productos.Items.Add(new productomodel
             {
-                Sku = "A00001",
-                Nombre = "Producto 1",
-                Descripcion = "Producto uno",
+                Sku = "A00007",
+                Nombre = "Producto 8",
+                Descripcion = "Producto ocho",
                 Existencias = 10,
                 RutaImagen = "../Content/imgs/107728691_741771619931603_148549030520414310_n.jpg",
                 ErrorNumero = 0,
-                ErrorMensaje = string.Empty
+                ErrorMensaje = string.Empty,
+                PrecioMXN = 150m,
+                PrecioUSD = 7.5m
             });
             productos.Items.Add(new productomodel
             {
-                Sku = "A00001",
-                Nombre = "Producto 1",
-                Descripcion = "Producto uno",
+                Sku = "A00008",
+                Nombre = "Producto 9",
+                Descripcion = "Producto nueve",
                 Existencias = 10,
                 RutaImagen = "../Content/imgs/107761698_275912170409017_4174448911657339959_n.jpg",
                 ErrorNumero = 0,
-                ErrorMensaje = string.Empty
+                ErrorMensaje = string.Empty,
+                PrecioMXN = 150m,
+                PrecioUSD = 7.5m
             });
             productos.Items.Add(new productomodel
             {
-                Sku = "A00001",
-                Nombre = "Producto 1",
-                Descripcion = "Producto uno",
+                Sku = "A00009",
+                Nombre = "Producto 10",
+                Descripcion = "Producto diez",
                 Existencias = 10,
                 RutaImagen = "../Content/imgs/107856000_702503103934248_1656178707960925460_n.jpg",
                 ErrorNumero = 0,
-                ErrorMensaje = string.Empty
+                ErrorMensaje = string.Empty,
+                PrecioMXN = 150m,
+                PrecioUSD = 7.5m
             });
             return View(productos);
         }
