@@ -13,5 +13,7 @@ namespace SernaSistemas.Jadet.WCF.Contratos
     {
         [OperationContract]
         LoginResponse IniciarSesion(LoginRequest request);
+        [OperationContract]
+        LoginResponse CerrarSesion(LoginRequest request);
     }
 }
