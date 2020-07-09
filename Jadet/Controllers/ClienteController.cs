@@ -20,5 +20,13 @@ namespace Jadet.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+        public ActionResult Carrito()
+        {
+            return View();
+        }
+        public ActionResult Pedidos()
+        {
+            return View();
+        }
     }
 }
