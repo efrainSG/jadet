@@ -219,6 +219,16 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\imgs\103373701_745367459536215_6683955577034642454_n.jpg" />
+    <Content Include="Content\imgs\106726574_619939592236905_8451229284513577533_n.jpg" />
+    <Content Include="Content\imgs\106925028_276980433358784_3564958967851603976_n.jpg" />
+    <Content Include="Content\imgs\107100168_575722183139154_7671637487869851358_n.jpg" />
+    <Content Include="Content\imgs\107343952_285192662700377_4387108442096812264_n.jpg" />
+    <Content Include="Content\imgs\107485999_761173144656157_7653469568639381490_n.jpg" />
+    <Content Include="Content\imgs\107700091_605326170114874_5692240400939541068_n.jpg" />
+    <Content Include="Content\imgs\107728691_741771619931603_148549030520414310_n.jpg" />
+    <Content Include="Content\imgs\107761698_275912170409017_4174448911657339959_n.jpg" />
+    <Content Include="Content\imgs\107856000_702503103934248_1656178707960925460_n.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
