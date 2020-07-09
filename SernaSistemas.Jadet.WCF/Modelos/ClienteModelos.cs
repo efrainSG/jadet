@@ -13,17 +13,29 @@ namespace SernaSistemas.Jadet.WCF.Modelos
     {
         [DataMember]
         public int IdCliente { get; set; }
+        [DataMember]
+        public string Nombre { get; set; }
     }
 
     [DataContract]
     public class ClienteResponse : BaseResponse
     {
-
+        [DataMember]
+        public int IdCliente { get; set; }
+        [DataMember]
+        public string Nombre { get; set; }
     }
-    
+
     [DataContract]
     public class HistorialClienteResponse : BaseResponse
     {
 
+    }
+
+    [DataContract]
+    public class coleccionClientesResponse : BaseResponse
+    {
+        [DataMember]
+        public List<ClienteResponse> Items { get; set; }
     }
 }

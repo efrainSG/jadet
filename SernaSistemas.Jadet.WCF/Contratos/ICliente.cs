@@ -15,7 +15,7 @@ namespace SernaSisitemas.Jadet.WCF.Contratos
         [OperationContract]
         ItemCarritoResponse agregarACarrito(ItemCarritoRequest request);
         [OperationContract]
-        object quitarDelCarrito(ItemCarritoRequest request);
+        BaseResponse quitarDelCarrito(ItemCarritoRequest request);
         [OperationContract]
         CarritoResponse vaciarCarrito(BaseRequest request);
 

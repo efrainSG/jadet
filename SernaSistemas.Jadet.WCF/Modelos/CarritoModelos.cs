@@ -29,7 +29,7 @@ namespace SernaSistemas.Jadet.WCF.Modelos
     [DataContract]
     public class CarritoResponse : BaseResponse
     {
-
+        public List<ItemCarritoResponse> Items { get; set; }
     }
 
     [DataContract]
