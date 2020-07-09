@@ -11,13 +11,27 @@ namespace SernaSistemas.Jadet.WCF.Modelos
     [DataContract]
     public class ProductoRequest : BaseRequest
     {
-
+        [DataMember]
+        public int Id { get; set; }
+        [DataMember]
+        public string Nombre { get; set; }
+        [DataMember]
+        public string RutaImagen { get; set; }
+        [DataMember]
+        public int Existencias { get; set; }
     }
 
     [DataContract]
     public class ProductoResponse : BaseResponse
     {
-
+        [DataMember]
+        public int Id { get; set; }
+        [DataMember]
+        public string Nombre { get; set; }
+        [DataMember]
+        public string RutaImagen { get; set; }
+        [DataMember]
+        public int Existencias { get; set; }
     }
 
     [DataContract]

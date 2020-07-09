@@ -20,6 +20,8 @@ namespace SernaSisitemas.Jadet.WCF.Contratos
         ArchivoResponse subirFotos(ArchivoRequest request);
         [OperationContract]
         HistorialClienteResponse cargarHistorialCliente(ClienteRequest request);
+        [OperationContract]
+        coleccionClientesResponse listarClientes(ClienteRequest request);
 
         [OperationContract]
         ProductoResponse guardarProducto(ProductoRequest request);
