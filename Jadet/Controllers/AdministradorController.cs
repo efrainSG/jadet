@@ -20,5 +20,26 @@ namespace Jadet.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+
+        public ActionResult Productos()
+        {
+            return View();
+        }
+
+        public ActionResult Guias()
+        {
+            return View();
+        }
+
+        public ActionResult Clientes()
+        {
+            return View();
+        }
+
+        public ActionResult Notas()
+        {
+            return View();
+        }
+
     }
 }
