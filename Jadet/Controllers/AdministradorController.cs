@@ -33,7 +33,48 @@ namespace Jadet.Controllers
 
         public ActionResult Clientes()
         {
-            return View();
+            listaclientesmodel clientes = new listaclientesmodel();
+            clientes.Items.Add(new clientenmodel
+            {
+                ErrorMensaje = string.Empty,
+                ErrorNumero = 0,
+                Nombre = "Usuario uno",
+                usuario = "user1",
+                password = string.Empty
+            });
+            clientes.Items.Add(new clientenmodel
+            {
+                ErrorMensaje = string.Empty,
+                ErrorNumero = 0,
+                Nombre = "Usuario dos",
+                usuario = "user2",
+                password = string.Empty
+            });
+            clientes.Items.Add(new clientenmodel
+            {
+                ErrorMensaje = string.Empty,
+                ErrorNumero = 0,
+                Nombre = "Usuario tres",
+                usuario = "user3",
+                password = string.Empty
+            });
+            clientes.Items.Add(new clientenmodel
+            {
+                ErrorMensaje = string.Empty,
+                ErrorNumero = 0,
+                Nombre = "Usuario cuatro",
+                usuario = "user4",
+                password = string.Empty
+            });
+            clientes.Items.Add(new clientenmodel
+            {
+                ErrorMensaje = string.Empty,
+                ErrorNumero = 0,
+                Nombre = "Usuario cinco",
+                usuario = "user5",
+                password = string.Empty
+            });
+            return View(clientes);
         }
 
         public ActionResult Notas()
