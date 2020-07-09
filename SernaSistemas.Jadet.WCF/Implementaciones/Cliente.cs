@@ -1,6 +1,6 @@
 ﻿using SernaSisitemas.Jadet.WCF.Contratos;
 using SernaSistemas.Jadet.WCF.Modelos;
-using System.ServiceModel;
+using System.Collections.Generic;
 
 namespace SernaSisitemas.Jadet.WCF.Implementaciones
 {
@@ -8,42 +8,75 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
     {
         public ItemCarritoResponse agregarACarrito(ItemCarritoRequest request)
         {
-            throw new System.NotImplementedException();
+            return new ItemCarritoResponse
+            {
+                ErrorMensaje = "No implementado",
+                ErrorNumero = 1
+            };
         }
 
         public BaseResponse generarPedido(CarritoRequest request)
         {
-            throw new System.NotImplementedException();
+            return new BaseResponse
+            {
+                ErrorMensaje = "No implementado",
+                ErrorNumero = 1
+            };
         }
 
         public BaseResponse guardarPedido(CarritoRequest request)
         {
-            throw new System.NotImplementedException();
+            return new BaseResponse
+            {
+                ErrorMensaje = "No implementado",
+                ErrorNumero = 1
+            };
         }
 
         public ColeccionCarritoResponse listarPedidos(BaseRequest request)
         {
-            throw new System.NotImplementedException();
+            return new ColeccionCarritoResponse
+            {
+                ErrorMensaje = "No implementado",
+                ErrorNumero = 1,
+                Items = new List<CarritoResponse>()
+            };
         }
 
-        public object quitarDelCarrito(ItemCarritoRequest request)
+        public BaseResponse quitarDelCarrito(ItemCarritoRequest request)
         {
-            throw new System.NotImplementedException();
+            return new BaseResponse
+            {
+                ErrorMensaje = "No implementado",
+                ErrorNumero = 1
+            };
         }
 
         public ArchivoResponse subirFoto(ArchivoRequest request)
         {
-            throw new System.NotImplementedException();
+            return new ArchivoResponse
+            {
+                ErrorMensaje = "No implementado",
+                ErrorNumero = 1
+            };
         }
 
         public CarritoResponse vaciarCarrito(BaseRequest request)
         {
-            throw new System.NotImplementedException();
+            return new CarritoResponse
+            {
+                ErrorMensaje = "No implementado",
+                ErrorNumero = 1
+            };
         }
 
         public CarritoResponse verPedido(CarritoRequest request)
         {
-            throw new System.NotImplementedException();
+            return new CarritoResponse
+            {
+                ErrorMensaje = "No implementado",
+                ErrorNumero = 1
+            };
         }
     }
 }

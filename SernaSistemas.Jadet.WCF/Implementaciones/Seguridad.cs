@@ -1,17 +1,16 @@
 ﻿using SernaSistemas.Jadet.WCF.Contratos;
 using SernaSistemas.Jadet.WCF.Modelos;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SernaSistemas.Jadet.WCF.Implementaciones
 {
     public class Seguridad : ISeguridad
     {
+        public LoginResponse CerrarSesion(LoginRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
         public LoginResponse IniciarSesion(LoginRequest request)
         {
             bool resultado = (request.Usuario.Equals("admin") && request.password.Equals("123")) ||

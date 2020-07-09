@@ -1,5 +1,6 @@
 ﻿using SernaSisitemas.Jadet.WCF.Contratos;
 using SernaSistemas.Jadet.WCF.Modelos;
+using System.Collections.Generic;
 using System.ServiceModel;
 
 namespace SernaSisitemas.Jadet.WCF.Implementaciones
@@ -8,77 +9,149 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
     {
         public BaseResponse bajaCliente(ClienteRequest request)
         {
-            throw new System.NotImplementedException();
+            return new BaseResponse
+            {
+                ErrorMensaje = "No implementado",
+                ErrorNumero = 1
+            };
         }
 
         public BaseResponse bajaProducto(ProductoRequest request)
         {
-            throw new System.NotImplementedException();
+            return new BaseResponse
+            {
+                ErrorMensaje = "No implementado",
+                ErrorNumero = 1
+            };
         }
 
         public NotaResponse borrarNota(NotaRequest request)
         {
-            throw new System.NotImplementedException();
+            return new NotaResponse
+            {
+                ErrorMensaje = "No implementado",
+                ErrorNumero = 1
+            };
         }
 
         public BaseResponse cambiarEstatusPagina(BaseRequest request)
         {
-            throw new System.NotImplementedException();
+            return new BaseResponse
+            {
+                ErrorMensaje = "No implementado",
+                ErrorNumero = 1
+            };
         }
 
         public ClienteResponse cargarCliente(ClienteRequest request)
         {
-            throw new System.NotImplementedException();
+            return new ClienteResponse
+            {
+                ErrorMensaje = "No implementado",
+                ErrorNumero = 1
+            };
         }
 
         public HistorialClienteResponse cargarHistorialCliente(ClienteRequest request)
         {
-            throw new System.NotImplementedException();
+            return new HistorialClienteResponse
+            {
+                ErrorMensaje = "No implementado",
+                ErrorNumero = 1
+            };
         }
 
         public ProductoResponse cargarProducto(ProductoRequest request)
         {
-            throw new System.NotImplementedException();
+            return new ProductoResponse
+            {
+                ErrorMensaje = "No implementado",
+                ErrorNumero = 1
+            };
         }
 
         public BaseResponse enviarRecordatorios(BaseRequest request)
         {
-            throw new System.NotImplementedException();
+            return new BaseResponse
+            {
+                ErrorMensaje = "No implementado",
+                ErrorNumero = 1
+            };
         }
 
         public GuiaResponse generarGuias(GuiaRequest request)
         {
-            throw new System.NotImplementedException();
+            return new GuiaResponse
+            {
+                ErrorMensaje = "No implementado",
+                ErrorNumero = 1
+            };
         }
 
         public ClienteResponse guardarCliente(ClienteRequest request)
         {
-            throw new System.NotImplementedException();
+            return new ClienteResponse
+            {
+                ErrorMensaje = "No implementado",
+                ErrorNumero = 1
+            };
         }
 
         public ProductoResponse guardarProducto(ProductoRequest request)
         {
-            throw new System.NotImplementedException();
+            return new ProductoResponse
+            {
+                ErrorMensaje = "No implementado",
+                ErrorNumero = 1
+            };
+        }
+
+        public coleccionClientesResponse listarClientes(ClienteRequest request)
+        {
+            return new coleccionClientesResponse
+            {
+                ErrorMensaje = "No implementado",
+                ErrorNumero = 1,
+                Items = new List<ClienteResponse>()
+            };
         }
 
         public coleccionNotasResponse listarNotas(BaseRequest request)
         {
-            throw new System.NotImplementedException();
+            return new coleccionNotasResponse
+            {
+                ErrorMensaje = "No implementado",
+                ErrorNumero = 1,
+                Items = new List<NotaResponse>()
+            };
         }
 
         public coleccionProductoResponse listarProductos(BaseRequest request)
         {
-            throw new System.NotImplementedException();
+            return new coleccionProductoResponse
+            {
+                ErrorMensaje = "No implementado",
+                ErrorNumero = 1,
+                Items = new List<ProductoResponse>()
+            };
         }
 
         public ArchivoResponse subirFotos(ArchivoRequest request)
         {
-            throw new System.NotImplementedException();
+            return new ArchivoResponse
+            {
+                ErrorMensaje = "No implementado",
+                ErrorNumero = 1
+            };
         }
 
         public NotaResponse verNota(NotaRequest request)
         {
-            throw new System.NotImplementedException();
+            return new NotaResponse
+            {
+                ErrorMensaje = "No implementado",
+                ErrorNumero = 1
+            };
         }
     }
 }
