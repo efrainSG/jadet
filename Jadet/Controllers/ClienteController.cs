@@ -28,5 +28,9 @@ namespace Jadet.Controllers
         {
             return View();
         }
+        public ActionResult Preventa()
+        {
+            return View();
+        }
     }
 }
