@@ -15,6 +15,10 @@ namespace SernaSistemas.Jadet.WCF.Modelos
         public int IdCliente { get; set; }
         [DataMember]
         public string Nombre { get; set; }
+        [DataMember]
+        public byte[] Password { get; set; }
+        [DataMember]
+        public string Foto { get; set; }
     }
 
     [DataContract]
@@ -24,6 +28,10 @@ namespace SernaSistemas.Jadet.WCF.Modelos
         public int IdCliente { get; set; }
         [DataMember]
         public string Nombre { get; set; }
+        [DataMember]
+        public byte[] Password { get; set; }
+        [DataMember]
+        public string Foto { get; set; }
     }
 
     [DataContract]
@@ -37,5 +45,9 @@ namespace SernaSistemas.Jadet.WCF.Modelos
     {
         [DataMember]
         public List<ClienteResponse> Items { get; set; }
+        public coleccionClientesResponse()
+        {
+            Items = new List<ClienteResponse>();
+        }
     }
 }
