@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Jadet.Models
 {
-    public class clientenmodel
+    public class clientemodel
     {
         public string usuario { get; set; }
         public string password { get; set; }
@@ -16,10 +16,10 @@ namespace Jadet.Models
     }
     public class listaclientesmodel
     {
-        public List<clientenmodel> Items { get; set; }
+        public List<clientemodel> Items { get; set; }
         public listaclientesmodel()
         {
-            Items = new List<clientenmodel>();
+            Items = new List<clientemodel>();
         }
     }
 }

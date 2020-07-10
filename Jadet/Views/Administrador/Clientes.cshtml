@@ -1,8 +1,32 @@
-﻿
+﻿@model Jadet.Models.listaclientesmodel
+
 @{
     ViewBag.Title = "Clientes";
     Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
 }
 
 <h2>@ViewBag.Title</h2>
-
+<table class="table table-active table-bordered">
+    <thead>
+        <tr>
+            <th>Usuario</th>
+            <th>Nombre</th>
+            <th>
+                <a href="#" class="btn btn-success">Agregar</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model.Items)
+        {
+        <tr>
+            <td>@item.usuario</td>
+            <td>@item.Nombre</td>
+            <td>
+                <a href="#" class="btn btn-warning">Editar</a>
+                <a href="#" class="btn btn-danger">Eliminar</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
