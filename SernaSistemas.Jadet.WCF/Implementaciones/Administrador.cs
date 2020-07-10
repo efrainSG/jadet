@@ -1,5 +1,6 @@
 ﻿using SernaSisitemas.Jadet.WCF.Contratos;
 using SernaSistemas.Jadet.WCF.Modelos;
+using System;
 using System.Collections.Generic;
 using System.ServiceModel;
 
@@ -108,12 +109,19 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
 
         public coleccionClientesResponse listarClientes(ClienteRequest request)
         {
-            return new coleccionClientesResponse
+            coleccionClientesResponse response = new coleccionClientesResponse();
+            for (int i = 0; i < 10; i++)
             {
-                ErrorMensaje = "No implementado",
-                ErrorNumero = 1,
-                Items = new List<ClienteResponse>()
-            };
+                response.Items.Add(new ClienteResponse
+                {
+                    ErrorMensaje = string.Empty,
+                    ErrorNumero = 0,
+                    Foto = string.Format("{0}.jpg",i),
+                    IdCliente=i,
+                    Nombre = string.Format("Cliente #{0}", i)
+                });
+            }
+            return response;
         }
 
         public coleccionNotasResponse listarNotas(BaseRequest request)
@@ -128,12 +136,29 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
 
         public coleccionProductoResponse listarProductos(BaseRequest request)
         {
-            return new coleccionProductoResponse
+            
+            coleccionProductoResponse response = new coleccionProductoResponse();
+            for (int i = 0; i < 10; i++)
             {
-                ErrorMensaje = "No implementado",
-                ErrorNumero = 1,
-                Items = new List<ProductoResponse>()
-            };
+                response.Items.Add(new ProductoResponse
+                {
+                    ErrorMensaje = string.Empty,
+                    ErrorNumero = 0,
+                    Nombre = string.Format("Producto #{0}", i),
+                    Existencias = (new Random(100)).Next(300),
+                    Id = i,
+                    Descripcion = string.Format("Descripción de Producto #{0}", i),
+                    RutaImagen = string.Format("{0}.jpg", i),
+                    PrecioMXN = (new Random(100)).Next(250),
+                    PrecioUSD = (new Random(100)).Next(250),
+                    Categoria = new categoriaResponse
+                    {
+                        Id = i % 4,
+                        Nombre = string.Format("Categoría #{0}", i)
+                    }
+                });
+            }
+            return response;
         }
 
         public ArchivoResponse subirFotos(ArchivoRequest request)
