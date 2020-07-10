@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SernaSisitemas.Jadet.WCF.Implementaciones;
+using SernaSistemas.Jadet.WCF.Modelos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,14 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones.Tests
     [TestClass()]
     public class AdministradorTests
     {
+        Administrador servicio;
+
+        [TestInitialize]
+        public void init()
+        {
+            servicio = new Administrador();
+        }
+
         [TestMethod()]
         public void bajaClienteTest()
         {
@@ -84,9 +93,39 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones.Tests
         }
 
         [TestMethod()]
+        public void listarClientesTest()
+        {
+            var response = servicio.listarClientes(new ClienteRequest());
+            foreach (var item in response.Items)
+            {
+                Console.WriteLine("-------------------------------\nError número: {0}\nMensaje de error: {1}\nId de cliente: {2}\nNombre: {3}\nContraseña: {4}\nRuta de la foto: {5}\n-------------------------------",
+                    item.ErrorNumero,
+                    item.ErrorMensaje,
+                    item.IdCliente,
+                    item.Nombre,
+                    item.Password,
+                    item.Foto);
+            }
+        }
+
+        [TestMethod()]
         public void listarProductosTest()
         {
-            throw new NotImplementedException();
+            var response = servicio.listarProductos(new BaseRequest());
+            foreach (var item in response.Items)
+            {
+                Console.WriteLine("-------------------------------\nError número: {0}\nMensaje de error: {1}\nId de categoría: {2}\nCategoría: {3}\nProducto: {4}\nDescripción: {5}\nExistencias: {6}\nPrecio M. N.: {7}\nPrecio USD: {8}\nImágen: {9}\n-------------------------------",
+                    item.ErrorNumero,
+                    item.ErrorMensaje,
+                    item.Categoria.Id,
+                    item.Categoria.Nombre,
+                    item.Nombre,
+                    item.Descripcion,
+                    item.Existencias,
+                    item.PrecioMXN,
+                    item.PrecioUSD,
+                    item.RutaImagen);
+            }
         }
 
         [TestMethod()]

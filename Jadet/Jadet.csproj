@@ -230,6 +230,8 @@
     <Content Include="Content\imgs\107728691_741771619931603_148549030520414310_n.jpg" />
     <Content Include="Content\imgs\107761698_275912170409017_4174448911657339959_n.jpg" />
     <Content Include="Content\imgs\107856000_702503103934248_1656178707960925460_n.jpg" />
+    <Content Include="Content\yo%282%29.jpg" />
+    <Content Include="Content\yo.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -403,6 +405,7 @@
     <Content Include="Views\Administrador\Guias.cshtml" />
     <Content Include="Views\Cliente\Pedidos.cshtml" />
     <Content Include="Views\Cliente\Carrito.cshtml" />
+    <Content Include="Views\Cliente\Preventa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
