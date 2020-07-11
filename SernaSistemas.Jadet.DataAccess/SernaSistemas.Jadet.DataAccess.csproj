@@ -60,7 +60,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="datos.sql" />
     <Content Include="Esquema.sql" />
+    <Content Include="Esquema_2.sql" />
     <Content Include="JadetBD.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
