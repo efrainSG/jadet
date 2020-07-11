@@ -101,5 +101,35 @@ create table Ventas.Notas(
 
 create table Ventas.Detalle(
 	Id int identity primary key,
+	IdNota int not null,
+	IdProducto int not null,
+	Cantidad int not null,
+	PrecioMXN decimal(10,2) not null,
+	PrecioUSD decimal(10,2) not null,
+	Constraint fk_Nota_Detalle foreign key(IdNota)
+		references Ventas.Notas(Folio)
+		on update no action on delete no action,
+	Constraint fk_Producto_Detalle foreign key(IdProducto)
+		references Ventas.Producto(Id)
+		on update no action on delete no action
+);
 
+create table Ventas.NotasComentarios(
+	Id int identity primary key,
+	IdNota int not null,
+	Comentario text,
+	Fecha date,
+	Constraint fk_Nota_Comentario foreign key(IdNota)
+		references Ventas.Notas(Folio)
+		on update no action on delete no action
+);
+
+create table Ventas.NotasTickets(
+	Id int identity primary key,
+	IdNota int not null,
+	Ticket varbinary(max),
+	Fecha date,
+	Constraint fk_Nota_Ticket foreign key(IdNota)
+		references Ventas.Notas(Folio)
+		on update no action on delete no action
 );
