@@ -64,7 +64,7 @@ create table Ventas.Producto(
 	PrecioMXN decimal(10,2) not null,
 	PrecioUSD decimal(10,2) not null,
 	Existencias int not null,
-	AplicaExistancias bit not null,
+	AplicaExistencias bit not null,
 	Foto varbinary(max),
 	IdCatalogo int not null,
 	Constraint fk_Catalogo_Producto foreign key(IdCatalogo)
