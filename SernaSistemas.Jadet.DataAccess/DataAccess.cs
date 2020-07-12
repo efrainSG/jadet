@@ -17,7 +17,7 @@ namespace SernaSistemas.Jadet.DataAccess
             {
                 using (SqlCommand cmd = new SqlCommand()
                 {
-                    CommandText = "borrarCatalogo",
+                    CommandText = "Administracion.borrarCatalogo",
                     CommandType = System.Data.CommandType.StoredProcedure
                 })
                 {
@@ -30,8 +30,12 @@ namespace SernaSistemas.Jadet.DataAccess
                     });
                     conn.Open();
                     var dr = cmd.ExecuteReader();
-                    resultado.ErrorNumero = (int)dr["ErrorNumero"];
-                    resultado.ErrorMensaje = dr["Mensaje"].ToString();
+                    if (dr.HasRows)
+                    {
+                        dr.Read();
+                        resultado.ErrorNumero = (int)dr["ErrorNumero"];
+                        resultado.ErrorMensaje = dr["Mensaje"].ToString();
+                    }
                     conn.Close();
                 }
             }
@@ -44,7 +48,7 @@ namespace SernaSistemas.Jadet.DataAccess
             {
                 using (SqlCommand cmd = new SqlCommand()
                 {
-                    CommandText = "borrarEstatus",
+                    CommandText = "Administracion.borrarEstatus",
                     CommandType = System.Data.CommandType.StoredProcedure
                 })
                 {
@@ -57,8 +61,12 @@ namespace SernaSistemas.Jadet.DataAccess
                     });
                     conn.Open();
                     var dr = cmd.ExecuteReader();
-                    resultado.ErrorNumero = (int)dr["ErrorNumero"];
-                    resultado.ErrorMensaje = dr["Mensaje"].ToString();
+                    if (dr.HasRows)
+                    {
+                        dr.Read();
+                        resultado.ErrorNumero = (int)dr["ErrorNumero"];
+                        resultado.ErrorMensaje = dr["Mensaje"].ToString();
+                    }
                     conn.Close();
                 }
             }
@@ -71,7 +79,7 @@ namespace SernaSistemas.Jadet.DataAccess
             {
                 using (SqlCommand cmd = new SqlCommand()
                 {
-                    CommandText = "borrarUsuario",
+                    CommandText = "Seguridad.borrarUsuario",
                     CommandType = System.Data.CommandType.StoredProcedure
                 })
                 {
@@ -84,8 +92,12 @@ namespace SernaSistemas.Jadet.DataAccess
                     });
                     conn.Open();
                     var dr = cmd.ExecuteReader();
-                    resultado.ErrorNumero = (int)dr["ErrorNumero"];
-                    resultado.ErrorMensaje = dr["Mensaje"].ToString();
+                    if (dr.HasRows)
+                    {
+                        dr.Read();
+                        resultado.ErrorNumero = (int)dr["ErrorNumero"];
+                        resultado.ErrorMensaje = dr["Mensaje"].ToString();
+                    }
                     conn.Close();
                 }
             }
@@ -119,7 +131,7 @@ namespace SernaSistemas.Jadet.DataAccess
             {
                 using (SqlCommand cmd = new SqlCommand()
                 {
-                    CommandText = "guardarCatalogo",
+                    CommandText = "Administracion.guardarCatalogo",
                     CommandType = System.Data.CommandType.StoredProcedure
                 })
                 {
@@ -146,9 +158,13 @@ namespace SernaSistemas.Jadet.DataAccess
                     });
                     conn.Open();
                     var dr = cmd.ExecuteReader();
-                    resultado.Id = (int)dr["Id"];
-                    resultado.Nombre = dr["Nombre"].ToString();
-                    resultado.IdTipoCatalogo = (int)dr["IdTipoCatalogo"];
+                    if (dr.HasRows)
+                    {
+                        dr.Read();
+                        resultado.Id = (int)dr["Id"];
+                        resultado.Nombre = dr["Nombre"].ToString();
+                        resultado.IdTipoCatalogo = (int)dr["IdTipoCatalogo"];
+                    }
                     conn.Close();
                 }
             }
@@ -161,7 +177,7 @@ namespace SernaSistemas.Jadet.DataAccess
             {
                 using (SqlCommand cmd = new SqlCommand()
                 {
-                    CommandText = "guardarEstatus",
+                    CommandText = "Administracion.guardarEstatus",
                     CommandType = System.Data.CommandType.StoredProcedure
                 })
                 {
@@ -188,27 +204,120 @@ namespace SernaSistemas.Jadet.DataAccess
                     });
                     conn.Open();
                     var dr = cmd.ExecuteReader();
-                    resultado.Id = (int)dr["Id"];
-                    resultado.Nombre = dr["Nombre"].ToString();
-                    resultado.IdTipoEstatus = (int)dr["IdTipoEstatus"];
+                    if (dr.HasRows)
+                    {
+                        dr.Read();
+                        resultado.Id = (int)dr["Id"];
+                        resultado.Nombre = dr["Nombre"].ToString();
+                        resultado.IdTipoEstatus = (int)dr["IdTipoEstatus"];
+                    }
                     conn.Close();
                 }
             }
             return resultado;
         }
-        public void guardarUsuario()
+        public Usuario guardarUsuario(Usuario usuario)
         {
+            Usuario resultado = new Usuario();
             using (SqlConnection conn = new SqlConnection(CadenaConexion))
             {
                 using (SqlCommand cmd = new SqlCommand()
                 {
-                    CommandText = "guardarUsuario",
+                    CommandText = "Seguridad.guardarUsuario",
                     CommandType = System.Data.CommandType.StoredProcedure
                 })
                 {
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = usuario.Id,
+                        ParameterName = "@Id"
+                    });
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.String,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = usuario.Nombre,
+                        ParameterName = "@Nombre"
+                    });
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.String,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = usuario.Direccion,
+                        ParameterName = "@Direccion"
+                    });
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.String,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = usuario.Telefono,
+                        ParameterName = "@Telefono"
+                    });
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.Binary,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = usuario.Foto,
+                        ParameterName = "@Foto"
+                    });
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.String,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = usuario.UserName,
+                        ParameterName = "@Usuario"
+                    });
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.Binary,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = usuario.Password,
+                        ParameterName = "@Passwd"
+                    });
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = usuario.IdRol,
+                        ParameterName = "@IdRol"
+                    });
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = usuario.ZonaPaqueteria,
+                        ParameterName = "@ZonaPaqueteria"
+                    });
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = usuario.IdEstatus,
+                        ParameterName = "@IdEstatus"
+                    });
 
+                    conn.Open();
+                    var dr = cmd.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        dr.Read();
+                        resultado.Id = new Guid(dr["Id"].ToString());
+                        resultado.Nombre = dr["Nombre"].ToString();
+                        resultado.Direccion = dr["Direccion"].ToString();
+                        resultado.Foto = (byte[])dr["Foto"];
+                        resultado.IdEstatus = (int)dr["IdEstatus"];
+                        resultado.IdRol = (int)dr["IdRol"];
+                        resultado.Password = (byte[])dr["Passwd"];
+                        resultado.Telefono = dr["Telefono"].ToString();
+                        resultado.UserName = dr["UserName"].ToString();
+                        resultado.ZonaPaqueteria = (int)dr["ZonaPaqueteria"];
+                    }
+                    conn.Close();
                 }
             }
+            return resultado;
         }
         public void guardarDetalle()
         {
@@ -241,16 +350,35 @@ namespace SernaSistemas.Jadet.DataAccess
             }
         }
 
-        public void listarCatalogo()
+        public void listarCatalogo(Catalogo catalogo)
         {
+            List<Catalogo> resultado = new List<Catalogo>();
             using (SqlConnection conn = new SqlConnection(CadenaConexion))
             {
                 using (SqlCommand cmd = new SqlCommand()
                 {
-                    CommandText = "borrarCatalogo",
+                    CommandText = "Administracion.listarCatalogo",
                     CommandType = System.Data.CommandType.StoredProcedure
                 })
                 {
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = catalogo.IdTipoCatalogo,
+                        ParameterName = "@IdTipoCatalogo"
+                    });
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = catalogo.Id,
+                        ParameterName = "@IdCatalogo"
+                    });
+                    conn.Open();
+                    var dr = cmd.ExecuteReader();
+                    
+                    conn.Close();
 
                 }
             }
@@ -331,7 +459,7 @@ namespace SernaSistemas.Jadet.DataAccess
                 }
             }
         }
-        public void listarRol()
+        public void listarRol(int id)
         {
             using (SqlConnection conn = new SqlConnection(CadenaConexion))
             {

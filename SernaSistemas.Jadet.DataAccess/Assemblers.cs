@@ -24,4 +24,18 @@ namespace SernaSistemas.Jadet.DataAccess
         public string Nombre { get; set; }
         public int IdTipoEstatus { get; set; }
     }
+
+    public class Usuario
+    {
+        public Guid Id { get; set; }
+        public string Nombre { get; set; }
+        public string Direccion { get; set; }
+        public string Telefono { get; set; }
+        public byte[] Foto { get; set; }
+        public string UserName { get; set; }
+        public byte[] Password { get; set; }
+        public int IdRol { get; set; }
+        public int ZonaPaqueteria { get; set; }
+        public int IdEstatus { get; set; }
+    }
 }
