@@ -54,4 +54,16 @@ namespace SernaSistemas.Jadet.WCF.Modelos
         [DataMember]
         public string NombreRol { get; set; }
     }
+
+    [DataContract]
+    public class UsuarioResponse
+    {
+
+    }
+
+    [DataContract]
+    public class UsuarioRequest
+    {
+
+    }
 }
