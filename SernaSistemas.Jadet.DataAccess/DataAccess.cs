@@ -235,7 +235,7 @@ namespace SernaSistemas.Jadet.DataAccess
                 {
                     cmd.Parameters.Add(new SqlParameter
                     {
-                        DbType = System.Data.DbType.Int32,
+                        DbType = System.Data.DbType.Guid,
                         Direction = System.Data.ParameterDirection.Input,
                         Value = usuario.Id,
                         ParameterName = "@Id"
@@ -317,7 +317,7 @@ namespace SernaSistemas.Jadet.DataAccess
                         resultado.IdRol = (int)dr["IdRol"];
                         resultado.Password = (byte[])dr["Passwd"];
                         resultado.Telefono = dr["Telefono"].ToString();
-                        resultado.UserName = dr["UserName"].ToString();
+                        resultado.UserName = dr["Usuario"].ToString();
                         resultado.ZonaPaqueteria = (int)dr["ZonaPaqueteria"];
                     }
                     conn.Close();
@@ -435,7 +435,7 @@ namespace SernaSistemas.Jadet.DataAccess
                         resultado.Foto = (byte[])dr["Foto"];
                         resultado.AplicaExistencias = (bool)dr["AplicaExistencias"];
                         resultado.Existencias = (int)dr["Existencias"];
-                        resultado.IdCatalogo = (int)dr["IdCagtalogo"];
+                        resultado.IdCatalogo = (int)dr["IdCatalogo"];
                         resultado.PrecioMXN = (decimal)dr["PrecioMXN"];
                         resultado.PrecioUSD = (decimal)dr["PrecioMXN"];
                         resultado.SKU = dr["Sku"].ToString();
@@ -446,7 +446,7 @@ namespace SernaSistemas.Jadet.DataAccess
             return resultado;
         }
 
-        public void listarCatalogo(Catalogo catalogo)
+        public List<Catalogo> listarCatalogo(Catalogo catalogo)
         {
             List<Catalogo> resultado = new List<Catalogo>();
             using (SqlConnection conn = new SqlConnection(CadenaConexion))
@@ -489,8 +489,9 @@ namespace SernaSistemas.Jadet.DataAccess
                     conn.Close();
                 }
             }
+            return resultado;
         }
-        public void listarEstatus(Estatus estatus)
+        public List<Estatus> listarEstatus(Estatus estatus)
         {
             List<Estatus> resultado = new List<Estatus>();
             using (SqlConnection conn = new SqlConnection(CadenaConexion))
@@ -514,7 +515,7 @@ namespace SernaSistemas.Jadet.DataAccess
                         DbType = System.Data.DbType.Int32,
                         Direction = System.Data.ParameterDirection.Input,
                         Value = estatus.Id,
-                        ParameterName = "@IdCatalogo"
+                        ParameterName = "@IdEstatus"
                     });
                     conn.Open();
                     var dr = cmd.ExecuteReader();
@@ -533,6 +534,7 @@ namespace SernaSistemas.Jadet.DataAccess
                     conn.Close();
                 }
             }
+            return resultado;
         }
         public List<Usuario> listarUsuario(Usuario usuario)
         {
@@ -548,7 +550,7 @@ namespace SernaSistemas.Jadet.DataAccess
                 {
                     cmd.Parameters.Add(new SqlParameter
                     {
-                        DbType = System.Data.DbType.Int32,
+                        DbType = System.Data.DbType.Guid,
                         Direction = System.Data.ParameterDirection.Input,
                         Value = usuario.Id,
                         ParameterName = "@Id"
@@ -602,14 +604,14 @@ namespace SernaSistemas.Jadet.DataAccess
         {
             throw new Exception("No implementado");
         }
-        public List<Producto> listarProducto(int id)
+        public List<Producto> listarProductos(int id)
         {
             List<Producto> resultado = new List<Producto>();
             using (SqlConnection conn = new SqlConnection(CadenaConexion))
             {
                 using (SqlCommand cmd = new SqlCommand()
                 {
-                    CommandText = "Administracion.listarProducto",
+                    CommandText = "Ventas.listarProductos",
                     CommandType = System.Data.CommandType.StoredProcedure,
                     Connection = conn
                 })
@@ -631,14 +633,14 @@ namespace SernaSistemas.Jadet.DataAccess
                             {
                                 Id = (int)dr["Id"],
                                 Nombre = dr["Nombre"].ToString(),
-                                AplicaExistencias= (bool)dr["Id"],
-                                Descripcion = dr["Id"].ToString(),
-                                Existencias = (int)dr["Id"],
-                                Foto = (byte[])dr["Id"],
-                                SKU = dr["Id"].ToString(),
-                                PrecioMXN = (decimal)dr["Id"],
-                                IdCatalogo = (int)dr["Id"],
-                                PrecioUSD = (decimal)dr["Id"]
+                                AplicaExistencias= (bool)dr["AplicaExistencias"],
+                                Descripcion = dr["Descripcion"].ToString(),
+                                Existencias = (int)dr["Existencias"],
+                                Foto = (byte[])dr["Foto"],
+                                SKU = dr["Sku"].ToString(),
+                                PrecioMXN = (decimal)dr["PrecioMXN"],
+                                IdCatalogo = (int)dr["IdCatalogo"],
+                                PrecioUSD = (decimal)dr["PrecioUSD"]
                             });
                         }
                     }

@@ -29,9 +29,19 @@ create procedure Administracion.listarEstatus
 	@IdEstatus int = NULL
 as
 begin
-	select E.Id, E.Nombre, E.IdTipoEstatus
-	from Administracion.Estatus E (nolock)
-	where E.IdTipoEstatus = @IdTipoEstatus and E.Id = ISNULL(@IdEstatus, E.Id)
+	if (@IdTipoEstatus = 0)
+	begin
+		set @IdTipoEstatus = null
+	end
+	if (@IdEstatus = 0)
+	begin
+		set @IdEstatus = null
+	end
+
+	select	E.Id, E.Nombre, E.IdTipoEstatus
+	from	Administracion.Estatus E (nolock)
+	where	E.IdTipoEstatus = isnull(@IdTipoEstatus, E.IdTipoEstatus)
+			and E.Id = ISNULL(@IdEstatus, E.Id)
 end;
 go
 
@@ -61,9 +71,9 @@ begin
 	begin
 		set @Id = null
 	end
-	select Id, Nombre
-	from Administracion.TipoCatalogo TC (nolock)
-	where TC.Id = isnull(@Id, TC.Id)
+	select	Id, Nombre
+	from	Administracion.TipoCatalogo TC (nolock)
+	where	TC.Id = isnull(@Id, TC.Id)
 end;
 go
 
@@ -75,9 +85,9 @@ begin
 	begin
 		set @Id = null
 	end
-	select Id, Nombre
-	from Administracion.TipoEstatus TE (nolock)
-	where TE.Id = isnull(@Id, TE.Id)
+	select	Id, Nombre
+	from	Administracion.TipoEstatus TE (nolock)
+	where	TE.Id = isnull(@Id, TE.Id)
 end;
 go
 
@@ -138,9 +148,10 @@ begin
 	begin
 		set @IdCatalogo = null
 	end
-	select C.Id, C.Nombre, C.IdTipoCatalogo
-	from Administracion.Catalogo C (nolock)
-	where C.IdTipoCatalogo = @IdTipoCatalogo and C.Id = isnull(@IdCatalogo, C.Id)
+	select	C.Id, C.Nombre, C.IdTipoCatalogo
+	from	Administracion.Catalogo C (nolock)
+	where	C.IdTipoCatalogo = isnull(@IdTipoCatalogo, C.IdTipoCatalogo)
+			and C.Id = isnull(@IdCatalogo, C.Id)
 end;
 go
 
@@ -152,9 +163,9 @@ begin
 	begin
 		set @Id = null
 	end
-	select Id, Nombre
-	from Seguridad.Rol R (nolock)
-	where R.Id = isnull(@Id, R.Id)
+	select	Id, Nombre
+	from	Seguridad.Rol R (nolock)
+	where	R.Id = isnull(@Id, R.Id)
 end;
 go
 
@@ -187,13 +198,13 @@ begin
 	end;
 	else
 	begin
-		insert into Seguridad.Usuario (	Id, Direccion, Telefono, Foto, Usuario,
+		insert into Seguridad.Usuario (	Id, Nombre, Direccion, Telefono, Foto, Usuario,
 										Passwd, IdRol, ZonaPaqueteria, IdEstatus)
-		values (@Id, @Direccion, @Telefono, @Foto, @Usuario,
+		values (@Id, @Nombre, @Direccion, @Telefono, @Foto, @Usuario,
 				@Passwd, @IdRol, @ZonaPaqueteria, @IdEstatus)
 	end;
 
-	select	@Id Id, @Direccion Direccion, @Telefono Telefono, @Foto Foto,
+	select	@Id Id, @Nombre Nombre, @Direccion Direccion, @Telefono Telefono, @Foto Foto,
 			@Usuario Usuario, @Passwd Passwd, @IdRol IdRol,
 			@ZonaPaqueteria ZonaPaqueteria, @IdEstatus IdEstatus
 end;
@@ -208,11 +219,15 @@ begin
 	begin
 		set @IdRol = null
 	end
+	if @Id = '00000000-0000-0000-0000-000000000000'
+	begin
+		set @Id = null
+	end
 	select	U.Id, U.Direccion, U.Telefono, U.Foto, U.Usuario, U.Passwd,
 			U.IdRol, U.ZonaPaqueteria, U.IdEstatus, R.Nombre Rol
 	from	Seguridad.Usuario U (nolock)
 	join	Seguridad.Rol R (nolock) on U.IdRol = R.Id
-	where U.Id = isnull(@Id, U.Id) and U.IdRol = isnull(@IdRol, U.IdRol)
+	where	U.Id = isnull(@Id, U.Id) and U.IdRol = isnull(@IdRol, U.IdRol)
 end;
 go
 
@@ -283,11 +298,11 @@ begin
 	begin
 		set @Id = null
 	end
-	select P.Id, P.sku, P.Nombre, P.Descripcion, P.PrecioMXN, P.PrecioUSD,
+	select	P.Id, P.sku, P.Nombre, P.Descripcion, P.PrecioMXN, P.PrecioUSD,
 			P.Existencias, P.APlicaExistencias, P.Foto, P.IdCatalogo,
 			C.Nombre Categoria
-	from Ventas.Producto P (nolock)
-	join Administracion.Catalogo C (nolock) on P.IdCatalogo = C.Id
-	where P.Id = isnull(@Id, P.Id)
+	from	Ventas.Producto P (nolock)
+	join	Administracion.Catalogo C (nolock) on P.IdCatalogo = C.Id
+	where	P.Id = isnull(@Id, P.Id)
 end;
 go
