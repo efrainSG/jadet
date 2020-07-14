@@ -38,4 +38,35 @@ namespace SernaSistemas.Jadet.DataAccess
         public int ZonaPaqueteria { get; set; }
         public int IdEstatus { get; set; }
     }
+
+    public class TipoCatalogo
+    {
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+    }
+
+    public class TipoEstatus
+    {
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+    }
+    public class Rol
+    {
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+    }
+
+    public class Producto
+    {
+        public int Id { get; set; }
+        public string SKU { get; set; }
+        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
+        public decimal PrecioMXN { get; set; }
+        public decimal PrecioUSD { get; set; }
+        public int Existencias { get; set; }
+        public bool AplicaExistencias { get; set; }
+        public byte[] Foto { get; set; }
+        public int IdCatalogo { get; set; }
+    }
 }

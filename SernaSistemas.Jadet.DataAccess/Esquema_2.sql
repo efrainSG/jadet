@@ -57,6 +57,10 @@ create procedure Administracion.listarTipoCatalogo
 	@Id int = null
 as
 begin
+	if @Id = 0
+	begin
+		set @Id = null
+	end
 	select Id, Nombre
 	from Administracion.TipoCatalogo TC (nolock)
 	where TC.Id = isnull(@Id, TC.Id)
@@ -67,6 +71,10 @@ create procedure Administracion.listarTipoEstatus
 	@Id int = null
 as
 begin
+	if @Id = 0
+	begin
+		set @Id = null
+	end
 	select Id, Nombre
 	from Administracion.TipoEstatus TE (nolock)
 	where TE.Id = isnull(@Id, TE.Id)
@@ -122,6 +130,14 @@ create procedure Administracion.listarCatalogo
 	@IdCatalogo int = null
 as
 begin
+	if @IdTipoCatalogo = 0
+	begin
+		set @IdTipoCatalogo = null
+	end
+	if @IdCatalogo = 0
+	begin
+		set @IdCatalogo = null
+	end
 	select C.Id, C.Nombre, C.IdTipoCatalogo
 	from Administracion.Catalogo C (nolock)
 	where C.IdTipoCatalogo = @IdTipoCatalogo and C.Id = isnull(@IdCatalogo, C.Id)
@@ -132,6 +148,10 @@ create procedure Seguridad.listarRol
 	@Id int = null
 as
 begin
+	if @Id = 0
+	begin
+		set @Id = null
+	end
 	select Id, Nombre
 	from Seguridad.Rol R (nolock)
 	where R.Id = isnull(@Id, R.Id)
@@ -184,6 +204,10 @@ create procedure Seguridad.listarUsuario
 	@IdRol int = null
 as
 begin
+	if @IdRol = 0
+	begin
+		set @IdRol = null
+	end
 	select	U.Id, U.Direccion, U.Telefono, U.Foto, U.Usuario, U.Passwd,
 			U.IdRol, U.ZonaPaqueteria, U.IdEstatus, R.Nombre Rol
 	from	Seguridad.Usuario U (nolock)
@@ -255,6 +279,10 @@ create procedure Ventas.listarProductos
 	@Id int = null
 as
 begin
+	if @Id = 0
+	begin
+		set @Id = null
+	end
 	select P.Id, P.sku, P.Nombre, P.Descripcion, P.PrecioMXN, P.PrecioUSD,
 			P.Existencias, P.APlicaExistencias, P.Foto, P.IdCatalogo,
 			C.Nombre Categoria

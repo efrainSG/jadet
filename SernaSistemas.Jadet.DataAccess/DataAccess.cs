@@ -18,7 +18,8 @@ namespace SernaSistemas.Jadet.DataAccess
                 using (SqlCommand cmd = new SqlCommand()
                 {
                     CommandText = "Administracion.borrarCatalogo",
-                    CommandType = System.Data.CommandType.StoredProcedure
+                    CommandType = System.Data.CommandType.StoredProcedure,
+                    Connection = conn
                 })
                 {
                     cmd.Parameters.Add(new SqlParameter
@@ -49,7 +50,8 @@ namespace SernaSistemas.Jadet.DataAccess
                 using (SqlCommand cmd = new SqlCommand()
                 {
                     CommandText = "Administracion.borrarEstatus",
-                    CommandType = System.Data.CommandType.StoredProcedure
+                    CommandType = System.Data.CommandType.StoredProcedure,
+                    Connection = conn
                 })
                 {
                     cmd.Parameters.Add(new SqlParameter
@@ -80,7 +82,8 @@ namespace SernaSistemas.Jadet.DataAccess
                 using (SqlCommand cmd = new SqlCommand()
                 {
                     CommandText = "Seguridad.borrarUsuario",
-                    CommandType = System.Data.CommandType.StoredProcedure
+                    CommandType = System.Data.CommandType.StoredProcedure,
+                    Connection = conn
                 })
                 {
                     cmd.Parameters.Add(new SqlParameter
@@ -132,7 +135,8 @@ namespace SernaSistemas.Jadet.DataAccess
                 using (SqlCommand cmd = new SqlCommand()
                 {
                     CommandText = "Administracion.guardarCatalogo",
-                    CommandType = System.Data.CommandType.StoredProcedure
+                    CommandType = System.Data.CommandType.StoredProcedure,
+                    Connection = conn
                 })
                 {
                     cmd.Parameters.Add(new SqlParameter
@@ -178,7 +182,8 @@ namespace SernaSistemas.Jadet.DataAccess
                 using (SqlCommand cmd = new SqlCommand()
                 {
                     CommandText = "Administracion.guardarEstatus",
-                    CommandType = System.Data.CommandType.StoredProcedure
+                    CommandType = System.Data.CommandType.StoredProcedure,
+                    Connection = conn
                 })
                 {
                     cmd.Parameters.Add(new SqlParameter
@@ -224,7 +229,8 @@ namespace SernaSistemas.Jadet.DataAccess
                 using (SqlCommand cmd = new SqlCommand()
                 {
                     CommandText = "Seguridad.guardarUsuario",
-                    CommandType = System.Data.CommandType.StoredProcedure
+                    CommandType = System.Data.CommandType.StoredProcedure,
+                    Connection = conn
                 })
                 {
                     cmd.Parameters.Add(new SqlParameter
@@ -335,19 +341,109 @@ namespace SernaSistemas.Jadet.DataAccess
         {
             throw new Exception("No implementado");
         }
-        public void guardarProducto()
+        public Producto guardarProducto(Producto producto)
         {
+            Producto resultado = new Producto();
             using (SqlConnection conn = new SqlConnection(CadenaConexion))
             {
                 using (SqlCommand cmd = new SqlCommand()
                 {
-                    CommandText = "guardarProducto",
-                    CommandType = System.Data.CommandType.StoredProcedure
+                    CommandText = "Ventas.guardarProducto",
+                    CommandType = System.Data.CommandType.StoredProcedure,
+                    Connection = conn
                 })
                 {
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = producto.Id,
+                        ParameterName = "@Id"
+                    });
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.String,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = producto.Nombre,
+                        ParameterName = "@Nombre"
+                    });
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.String,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = producto.Descripcion,
+                        ParameterName = "@Descripcion"
+                    });
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.Decimal,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = producto.PrecioMXN,
+                        ParameterName = "@PrecioMXN"
+                    });
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.Decimal,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = producto.PrecioUSD,
+                        ParameterName = "@PrecioUSD"
+                    });
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = producto.Existencias,
+                        ParameterName = "@Existencias"
+                    });
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.Boolean,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = producto.AplicaExistencias,
+                        ParameterName = "@AplicaExistencias"
+                    });
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.Binary,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = producto.Foto,
+                        ParameterName = "@Foto"
+                    });
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.String,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = producto.SKU,
+                        ParameterName = "@sku"
+                    });
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = producto.IdCatalogo,
+                        ParameterName = "@IdCatalogo"
+                    });
 
+                    conn.Open();
+                    var dr = cmd.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        dr.Read();
+                        resultado.Id =(int)dr["Id"];
+                        resultado.Nombre = dr["Nombre"].ToString();
+                        resultado.Descripcion = dr["Descripcion"].ToString();
+                        resultado.Foto = (byte[])dr["Foto"];
+                        resultado.AplicaExistencias = (bool)dr["AplicaExistencias"];
+                        resultado.Existencias = (int)dr["Existencias"];
+                        resultado.IdCatalogo = (int)dr["IdCagtalogo"];
+                        resultado.PrecioMXN = (decimal)dr["PrecioMXN"];
+                        resultado.PrecioUSD = (decimal)dr["PrecioMXN"];
+                        resultado.SKU = dr["Sku"].ToString();
+                    }
+                    conn.Close();
                 }
             }
+            return resultado;
         }
 
         public void listarCatalogo(Catalogo catalogo)
@@ -358,7 +454,8 @@ namespace SernaSistemas.Jadet.DataAccess
                 using (SqlCommand cmd = new SqlCommand()
                 {
                     CommandText = "Administracion.listarCatalogo",
-                    CommandType = System.Data.CommandType.StoredProcedure
+                    CommandType = System.Data.CommandType.StoredProcedure,
+                    Connection = conn
                 })
                 {
                     cmd.Parameters.Add(new SqlParameter
@@ -377,39 +474,117 @@ namespace SernaSistemas.Jadet.DataAccess
                     });
                     conn.Open();
                     var dr = cmd.ExecuteReader();
-                    
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            resultado.Add(new Catalogo
+                            {
+                                Id = (int)dr["Id"],
+                                IdTipoCatalogo = (int)dr["IdTipoCatalogo"],
+                                Nombre = dr["Nombre"].ToString()
+                            });
+                        }
+                    }
                     conn.Close();
-
                 }
             }
         }
-        public void listarEstatus()
+        public void listarEstatus(Estatus estatus)
         {
+            List<Estatus> resultado = new List<Estatus>();
             using (SqlConnection conn = new SqlConnection(CadenaConexion))
             {
                 using (SqlCommand cmd = new SqlCommand()
                 {
-                    CommandText = "borrarCatalogo",
-                    CommandType = System.Data.CommandType.StoredProcedure
+                    CommandText = "Administracion.listarEstatus",
+                    CommandType = System.Data.CommandType.StoredProcedure,
+                    Connection = conn
                 })
                 {
-
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = estatus.IdTipoEstatus,
+                        ParameterName = "@IdTipoEstatus"
+                    });
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = estatus.Id,
+                        ParameterName = "@IdCatalogo"
+                    });
+                    conn.Open();
+                    var dr = cmd.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            resultado.Add(new Estatus
+                            {
+                                Id = (int)dr["Id"],
+                                IdTipoEstatus = (int)dr["IdTipoEstatus"],
+                                Nombre = dr["Nombre"].ToString()
+                            });
+                        }
+                    }
+                    conn.Close();
                 }
             }
         }
-        public void listarUsuario()
+        public List<Usuario> listarUsuario(Usuario usuario)
         {
+            List<Usuario> resultado = new List<Usuario>();
             using (SqlConnection conn = new SqlConnection(CadenaConexion))
             {
                 using (SqlCommand cmd = new SqlCommand()
                 {
-                    CommandText = "borrarCatalogo",
-                    CommandType = System.Data.CommandType.StoredProcedure
+                    CommandText = "Seguridad.listarUsuario",
+                    CommandType = System.Data.CommandType.StoredProcedure,
+                    Connection = conn
                 })
                 {
-
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = usuario.Id,
+                        ParameterName = "@Id"
+                    });
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = usuario.IdRol,
+                        ParameterName = "@IdRol"
+                    });
+                    conn.Open();
+                    var dr = cmd.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            resultado.Add(new Usuario
+                            {
+                                Id = new Guid(dr["Id"].ToString()),
+                                Nombre = dr["Nombre"].ToString(),
+                                Direccion = dr["Direccion"].ToString(),
+                                Foto = (byte[])dr["Foto"],
+                                IdEstatus = (int)dr["IdEstatus"],
+                                IdRol = (int)dr["IdRol"],
+                                Password = (byte[])dr["Passwd"],
+                                Telefono = dr["Telefono"].ToString(),
+                                UserName = dr["UserName"].ToString(),
+                                ZonaPaqueteria = (int)dr["ZonaPaqueteria"]
+                            });
+                        }
+                    }
+                    conn.Close();
                 }
             }
+            return resultado;
         }
         public void listarDetalle()
         {
@@ -427,51 +602,161 @@ namespace SernaSistemas.Jadet.DataAccess
         {
             throw new Exception("No implementado");
         }
-        public void listarProducto()
+        public List<Producto> listarProducto(int id)
         {
-            throw new Exception("No implementado");
-        }
-        public void listarTipoCatalogo()
-        {
+            List<Producto> resultado = new List<Producto>();
             using (SqlConnection conn = new SqlConnection(CadenaConexion))
             {
                 using (SqlCommand cmd = new SqlCommand()
                 {
-                    CommandText = "listarTipoCatalogo",
-                    CommandType = System.Data.CommandType.StoredProcedure
+                    CommandText = "Administracion.listarProducto",
+                    CommandType = System.Data.CommandType.StoredProcedure,
+                    Connection = conn
                 })
                 {
-
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = id,
+                        ParameterName = "@Id"
+                    });
+                    conn.Open();
+                    var dr = cmd.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            resultado.Add(new Producto
+                            {
+                                Id = (int)dr["Id"],
+                                Nombre = dr["Nombre"].ToString(),
+                                AplicaExistencias= (bool)dr["Id"],
+                                Descripcion = dr["Id"].ToString(),
+                                Existencias = (int)dr["Id"],
+                                Foto = (byte[])dr["Id"],
+                                SKU = dr["Id"].ToString(),
+                                PrecioMXN = (decimal)dr["Id"],
+                                IdCatalogo = (int)dr["Id"],
+                                PrecioUSD = (decimal)dr["Id"]
+                            });
+                        }
+                    }
+                    conn.Close();
                 }
             }
+            return resultado;
         }
-        public void listarTipoEstatus()
+        public List<TipoCatalogo> listarTipoCatalogo(int id)
         {
+            List<TipoCatalogo> resultado = new List<TipoCatalogo>();
             using (SqlConnection conn = new SqlConnection(CadenaConexion))
             {
                 using (SqlCommand cmd = new SqlCommand()
                 {
-                    CommandText = "listarTipoEstatus",
-                    CommandType = System.Data.CommandType.StoredProcedure
+                    CommandText = "Administracion.listarTipoCatalogo",
+                    CommandType = System.Data.CommandType.StoredProcedure,
+                    Connection = conn
                 })
                 {
-
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = id,
+                        ParameterName = "@Id"
+                    });
+                    conn.Open();
+                    var dr = cmd.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            resultado.Add(new TipoCatalogo
+                            {
+                                Id = (int)dr["Id"],
+                                Nombre = dr["Nombre"].ToString()
+                            });
+                        }
+                    }
+                    conn.Close();
                 }
             }
+            return resultado;
         }
-        public void listarRol(int id)
+        public List<TipoEstatus> listarTipoEstatus(int id)
         {
+            List<TipoEstatus> resultado = new List<TipoEstatus>();
             using (SqlConnection conn = new SqlConnection(CadenaConexion))
             {
                 using (SqlCommand cmd = new SqlCommand()
                 {
-                    CommandText = "listarRol",
-                    CommandType = System.Data.CommandType.StoredProcedure
+                    CommandText = "Administracion.listarTipoEstatus",
+                    CommandType = System.Data.CommandType.StoredProcedure,
+                    Connection = conn
                 })
                 {
-
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = id,
+                        ParameterName = "@Id"
+                    });
+                    conn.Open();
+                    var dr = cmd.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            resultado.Add(new TipoEstatus
+                            {
+                                Id = (int)dr["Id"],
+                                Nombre = dr["Nombre"].ToString()
+                            });
+                        }
+                    }
+                    conn.Close();
                 }
             }
+            return resultado;
+        }
+        public List<Rol> listarRol(int id)
+        {
+            List<Rol> resultado = new List<Rol>();
+            using (SqlConnection conn = new SqlConnection(CadenaConexion))
+            {
+                using (SqlCommand cmd = new SqlCommand()
+                {
+                    CommandText = "Seguridad.listarRol",
+                    CommandType = System.Data.CommandType.StoredProcedure,
+                    Connection = conn
+                })
+                {
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = id,
+                        ParameterName = "@Id"
+                    });
+                    conn.Open();
+                    var dr = cmd.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            resultado.Add(new Rol
+                            {
+                                Id = (int)dr["Id"],
+                                Nombre = dr["Nombre"].ToString()
+                            });
+                        }
+                    }
+                    conn.Close();
+                }
+            }
+            return resultado;
         }
 
     }
