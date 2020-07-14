@@ -29,9 +29,19 @@ create procedure Administracion.listarEstatus
 	@IdEstatus int = NULL
 as
 begin
-	select E.Id, E.Nombre, E.IdTipoEstatus
-	from Administracion.Estatus E (nolock)
-	where E.IdTipoEstatus = @IdTipoEstatus and E.Id = ISNULL(@IdEstatus, E.Id)
+	if (@IdTipoEstatus = 0)
+	begin
+		set @IdTipoEstatus = null
+	end
+	if (@IdEstatus = 0)
+	begin
+		set @IdEstatus = null
+	end
+
+	select	E.Id, E.Nombre, E.IdTipoEstatus
+	from	Administracion.Estatus E (nolock)
+	where	E.IdTipoEstatus = isnull(@IdTipoEstatus, E.IdTipoEstatus)
+			and E.Id = ISNULL(@IdEstatus, E.Id)
 end;
 go
 
@@ -57,9 +67,13 @@ create procedure Administracion.listarTipoCatalogo
 	@Id int = null
 as
 begin
-	select Id, Nombre
-	from Administracion.TipoCatalogo TC (nolock)
-	where TC.Id = isnull(@Id, TC.Id)
+	if @Id = 0
+	begin
+		set @Id = null
+	end
+	select	Id, Nombre
+	from	Administracion.TipoCatalogo TC (nolock)
+	where	TC.Id = isnull(@Id, TC.Id)
 end;
 go
 
@@ -67,9 +81,13 @@ create procedure Administracion.listarTipoEstatus
 	@Id int = null
 as
 begin
-	select Id, Nombre
-	from Administracion.TipoEstatus TE (nolock)
-	where TE.Id = isnull(@Id, TE.Id)
+	if @Id = 0
+	begin
+		set @Id = null
+	end
+	select	Id, Nombre
+	from	Administracion.TipoEstatus TE (nolock)
+	where	TE.Id = isnull(@Id, TE.Id)
 end;
 go
 
@@ -122,9 +140,18 @@ create procedure Administracion.listarCatalogo
 	@IdCatalogo int = null
 as
 begin
-	select C.Id, C.Nombre, C.IdTipoCatalogo
-	from Administracion.Catalogo C (nolock)
-	where C.IdTipoCatalogo = @IdTipoCatalogo and C.Id = isnull(@IdCatalogo, C.Id)
+	if @IdTipoCatalogo = 0
+	begin
+		set @IdTipoCatalogo = null
+	end
+	if @IdCatalogo = 0
+	begin
+		set @IdCatalogo = null
+	end
+	select	C.Id, C.Nombre, C.IdTipoCatalogo
+	from	Administracion.Catalogo C (nolock)
+	where	C.IdTipoCatalogo = isnull(@IdTipoCatalogo, C.IdTipoCatalogo)
+			and C.Id = isnull(@IdCatalogo, C.Id)
 end;
 go
 
@@ -132,9 +159,13 @@ create procedure Seguridad.listarRol
 	@Id int = null
 as
 begin
-	select Id, Nombre
-	from Seguridad.Rol R (nolock)
-	where R.Id = isnull(@Id, R.Id)
+	if @Id = 0
+	begin
+		set @Id = null
+	end
+	select	Id, Nombre
+	from	Seguridad.Rol R (nolock)
+	where	R.Id = isnull(@Id, R.Id)
 end;
 go
 
@@ -167,13 +198,13 @@ begin
 	end;
 	else
 	begin
-		insert into Seguridad.Usuario (	Id, Direccion, Telefono, Foto, Usuario,
+		insert into Seguridad.Usuario (	Id, Nombre, Direccion, Telefono, Foto, Usuario,
 										Passwd, IdRol, ZonaPaqueteria, IdEstatus)
-		values (@Id, @Direccion, @Telefono, @Foto, @Usuario,
+		values (@Id, @Nombre, @Direccion, @Telefono, @Foto, @Usuario,
 				@Passwd, @IdRol, @ZonaPaqueteria, @IdEstatus)
 	end;
 
-	select	@Id Id, @Direccion Direccion, @Telefono Telefono, @Foto Foto,
+	select	@Id Id, @Nombre Nombre, @Direccion Direccion, @Telefono Telefono, @Foto Foto,
 			@Usuario Usuario, @Passwd Passwd, @IdRol IdRol,
 			@ZonaPaqueteria ZonaPaqueteria, @IdEstatus IdEstatus
 end;
@@ -184,11 +215,19 @@ create procedure Seguridad.listarUsuario
 	@IdRol int = null
 as
 begin
-	select	U.Id, U.Direccion, U.Telefono, U.Foto, U.Usuario, U.Passwd,
+	if @IdRol = 0
+	begin
+		set @IdRol = null
+	end
+	if @Id = '00000000-0000-0000-0000-000000000000'
+	begin
+		set @Id = null
+	end
+	select	U.Id, U.Nombre, U.Direccion, U.Telefono, U.Foto, U.Usuario, U.Passwd,
 			U.IdRol, U.ZonaPaqueteria, U.IdEstatus, R.Nombre Rol
 	from	Seguridad.Usuario U (nolock)
 	join	Seguridad.Rol R (nolock) on U.IdRol = R.Id
-	where U.Id = isnull(@Id, U.Id) and U.IdRol = isnull(@IdRol, U.IdRol)
+	where	U.Id = isnull(@Id, U.Id) and U.IdRol = isnull(@IdRol, U.IdRol)
 end;
 go
 
@@ -255,11 +294,15 @@ create procedure Ventas.listarProductos
 	@Id int = null
 as
 begin
-	select P.Id, P.sku, P.Nombre, P.Descripcion, P.PrecioMXN, P.PrecioUSD,
+	if @Id = 0
+	begin
+		set @Id = null
+	end
+	select	P.Id, P.sku, P.Nombre, P.Descripcion, P.PrecioMXN, P.PrecioUSD,
 			P.Existencias, P.APlicaExistencias, P.Foto, P.IdCatalogo,
 			C.Nombre Categoria
-	from Ventas.Producto P (nolock)
-	join Administracion.Catalogo C (nolock) on P.IdCatalogo = C.Id
-	where P.Id = isnull(@Id, P.Id)
+	from	Ventas.Producto P (nolock)
+	join	Administracion.Catalogo C (nolock) on P.IdCatalogo = C.Id
+	where	P.Id = isnull(@Id, P.Id)
 end;
 go
