@@ -6,6 +6,11 @@ namespace SernaSistemas.Jadet.WCF.Implementaciones
 {
     public class Seguridad : ISeguridad
     {
+        public UsuarioResponse cambiarPerfil(UsuarioRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
         public LoginResponse CerrarSesion(LoginRequest request)
         {
             throw new NotImplementedException();
