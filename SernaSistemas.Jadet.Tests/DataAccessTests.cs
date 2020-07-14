@@ -66,7 +66,21 @@ namespace SernaSistemas.Jadet.DataAccess.Tests
         [TestMethod()]
         public void borrarUsuarioTest()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var item = da.listarUsuario(new Usuario {Id = new Guid(), IdRol = 0 })
+                    .OrderByDescending(c => c.Id)
+                    .FirstOrDefault();
+                var resultado = da.borrarUsuario(item.Id);
+                Console.WriteLine("Error número: {0}\nMensaje: {1}\n",
+                    resultado.ErrorNumero,
+                    resultado.ErrorMensaje
+                    );
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
         }
 
         //[TestMethod()]

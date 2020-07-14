@@ -223,7 +223,7 @@ begin
 	begin
 		set @Id = null
 	end
-	select	U.Id, U.Direccion, U.Telefono, U.Foto, U.Usuario, U.Passwd,
+	select	U.Id, U.Nombre, U.Direccion, U.Telefono, U.Foto, U.Usuario, U.Passwd,
 			U.IdRol, U.ZonaPaqueteria, U.IdEstatus, R.Nombre Rol
 	from	Seguridad.Usuario U (nolock)
 	join	Seguridad.Rol R (nolock) on U.IdRol = R.Id

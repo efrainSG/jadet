@@ -578,7 +578,7 @@ namespace SernaSistemas.Jadet.DataAccess
                                 IdRol = (int)dr["IdRol"],
                                 Password = (byte[])dr["Passwd"],
                                 Telefono = dr["Telefono"].ToString(),
-                                UserName = dr["UserName"].ToString(),
+                                UserName = dr["Usuario"].ToString(),
                                 ZonaPaqueteria = (int)dr["ZonaPaqueteria"]
                             });
                         }
