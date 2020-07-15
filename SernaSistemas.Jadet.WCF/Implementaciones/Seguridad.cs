@@ -25,24 +25,19 @@ namespace SernaSistemas.Jadet.WCF.Implementaciones
                 ErrorNumero = Convert.ToInt32(!resultado),
                 ErrorMensaje = resultado ? "" : "Usuario o contraseña incorrectos.",
                 IdUsuario = resultado ? Guid.NewGuid() : new Guid(),
-                NombreUsuario = new Nombre
-                {
-                    Nombres = resultado && request.Usuario.Equals("admin") ? "Administrador" :
+                NombreUsuario = resultado && request.Usuario.Equals("admin") ? "Administrador" :
                     (resultado && request.Usuario.Equals("user") ? "Cliente" : string.Empty),
-                },
                 RolUsuario = new Rol
                 {
-                    NombreRol = resultado && request.Usuario.Equals("admin") ? "Administrador" :
+                    Nombre = resultado && request.Usuario.Equals("admin") ? "Administrador" :
                     (resultado && request.Usuario.Equals("user") ? "Cliente" : string.Empty)
                 },
                 UltimoInicio = DateTime.Today,
                 Usuario = request.Usuario
             };
 
-            response.RolUsuario.IdRol = response.RolUsuario.NombreRol.Equals("Administrador") ? 1 :
-                (response.RolUsuario.NombreRol.Equals("Cliente") ? 2 : 0);
-            response.NombreUsuario.ApellidoMaterno = response.NombreUsuario.Nombres;
-            response.NombreUsuario.ApellidoPaterno = response.NombreUsuario.Nombres;
+            response.RolUsuario.IdRol = response.RolUsuario.Nombre.Equals("Administrador") ? 1 :
+                (response.RolUsuario.Nombre.Equals("Cliente") ? 2 : 0);
 
             return response;
         }

@@ -25,7 +25,7 @@ namespace SernaSistemas.Jadet.WCF.Implementaciones.Tests
                 resultado.ErrorMensaje,
                 resultado.IdUsuario,
                 resultado.NombreUsuario.ToString(),
-                resultado.RolUsuario.NombreRol,
+                resultado.RolUsuario.Nombre,
                 resultado.UltimoInicio,
                 resultado.Usuario);
 
@@ -39,7 +39,7 @@ namespace SernaSistemas.Jadet.WCF.Implementaciones.Tests
                 resultado.ErrorMensaje,
                 resultado.IdUsuario,
                 resultado.NombreUsuario.ToString(),
-                resultado.RolUsuario.NombreRol,
+                resultado.RolUsuario.Nombre,
                 resultado.UltimoInicio,
                 resultado.Usuario);
 
@@ -53,7 +53,7 @@ namespace SernaSistemas.Jadet.WCF.Implementaciones.Tests
                 resultado.ErrorMensaje,
                 resultado.IdUsuario,
                 resultado.NombreUsuario.ToString(),
-                resultado.RolUsuario.NombreRol,
+                resultado.RolUsuario.Nombre,
                 resultado.UltimoInicio,
                 resultado.Usuario);
 
@@ -67,7 +67,7 @@ namespace SernaSistemas.Jadet.WCF.Implementaciones.Tests
                 resultado.ErrorMensaje,
                 resultado.IdUsuario,
                 resultado.NombreUsuario.ToString(),
-                resultado.RolUsuario.NombreRol,
+                resultado.RolUsuario.Nombre,
                 resultado.UltimoInicio,
                 resultado.Usuario);
         }

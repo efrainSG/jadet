@@ -21,6 +21,11 @@ namespace SernaSistemas.Jadet.WCF.Modelos
         public int ErrorNumero { get; set; }
         [DataMember]
         public string ErrorMensaje { get; set; }
+        public BaseResponse()
+        {
+            ErrorNumero = 0;
+            ErrorMensaje = string.Empty;
+        }
     }
 
     [DataContract]
@@ -79,6 +84,15 @@ namespace SernaSistemas.Jadet.WCF.Modelos
 
     [DataContract]
     public class TipoCatalogoResponse : BaseResponse
+    {
+        [DataMember]
+        public int Id { get; set; }
+        [DataMember]
+        public string Nombre { get; set; }
+    }
+
+    [DataContract]
+    public class TipoCatalogoRequest : BaseRequest
     {
         [DataMember]
         public int Id { get; set; }

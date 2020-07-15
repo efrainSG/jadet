@@ -1,8 +1,11 @@
 ﻿using SernaSisitemas.Jadet.WCF.Contratos;
+using SernaSistemas.Jadet.DataAccess;
 using SernaSistemas.Jadet.WCF.Modelos;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.ServiceModel;
+using System.Text;
 
 namespace SernaSisitemas.Jadet.WCF.Implementaciones
 {
@@ -10,7 +13,16 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
     {
         public BaseResponse bajaCatalogo(CatalogoRequest request)
         {
-            throw new NotImplementedException();
+            DataAccess da = new DataAccess
+            {
+                CadenaConexion = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\efsern\source\repos\SernaSistemas.Jadet\SernaSistemas.Jadet.DataAccess\JadetBD.mdf;Integrated Security=True"
+            };
+            var resultado = da.borrarCatalogo(request.Id);
+            return new BaseResponse
+            {
+                ErrorMensaje = resultado.ErrorMensaje,
+                ErrorNumero = resultado.ErrorNumero
+            };
         }
 
         public BaseResponse bajaCliente(ClienteRequest request)
@@ -20,7 +32,16 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
 
         public BaseResponse bajaEstatus(EstatusRequest request)
         {
-            throw new NotImplementedException();
+            DataAccess da = new DataAccess
+            {
+                CadenaConexion = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\efsern\source\repos\SernaSistemas.Jadet\SernaSistemas.Jadet.DataAccess\JadetBD.mdf;Integrated Security=True"
+            };
+            var resultado = da.borrarEstatus(request.Id);
+            return new BaseResponse
+            {
+                ErrorMensaje = resultado.ErrorMensaje,
+                ErrorNumero = resultado.ErrorNumero
+            };
         }
 
         public NotaResponse bajaNota(NotaRequest request)
@@ -85,7 +106,24 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
 
         public CatalogoResponse guardarCatalogo(CatalogoRequest request)
         {
-            throw new NotImplementedException();
+            DataAccess da = new DataAccess
+            {
+                CadenaConexion = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\efsern\source\repos\SernaSistemas.Jadet\SernaSistemas.Jadet.DataAccess\JadetBD.mdf;Integrated Security=True"
+            };
+            var resultado = da.guardarCatalogo(new Catalogo
+            {
+                Id = request.Id,
+                IdTipoCatalogo = request.IdTipoCatalogo,
+                Nombre = request.Nombre
+            });
+            return new CatalogoResponse
+            {
+                Id = resultado.Id,
+                Nombre = resultado.Nombre,
+                IdTipoCatalogo = resultado.IdTipoCatalogo,
+                ErrorMensaje = string.Empty,
+                ErrorNumero = 0
+            };
         }
 
         public ClienteResponse guardarCliente(ClienteRequest request)
@@ -95,7 +133,24 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
 
         public EstatusResponse guardarEstatus(EstatusRequest request)
         {
-            throw new NotImplementedException();
+            DataAccess da = new DataAccess
+            {
+                CadenaConexion = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\efsern\source\repos\SernaSistemas.Jadet\SernaSistemas.Jadet.DataAccess\JadetBD.mdf;Integrated Security=True"
+            };
+            var resultado = da.guardarEstatus(new Estatus
+            {
+                Id = request.Id,
+                IdTipoEstatus = request.IdTipoEstatus,
+                Nombre = request.Nombre
+            });
+            return new EstatusResponse
+            {
+                Id = resultado.Id,
+                Nombre = resultado.Nombre,
+                IdTipoEstatus = resultado.IdTipoEstatus,
+                ErrorMensaje = string.Empty,
+                ErrorNumero = 0
+            };
         }
 
         public NotaResponse guardarNota(NotaRequest request)
@@ -110,29 +165,58 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
 
         public ColeccionCatalogoResponse listarCatalogo(CatalogoRequest request)
         {
-            throw new NotImplementedException();
+            ColeccionCatalogoResponse response = new ColeccionCatalogoResponse();
+            DataAccess da = new DataAccess
+            {
+                CadenaConexion = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\efsern\source\repos\SernaSistemas.Jadet\SernaSistemas.Jadet.DataAccess\JadetBD.mdf;Integrated Security=True"
+            };
+            var resultado = da.listarCatalogo(new Catalogo
+            {
+                Id = request.Id,
+                IdTipoCatalogo = request.IdTipoCatalogo
+            });
+            response.Items.AddRange(
+                resultado.Select(i => new CatalogoResponse
+                {
+                    Id = i.Id,
+                    IdTipoCatalogo = i.IdTipoCatalogo,
+                    Nombre = i.Nombre
+                }
+                ));
+            return response;
         }
 
         public coleccionClientesResponse listarClientes(ClienteRequest request)
         {
             coleccionClientesResponse response = new coleccionClientesResponse();
-            for (int i = 0; i < 10; i++)
+            DataAccess da = new DataAccess
             {
-                response.Items.Add(new ClienteResponse
-                {
-                    ErrorMensaje = string.Empty,
-                    ErrorNumero = 0,
-                    Foto = string.Format("{0}.jpg",i),
-                    IdCliente=i,
-                    Nombre = string.Format("Cliente #{0}", i)
-                });
-            }
+                CadenaConexion = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\efsern\source\repos\SernaSistemas.Jadet\SernaSistemas.Jadet.DataAccess\JadetBD.mdf;Integrated Security=True"
+            };
             return response;
         }
 
         public ColeccionEstatusResponse listarEstatus(EstatusRequest request)
         {
-            throw new NotImplementedException();
+            ColeccionEstatusResponse response = new ColeccionEstatusResponse();
+            DataAccess da = new DataAccess
+            {
+                CadenaConexion = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\efsern\source\repos\SernaSistemas.Jadet\SernaSistemas.Jadet.DataAccess\JadetBD.mdf;Integrated Security=True"
+            };
+            var resultado = da.listarEstatus(new Estatus
+            {
+                Id = request.Id,
+                IdTipoEstatus = request.IdTipoEstatus
+            });
+            response.Items.AddRange(
+                resultado.Select(i => new EstatusResponse
+                {
+                    Id = i.Id,
+                    IdTipoEstatus = i.IdTipoEstatus,
+                    Nombre = i.Nombre
+                }
+                ));
+            return response;
         }
 
         public coleccionNotasResponse listarNotas(BaseRequest request)
@@ -140,36 +224,66 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
             throw new NotImplementedException();
         }
 
-        public coleccionProductoResponse listarProductos(BaseRequest request)
+        public coleccionProductoResponse listarProductos(ProductoRequest request)
         {
-            
             coleccionProductoResponse response = new coleccionProductoResponse();
-            for (int i = 0; i < 10; i++)
+            DataAccess da = new DataAccess
             {
-                response.Items.Add(new ProductoResponse
+                CadenaConexion = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\efsern\source\repos\SernaSistemas.Jadet\SernaSistemas.Jadet.DataAccess\JadetBD.mdf;Integrated Security=True"
+            };
+            var resultado = da.listarProductos(request.Id);
+            response.Items.AddRange(
+                resultado.Select(i => new ProductoResponse
                 {
-                    ErrorMensaje = string.Empty,
-                    ErrorNumero = 0,
-                    Nombre = string.Format("Producto #{0}", i),
-                    Existencias = (new Random(100)).Next(300),
-                    Id = i,
-                    Descripcion = string.Format("Descripción de Producto #{0}", i),
-                    RutaImagen = string.Format("{0}.jpg", i),
-                    PrecioMXN = (new Random(100)).Next(250),
-                    PrecioUSD = (new Random(100)).Next(250),
-                    Categoria = new categoriaResponse
-                    {
-                        Id = i % 4,
-                        Nombre = string.Format("Categoría #{0}", i)
-                    }
-                });
-            }
+                    Id = i.Id,
+                    Nombre = i.Nombre,
+                    AplicaExistencias = i.AplicaExistencias,
+                    Descripcion = i.Descripcion,
+                    Existencias = i.Existencias,
+                    Foto = i.Foto,
+                    IdCategoria = i.IdCatalogo,
+                    PrecioMXN = i.PrecioMXN,
+                    PrecioUSD = i.PrecioUSD,
+                    SKU = i.SKU
+                }
+                ));
+            return response;
+        }
+
+        public ColeccionTipoCatalogoResponse listarTipoCatalogo(TipoCatalogoRequest request)
+        {
+            ColeccionTipoCatalogoResponse response = new ColeccionTipoCatalogoResponse();
+            DataAccess da = new DataAccess
+            {
+                CadenaConexion = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\efsern\source\repos\SernaSistemas.Jadet\SernaSistemas.Jadet.DataAccess\JadetBD.mdf;Integrated Security=True"
+            };
+            var resultado = da.listarTipoCatalogo(request.Id);
+            response.Items.AddRange(
+                resultado.Select(i => new TipoCatalogoResponse
+                {
+                    Id = i.Id,
+                    Nombre = i.Nombre
+                }
+                ));
             return response;
         }
 
         public ColeccionTipoEstatusResponse listarTipoEstatus(TipoEstatusRequest request)
         {
-            throw new NotImplementedException();
+            ColeccionTipoEstatusResponse response = new ColeccionTipoEstatusResponse();
+            DataAccess da = new DataAccess
+            {
+                CadenaConexion = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\efsern\source\repos\SernaSistemas.Jadet\SernaSistemas.Jadet.DataAccess\JadetBD.mdf;Integrated Security=True"
+            };
+            var resultado = da.listarTipoEstatus(request.Id);
+            response.Items.AddRange(
+                resultado.Select(i => new TipoEstatusResponse
+                {
+                    Id = i.Id,
+                    Nombre = i.Nombre
+                }
+                ));
+            return response;
         }
 
         public ArchivoResponse subirFotos(ArchivoRequest request)

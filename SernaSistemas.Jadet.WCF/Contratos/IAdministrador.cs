@@ -17,6 +17,8 @@ namespace SernaSisitemas.Jadet.WCF.Contratos
         CatalogoResponse cargarCatalogo(CatalogoRequest request);
         [OperationContract]
         ColeccionCatalogoResponse listarCatalogo(CatalogoRequest request);
+        [OperationContract]
+        ColeccionTipoCatalogoResponse listarTipoCatalogo(TipoCatalogoRequest request);
 
         [OperationContract]
         EstatusResponse guardarEstatus(EstatusRequest request);
@@ -53,7 +55,7 @@ namespace SernaSisitemas.Jadet.WCF.Contratos
         [OperationContract]
         ProductoResponse cargarProducto(ProductoRequest request);
         [OperationContract]
-        coleccionProductoResponse listarProductos(BaseRequest request);
+        coleccionProductoResponse listarProductos(ProductoRequest request);
 
         [OperationContract]
         NotaResponse guardarNota(NotaRequest request);

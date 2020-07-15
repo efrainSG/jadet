@@ -72,4 +72,111 @@ namespace SernaSistemas.Jadet.WCF.Modelos
         [DataMember]
         public List<NotaResponse> Items { get; set; }
     }
+
+    [DataContract]
+    public class DetalleNotaRequest : BaseRequest
+    {
+        [DataMember]
+        public int Id { get; set; }
+        [DataMember]
+        public int IdNota { get; set; }
+        [DataMember]
+        public int IdProducto { get; set; }
+        [DataMember]
+        public int Cantidad { get; set; }
+        [DataMember]
+        public decimal PrecioMXN { get; set; }
+        [DataMember]
+        public decimal PrecioUSD { get; set; }
+    }
+
+    [DataContract]
+    public class DetalleNotaResponse : BaseResponse
+    {
+        [DataMember]
+        public int Id { get; set; }
+        [DataMember]
+        public int IdNota { get; set; }
+        [DataMember]
+        public int IdProducto { get; set; }
+        [DataMember]
+        public int Cantidad { get; set; }
+        [DataMember]
+        public decimal PrecioMXN { get; set; }
+        [DataMember]
+        public decimal PrecioUSD { get; set; }
+    }
+
+    [DataContract]
+    public class coleccionDetalleNotaResponse : BaseResponse
+    {
+        [DataMember]
+        public List<DetalleNotaResponse> Items { get; set; }
+    }
+
+    [DataContract]
+    public class NotaComentarioRequest : BaseRequest
+    {
+        [DataMember]
+        public int Id { get; set; }
+        [DataMember]
+        public int IdNota { get; set; }
+        [DataMember]
+        public string Comentario { get; set; }
+        [DataMember]
+        public DateTime Fecha { get; set; }
+    }
+
+    [DataContract]
+    public class NotaComentarioResponse : BaseResponse
+    {
+        [DataMember]
+        public int Id { get; set; }
+        [DataMember]
+        public int IdNota { get; set; }
+        [DataMember]
+        public string Comentario { get; set; }
+        [DataMember]
+        public DateTime Fecha { get; set; }
+    }
+
+    [DataContract]
+    public class coleccionNotaComentarioResponse : BaseResponse
+    {
+        [DataMember]
+        public List<NotaComentarioResponse> Items { get; set; }
+    }
+
+    [DataContract]
+    public class NotaTicketRequest:BaseRequest
+    {
+        [DataMember]
+        public int Id { get; set; }
+        [DataMember]
+        public int IdNota { get; set; }
+        [DataMember]
+        public byte[] Ticket { get; set; }
+        [DataMember]
+        public DateTime Fecha { get; set; }
+    }
+
+    [DataContract]
+    public class NotaTicketResponse : BaseResponse
+    {
+        [DataMember]
+        public int Id { get; set; }
+        [DataMember]
+        public int IdNota { get; set; }
+        [DataMember]
+        public byte[] Ticket { get; set; }
+        [DataMember]
+        public DateTime Fecha { get; set; }
+    }
+
+    [DataContract]
+    public class coleccionNotaTicketResponse : BaseResponse
+    {
+        [DataMember]
+        public List<NotaTicketResponse> Items { get; set; }
+    }
 }

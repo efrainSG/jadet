@@ -12,7 +12,7 @@ namespace SernaSistemas.Jadet.WCF.Modelos
     public class ClienteRequest : BaseRequest
     {
         [DataMember]
-        public int IdCliente { get; set; }
+        public Guid IdCliente { get; set; }
         [DataMember]
         public string Nombre { get; set; }
         [DataMember]
