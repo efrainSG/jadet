@@ -3,6 +3,7 @@ using SernaSistemas.Jadet.DataAccess;
 using SernaSistemas.Jadet.WCF.Modelos;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
@@ -15,7 +16,7 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
         {
             DataAccess da = new DataAccess
             {
-                CadenaConexion = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\efsern\source\repos\SernaSistemas.Jadet\SernaSistemas.Jadet.DataAccess\JadetBD.mdf;Integrated Security=True"
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
             };
             var resultado = da.borrarCatalogo(request.Id);
             return new BaseResponse
@@ -27,14 +28,23 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
 
         public BaseResponse bajaCliente(ClienteRequest request)
         {
-            throw new NotImplementedException();
+            DataAccess da = new DataAccess
+            {
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
+            };
+            var resultado = da.borrarUsuario(request.IdCliente);
+            return new BaseResponse
+            {
+                ErrorMensaje = resultado.ErrorMensaje,
+                ErrorNumero = resultado.ErrorNumero
+            };
         }
 
         public BaseResponse bajaEstatus(EstatusRequest request)
         {
             DataAccess da = new DataAccess
             {
-                CadenaConexion = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\efsern\source\repos\SernaSistemas.Jadet\SernaSistemas.Jadet.DataAccess\JadetBD.mdf;Integrated Security=True"
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
             };
             var resultado = da.borrarEstatus(request.Id);
             return new BaseResponse
@@ -61,17 +71,72 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
 
         public CatalogoResponse cargarCatalogo(CatalogoRequest request)
         {
-            throw new NotImplementedException();
+            DataAccess da = new DataAccess
+            {
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
+            };
+            var resultado = da.listarCatalogo(new Catalogo
+            {
+                Id = request.Id,
+                IdTipoCatalogo = request.IdTipoCatalogo
+            }).FirstOrDefault();
+            return new CatalogoResponse
+            {
+                Id = resultado.Id,
+                IdTipoCatalogo = resultado.IdTipoCatalogo,
+                Nombre = resultado.Nombre,
+                ErrorMensaje = string.Empty,
+                ErrorNumero = 0
+            };
         }
 
         public ClienteResponse cargarCliente(ClienteRequest request)
         {
-            throw new NotImplementedException();
+            ClienteResponse response;
+            DataAccess da = new DataAccess
+            {
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
+            };
+            var resultado = da.listarUsuario(new Usuario
+            {
+                Id = request.IdCliente,
+
+            }).FirstOrDefault();
+            response = new ClienteResponse
+            {
+                IdCliente = resultado.Id,
+                Foto = resultado.Foto,
+                Nombre = resultado.Nombre,
+                Password = resultado.Password,
+                Direccion = resultado.Direccion,
+                IdEstatus = resultado.IdEstatus,
+                IdRol = resultado.IdRol,
+                Telefono = resultado.Telefono,
+                UserName = resultado.UserName,
+                ZonaPaqueteria = resultado.ZonaPaqueteria
+            };
+            return response;
         }
 
         public EstatusResponse cargarEstatus(EstatusRequest request)
         {
-            throw new NotImplementedException();
+            DataAccess da = new DataAccess
+            {
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
+            };
+            var resultado = da.listarEstatus(new Estatus
+            {
+                Id = request.Id,
+                IdTipoEstatus = request.IdTipoEstatus
+            }).FirstOrDefault();
+            return new EstatusResponse
+            {
+                Id = resultado.Id,
+                IdTipoEstatus = resultado.IdTipoEstatus,
+                Nombre = resultado.Nombre,
+                ErrorMensaje = string.Empty,
+                ErrorNumero = 0
+            };
         }
 
         public HistorialClienteResponse cargarHistorialCliente(ClienteRequest request)
@@ -86,12 +151,42 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
 
         public ProductoResponse cargarProducto(ProductoRequest request)
         {
-            throw new NotImplementedException();
+            ProductoResponse response = new ProductoResponse();
+            DataAccess da = new DataAccess
+            {
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
+            };
+            var resultado = da.listarProductos(request.Id).FirstOrDefault();
+            response = new ProductoResponse
+            {
+                Id = resultado.Id,
+                Nombre = resultado.Nombre,
+                AplicaExistencias = resultado.AplicaExistencias,
+                Descripcion = resultado.Descripcion,
+                Existencias = resultado.Existencias,
+                Foto = resultado.Foto,
+                IdCategoria = resultado.IdCatalogo,
+                PrecioMXN = resultado.PrecioMXN,
+                PrecioUSD = resultado.PrecioUSD,
+                SKU = resultado.SKU
+            };
+            return response;
         }
 
-        public EstatusResponse cargarTipoEstatus(EstatusRequest request)
+        public TipoEstatusResponse cargarTipoEstatus(TipoEstatusRequest request)
         {
-            throw new NotImplementedException();
+            DataAccess da = new DataAccess
+            {
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
+            };
+            var resultado = da.listarTipoEstatus(request.Id).FirstOrDefault();
+            return new TipoEstatusResponse
+            {
+                Id = resultado.Id,
+                Nombre = resultado.Nombre,
+                ErrorMensaje = string.Empty,
+                ErrorNumero = 0
+            };
         }
 
         public BaseResponse enviarRecordatorios(BaseRequest request)
@@ -108,7 +203,7 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
         {
             DataAccess da = new DataAccess
             {
-                CadenaConexion = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\efsern\source\repos\SernaSistemas.Jadet\SernaSistemas.Jadet.DataAccess\JadetBD.mdf;Integrated Security=True"
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
             };
             var resultado = da.guardarCatalogo(new Catalogo
             {
@@ -135,7 +230,7 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
         {
             DataAccess da = new DataAccess
             {
-                CadenaConexion = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\efsern\source\repos\SernaSistemas.Jadet\SernaSistemas.Jadet.DataAccess\JadetBD.mdf;Integrated Security=True"
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
             };
             var resultado = da.guardarEstatus(new Estatus
             {
@@ -168,7 +263,7 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
             ColeccionCatalogoResponse response = new ColeccionCatalogoResponse();
             DataAccess da = new DataAccess
             {
-                CadenaConexion = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\efsern\source\repos\SernaSistemas.Jadet\SernaSistemas.Jadet.DataAccess\JadetBD.mdf;Integrated Security=True"
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
             };
             var resultado = da.listarCatalogo(new Catalogo
             {
@@ -191,8 +286,30 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
             coleccionClientesResponse response = new coleccionClientesResponse();
             DataAccess da = new DataAccess
             {
-                CadenaConexion = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\efsern\source\repos\SernaSistemas.Jadet\SernaSistemas.Jadet.DataAccess\JadetBD.mdf;Integrated Security=True"
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
             };
+            var resultado = da.listarUsuario(new Usuario
+            {
+                Id = request.IdCliente,
+                IdRol = request.IdRol
+            });
+            response.Items.AddRange(
+                resultado.Select(i => new ClienteResponse
+                {
+                    Direccion = i.Direccion,
+                    ErrorMensaje = string.Empty,
+                    ErrorNumero = 0,
+                    Foto = i.Foto,
+                    IdCliente = i.Id,
+                    IdEstatus = i.IdEstatus,
+                    IdRol = i.IdRol,
+                    Nombre = i.Nombre,
+                    Password = i.Password,
+                    Telefono = i.Telefono,
+                    UserName = i.UserName,
+                    ZonaPaqueteria = i.ZonaPaqueteria
+                }
+                ));
             return response;
         }
 
@@ -201,7 +318,7 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
             ColeccionEstatusResponse response = new ColeccionEstatusResponse();
             DataAccess da = new DataAccess
             {
-                CadenaConexion = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\efsern\source\repos\SernaSistemas.Jadet\SernaSistemas.Jadet.DataAccess\JadetBD.mdf;Integrated Security=True"
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
             };
             var resultado = da.listarEstatus(new Estatus
             {
@@ -229,7 +346,7 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
             coleccionProductoResponse response = new coleccionProductoResponse();
             DataAccess da = new DataAccess
             {
-                CadenaConexion = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\efsern\source\repos\SernaSistemas.Jadet\SernaSistemas.Jadet.DataAccess\JadetBD.mdf;Integrated Security=True"
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
             };
             var resultado = da.listarProductos(request.Id);
             response.Items.AddRange(
@@ -255,7 +372,7 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
             ColeccionTipoCatalogoResponse response = new ColeccionTipoCatalogoResponse();
             DataAccess da = new DataAccess
             {
-                CadenaConexion = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\efsern\source\repos\SernaSistemas.Jadet\SernaSistemas.Jadet.DataAccess\JadetBD.mdf;Integrated Security=True"
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
             };
             var resultado = da.listarTipoCatalogo(request.Id);
             response.Items.AddRange(
@@ -273,7 +390,7 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
             ColeccionTipoEstatusResponse response = new ColeccionTipoEstatusResponse();
             DataAccess da = new DataAccess
             {
-                CadenaConexion = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\efsern\source\repos\SernaSistemas.Jadet\SernaSistemas.Jadet.DataAccess\JadetBD.mdf;Integrated Security=True"
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
             };
             var resultado = da.listarTipoEstatus(request.Id);
             response.Items.AddRange(
