@@ -32,7 +32,7 @@ namespace SernaSisitemas.Jadet.WCF.Contratos
         [OperationContract]
         ColeccionTipoEstatusResponse listarTipoEstatus(TipoEstatusRequest request);
         [OperationContract]
-        EstatusResponse cargarTipoEstatus(EstatusRequest request);
+        TipoEstatusResponse cargarTipoEstatus(TipoEstatusRequest request);
 
         [OperationContract]
         ClienteResponse guardarCliente(ClienteRequest request);

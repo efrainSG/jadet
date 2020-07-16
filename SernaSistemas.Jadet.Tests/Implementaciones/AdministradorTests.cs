@@ -115,5 +115,11 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones.Tests
         {
             throw new NotImplementedException();
         }
+
+        [TestMethod()]
+        public void bajaCatalogoTest()
+        {
+
+        }
     }
 }
