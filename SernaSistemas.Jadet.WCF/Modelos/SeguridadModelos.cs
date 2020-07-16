@@ -26,24 +26,9 @@ namespace SernaSistemas.Jadet.WCF.Modelos
         [DataMember]
         public DateTime UltimoInicio { get; set; }
         [DataMember]
-        public Nombre NombreUsuario { get; set; }
+        public string NombreUsuario { get; set; }
         [DataMember]
         public Rol RolUsuario { get; set; }
-    }
-
-    [DataContract]
-    public class Nombre
-    {
-        [DataMember]
-        public string Nombres { get; set; }
-        [DataMember]
-        public string ApellidoPaterno { get; set; }
-        [DataMember]
-        public string ApellidoMaterno { get; set; }
-        public override string ToString()
-        {
-            return string.Format("{0} {1} {2}", Nombres, ApellidoPaterno, ApellidoMaterno); 
-        }
     }
 
     [DataContract]
@@ -52,6 +37,56 @@ namespace SernaSistemas.Jadet.WCF.Modelos
         [DataMember]
         public int IdRol { get; set; }
         [DataMember]
-        public string NombreRol { get; set; }
+        public string Nombre { get; set; }
+    }
+
+    [DataContract]
+    public class UsuarioResponse : BaseResponse
+    {
+        [DataMember]
+        public Guid Id { get; set; }
+        [DataMember]
+        public string Nombre { get; set; }
+        [DataMember]
+        public string Direccion { get; set; }
+        [DataMember]
+        public string Telefono { get; set; }
+        [DataMember]
+        public byte[] Foto { get; set; }
+        [DataMember]
+        public string Usuario { get; set; }
+        [DataMember]
+        public byte[] Password { get; set; }
+        [DataMember]
+        public int IdRol { get; set; }
+        [DataMember]
+        public int ZonaPaqueteria { get; set; }
+        [DataMember]
+        public int IdEstatus { get; set; }
+    }
+
+    [DataContract]
+    public class UsuarioRequest : BaseRequest
+    {
+        [DataMember]
+        public Guid Id { get; set; }
+        [DataMember]
+        public string Nombre { get; set; }
+        [DataMember]
+        public string Direccion { get; set; }
+        [DataMember]
+        public string Telefono { get; set; }
+        [DataMember]
+        public byte[] Foto { get; set; }
+        [DataMember]
+        public string Usuario { get; set; }
+        [DataMember]
+        public byte[] Password { get; set; }
+        [DataMember]
+        public int IdRol { get; set; }
+        [DataMember]
+        public int ZonaPaqueteria { get; set; }
+        [DataMember]
+        public int IdEstatus { get; set; }
     }
 }

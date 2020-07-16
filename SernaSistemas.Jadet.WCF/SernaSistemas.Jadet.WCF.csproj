@@ -36,6 +36,7 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
@@ -64,6 +65,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Excepciones\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SernaSistemas.Jadet.DataAccess\SernaSistemas.Jadet.DataAccess.csproj">
+      <Project>{6DEEB81F-932D-465B-BB44-9265731248B4}</Project>
+      <Name>SernaSistemas.Jadet.DataAccess</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

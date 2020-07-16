@@ -14,11 +14,23 @@ namespace SernaSistemas.Jadet.WCF.Modelos
         [DataMember]
         public int Id { get; set; }
         [DataMember]
+        public string SKU { get; set; }
+        [DataMember]
         public string Nombre { get; set; }
         [DataMember]
-        public string RutaImagen { get; set; }
+        public string Descripcion { get; set; }
+        [DataMember]
+        public decimal PrecioMXN { get; set; }
+        [DataMember]
+        public decimal PrecioUSD { get; set; }
         [DataMember]
         public int Existencias { get; set; }
+        [DataMember]
+        public bool AplicaExistencias { get; set; }
+        [DataMember]
+        public byte[] Foto { get; set; }
+        [DataMember]
+        public int IdCategoria { get; set; }
     }
 
     [DataContract]
@@ -27,20 +39,23 @@ namespace SernaSistemas.Jadet.WCF.Modelos
         [DataMember]
         public int Id { get; set; }
         [DataMember]
+        public string SKU { get; set; }
+        [DataMember]
         public string Nombre { get; set; }
         [DataMember]
-        public string RutaImagen { get; set; }
-        [DataMember]
-        public string Descripcion{ get; set; }
-        [DataMember]
-        public int Existencias { get; set; }
+        public string Descripcion { get; set; }
         [DataMember]
         public decimal PrecioMXN { get; set; }
         [DataMember]
         public decimal PrecioUSD { get; set; }
         [DataMember]
-        public categoriaResponse Categoria { get; set; }
-
+        public int Existencias { get; set; }
+        [DataMember]
+        public bool AplicaExistencias { get; set; }
+        [DataMember]
+        public byte[] Foto { get; set; }
+        [DataMember]
+        public int IdCategoria { get; set; }
     }
 
     [DataContract]
