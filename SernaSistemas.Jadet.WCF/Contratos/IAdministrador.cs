@@ -10,18 +10,43 @@ namespace SernaSisitemas.Jadet.WCF.Contratos
     public interface IAdministrador
     {
         [OperationContract]
+        CatalogoResponse guardarCatalogo(CatalogoRequest request);
+        [OperationContract]
+        BaseResponse bajaCatalogo(CatalogoRequest request);
+        [OperationContract]
+        CatalogoResponse cargarCatalogo(CatalogoRequest request);
+        [OperationContract]
+        ColeccionCatalogoResponse listarCatalogo(CatalogoRequest request);
+        [OperationContract]
+        ColeccionTipoCatalogoResponse listarTipoCatalogo(TipoCatalogoRequest request);
+
+        [OperationContract]
+        EstatusResponse guardarEstatus(EstatusRequest request);
+        [OperationContract]
+        BaseResponse bajaEstatus(EstatusRequest request);
+        [OperationContract]
+        EstatusResponse cargarEstatus(EstatusRequest request);
+        [OperationContract]
+        ColeccionEstatusResponse listarEstatus(EstatusRequest request);
+
+        [OperationContract]
+        ColeccionTipoEstatusResponse listarTipoEstatus(TipoEstatusRequest request);
+        [OperationContract]
+        TipoEstatusResponse cargarTipoEstatus(TipoEstatusRequest request);
+
+        [OperationContract]
         ClienteResponse guardarCliente(ClienteRequest request);
         [OperationContract]
         BaseResponse bajaCliente(ClienteRequest request);
         [OperationContract]
         ClienteResponse cargarCliente(ClienteRequest request);
+        [OperationContract]
+        coleccionClientesResponse listarClientes(ClienteRequest request);
+        [OperationContract]
+        HistorialClienteResponse cargarHistorialCliente(ClienteRequest request);
 
         [OperationContract]
         ArchivoResponse subirFotos(ArchivoRequest request);
-        [OperationContract]
-        HistorialClienteResponse cargarHistorialCliente(ClienteRequest request);
-        [OperationContract]
-        coleccionClientesResponse listarClientes(ClienteRequest request);
 
         [OperationContract]
         ProductoResponse guardarProducto(ProductoRequest request);
@@ -30,14 +55,16 @@ namespace SernaSisitemas.Jadet.WCF.Contratos
         [OperationContract]
         ProductoResponse cargarProducto(ProductoRequest request);
         [OperationContract]
-        coleccionProductoResponse listarProductos(BaseRequest request);
+        coleccionProductoResponse listarProductos(ProductoRequest request);
 
+        [OperationContract]
+        NotaResponse guardarNota(NotaRequest request);
         [OperationContract]
         coleccionNotasResponse listarNotas(BaseRequest request);
         [OperationContract]
-        NotaResponse verNota(NotaRequest request);
+        NotaResponse cargarNota(NotaRequest request);
         [OperationContract]
-        NotaResponse borrarNota(NotaRequest request);
+        NotaResponse bajaNota(NotaRequest request);
 
 
         [OperationContract]
