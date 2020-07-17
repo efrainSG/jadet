@@ -15,6 +15,7 @@
             <th rowspan="2">Descripción</th>
             <th colspan="2">Precio</th>
             <th rowspan="2">Existencias</th>
+            <th rowspan="2">Aplica Existencias</th>
             <th rowspan="2">
                 <a href="#" class="btn btn-success">Agregar</a>
             </th>
@@ -29,12 +30,19 @@
         {
         <tr>
             <td>@item.Sku</td>
-            <td><img src="@item.RutaImagen" width="50px"</td>
+            @*<td><img src="@item.RutaImagen" width="50px"</td>*@
             <td>@item.Nombre</td>
             <td>@item.Descripcion</td>
             <td>@item.PrecioMXN</td>
             <td>@item.PrecioUSD</td>
             <td>@item.Existencias</td>
+            <td>@if (item.AplicaExistencias){ 
+                @:Sí
+                } else {
+                @:No 
+                }</td>
+            <td>@item.Id</td>
+            <td>@item.IdCategoria</td>
             <td>
                 <a href="#" class="btn btn-warning" id="@("btneditar"+@item.Sku)">Editar</a>
                 <a href="#" class="btn btn-danger" id="@("btneliminar"+@item.Sku)">Eliminar</a>

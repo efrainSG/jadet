@@ -13,16 +13,54 @@
   <wsdl:message name="ISeguridad_IniciarSesion_OutputMessage">
     <wsdl:part name="parameters" element="tns:IniciarSesionResponse" />
   </wsdl:message>
+  <wsdl:message name="ISeguridad_CerrarSesion_InputMessage">
+    <wsdl:part name="parameters" element="tns:CerrarSesion" />
+  </wsdl:message>
+  <wsdl:message name="ISeguridad_CerrarSesion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CerrarSesionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISeguridad_cambiarPerfil_InputMessage">
+    <wsdl:part name="parameters" element="tns:cambiarPerfil" />
+  </wsdl:message>
+  <wsdl:message name="ISeguridad_cambiarPerfil_OutputMessage">
+    <wsdl:part name="parameters" element="tns:cambiarPerfilResponse" />
+  </wsdl:message>
   <wsdl:portType name="ISeguridad">
     <wsdl:operation name="IniciarSesion">
       <wsdl:input wsaw:Action="http://tempuri.org/ISeguridad/IniciarSesion" message="tns:ISeguridad_IniciarSesion_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISeguridad/IniciarSesionResponse" message="tns:ISeguridad_IniciarSesion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CerrarSesion">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISeguridad/CerrarSesion" message="tns:ISeguridad_CerrarSesion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISeguridad/CerrarSesionResponse" message="tns:ISeguridad_CerrarSesion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="cambiarPerfil">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISeguridad/cambiarPerfil" message="tns:ISeguridad_cambiarPerfil_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISeguridad/cambiarPerfilResponse" message="tns:ISeguridad_cambiarPerfil_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ISeguridad" type="tns:ISeguridad">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="IniciarSesion">
       <soap:operation soapAction="http://tempuri.org/ISeguridad/IniciarSesion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CerrarSesion">
+      <soap:operation soapAction="http://tempuri.org/ISeguridad/CerrarSesion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cambiarPerfil">
+      <soap:operation soapAction="http://tempuri.org/ISeguridad/cambiarPerfil" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -17,11 +17,15 @@ namespace Jadet.AdministradorServicio {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="BaseRequest", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.TipoCatalogoRequest))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.EstatusRequest))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.TipoEstatusRequest))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.ClienteRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.ArchivoRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.ProductoRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.NotaRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.GuiaRequest))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.ClienteRequest))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.CatalogoRequest))]
     public partial class BaseRequest : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -43,6 +47,306 @@ namespace Jadet.AdministradorServicio {
             System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
             if ((propertyChanged != null)) {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TipoCatalogoRequest", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
+    [System.SerializableAttribute()]
+    public partial class TipoCatalogoRequest : Jadet.AdministradorServicio.BaseRequest {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Nombre {
+            get {
+                return this.NombreField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreField, value) != true)) {
+                    this.NombreField = value;
+                    this.RaisePropertyChanged("Nombre");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EstatusRequest", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
+    [System.SerializableAttribute()]
+    public partial class EstatusRequest : Jadet.AdministradorServicio.BaseRequest {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdTipoEstatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdTipoEstatus {
+            get {
+                return this.IdTipoEstatusField;
+            }
+            set {
+                if ((this.IdTipoEstatusField.Equals(value) != true)) {
+                    this.IdTipoEstatusField = value;
+                    this.RaisePropertyChanged("IdTipoEstatus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Nombre {
+            get {
+                return this.NombreField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreField, value) != true)) {
+                    this.NombreField = value;
+                    this.RaisePropertyChanged("Nombre");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TipoEstatusRequest", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
+    [System.SerializableAttribute()]
+    public partial class TipoEstatusRequest : Jadet.AdministradorServicio.BaseRequest {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Nombre {
+            get {
+                return this.NombreField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreField, value) != true)) {
+                    this.NombreField = value;
+                    this.RaisePropertyChanged("Nombre");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ClienteRequest", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
+    [System.SerializableAttribute()]
+    public partial class ClienteRequest : Jadet.AdministradorServicio.BaseRequest {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DireccionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] FotoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid IdClienteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdEstatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdRolField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] PasswordField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TelefonoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UserNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ZonaPaqueteriaField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Direccion {
+            get {
+                return this.DireccionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DireccionField, value) != true)) {
+                    this.DireccionField = value;
+                    this.RaisePropertyChanged("Direccion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Foto {
+            get {
+                return this.FotoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FotoField, value) != true)) {
+                    this.FotoField = value;
+                    this.RaisePropertyChanged("Foto");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid IdCliente {
+            get {
+                return this.IdClienteField;
+            }
+            set {
+                if ((this.IdClienteField.Equals(value) != true)) {
+                    this.IdClienteField = value;
+                    this.RaisePropertyChanged("IdCliente");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdEstatus {
+            get {
+                return this.IdEstatusField;
+            }
+            set {
+                if ((this.IdEstatusField.Equals(value) != true)) {
+                    this.IdEstatusField = value;
+                    this.RaisePropertyChanged("IdEstatus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdRol {
+            get {
+                return this.IdRolField;
+            }
+            set {
+                if ((this.IdRolField.Equals(value) != true)) {
+                    this.IdRolField = value;
+                    this.RaisePropertyChanged("IdRol");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Nombre {
+            get {
+                return this.NombreField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreField, value) != true)) {
+                    this.NombreField = value;
+                    this.RaisePropertyChanged("Nombre");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Password {
+            get {
+                return this.PasswordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
+                    this.PasswordField = value;
+                    this.RaisePropertyChanged("Password");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Telefono {
+            get {
+                return this.TelefonoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TelefonoField, value) != true)) {
+                    this.TelefonoField = value;
+                    this.RaisePropertyChanged("Telefono");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UserName {
+            get {
+                return this.UserNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserNameField, value) != true)) {
+                    this.UserNameField = value;
+                    this.RaisePropertyChanged("UserName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ZonaPaqueteria {
+            get {
+                return this.ZonaPaqueteriaField;
+            }
+            set {
+                if ((this.ZonaPaqueteriaField.Equals(value) != true)) {
+                    this.ZonaPaqueteriaField = value;
+                    this.RaisePropertyChanged("ZonaPaqueteria");
+                }
             }
         }
     }
@@ -139,6 +443,166 @@ namespace Jadet.AdministradorServicio {
     [System.Runtime.Serialization.DataContractAttribute(Name="ProductoRequest", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
     [System.SerializableAttribute()]
     public partial class ProductoRequest : Jadet.AdministradorServicio.BaseRequest {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool AplicaExistenciasField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescripcionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ExistenciasField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] FotoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdCategoriaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal PrecioMXNField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal PrecioUSDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SKUField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool AplicaExistencias {
+            get {
+                return this.AplicaExistenciasField;
+            }
+            set {
+                if ((this.AplicaExistenciasField.Equals(value) != true)) {
+                    this.AplicaExistenciasField = value;
+                    this.RaisePropertyChanged("AplicaExistencias");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Descripcion {
+            get {
+                return this.DescripcionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescripcionField, value) != true)) {
+                    this.DescripcionField = value;
+                    this.RaisePropertyChanged("Descripcion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Existencias {
+            get {
+                return this.ExistenciasField;
+            }
+            set {
+                if ((this.ExistenciasField.Equals(value) != true)) {
+                    this.ExistenciasField = value;
+                    this.RaisePropertyChanged("Existencias");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Foto {
+            get {
+                return this.FotoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FotoField, value) != true)) {
+                    this.FotoField = value;
+                    this.RaisePropertyChanged("Foto");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdCategoria {
+            get {
+                return this.IdCategoriaField;
+            }
+            set {
+                if ((this.IdCategoriaField.Equals(value) != true)) {
+                    this.IdCategoriaField = value;
+                    this.RaisePropertyChanged("IdCategoria");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Nombre {
+            get {
+                return this.NombreField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreField, value) != true)) {
+                    this.NombreField = value;
+                    this.RaisePropertyChanged("Nombre");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal PrecioMXN {
+            get {
+                return this.PrecioMXNField;
+            }
+            set {
+                if ((this.PrecioMXNField.Equals(value) != true)) {
+                    this.PrecioMXNField = value;
+                    this.RaisePropertyChanged("PrecioMXN");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal PrecioUSD {
+            get {
+                return this.PrecioUSDField;
+            }
+            set {
+                if ((this.PrecioUSDField.Equals(value) != true)) {
+                    this.PrecioUSDField = value;
+                    this.RaisePropertyChanged("PrecioUSD");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SKU {
+            get {
+                return this.SKUField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SKUField, value) != true)) {
+                    this.SKUField = value;
+                    this.RaisePropertyChanged("SKU");
+                }
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -146,26 +610,97 @@ namespace Jadet.AdministradorServicio {
     [System.Runtime.Serialization.DataContractAttribute(Name="NotaRequest", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
     [System.SerializableAttribute()]
     public partial class NotaRequest : Jadet.AdministradorServicio.BaseRequest {
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="GuiaRequest", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
-    [System.SerializableAttribute()]
-    public partial class GuiaRequest : Jadet.AdministradorServicio.BaseRequest {
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ClienteRequest", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
-    [System.SerializableAttribute()]
-    public partial class ClienteRequest : Jadet.AdministradorServicio.BaseRequest {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdClienteField;
+        private System.DateTime FechaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime FechaEnvioField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int FolioField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string GuiaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid IdClienteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdEstatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdPaqueteriaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdTipoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal MontoMXNField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal MontoUSDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal SaldoMXNField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal SaldoUSDField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int IdCliente {
+        public System.DateTime Fecha {
+            get {
+                return this.FechaField;
+            }
+            set {
+                if ((this.FechaField.Equals(value) != true)) {
+                    this.FechaField = value;
+                    this.RaisePropertyChanged("Fecha");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime FechaEnvio {
+            get {
+                return this.FechaEnvioField;
+            }
+            set {
+                if ((this.FechaEnvioField.Equals(value) != true)) {
+                    this.FechaEnvioField = value;
+                    this.RaisePropertyChanged("FechaEnvio");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Folio {
+            get {
+                return this.FolioField;
+            }
+            set {
+                if ((this.FolioField.Equals(value) != true)) {
+                    this.FolioField = value;
+                    this.RaisePropertyChanged("Folio");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Guia {
+            get {
+                return this.GuiaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GuiaField, value) != true)) {
+                    this.GuiaField = value;
+                    this.RaisePropertyChanged("Guia");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid IdCliente {
             get {
                 return this.IdClienteField;
             }
@@ -176,20 +711,198 @@ namespace Jadet.AdministradorServicio {
                 }
             }
         }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdEstatus {
+            get {
+                return this.IdEstatusField;
+            }
+            set {
+                if ((this.IdEstatusField.Equals(value) != true)) {
+                    this.IdEstatusField = value;
+                    this.RaisePropertyChanged("IdEstatus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdPaqueteria {
+            get {
+                return this.IdPaqueteriaField;
+            }
+            set {
+                if ((this.IdPaqueteriaField.Equals(value) != true)) {
+                    this.IdPaqueteriaField = value;
+                    this.RaisePropertyChanged("IdPaqueteria");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdTipo {
+            get {
+                return this.IdTipoField;
+            }
+            set {
+                if ((this.IdTipoField.Equals(value) != true)) {
+                    this.IdTipoField = value;
+                    this.RaisePropertyChanged("IdTipo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal MontoMXN {
+            get {
+                return this.MontoMXNField;
+            }
+            set {
+                if ((this.MontoMXNField.Equals(value) != true)) {
+                    this.MontoMXNField = value;
+                    this.RaisePropertyChanged("MontoMXN");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal MontoUSD {
+            get {
+                return this.MontoUSDField;
+            }
+            set {
+                if ((this.MontoUSDField.Equals(value) != true)) {
+                    this.MontoUSDField = value;
+                    this.RaisePropertyChanged("MontoUSD");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal SaldoMXN {
+            get {
+                return this.SaldoMXNField;
+            }
+            set {
+                if ((this.SaldoMXNField.Equals(value) != true)) {
+                    this.SaldoMXNField = value;
+                    this.RaisePropertyChanged("SaldoMXN");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal SaldoUSD {
+            get {
+                return this.SaldoUSDField;
+            }
+            set {
+                if ((this.SaldoUSDField.Equals(value) != true)) {
+                    this.SaldoUSDField = value;
+                    this.RaisePropertyChanged("SaldoUSD");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GuiaRequest", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
+    [System.SerializableAttribute()]
+    public partial class GuiaRequest : Jadet.AdministradorServicio.BaseRequest {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FolioField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Folio {
+            get {
+                return this.FolioField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FolioField, value) != true)) {
+                    this.FolioField = value;
+                    this.RaisePropertyChanged("Folio");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CatalogoRequest", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
+    [System.SerializableAttribute()]
+    public partial class CatalogoRequest : Jadet.AdministradorServicio.BaseRequest {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdTipoCatalogoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdTipoCatalogo {
+            get {
+                return this.IdTipoCatalogoField;
+            }
+            set {
+                if ((this.IdTipoCatalogoField.Equals(value) != true)) {
+                    this.IdTipoCatalogoField = value;
+                    this.RaisePropertyChanged("IdTipoCatalogo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Nombre {
+            get {
+                return this.NombreField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreField, value) != true)) {
+                    this.NombreField = value;
+                    this.RaisePropertyChanged("Nombre");
+                }
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="BaseResponse", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.ArchivoResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.ColeccionCatalogoResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.ColeccionTipoCatalogoResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.TipoCatalogoResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.EstatusResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.ColeccionEstatusResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.ColeccionTipoEstatusResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.TipoEstatusResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.ClienteResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.coleccionClientesResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.HistorialClienteResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.ArchivoResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.ProductoResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.coleccionProductoResponse))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.coleccionNotasResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.NotaResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.coleccionNotasResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.GuiaResponse))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.ClienteResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.CatalogoResponse))]
     public partial class BaseResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -249,9 +962,417 @@ namespace Jadet.AdministradorServicio {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ArchivoResponse", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ColeccionCatalogoResponse", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
     [System.SerializableAttribute()]
-    public partial class ArchivoResponse : Jadet.AdministradorServicio.BaseResponse {
+    public partial class ColeccionCatalogoResponse : Jadet.AdministradorServicio.BaseResponse {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Jadet.AdministradorServicio.CatalogoResponse[] ItemsField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Jadet.AdministradorServicio.CatalogoResponse[] Items {
+            get {
+                return this.ItemsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ItemsField, value) != true)) {
+                    this.ItemsField = value;
+                    this.RaisePropertyChanged("Items");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ColeccionTipoCatalogoResponse", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
+    [System.SerializableAttribute()]
+    public partial class ColeccionTipoCatalogoResponse : Jadet.AdministradorServicio.BaseResponse {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Jadet.AdministradorServicio.TipoCatalogoResponse[] ItemsField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Jadet.AdministradorServicio.TipoCatalogoResponse[] Items {
+            get {
+                return this.ItemsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ItemsField, value) != true)) {
+                    this.ItemsField = value;
+                    this.RaisePropertyChanged("Items");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TipoCatalogoResponse", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
+    [System.SerializableAttribute()]
+    public partial class TipoCatalogoResponse : Jadet.AdministradorServicio.BaseResponse {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Nombre {
+            get {
+                return this.NombreField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreField, value) != true)) {
+                    this.NombreField = value;
+                    this.RaisePropertyChanged("Nombre");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EstatusResponse", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
+    [System.SerializableAttribute()]
+    public partial class EstatusResponse : Jadet.AdministradorServicio.BaseResponse {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdTipoEstatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdTipoEstatus {
+            get {
+                return this.IdTipoEstatusField;
+            }
+            set {
+                if ((this.IdTipoEstatusField.Equals(value) != true)) {
+                    this.IdTipoEstatusField = value;
+                    this.RaisePropertyChanged("IdTipoEstatus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Nombre {
+            get {
+                return this.NombreField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreField, value) != true)) {
+                    this.NombreField = value;
+                    this.RaisePropertyChanged("Nombre");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ColeccionEstatusResponse", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
+    [System.SerializableAttribute()]
+    public partial class ColeccionEstatusResponse : Jadet.AdministradorServicio.BaseResponse {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Jadet.AdministradorServicio.EstatusResponse[] ItemsField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Jadet.AdministradorServicio.EstatusResponse[] Items {
+            get {
+                return this.ItemsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ItemsField, value) != true)) {
+                    this.ItemsField = value;
+                    this.RaisePropertyChanged("Items");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ColeccionTipoEstatusResponse", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
+    [System.SerializableAttribute()]
+    public partial class ColeccionTipoEstatusResponse : Jadet.AdministradorServicio.BaseResponse {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Jadet.AdministradorServicio.TipoEstatusResponse[] ItemsField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Jadet.AdministradorServicio.TipoEstatusResponse[] Items {
+            get {
+                return this.ItemsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ItemsField, value) != true)) {
+                    this.ItemsField = value;
+                    this.RaisePropertyChanged("Items");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TipoEstatusResponse", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
+    [System.SerializableAttribute()]
+    public partial class TipoEstatusResponse : Jadet.AdministradorServicio.BaseResponse {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Nombre {
+            get {
+                return this.NombreField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreField, value) != true)) {
+                    this.NombreField = value;
+                    this.RaisePropertyChanged("Nombre");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ClienteResponse", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
+    [System.SerializableAttribute()]
+    public partial class ClienteResponse : Jadet.AdministradorServicio.BaseResponse {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DireccionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] FotoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid IdClienteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdEstatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdRolField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] PasswordField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TelefonoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UserNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ZonaPaqueteriaField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Direccion {
+            get {
+                return this.DireccionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DireccionField, value) != true)) {
+                    this.DireccionField = value;
+                    this.RaisePropertyChanged("Direccion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Foto {
+            get {
+                return this.FotoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FotoField, value) != true)) {
+                    this.FotoField = value;
+                    this.RaisePropertyChanged("Foto");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid IdCliente {
+            get {
+                return this.IdClienteField;
+            }
+            set {
+                if ((this.IdClienteField.Equals(value) != true)) {
+                    this.IdClienteField = value;
+                    this.RaisePropertyChanged("IdCliente");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdEstatus {
+            get {
+                return this.IdEstatusField;
+            }
+            set {
+                if ((this.IdEstatusField.Equals(value) != true)) {
+                    this.IdEstatusField = value;
+                    this.RaisePropertyChanged("IdEstatus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdRol {
+            get {
+                return this.IdRolField;
+            }
+            set {
+                if ((this.IdRolField.Equals(value) != true)) {
+                    this.IdRolField = value;
+                    this.RaisePropertyChanged("IdRol");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Nombre {
+            get {
+                return this.NombreField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreField, value) != true)) {
+                    this.NombreField = value;
+                    this.RaisePropertyChanged("Nombre");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Password {
+            get {
+                return this.PasswordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
+                    this.PasswordField = value;
+                    this.RaisePropertyChanged("Password");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Telefono {
+            get {
+                return this.TelefonoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TelefonoField, value) != true)) {
+                    this.TelefonoField = value;
+                    this.RaisePropertyChanged("Telefono");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UserName {
+            get {
+                return this.UserNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserNameField, value) != true)) {
+                    this.UserNameField = value;
+                    this.RaisePropertyChanged("UserName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ZonaPaqueteria {
+            get {
+                return this.ZonaPaqueteriaField;
+            }
+            set {
+                if ((this.ZonaPaqueteriaField.Equals(value) != true)) {
+                    this.ZonaPaqueteriaField = value;
+                    this.RaisePropertyChanged("ZonaPaqueteria");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="coleccionClientesResponse", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
+    [System.SerializableAttribute()]
+    public partial class coleccionClientesResponse : Jadet.AdministradorServicio.BaseResponse {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Jadet.AdministradorServicio.ClienteResponse[] ItemsField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Jadet.AdministradorServicio.ClienteResponse[] Items {
+            get {
+                return this.ItemsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ItemsField, value) != true)) {
+                    this.ItemsField = value;
+                    this.RaisePropertyChanged("Items");
+                }
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -263,9 +1384,176 @@ namespace Jadet.AdministradorServicio {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ArchivoResponse", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
+    [System.SerializableAttribute()]
+    public partial class ArchivoResponse : Jadet.AdministradorServicio.BaseResponse {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ProductoResponse", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
     [System.SerializableAttribute()]
     public partial class ProductoResponse : Jadet.AdministradorServicio.BaseResponse {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool AplicaExistenciasField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescripcionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ExistenciasField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] FotoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdCategoriaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal PrecioMXNField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal PrecioUSDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SKUField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool AplicaExistencias {
+            get {
+                return this.AplicaExistenciasField;
+            }
+            set {
+                if ((this.AplicaExistenciasField.Equals(value) != true)) {
+                    this.AplicaExistenciasField = value;
+                    this.RaisePropertyChanged("AplicaExistencias");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Descripcion {
+            get {
+                return this.DescripcionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescripcionField, value) != true)) {
+                    this.DescripcionField = value;
+                    this.RaisePropertyChanged("Descripcion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Existencias {
+            get {
+                return this.ExistenciasField;
+            }
+            set {
+                if ((this.ExistenciasField.Equals(value) != true)) {
+                    this.ExistenciasField = value;
+                    this.RaisePropertyChanged("Existencias");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Foto {
+            get {
+                return this.FotoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FotoField, value) != true)) {
+                    this.FotoField = value;
+                    this.RaisePropertyChanged("Foto");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdCategoria {
+            get {
+                return this.IdCategoriaField;
+            }
+            set {
+                if ((this.IdCategoriaField.Equals(value) != true)) {
+                    this.IdCategoriaField = value;
+                    this.RaisePropertyChanged("IdCategoria");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Nombre {
+            get {
+                return this.NombreField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreField, value) != true)) {
+                    this.NombreField = value;
+                    this.RaisePropertyChanged("Nombre");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal PrecioMXN {
+            get {
+                return this.PrecioMXNField;
+            }
+            set {
+                if ((this.PrecioMXNField.Equals(value) != true)) {
+                    this.PrecioMXNField = value;
+                    this.RaisePropertyChanged("PrecioMXN");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal PrecioUSD {
+            get {
+                return this.PrecioUSDField;
+            }
+            set {
+                if ((this.PrecioUSDField.Equals(value) != true)) {
+                    this.PrecioUSDField = value;
+                    this.RaisePropertyChanged("PrecioUSD");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SKU {
+            get {
+                return this.SKUField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SKUField, value) != true)) {
+                    this.SKUField = value;
+                    this.RaisePropertyChanged("SKU");
+                }
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -286,6 +1574,205 @@ namespace Jadet.AdministradorServicio {
                 if ((object.ReferenceEquals(this.ItemsField, value) != true)) {
                     this.ItemsField = value;
                     this.RaisePropertyChanged("Items");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="NotaResponse", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
+    [System.SerializableAttribute()]
+    public partial class NotaResponse : Jadet.AdministradorServicio.BaseResponse {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime FechaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime FechaEnvioField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int FolioField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string GuiaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid IdClienteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdEstatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdPaqueteriaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdTipoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal MontoMXNField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal MontoUSDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal SaldoMXNField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal SaldoUSDField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Fecha {
+            get {
+                return this.FechaField;
+            }
+            set {
+                if ((this.FechaField.Equals(value) != true)) {
+                    this.FechaField = value;
+                    this.RaisePropertyChanged("Fecha");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime FechaEnvio {
+            get {
+                return this.FechaEnvioField;
+            }
+            set {
+                if ((this.FechaEnvioField.Equals(value) != true)) {
+                    this.FechaEnvioField = value;
+                    this.RaisePropertyChanged("FechaEnvio");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Folio {
+            get {
+                return this.FolioField;
+            }
+            set {
+                if ((this.FolioField.Equals(value) != true)) {
+                    this.FolioField = value;
+                    this.RaisePropertyChanged("Folio");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Guia {
+            get {
+                return this.GuiaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GuiaField, value) != true)) {
+                    this.GuiaField = value;
+                    this.RaisePropertyChanged("Guia");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid IdCliente {
+            get {
+                return this.IdClienteField;
+            }
+            set {
+                if ((this.IdClienteField.Equals(value) != true)) {
+                    this.IdClienteField = value;
+                    this.RaisePropertyChanged("IdCliente");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdEstatus {
+            get {
+                return this.IdEstatusField;
+            }
+            set {
+                if ((this.IdEstatusField.Equals(value) != true)) {
+                    this.IdEstatusField = value;
+                    this.RaisePropertyChanged("IdEstatus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdPaqueteria {
+            get {
+                return this.IdPaqueteriaField;
+            }
+            set {
+                if ((this.IdPaqueteriaField.Equals(value) != true)) {
+                    this.IdPaqueteriaField = value;
+                    this.RaisePropertyChanged("IdPaqueteria");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdTipo {
+            get {
+                return this.IdTipoField;
+            }
+            set {
+                if ((this.IdTipoField.Equals(value) != true)) {
+                    this.IdTipoField = value;
+                    this.RaisePropertyChanged("IdTipo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal MontoMXN {
+            get {
+                return this.MontoMXNField;
+            }
+            set {
+                if ((this.MontoMXNField.Equals(value) != true)) {
+                    this.MontoMXNField = value;
+                    this.RaisePropertyChanged("MontoMXN");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal MontoUSD {
+            get {
+                return this.MontoUSDField;
+            }
+            set {
+                if ((this.MontoUSDField.Equals(value) != true)) {
+                    this.MontoUSDField = value;
+                    this.RaisePropertyChanged("MontoUSD");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal SaldoMXN {
+            get {
+                return this.SaldoMXNField;
+            }
+            set {
+                if ((this.SaldoMXNField.Equals(value) != true)) {
+                    this.SaldoMXNField = value;
+                    this.RaisePropertyChanged("SaldoMXN");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal SaldoUSD {
+            get {
+                return this.SaldoUSDField;
+            }
+            set {
+                if ((this.SaldoUSDField.Equals(value) != true)) {
+                    this.SaldoUSDField = value;
+                    this.RaisePropertyChanged("SaldoUSD");
                 }
             }
         }
@@ -316,13 +1803,6 @@ namespace Jadet.AdministradorServicio {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="NotaResponse", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
-    [System.SerializableAttribute()]
-    public partial class NotaResponse : Jadet.AdministradorServicio.BaseResponse {
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="GuiaResponse", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
     [System.SerializableAttribute()]
     public partial class GuiaResponse : Jadet.AdministradorServicio.BaseResponse {
@@ -346,14 +1826,128 @@ namespace Jadet.AdministradorServicio {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ClienteResponse", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CatalogoResponse", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
     [System.SerializableAttribute()]
-    public partial class ClienteResponse : Jadet.AdministradorServicio.BaseResponse {
+    public partial class CatalogoResponse : Jadet.AdministradorServicio.BaseResponse {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdTipoCatalogoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdTipoCatalogo {
+            get {
+                return this.IdTipoCatalogoField;
+            }
+            set {
+                if ((this.IdTipoCatalogoField.Equals(value) != true)) {
+                    this.IdTipoCatalogoField = value;
+                    this.RaisePropertyChanged("IdTipoCatalogo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Nombre {
+            get {
+                return this.NombreField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreField, value) != true)) {
+                    this.NombreField = value;
+                    this.RaisePropertyChanged("Nombre");
+                }
+            }
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="AdministradorServicio.IAdministrador")]
     public interface IAdministrador {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/guardarCatalogo", ReplyAction="http://tempuri.org/IAdministrador/guardarCatalogoResponse")]
+        Jadet.AdministradorServicio.CatalogoResponse guardarCatalogo(Jadet.AdministradorServicio.CatalogoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/guardarCatalogo", ReplyAction="http://tempuri.org/IAdministrador/guardarCatalogoResponse")]
+        System.Threading.Tasks.Task<Jadet.AdministradorServicio.CatalogoResponse> guardarCatalogoAsync(Jadet.AdministradorServicio.CatalogoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/bajaCatalogo", ReplyAction="http://tempuri.org/IAdministrador/bajaCatalogoResponse")]
+        Jadet.AdministradorServicio.BaseResponse bajaCatalogo(Jadet.AdministradorServicio.CatalogoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/bajaCatalogo", ReplyAction="http://tempuri.org/IAdministrador/bajaCatalogoResponse")]
+        System.Threading.Tasks.Task<Jadet.AdministradorServicio.BaseResponse> bajaCatalogoAsync(Jadet.AdministradorServicio.CatalogoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/cargarCatalogo", ReplyAction="http://tempuri.org/IAdministrador/cargarCatalogoResponse")]
+        Jadet.AdministradorServicio.CatalogoResponse cargarCatalogo(Jadet.AdministradorServicio.CatalogoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/cargarCatalogo", ReplyAction="http://tempuri.org/IAdministrador/cargarCatalogoResponse")]
+        System.Threading.Tasks.Task<Jadet.AdministradorServicio.CatalogoResponse> cargarCatalogoAsync(Jadet.AdministradorServicio.CatalogoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/listarCatalogo", ReplyAction="http://tempuri.org/IAdministrador/listarCatalogoResponse")]
+        Jadet.AdministradorServicio.ColeccionCatalogoResponse listarCatalogo(Jadet.AdministradorServicio.CatalogoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/listarCatalogo", ReplyAction="http://tempuri.org/IAdministrador/listarCatalogoResponse")]
+        System.Threading.Tasks.Task<Jadet.AdministradorServicio.ColeccionCatalogoResponse> listarCatalogoAsync(Jadet.AdministradorServicio.CatalogoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/listarTipoCatalogo", ReplyAction="http://tempuri.org/IAdministrador/listarTipoCatalogoResponse")]
+        Jadet.AdministradorServicio.ColeccionTipoCatalogoResponse listarTipoCatalogo(Jadet.AdministradorServicio.TipoCatalogoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/listarTipoCatalogo", ReplyAction="http://tempuri.org/IAdministrador/listarTipoCatalogoResponse")]
+        System.Threading.Tasks.Task<Jadet.AdministradorServicio.ColeccionTipoCatalogoResponse> listarTipoCatalogoAsync(Jadet.AdministradorServicio.TipoCatalogoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/guardarEstatus", ReplyAction="http://tempuri.org/IAdministrador/guardarEstatusResponse")]
+        Jadet.AdministradorServicio.EstatusResponse guardarEstatus(Jadet.AdministradorServicio.EstatusRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/guardarEstatus", ReplyAction="http://tempuri.org/IAdministrador/guardarEstatusResponse")]
+        System.Threading.Tasks.Task<Jadet.AdministradorServicio.EstatusResponse> guardarEstatusAsync(Jadet.AdministradorServicio.EstatusRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/bajaEstatus", ReplyAction="http://tempuri.org/IAdministrador/bajaEstatusResponse")]
+        Jadet.AdministradorServicio.BaseResponse bajaEstatus(Jadet.AdministradorServicio.EstatusRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/bajaEstatus", ReplyAction="http://tempuri.org/IAdministrador/bajaEstatusResponse")]
+        System.Threading.Tasks.Task<Jadet.AdministradorServicio.BaseResponse> bajaEstatusAsync(Jadet.AdministradorServicio.EstatusRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/cargarEstatus", ReplyAction="http://tempuri.org/IAdministrador/cargarEstatusResponse")]
+        Jadet.AdministradorServicio.EstatusResponse cargarEstatus(Jadet.AdministradorServicio.EstatusRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/cargarEstatus", ReplyAction="http://tempuri.org/IAdministrador/cargarEstatusResponse")]
+        System.Threading.Tasks.Task<Jadet.AdministradorServicio.EstatusResponse> cargarEstatusAsync(Jadet.AdministradorServicio.EstatusRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/listarEstatus", ReplyAction="http://tempuri.org/IAdministrador/listarEstatusResponse")]
+        Jadet.AdministradorServicio.ColeccionEstatusResponse listarEstatus(Jadet.AdministradorServicio.EstatusRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/listarEstatus", ReplyAction="http://tempuri.org/IAdministrador/listarEstatusResponse")]
+        System.Threading.Tasks.Task<Jadet.AdministradorServicio.ColeccionEstatusResponse> listarEstatusAsync(Jadet.AdministradorServicio.EstatusRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/listarTipoEstatus", ReplyAction="http://tempuri.org/IAdministrador/listarTipoEstatusResponse")]
+        Jadet.AdministradorServicio.ColeccionTipoEstatusResponse listarTipoEstatus(Jadet.AdministradorServicio.TipoEstatusRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/listarTipoEstatus", ReplyAction="http://tempuri.org/IAdministrador/listarTipoEstatusResponse")]
+        System.Threading.Tasks.Task<Jadet.AdministradorServicio.ColeccionTipoEstatusResponse> listarTipoEstatusAsync(Jadet.AdministradorServicio.TipoEstatusRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/cargarTipoEstatus", ReplyAction="http://tempuri.org/IAdministrador/cargarTipoEstatusResponse")]
+        Jadet.AdministradorServicio.TipoEstatusResponse cargarTipoEstatus(Jadet.AdministradorServicio.TipoEstatusRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/cargarTipoEstatus", ReplyAction="http://tempuri.org/IAdministrador/cargarTipoEstatusResponse")]
+        System.Threading.Tasks.Task<Jadet.AdministradorServicio.TipoEstatusResponse> cargarTipoEstatusAsync(Jadet.AdministradorServicio.TipoEstatusRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/guardarCliente", ReplyAction="http://tempuri.org/IAdministrador/guardarClienteResponse")]
         Jadet.AdministradorServicio.ClienteResponse guardarCliente(Jadet.AdministradorServicio.ClienteRequest request);
@@ -373,17 +1967,23 @@ namespace Jadet.AdministradorServicio {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/cargarCliente", ReplyAction="http://tempuri.org/IAdministrador/cargarClienteResponse")]
         System.Threading.Tasks.Task<Jadet.AdministradorServicio.ClienteResponse> cargarClienteAsync(Jadet.AdministradorServicio.ClienteRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/subirFotos", ReplyAction="http://tempuri.org/IAdministrador/subirFotosResponse")]
-        Jadet.AdministradorServicio.ArchivoResponse subirFotos(Jadet.AdministradorServicio.ArchivoRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/listarClientes", ReplyAction="http://tempuri.org/IAdministrador/listarClientesResponse")]
+        Jadet.AdministradorServicio.coleccionClientesResponse listarClientes(Jadet.AdministradorServicio.ClienteRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/subirFotos", ReplyAction="http://tempuri.org/IAdministrador/subirFotosResponse")]
-        System.Threading.Tasks.Task<Jadet.AdministradorServicio.ArchivoResponse> subirFotosAsync(Jadet.AdministradorServicio.ArchivoRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/listarClientes", ReplyAction="http://tempuri.org/IAdministrador/listarClientesResponse")]
+        System.Threading.Tasks.Task<Jadet.AdministradorServicio.coleccionClientesResponse> listarClientesAsync(Jadet.AdministradorServicio.ClienteRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/cargarHistorialCliente", ReplyAction="http://tempuri.org/IAdministrador/cargarHistorialClienteResponse")]
         Jadet.AdministradorServicio.HistorialClienteResponse cargarHistorialCliente(Jadet.AdministradorServicio.ClienteRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/cargarHistorialCliente", ReplyAction="http://tempuri.org/IAdministrador/cargarHistorialClienteResponse")]
         System.Threading.Tasks.Task<Jadet.AdministradorServicio.HistorialClienteResponse> cargarHistorialClienteAsync(Jadet.AdministradorServicio.ClienteRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/subirFotos", ReplyAction="http://tempuri.org/IAdministrador/subirFotosResponse")]
+        Jadet.AdministradorServicio.ArchivoResponse subirFotos(Jadet.AdministradorServicio.ArchivoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/subirFotos", ReplyAction="http://tempuri.org/IAdministrador/subirFotosResponse")]
+        System.Threading.Tasks.Task<Jadet.AdministradorServicio.ArchivoResponse> subirFotosAsync(Jadet.AdministradorServicio.ArchivoRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/guardarProducto", ReplyAction="http://tempuri.org/IAdministrador/guardarProductoResponse")]
         Jadet.AdministradorServicio.ProductoResponse guardarProducto(Jadet.AdministradorServicio.ProductoRequest request);
@@ -404,10 +2004,16 @@ namespace Jadet.AdministradorServicio {
         System.Threading.Tasks.Task<Jadet.AdministradorServicio.ProductoResponse> cargarProductoAsync(Jadet.AdministradorServicio.ProductoRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/listarProductos", ReplyAction="http://tempuri.org/IAdministrador/listarProductosResponse")]
-        Jadet.AdministradorServicio.coleccionProductoResponse listarProductos(Jadet.AdministradorServicio.BaseRequest request);
+        Jadet.AdministradorServicio.coleccionProductoResponse listarProductos(Jadet.AdministradorServicio.ProductoRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/listarProductos", ReplyAction="http://tempuri.org/IAdministrador/listarProductosResponse")]
-        System.Threading.Tasks.Task<Jadet.AdministradorServicio.coleccionProductoResponse> listarProductosAsync(Jadet.AdministradorServicio.BaseRequest request);
+        System.Threading.Tasks.Task<Jadet.AdministradorServicio.coleccionProductoResponse> listarProductosAsync(Jadet.AdministradorServicio.ProductoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/guardarNota", ReplyAction="http://tempuri.org/IAdministrador/guardarNotaResponse")]
+        Jadet.AdministradorServicio.NotaResponse guardarNota(Jadet.AdministradorServicio.NotaRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/guardarNota", ReplyAction="http://tempuri.org/IAdministrador/guardarNotaResponse")]
+        System.Threading.Tasks.Task<Jadet.AdministradorServicio.NotaResponse> guardarNotaAsync(Jadet.AdministradorServicio.NotaRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/listarNotas", ReplyAction="http://tempuri.org/IAdministrador/listarNotasResponse")]
         Jadet.AdministradorServicio.coleccionNotasResponse listarNotas(Jadet.AdministradorServicio.BaseRequest request);
@@ -415,17 +2021,17 @@ namespace Jadet.AdministradorServicio {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/listarNotas", ReplyAction="http://tempuri.org/IAdministrador/listarNotasResponse")]
         System.Threading.Tasks.Task<Jadet.AdministradorServicio.coleccionNotasResponse> listarNotasAsync(Jadet.AdministradorServicio.BaseRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/verNota", ReplyAction="http://tempuri.org/IAdministrador/verNotaResponse")]
-        Jadet.AdministradorServicio.NotaResponse verNota(Jadet.AdministradorServicio.NotaRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/cargarNota", ReplyAction="http://tempuri.org/IAdministrador/cargarNotaResponse")]
+        Jadet.AdministradorServicio.NotaResponse cargarNota(Jadet.AdministradorServicio.NotaRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/verNota", ReplyAction="http://tempuri.org/IAdministrador/verNotaResponse")]
-        System.Threading.Tasks.Task<Jadet.AdministradorServicio.NotaResponse> verNotaAsync(Jadet.AdministradorServicio.NotaRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/cargarNota", ReplyAction="http://tempuri.org/IAdministrador/cargarNotaResponse")]
+        System.Threading.Tasks.Task<Jadet.AdministradorServicio.NotaResponse> cargarNotaAsync(Jadet.AdministradorServicio.NotaRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/borrarNota", ReplyAction="http://tempuri.org/IAdministrador/borrarNotaResponse")]
-        Jadet.AdministradorServicio.NotaResponse borrarNota(Jadet.AdministradorServicio.NotaRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/bajaNota", ReplyAction="http://tempuri.org/IAdministrador/bajaNotaResponse")]
+        Jadet.AdministradorServicio.NotaResponse bajaNota(Jadet.AdministradorServicio.NotaRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/borrarNota", ReplyAction="http://tempuri.org/IAdministrador/borrarNotaResponse")]
-        System.Threading.Tasks.Task<Jadet.AdministradorServicio.NotaResponse> borrarNotaAsync(Jadet.AdministradorServicio.NotaRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/bajaNota", ReplyAction="http://tempuri.org/IAdministrador/bajaNotaResponse")]
+        System.Threading.Tasks.Task<Jadet.AdministradorServicio.NotaResponse> bajaNotaAsync(Jadet.AdministradorServicio.NotaRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/generarGuias", ReplyAction="http://tempuri.org/IAdministrador/generarGuiasResponse")]
         Jadet.AdministradorServicio.GuiaResponse generarGuias(Jadet.AdministradorServicio.GuiaRequest request);
@@ -473,6 +2079,94 @@ namespace Jadet.AdministradorServicio {
                 base(binding, remoteAddress) {
         }
         
+        public Jadet.AdministradorServicio.CatalogoResponse guardarCatalogo(Jadet.AdministradorServicio.CatalogoRequest request) {
+            return base.Channel.guardarCatalogo(request);
+        }
+        
+        public System.Threading.Tasks.Task<Jadet.AdministradorServicio.CatalogoResponse> guardarCatalogoAsync(Jadet.AdministradorServicio.CatalogoRequest request) {
+            return base.Channel.guardarCatalogoAsync(request);
+        }
+        
+        public Jadet.AdministradorServicio.BaseResponse bajaCatalogo(Jadet.AdministradorServicio.CatalogoRequest request) {
+            return base.Channel.bajaCatalogo(request);
+        }
+        
+        public System.Threading.Tasks.Task<Jadet.AdministradorServicio.BaseResponse> bajaCatalogoAsync(Jadet.AdministradorServicio.CatalogoRequest request) {
+            return base.Channel.bajaCatalogoAsync(request);
+        }
+        
+        public Jadet.AdministradorServicio.CatalogoResponse cargarCatalogo(Jadet.AdministradorServicio.CatalogoRequest request) {
+            return base.Channel.cargarCatalogo(request);
+        }
+        
+        public System.Threading.Tasks.Task<Jadet.AdministradorServicio.CatalogoResponse> cargarCatalogoAsync(Jadet.AdministradorServicio.CatalogoRequest request) {
+            return base.Channel.cargarCatalogoAsync(request);
+        }
+        
+        public Jadet.AdministradorServicio.ColeccionCatalogoResponse listarCatalogo(Jadet.AdministradorServicio.CatalogoRequest request) {
+            return base.Channel.listarCatalogo(request);
+        }
+        
+        public System.Threading.Tasks.Task<Jadet.AdministradorServicio.ColeccionCatalogoResponse> listarCatalogoAsync(Jadet.AdministradorServicio.CatalogoRequest request) {
+            return base.Channel.listarCatalogoAsync(request);
+        }
+        
+        public Jadet.AdministradorServicio.ColeccionTipoCatalogoResponse listarTipoCatalogo(Jadet.AdministradorServicio.TipoCatalogoRequest request) {
+            return base.Channel.listarTipoCatalogo(request);
+        }
+        
+        public System.Threading.Tasks.Task<Jadet.AdministradorServicio.ColeccionTipoCatalogoResponse> listarTipoCatalogoAsync(Jadet.AdministradorServicio.TipoCatalogoRequest request) {
+            return base.Channel.listarTipoCatalogoAsync(request);
+        }
+        
+        public Jadet.AdministradorServicio.EstatusResponse guardarEstatus(Jadet.AdministradorServicio.EstatusRequest request) {
+            return base.Channel.guardarEstatus(request);
+        }
+        
+        public System.Threading.Tasks.Task<Jadet.AdministradorServicio.EstatusResponse> guardarEstatusAsync(Jadet.AdministradorServicio.EstatusRequest request) {
+            return base.Channel.guardarEstatusAsync(request);
+        }
+        
+        public Jadet.AdministradorServicio.BaseResponse bajaEstatus(Jadet.AdministradorServicio.EstatusRequest request) {
+            return base.Channel.bajaEstatus(request);
+        }
+        
+        public System.Threading.Tasks.Task<Jadet.AdministradorServicio.BaseResponse> bajaEstatusAsync(Jadet.AdministradorServicio.EstatusRequest request) {
+            return base.Channel.bajaEstatusAsync(request);
+        }
+        
+        public Jadet.AdministradorServicio.EstatusResponse cargarEstatus(Jadet.AdministradorServicio.EstatusRequest request) {
+            return base.Channel.cargarEstatus(request);
+        }
+        
+        public System.Threading.Tasks.Task<Jadet.AdministradorServicio.EstatusResponse> cargarEstatusAsync(Jadet.AdministradorServicio.EstatusRequest request) {
+            return base.Channel.cargarEstatusAsync(request);
+        }
+        
+        public Jadet.AdministradorServicio.ColeccionEstatusResponse listarEstatus(Jadet.AdministradorServicio.EstatusRequest request) {
+            return base.Channel.listarEstatus(request);
+        }
+        
+        public System.Threading.Tasks.Task<Jadet.AdministradorServicio.ColeccionEstatusResponse> listarEstatusAsync(Jadet.AdministradorServicio.EstatusRequest request) {
+            return base.Channel.listarEstatusAsync(request);
+        }
+        
+        public Jadet.AdministradorServicio.ColeccionTipoEstatusResponse listarTipoEstatus(Jadet.AdministradorServicio.TipoEstatusRequest request) {
+            return base.Channel.listarTipoEstatus(request);
+        }
+        
+        public System.Threading.Tasks.Task<Jadet.AdministradorServicio.ColeccionTipoEstatusResponse> listarTipoEstatusAsync(Jadet.AdministradorServicio.TipoEstatusRequest request) {
+            return base.Channel.listarTipoEstatusAsync(request);
+        }
+        
+        public Jadet.AdministradorServicio.TipoEstatusResponse cargarTipoEstatus(Jadet.AdministradorServicio.TipoEstatusRequest request) {
+            return base.Channel.cargarTipoEstatus(request);
+        }
+        
+        public System.Threading.Tasks.Task<Jadet.AdministradorServicio.TipoEstatusResponse> cargarTipoEstatusAsync(Jadet.AdministradorServicio.TipoEstatusRequest request) {
+            return base.Channel.cargarTipoEstatusAsync(request);
+        }
+        
         public Jadet.AdministradorServicio.ClienteResponse guardarCliente(Jadet.AdministradorServicio.ClienteRequest request) {
             return base.Channel.guardarCliente(request);
         }
@@ -497,12 +2191,12 @@ namespace Jadet.AdministradorServicio {
             return base.Channel.cargarClienteAsync(request);
         }
         
-        public Jadet.AdministradorServicio.ArchivoResponse subirFotos(Jadet.AdministradorServicio.ArchivoRequest request) {
-            return base.Channel.subirFotos(request);
+        public Jadet.AdministradorServicio.coleccionClientesResponse listarClientes(Jadet.AdministradorServicio.ClienteRequest request) {
+            return base.Channel.listarClientes(request);
         }
         
-        public System.Threading.Tasks.Task<Jadet.AdministradorServicio.ArchivoResponse> subirFotosAsync(Jadet.AdministradorServicio.ArchivoRequest request) {
-            return base.Channel.subirFotosAsync(request);
+        public System.Threading.Tasks.Task<Jadet.AdministradorServicio.coleccionClientesResponse> listarClientesAsync(Jadet.AdministradorServicio.ClienteRequest request) {
+            return base.Channel.listarClientesAsync(request);
         }
         
         public Jadet.AdministradorServicio.HistorialClienteResponse cargarHistorialCliente(Jadet.AdministradorServicio.ClienteRequest request) {
@@ -511,6 +2205,14 @@ namespace Jadet.AdministradorServicio {
         
         public System.Threading.Tasks.Task<Jadet.AdministradorServicio.HistorialClienteResponse> cargarHistorialClienteAsync(Jadet.AdministradorServicio.ClienteRequest request) {
             return base.Channel.cargarHistorialClienteAsync(request);
+        }
+        
+        public Jadet.AdministradorServicio.ArchivoResponse subirFotos(Jadet.AdministradorServicio.ArchivoRequest request) {
+            return base.Channel.subirFotos(request);
+        }
+        
+        public System.Threading.Tasks.Task<Jadet.AdministradorServicio.ArchivoResponse> subirFotosAsync(Jadet.AdministradorServicio.ArchivoRequest request) {
+            return base.Channel.subirFotosAsync(request);
         }
         
         public Jadet.AdministradorServicio.ProductoResponse guardarProducto(Jadet.AdministradorServicio.ProductoRequest request) {
@@ -537,12 +2239,20 @@ namespace Jadet.AdministradorServicio {
             return base.Channel.cargarProductoAsync(request);
         }
         
-        public Jadet.AdministradorServicio.coleccionProductoResponse listarProductos(Jadet.AdministradorServicio.BaseRequest request) {
+        public Jadet.AdministradorServicio.coleccionProductoResponse listarProductos(Jadet.AdministradorServicio.ProductoRequest request) {
             return base.Channel.listarProductos(request);
         }
         
-        public System.Threading.Tasks.Task<Jadet.AdministradorServicio.coleccionProductoResponse> listarProductosAsync(Jadet.AdministradorServicio.BaseRequest request) {
+        public System.Threading.Tasks.Task<Jadet.AdministradorServicio.coleccionProductoResponse> listarProductosAsync(Jadet.AdministradorServicio.ProductoRequest request) {
             return base.Channel.listarProductosAsync(request);
+        }
+        
+        public Jadet.AdministradorServicio.NotaResponse guardarNota(Jadet.AdministradorServicio.NotaRequest request) {
+            return base.Channel.guardarNota(request);
+        }
+        
+        public System.Threading.Tasks.Task<Jadet.AdministradorServicio.NotaResponse> guardarNotaAsync(Jadet.AdministradorServicio.NotaRequest request) {
+            return base.Channel.guardarNotaAsync(request);
         }
         
         public Jadet.AdministradorServicio.coleccionNotasResponse listarNotas(Jadet.AdministradorServicio.BaseRequest request) {
@@ -553,20 +2263,20 @@ namespace Jadet.AdministradorServicio {
             return base.Channel.listarNotasAsync(request);
         }
         
-        public Jadet.AdministradorServicio.NotaResponse verNota(Jadet.AdministradorServicio.NotaRequest request) {
-            return base.Channel.verNota(request);
+        public Jadet.AdministradorServicio.NotaResponse cargarNota(Jadet.AdministradorServicio.NotaRequest request) {
+            return base.Channel.cargarNota(request);
         }
         
-        public System.Threading.Tasks.Task<Jadet.AdministradorServicio.NotaResponse> verNotaAsync(Jadet.AdministradorServicio.NotaRequest request) {
-            return base.Channel.verNotaAsync(request);
+        public System.Threading.Tasks.Task<Jadet.AdministradorServicio.NotaResponse> cargarNotaAsync(Jadet.AdministradorServicio.NotaRequest request) {
+            return base.Channel.cargarNotaAsync(request);
         }
         
-        public Jadet.AdministradorServicio.NotaResponse borrarNota(Jadet.AdministradorServicio.NotaRequest request) {
-            return base.Channel.borrarNota(request);
+        public Jadet.AdministradorServicio.NotaResponse bajaNota(Jadet.AdministradorServicio.NotaRequest request) {
+            return base.Channel.bajaNota(request);
         }
         
-        public System.Threading.Tasks.Task<Jadet.AdministradorServicio.NotaResponse> borrarNotaAsync(Jadet.AdministradorServicio.NotaRequest request) {
-            return base.Channel.borrarNotaAsync(request);
+        public System.Threading.Tasks.Task<Jadet.AdministradorServicio.NotaResponse> bajaNotaAsync(Jadet.AdministradorServicio.NotaRequest request) {
+            return base.Channel.bajaNotaAsync(request);
         }
         
         public Jadet.AdministradorServicio.GuiaResponse generarGuias(Jadet.AdministradorServicio.GuiaRequest request) {

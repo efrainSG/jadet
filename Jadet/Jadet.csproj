@@ -180,6 +180,30 @@
     <Content Include="Connected Services\AdministradorServicio\Jadet.AdministradorServicio.ProductoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\AdministradorServicio\Jadet.AdministradorServicio.CatalogoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\AdministradorServicio\Jadet.AdministradorServicio.ColeccionCatalogoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\AdministradorServicio\Jadet.AdministradorServicio.coleccionClientesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\AdministradorServicio\Jadet.AdministradorServicio.ColeccionEstatusResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\AdministradorServicio\Jadet.AdministradorServicio.ColeccionTipoCatalogoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\AdministradorServicio\Jadet.AdministradorServicio.ColeccionTipoEstatusResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\AdministradorServicio\Jadet.AdministradorServicio.EstatusResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\AdministradorServicio\Jadet.AdministradorServicio.TipoEstatusResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\AdministradorServicio\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -208,6 +232,9 @@
     <None Include="Connected Services\SeguridadServicio\configuration91.svcinfo" />
     <None Include="Connected Services\SeguridadServicio\configuration.svcinfo" />
     <Content Include="Connected Services\SeguridadServicio\Jadet.SeguridadServicio.LoginResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\SeguridadServicio\Jadet.SeguridadServicio.UsuarioResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\SeguridadServicio\Reference.svcmap">
@@ -406,6 +433,7 @@
     <Content Include="Views\Cliente\Pedidos.cshtml" />
     <Content Include="Views\Cliente\Carrito.cshtml" />
     <Content Include="Views\Cliente\Preventa.cshtml" />
+    <Content Include="Views\Administrador\Configuracion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

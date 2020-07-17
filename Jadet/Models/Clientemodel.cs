@@ -13,6 +13,11 @@ namespace Jadet.Models
         public string Nombre { get; set; }
         public int ErrorNumero { get; set; }
         public string ErrorMensaje { get; set; }
+        public Guid IdCliente { get; set; }
+        public string Direccion { get; set; }
+        public int IdEstatus { get; set; }
+        public string Telefono { get; set; }
+        public int ZonaPaqueteria { get; set; }
     }
     public class listaclientesmodel
     {

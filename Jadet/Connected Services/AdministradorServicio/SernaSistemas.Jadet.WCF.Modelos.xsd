@@ -1,27 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:complexType name="ClienteRequest">
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="CatalogoRequest">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:BaseRequest">
         <xs:sequence>
-          <xs:element minOccurs="0" name="IdCliente" type="xs:int" />
+          <xs:element minOccurs="0" name="Id" type="xs:int" />
+          <xs:element minOccurs="0" name="IdTipoCatalogo" type="xs:int" />
+          <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="ClienteRequest" nillable="true" type="tns:ClienteRequest" />
+  <xs:element name="CatalogoRequest" nillable="true" type="tns:CatalogoRequest" />
   <xs:complexType name="BaseRequest">
     <xs:sequence />
   </xs:complexType>
   <xs:element name="BaseRequest" nillable="true" type="tns:BaseRequest" />
-  <xs:complexType name="ClienteResponse">
+  <xs:complexType name="CatalogoResponse">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:BaseResponse">
-        <xs:sequence />
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Id" type="xs:int" />
+          <xs:element minOccurs="0" name="IdTipoCatalogo" type="xs:int" />
+          <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+        </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name="ClienteResponse" nillable="true" type="tns:ClienteResponse" />
+  <xs:element name="CatalogoResponse" nillable="true" type="tns:CatalogoResponse" />
   <xs:complexType name="BaseResponse">
     <xs:sequence>
       <xs:element minOccurs="0" name="ErrorMensaje" nillable="true" type="xs:string" />
@@ -29,6 +36,200 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="BaseResponse" nillable="true" type="tns:BaseResponse" />
+  <xs:complexType name="ColeccionCatalogoResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfCatalogoResponse" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ColeccionCatalogoResponse" nillable="true" type="tns:ColeccionCatalogoResponse" />
+  <xs:complexType name="ArrayOfCatalogoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CatalogoResponse" nillable="true" type="tns:CatalogoResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCatalogoResponse" nillable="true" type="tns:ArrayOfCatalogoResponse" />
+  <xs:complexType name="TipoCatalogoRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Id" type="xs:int" />
+          <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TipoCatalogoRequest" nillable="true" type="tns:TipoCatalogoRequest" />
+  <xs:complexType name="ColeccionTipoCatalogoResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfTipoCatalogoResponse" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ColeccionTipoCatalogoResponse" nillable="true" type="tns:ColeccionTipoCatalogoResponse" />
+  <xs:complexType name="ArrayOfTipoCatalogoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TipoCatalogoResponse" nillable="true" type="tns:TipoCatalogoResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTipoCatalogoResponse" nillable="true" type="tns:ArrayOfTipoCatalogoResponse" />
+  <xs:complexType name="TipoCatalogoResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Id" type="xs:int" />
+          <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TipoCatalogoResponse" nillable="true" type="tns:TipoCatalogoResponse" />
+  <xs:complexType name="EstatusRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Id" type="xs:int" />
+          <xs:element minOccurs="0" name="IdTipoEstatus" type="xs:int" />
+          <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EstatusRequest" nillable="true" type="tns:EstatusRequest" />
+  <xs:complexType name="EstatusResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Id" type="xs:int" />
+          <xs:element minOccurs="0" name="IdTipoEstatus" type="xs:int" />
+          <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EstatusResponse" nillable="true" type="tns:EstatusResponse" />
+  <xs:complexType name="ColeccionEstatusResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfEstatusResponse" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ColeccionEstatusResponse" nillable="true" type="tns:ColeccionEstatusResponse" />
+  <xs:complexType name="ArrayOfEstatusResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EstatusResponse" nillable="true" type="tns:EstatusResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEstatusResponse" nillable="true" type="tns:ArrayOfEstatusResponse" />
+  <xs:complexType name="TipoEstatusRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Id" type="xs:int" />
+          <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TipoEstatusRequest" nillable="true" type="tns:TipoEstatusRequest" />
+  <xs:complexType name="ColeccionTipoEstatusResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfTipoEstatusResponse" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ColeccionTipoEstatusResponse" nillable="true" type="tns:ColeccionTipoEstatusResponse" />
+  <xs:complexType name="ArrayOfTipoEstatusResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TipoEstatusResponse" nillable="true" type="tns:TipoEstatusResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTipoEstatusResponse" nillable="true" type="tns:ArrayOfTipoEstatusResponse" />
+  <xs:complexType name="TipoEstatusResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Id" type="xs:int" />
+          <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TipoEstatusResponse" nillable="true" type="tns:TipoEstatusResponse" />
+  <xs:complexType name="ClienteRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Direccion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Foto" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="IdCliente" type="ser:guid" />
+          <xs:element minOccurs="0" name="IdEstatus" type="xs:int" />
+          <xs:element minOccurs="0" name="IdRol" type="xs:int" />
+          <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Password" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="Telefono" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ZonaPaqueteria" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ClienteRequest" nillable="true" type="tns:ClienteRequest" />
+  <xs:complexType name="ClienteResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Direccion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Foto" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="IdCliente" type="ser:guid" />
+          <xs:element minOccurs="0" name="IdEstatus" type="xs:int" />
+          <xs:element minOccurs="0" name="IdRol" type="xs:int" />
+          <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Password" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="Telefono" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ZonaPaqueteria" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ClienteResponse" nillable="true" type="tns:ClienteResponse" />
+  <xs:complexType name="coleccionClientesResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfClienteResponse" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="coleccionClientesResponse" nillable="true" type="tns:coleccionClientesResponse" />
+  <xs:complexType name="ArrayOfClienteResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ClienteResponse" nillable="true" type="tns:ClienteResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfClienteResponse" nillable="true" type="tns:ArrayOfClienteResponse" />
+  <xs:complexType name="HistorialClienteResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResponse">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="HistorialClienteResponse" nillable="true" type="tns:HistorialClienteResponse" />
   <xs:complexType name="ArchivoRequest">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:BaseRequest">
@@ -51,18 +252,21 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="ArchivoResponse" nillable="true" type="tns:ArchivoResponse" />
-  <xs:complexType name="HistorialClienteResponse">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:BaseResponse">
-        <xs:sequence />
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="HistorialClienteResponse" nillable="true" type="tns:HistorialClienteResponse" />
   <xs:complexType name="ProductoRequest">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:BaseRequest">
-        <xs:sequence />
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AplicaExistencias" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Existencias" type="xs:int" />
+          <xs:element minOccurs="0" name="Foto" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="Id" type="xs:int" />
+          <xs:element minOccurs="0" name="IdCategoria" type="xs:int" />
+          <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PrecioMXN" type="xs:decimal" />
+          <xs:element minOccurs="0" name="PrecioUSD" type="xs:decimal" />
+          <xs:element minOccurs="0" name="SKU" nillable="true" type="xs:string" />
+        </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
@@ -70,7 +274,18 @@
   <xs:complexType name="ProductoResponse">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:BaseResponse">
-        <xs:sequence />
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AplicaExistencias" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Existencias" type="xs:int" />
+          <xs:element minOccurs="0" name="Foto" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="Id" type="xs:int" />
+          <xs:element minOccurs="0" name="IdCategoria" type="xs:int" />
+          <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PrecioMXN" type="xs:decimal" />
+          <xs:element minOccurs="0" name="PrecioUSD" type="xs:decimal" />
+          <xs:element minOccurs="0" name="SKU" nillable="true" type="xs:string" />
+        </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
@@ -91,6 +306,48 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfProductoResponse" nillable="true" type="tns:ArrayOfProductoResponse" />
+  <xs:complexType name="NotaRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Fecha" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="FechaEnvio" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Folio" type="xs:int" />
+          <xs:element minOccurs="0" name="Guia" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IdCliente" type="ser:guid" />
+          <xs:element minOccurs="0" name="IdEstatus" type="xs:int" />
+          <xs:element minOccurs="0" name="IdPaqueteria" type="xs:int" />
+          <xs:element minOccurs="0" name="IdTipo" type="xs:int" />
+          <xs:element minOccurs="0" name="MontoMXN" type="xs:decimal" />
+          <xs:element minOccurs="0" name="MontoUSD" type="xs:decimal" />
+          <xs:element minOccurs="0" name="SaldoMXN" type="xs:decimal" />
+          <xs:element minOccurs="0" name="SaldoUSD" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NotaRequest" nillable="true" type="tns:NotaRequest" />
+  <xs:complexType name="NotaResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Fecha" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="FechaEnvio" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Folio" type="xs:int" />
+          <xs:element minOccurs="0" name="Guia" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IdCliente" type="ser:guid" />
+          <xs:element minOccurs="0" name="IdEstatus" type="xs:int" />
+          <xs:element minOccurs="0" name="IdPaqueteria" type="xs:int" />
+          <xs:element minOccurs="0" name="IdTipo" type="xs:int" />
+          <xs:element minOccurs="0" name="MontoMXN" type="xs:decimal" />
+          <xs:element minOccurs="0" name="MontoUSD" type="xs:decimal" />
+          <xs:element minOccurs="0" name="SaldoMXN" type="xs:decimal" />
+          <xs:element minOccurs="0" name="SaldoUSD" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NotaResponse" nillable="true" type="tns:NotaResponse" />
   <xs:complexType name="coleccionNotasResponse">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:BaseResponse">
@@ -107,26 +364,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfNotaResponse" nillable="true" type="tns:ArrayOfNotaResponse" />
-  <xs:complexType name="NotaResponse">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:BaseResponse">
-        <xs:sequence />
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="NotaResponse" nillable="true" type="tns:NotaResponse" />
-  <xs:complexType name="NotaRequest">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:BaseRequest">
-        <xs:sequence />
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="NotaRequest" nillable="true" type="tns:NotaRequest" />
   <xs:complexType name="GuiaRequest">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:BaseRequest">
-        <xs:sequence />
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Folio" nillable="true" type="xs:string" />
+        </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>

@@ -11,11 +11,14 @@ namespace Jadet.Models
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public int Existencias { get; set; }
-        public string RutaImagen { get; set; }
+        public byte[] Imagen { get; set; }
         public decimal PrecioMXN { get; set; }
         public decimal PrecioUSD { get; set; }
         public int ErrorNumero { get; set; }
         public string ErrorMensaje { get; set; }
+        public bool AplicaExistencias { get; set; }
+        public int Id { get; set; }
+        public int IdCategoria { get; set; }
     }
     public class listaproductosmodel
     {
