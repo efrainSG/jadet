@@ -15,7 +15,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="~/Scripts/jquery-ui.js"></script>
     <script src="~/Scripts/Jadet/principal.js"></script>
-
+    <script>
+        var categorias = new Array();
+    </script>
 </head>
 <body>
     <div class="navbar navbar-inverse">
@@ -70,7 +72,8 @@
                 <div class="modal-body" id="divModalBody">
                 </div>
                 <div class="modal-footer" id="divModalFooter">
-                    <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">Guardar</button>
+                    <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal" id="btnGuardar">Guardar</button>
+                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal" id="btnEliminar">Eliminar</button>
                     <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>

@@ -11,8 +11,12 @@
         <tr>
             <th>Usuario</th>
             <th>Nombre</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th>Zona de paquetería</th>
+            <th>Estátus</th>
             <th>
-                <a href="#" class="btn btn-success">Agregar</a>
+                <a href="#" class="btn btn-success" id="btnagregarCliente">Agregar</a>
             </th>
         </tr>
     </thead>
@@ -22,9 +26,13 @@
         <tr>
             <td>@item.usuario</td>
             <td>@item.Nombre</td>
+            <td>@item.Direccion</td>
+            <td>@item.Telefono</td>
+            <td>@item.ZonaPaqueteria</td>
+            <td>@item.IdEstatus</td>
             <td>
-                <a href="#" class="btn btn-warning">Editar</a>
-                <a href="#" class="btn btn-danger">Eliminar</a>
+                <a href="#" class="btn btn-warning" data-content="@item.IdCliente" id="btneditarCliente">Editar</a>
+                <a href="#" class="btn btn-danger" data-content="@item.IdCliente" id="btneliminarCliente">Eliminar</a>
             </td>
         </tr>
         }

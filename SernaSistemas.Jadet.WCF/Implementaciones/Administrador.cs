@@ -255,7 +255,42 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
 
         public ProductoResponse guardarProducto(ProductoRequest request)
         {
-            throw new NotImplementedException();
+            ProductoResponse response = new ProductoResponse();
+            DataAccess da = new DataAccess
+            {
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
+            };
+            var resultado = da.guardarProducto(new Producto
+            {
+                Id = request.Id,
+                AplicaExistencias = request.AplicaExistencias,
+                Descripcion = request.Descripcion,
+                Existencias = request.Existencias,
+                Foto = request.Foto,
+                IdCatalogo = request.IdCategoria,
+                Nombre = request.Nombre,
+                PrecioMXN = request.PrecioMXN,
+                PrecioUSD = request.PrecioUSD,
+                SKU = request.SKU
+            });
+
+            response = new ProductoResponse
+            {
+                AplicaExistencias = resultado.AplicaExistencias,
+                Descripcion = resultado.Descripcion,
+                ErrorMensaje = string.Empty,
+                ErrorNumero = 0,
+                Existencias = resultado.Existencias,
+                SKU = resultado.SKU,
+                Foto = resultado.Foto,
+                Id = resultado.Id,
+                IdCategoria = resultado.IdCatalogo,
+                Nombre = resultado.Nombre,
+                PrecioMXN = resultado.PrecioMXN,
+                PrecioUSD = resultado.PrecioUSD
+            };
+
+            return response;
         }
 
         public ColeccionCatalogoResponse listarCatalogo(CatalogoRequest request)

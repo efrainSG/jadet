@@ -1,74 +1,397 @@
 ﻿$(document).ready(function () {
     jQuery.noConflict();
-    $('[id^="btneditar"]').off()
+
+    var cargarDiccionarios = function () {
+        $.get(
+            "/Administrador/obtenerDiccionario"
+            , { IdTipo: 3 }
+            , function (data) {
+                for (i = 0; i < data.length; i++) {
+                    categorias.push(data[i]);
+                }
+            }
+        )
+    }
+
+    cargarDiccionarios();
+
+    $('[id^="btneditarProducto"]').off()
         .on("click", function (e) {
             $this = $(this);
             var $componentes = $this.parent().siblings();
             var $bodyModal = $("#divModalBody");
-
+            $("#modalHdr").text("Editar producto");
             $bodyModal.empty();
             $bodyModal.append(
-                '<div class="row">' +
-                '<div class="col-sm-2">SKU</div >' +
-                '<div class= "col-sm-4">' +
-                '<input type = "text" id = "txtsku" class= "form-control" />' +
-                '</div>' +
-                '<div class= "col-sm-2">Categoría</div>' +
-                '<div class= "col-sm-4">' +
-                '<select id = "txtsku" class= "form-control"></select>' +
-                '</div>' +
-                '</div>' +
-                '<div class= "row">' +
-                '<div class= "col-sm-2">Producto</div>' +
-                '<div class="col-sm-10">' +
-                '<input type="text" id="txtproducto" class="form-control" />' +
-                '</div>' +
-                '</div>' +
-                '<div class="row">' +
-                '<div class="col-sm-2">Descripción</div>' +
-                '<div class="col-sm-2">' +
-                '</div>' +
-                '</div>' +
-                '<div class="row">' +
-                '<div class="col-sm-2">Precio MXN.</div>' +
-                '<div class="col-sm-2">' +
-                '<input type="text" id="txtPrecioMXN" class="form-control" />' +
-                '</div>' +
-                '<div class="col-sm-2">Precio USD.</div>' +
-                '<div class="col-sm-2">' +
-                '<input type="text" id="txtprecioUSD" class="form-control" />' +
-                '</div>' +
-                '<div class="col-sm-2">Existencias</div>' +
-                '<div class="col-sm-2">' +
-                '<input type="text" id="txtexistencias" class="form-control" />' +
-                '</div>' +
-                '</div>' +
-                '<div class="row">' +
-                '<div class="col-sm-2">Foto</div>' +
-                '<div class="col-sm-8">' +
-                '<input type="text" id="txtruta" class="form-control" />' +
-                '</div>' +
-                '<div class="col-sm-2">' +
-                '<a href="#" class="btn btn-sm btn-success">Cargar</a>' +
-                '</div>' +
-                '</div>');
-            $("#txtsku").val($($componentes[0]).text());
+                '<form action="/Administrador/guardarProducto" method="post" id="frmProducto">' +
+                '  <input type="hidden" id="txtId" value="" name="Id" />' +
+                '  <div class= "row" > ' +
+
+                '    <div class="col-sm-2">SKU</div >' +
+                '    <div class= "col-sm-4">' +
+                '      <input type = "text" id = "txtsku" class= "form-control" name="Sku" />' +
+                '    </div>' +
+
+                '    <div class= "col-sm-2">Categoría</div>' +
+                '    <div class= "col-sm-4">' +
+                '      <select id = "selIdCategoria" name="IdCategoria" class= "form-control"></select>' +
+                '    </div>' +
+
+                '  </div>' +
+
+                '  <div class= "row">' +
+
+                '    <div class= "col-sm-2">Producto</div>' +
+                '    <div class="col-sm-10">' +
+                '      <input type="text" id="txtproducto" name="Nombre" class="form-control" />' +
+                '    </div>' +
+
+                '  </div>' +
+
+                '  <div class="row">' +
+
+                '    <div class="col-sm-2">Descripción</div>' +
+                '    <div class="col-sm-10">' +
+                '      <textarea id="Descripcion" name="Descripcion" rows="4" cols="50" class="form-control"></textarea>' +
+                '    </div>' +
+
+                '  </div>' +
+
+                '  <div class="row">' +
+
+                '    <div class="col-sm-2">Precio MXN.</div>' +
+                '    <div class="col-sm-4">' +
+                '      <input type="text" id="txtPrecioMXN" name="PrecioMXN" class="form-control" />' +
+                '    </div>' +
+
+                '    <div class="col-sm-3">Precio USD.</div>' +
+                '    <div class="col-sm-3">' +
+                '      <input type="text" id="txtprecioUSD" name="PrecioUSD" class="form-control" />' +
+                '    </div>' +
+
+                '  </div>' +
+
+                '  <div class="row">' +
+
+                '    <div class="col-sm-2">Aplica existencias</div>' +
+                '    <div class="col-sm-4">' +
+                '      <input type="radio" id="rdoexistencias1" name="AplicaExistencias" class="form-check-input" value="1">' +
+                '      <label class="form-check-label" for="rdoexistencias1">&nbsp;Sí&nbsp;&nbsp;</label>' +
+                '      <input type="radio" id="rdoexistencias2" name="AplicaExistencias" class="form-check-input" value="0">' +
+                '      <label class="form-check-label" for="rdoexistencias2">&nbsp;No&nbsp;&nbsp;</label>' +
+                '    </div>' +
+                '    <div class="col-sm-2">Existencias</div>' +
+                '    <div class="col-sm-4">' +
+                '      <input type="text" id="txtExistencias" name="Existencias" class="form-control" />' +
+                '    </div > ' +
+
+                '  </div>' +
+
+                '  <div class="row">' +
+
+                '    <div class="col-sm-2">Foto</div>' +
+                '      <div class="col-sm-8">' +
+                '        <input type="text" id="txtruta" class="form-control" />' +
+                '      </div>' +
+
+                '      <div class="col-sm-2">' +
+                '        <a href="#" class="btn btn-sm btn-success">Cargar</a>' +
+                '      </div>' +
+
+                '    </div>' +
+
+                '  </div>' +
+
+                '</form>');
+
+            var $categoria = $("#selIdCategoria");
+            var opcion = "";
+            for (i = 0; i < categorias.length; i++) {
+                opcion = '<option value="' + categorias[i].id + '" ';
+                if ($($componentes[9]).text() == categorias[i].nombre)
+                    opcion += 'selected="selected"';
+                opcion += '>' + categorias[i].nombre + '</option> ';
+                $categoria.append(opcion);
+
+            }
+
+            $("#txtId").val($($componentes[0]).text());
+            $("#txtsku").val($($componentes[1]).text());
             $("#txtproducto").val($($componentes[2]).text());
-            //$("#").val($($componentes[3]).text());
-            $("#txtPrecioMXN").val($($componentes[4]).text());
-            $("#txtprecioUSD").val($($componentes[5]).text());
-            $("#txtexistencias").val($($componentes[6]).text());
-            $("#txtruta").val($($componentes[6]).text());
-            /*.append($('<div class="row">')
-                .append($('<div class="col-sm-2">')
-                    .append("SKU")
-                    .append($('<input type="text" class="col-sm-10 form-control">').val($($componentes[0]).text()))
-                    ))
-            .append($('<input type="text" class="form-control">').val($($componentes[2]).text()))
-            .append($('<input type="text" class="form-control">').val($($componentes[3]).text()))
-            .append($('<input type="text" class="form-control">').val($($componentes[4]).text()))
-            .append($('<input type="text" class="form-control">').val($($componentes[5]).text()))
-            .append($('<input type="text" class="form-control">').val($($componentes[6]).text()));*/
+            $("#Descripcion").text($($componentes[4]).text());
+            $("#txtPrecioMXN").val($($componentes[5]).text());
+            $("#txtprecioUSD").val($($componentes[6]).text());
+            $("#txtExistencias").val($($componentes[7]).text());
+            if ($($componentes[8]).text().trim() == "Sí") {
+                $("#rdoexistencias1").prop("checked", true);
+            } else {
+                $("#rdoexistencias2").prop("checked", true);
+            }
+            $("#btnEliminar").hide();
+            $("#btnGuardar").show();
+
+            $("#myModal").modal("show");
+        });
+
+    $('[id^="btneliminarProducto"]').off()
+        .on("click", function (e) {
+            $this = $(this);
+            var $componentes = $this.parent().siblings();
+            var $bodyModal = $("#divModalBody");
+            $("#modalHdr").text("Eliminar producto");
+            $bodyModal.empty();
+            $bodyModal.append(
+                '<form action="/Administrador/guardarProducto" method="post" id="frmProducto">' +
+                '  <input type="hidden" id="txtId" value="" name="Id" />' +
+                '  <div class= "row" > ' +
+                '    <div class="col-sm-12" id="txtContenido"></div>' +
+                '  </div>' +
+                '</form>');
+
+            $("#txtContenido")
+                .append('<span>Id: ' + $($componentes[0]).text() + '</span><br />')
+                .append('<span>SKU: ' + $($componentes[1]).text() + '</span><br />')
+                .append('<span>Nombre: ' + $($componentes[2]).text() + '</span><br />')
+                .append('<span>Descripción: ' + $($componentes[4]).text() + '</span><br />')
+                .append('<span>Precio MXN: ' + $($componentes[5]).text() + '</span><br />')
+                .append('<span>Precio USD: ' + $($componentes[6]).text() + '</span><br />')
+                .append('<span>Existencias: ' + $($componentes[7]).text() + '</span><br />')
+                .append('<span>Aplica existencias: ' + $($componentes[8]).text() + '</span><br />');
+
+            $("#btnEliminar").show();
+            $("#btnGuardar").hide();
+            $("#myModal").modal("show");
+        });
+
+    $("#btnnuevoProducto").off()
+        .on("click", function (e) {
+            $this = $(this);
+            var $bodyModal = $("#divModalBody");
+            $("#modalHdr").text("Registrar producto");
+            $bodyModal.empty();
+            $bodyModal.append(
+                '<form action="/Administrador/guardarProducto" method="post" id="frmProducto">' +
+                '  <input type="hidden" id="txtId" value="" name="Id" />' +
+                '  <div class= "row" > ' +
+
+                '    <div class="col-sm-2">SKU</div >' +
+                '    <div class= "col-sm-4">' +
+                '      <input type = "text" id = "txtsku" class= "form-control" name="Sku" />' +
+                '    </div>' +
+
+                '    <div class= "col-sm-2">Categoría</div>' +
+                '    <div class= "col-sm-4">' +
+                '      <select id = "selIdCategoria" name="IdCategoria" class= "form-control"></select>' +
+                '    </div>' +
+
+                '  </div>' +
+
+                '  <div class= "row">' +
+
+                '    <div class= "col-sm-2">Producto</div>' +
+                '    <div class="col-sm-10">' +
+                '      <input type="text" id="txtproducto" name="Nombre" class="form-control" />' +
+                '    </div>' +
+
+                '  </div>' +
+
+                '  <div class="row">' +
+
+                '    <div class="col-sm-2">Descripción</div>' +
+                '    <div class="col-sm-10">' +
+                '      <textarea id="Descripcion" name="Descripcion" rows="4" cols="50" class="form-control"></textarea>' +
+                '    </div>' +
+
+                '  </div>' +
+
+                '  <div class="row">' +
+
+                '    <div class="col-sm-2">Precio MXN.</div>' +
+                '    <div class="col-sm-4">' +
+                '      <input type="text" id="txtPrecioMXN" name="PrecioMXN" class="form-control" />' +
+                '    </div>' +
+
+                '    <div class="col-sm-3">Precio USD.</div>' +
+                '    <div class="col-sm-3">' +
+                '      <input type="text" id="txtprecioUSD" name="PrecioUSD" class="form-control" />' +
+                '    </div>' +
+
+                '  </div>' +
+
+                '  <div class="row">' +
+
+                '    <div class="col-sm-2">Aplica existencias</div>' +
+                '    <div class="col-sm-4">' +
+                '      <input type="radio" id="rdoexistencias1" name="AplicaExistencias" class="form-check-input" value="1">' +
+                '      <label class="form-check-label" for="rdoexistencias1">&nbsp;Sí&nbsp;&nbsp;</label>' +
+                '      <input type="radio" id="rdoexistencias2" name="AplicaExistencias" class="form-check-input" value="0">' +
+                '      <label class="form-check-label" for="rdoexistencias2">&nbsp;No&nbsp;&nbsp;</label>' +
+                '    </div>' +
+                '    <div class="col-sm-2">Existencias</div>' +
+                '    <div class="col-sm-4">' +
+                '      <input type="text" id="txtExistencias" name="Existencias" class="form-control" />' +
+                '    </div > ' +
+
+                '  </div>' +
+
+                '  <div class="row">' +
+
+                '    <div class="col-sm-2">Foto</div>' +
+                '      <div class="col-sm-8">' +
+                '        <input type="text" id="txtruta" class="form-control" />' +
+                '      </div>' +
+
+                '      <div class="col-sm-2">' +
+                '        <a href="#" class="btn btn-sm btn-success">Cargar</a>' +
+                '      </div>' +
+
+                '    </div>' +
+
+                '  </div>' +
+
+                '</form>');
+
+            var $categoria = $("#selIdCategoria");
+            var opcion = "";
+            for (i = 0; i < categorias.length; i++) {
+                opcion = '<option value="' + categorias[i].id + '">' + categorias[i].nombre + '</option> ';
+                $categoria.append(opcion);
+            }
+            $("#btnEliminar").hide();
+            $("#btnGuardar").show();
+
+            $("#myModal").modal("show");
+
+        });
+
+    $("#btnGuardar").off()
+        .on("click", function () {
+            $.post(
+                "/Administrador/guardarProducto",
+                $("#frmProducto").serialize())
+                .done(function (data) {
+                    console.log(data);
+                    if (data.respuesta.ErrorNumero == 0)
+                        location.reload();
+                    else
+                        alert(data.respuesta.ErrorMensaje);
+                });
+        });
+
+    $("#btnagregarCliente").off()
+        .on("click", function (e) {
+            $this = $(this);
+            var $componentes = $this.parent().siblings();
+            var $bodyModal = $("#divModalBody");
+            $("#modalHdr").text("Agregar cliente");
+            $bodyModal.empty();
+            $bodyModal.append(
+                '<form action="/Administrador/guardarCliente" method="post" id="frmCliente">' +
+                '  <input type="hidden" id="txtId" value="" name="IdCliente" />' +
+                '  <div class= "row" > ' +
+                '    <div class="col-sm-3">Usuario: </div>' +
+                '    <div class="col-sm-9"><input type="text" class="form-control" id="txtUsuario" /></div>' +
+                '  </div>' +
+                '  <div class= "row" > ' +
+                '    <div class="col-sm-3">Nombre: </div>' +
+                '    <div class="col-sm-9"><input type="text" class="form-control" id="txtNombre" /></div>' +
+                '  </div>' +
+                '  <div class= "row" > ' +
+                '    <div class="col-sm-3">Dirección: </div>' +
+                '    <div class="col-sm-9"><input type="text" class="form-control" id="txtDirección" /></div>' +
+                '  </div>' +
+                '  <div class= "row" > ' +
+                '    <div class="col-sm-3">Teléfono: </div>' +
+                '    <div class="col-sm-9"><input type="text" class="form-control" id="txtTelefono" /></div>' +
+                '  </div>' +
+                '  <div class= "row" > ' +
+                '    <div class="col-sm-3">Zona de paquetería: </div>' +
+                '    <div class="col-sm-9"><input type="text" class="form-control" id="txtZonaPaqueteria" /></div>' +
+                '  </div>' +
+                '  <div class= "row" > ' +
+                '    <div class="col-sm-3">Estátus: </div>' +
+                '    <div class="col-sm-9"><input type="text" class="form-control" id="txtEstatus" /></div>' +
+                '  </div>' +
+                '</form>');
+
+            $("#btnEliminar").hide();
+            $("#btnGuardar").show();
+            $("#myModal").modal("show");
+        });
+
+    $("#btneditarCliente").off()
+        .on("click", function (e) {
+            $this = $(this);
+            var $componentes = $this.parent().siblings();
+            var $bodyModal = $("#divModalBody");
+            $("#modalHdr").text("Editar cliente");
+            $bodyModal.empty();
+            $bodyModal.append(
+                '<form action="/Administrador/guardarCliente" method="post" id="frmCliente">' +
+                '  <input type="hidden" id="txtId" value="" name="IdCliente" />' +
+                '  <div class= "row" > ' +
+                '    <div class="col-sm-3">Usuario: </div>' +
+                '    <div class="col-sm-9"><input type="text" class="form-control" id="txtUsuario" /></div>' +
+                '  </div>' +
+                '  <div class= "row" > ' +
+                '    <div class="col-sm-3">Nombre: </div>' +
+                '    <div class="col-sm-9"><input type="text" class="form-control" id="txtNombre" /></div>' +
+                '  </div>' +
+                '  <div class= "row" > ' +
+                '    <div class="col-sm-3">Dirección: </div>' +
+                '    <div class="col-sm-9"><input type="text" class="form-control" id="txtDirección" /></div>' +
+                '  </div>' +
+                '  <div class= "row" > ' +
+                '    <div class="col-sm-3">Teléfono: </div>' +
+                '    <div class="col-sm-9"><input type="text" class="form-control" id="txtTelefono" /></div>' +
+                '  </div>' +
+                '  <div class= "row" > ' +
+                '    <div class="col-sm-3">Zona de paquetería: </div>' +
+                '    <div class="col-sm-9"><input type="text" class="form-control" id="txtZonaPaqueteria" /></div>' +
+                '  </div>' +
+                '  <div class= "row" > ' +
+                '    <div class="col-sm-3">Estátus: </div>' +
+                '    <div class="col-sm-9"><input type="text" class="form-control" id="txtEstatus" /></div>' +
+                '  </div>' +
+                '</form>');
+
+            $("#txtUsuario").val($($componentes[0]).text());
+            $("#txtNombre").val($($componentes[1]).text());
+            $("#txtDirección").val($($componentes[2]).text());
+            $("#txtTelefono").val($($componentes[3]).text());
+            $("#txtZonaPaqueteria").val($($componentes[4]).text());
+            $("#txtEstatus").val($($componentes[5]).text());
+
+            $("#btnEliminar").hide();
+            $("#btnGuardar").show();
+            $("#myModal").modal("show");
+        });
+
+    $("#btneliminarCliente").off()
+        .on("click", function (e) {
+            $this = $(this);
+            var $componentes = $this.parent().siblings();
+            var $bodyModal = $("#divModalBody");
+            $("#modalHdr").text("Eliminar cliente");
+            $bodyModal.empty();
+            $bodyModal.append(
+                '<form action="/Administrador/guardarProducto" method="post" id="frmProducto">' +
+                '  <input type="hidden" id="txtId" value="" name="Id" />' +
+                '  <div class= "row" > ' +
+                '    <div class="col-sm-12" id="txtContenido"></div>' +
+                '  </div>' +
+                '</form>');
+
+            $("#txtContenido")
+                .append('<span>USuario: ' + $($componentes[0]).text() + '</span><br />')
+                .append('<span>Nombre: ' + $($componentes[1]).text() + '</span><br />')
+                .append('<span>Dirección: ' + $($componentes[2]).text() + '</span><br />')
+                .append('<span>Teléfono: ' + $($componentes[3]).text() + '</span><br />')
+                .append('<span>Zona de paquetería: ' + $($componentes[4]).text() + '</span><br />')
+                .append('<span>Estátus: ' + $($componentes[5]).text() + '</span><br />')
+
+            $("#btnEliminar").show();
+            $("#btnGuardar").hide();
             $("#myModal").modal("show");
         });
 });

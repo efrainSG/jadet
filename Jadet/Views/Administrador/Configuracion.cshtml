@@ -1,11 +1,94 @@
-﻿
+﻿@model Jadet.Models.listaproductosmodel
 @{
-    ViewBag.Title = "Notas";
+    ViewBag.Title = "Configuración";
     Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
 }
 
 <h2>@ViewBag.Title</h2>
 
-<blockquote>
-    No tengo la más remota idea de qué mostar aquí :-(
-</blockquote>
+<h3>Catálogo de estátus</h3>
+<table class="table table-active table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>
+                <a href="#" class="btn btn-success" id="btnagregarEstatus">Agregar</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model!=null && Model.Items != null)
+        {
+            foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Nombre</td>
+                    <td>
+                        <a href="#" class="btn btn-warning" data-content="@item.Id" id="btneditarEstatus">Editar</a>
+                        <a href="#" class="btn btn-danger" data-content="@item.Id" id="btneliminarEstatus">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<h3>Catálogo de categorías</h3>
+<table class="table table-active table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>
+                <a href="#" class="btn btn-success" id="btnagregarCategoria">Agregar</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Items != null)
+        {
+            foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Nombre</td>
+                    <td>
+                        <a href="#" class="btn btn-warning" data-content="@item.Id" id="btneditarEstatus">Editar</a>
+                        <a href="#" class="btn btn-danger" data-content="@item.Id" id="btneliminarEstatus">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<h3>Catálogo de paqueterías</h3>
+<table class="table table-active table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>
+                <a href="#" class="btn btn-success" id="btnagregarEstatus">Agregar</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Items != null)
+        {
+            foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Nombre</td>
+                    <td>
+                        <a href="#" class="btn btn-warning" data-content="@item.Id" id="btneditarEstatus">Editar</a>
+                        <a href="#" class="btn btn-danger" data-content="@item.Id" id="btneliminarEstatus">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
