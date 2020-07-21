@@ -86,6 +86,146 @@ namespace Jadet.Controllers
             }
         }
 
+        [HttpPost]
+        public JsonResult eliminarProducto(productomodel model)
+        {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root")
+            {
+                Session.Clear();
+                return Json(new ProductoResponse(), JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                var servicio = new AdministradorClient();
+                var response = servicio.guardarProducto(new ProductoRequest
+                {
+                    AplicaExistencias = model.AplicaExistencias,
+                    Descripcion = model.Descripcion,
+                    Existencias = model.Existencias,
+                    Id = model.Id,
+                    IdCategoria = model.IdCategoria,
+                    Nombre = model.Nombre,
+                    PrecioMXN = model.PrecioMXN,
+                    PrecioUSD = model.PrecioUSD,
+                    Foto = Encoding.UTF8.GetBytes(model.Nombre),
+                    SKU = model.Sku
+                });
+                return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public JsonResult guardarCatalogo(productomodel model)
+        {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root")
+            {
+                Session.Clear();
+                return Json(new ProductoResponse(), JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                var servicio = new AdministradorClient();
+                var response = servicio.guardarProducto(new ProductoRequest
+                {
+                    AplicaExistencias = model.AplicaExistencias,
+                    Descripcion = model.Descripcion,
+                    Existencias = model.Existencias,
+                    Id = model.Id,
+                    IdCategoria = model.IdCategoria,
+                    Nombre = model.Nombre,
+                    PrecioMXN = model.PrecioMXN,
+                    PrecioUSD = model.PrecioUSD,
+                    Foto = Encoding.UTF8.GetBytes(model.Nombre),
+                    SKU = model.Sku
+                });
+                return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public JsonResult eliminarCatalogo(productomodel model)
+        {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root")
+            {
+                Session.Clear();
+                return Json(new ProductoResponse(), JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                var servicio = new AdministradorClient();
+                var response = servicio.guardarProducto(new ProductoRequest
+                {
+                    AplicaExistencias = model.AplicaExistencias,
+                    Descripcion = model.Descripcion,
+                    Existencias = model.Existencias,
+                    Id = model.Id,
+                    IdCategoria = model.IdCategoria,
+                    Nombre = model.Nombre,
+                    PrecioMXN = model.PrecioMXN,
+                    PrecioUSD = model.PrecioUSD,
+                    Foto = Encoding.UTF8.GetBytes(model.Nombre),
+                    SKU = model.Sku
+                });
+                return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public JsonResult guardarEstatus(productomodel model)
+        {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root")
+            {
+                Session.Clear();
+                return Json(new ProductoResponse(), JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                var servicio = new AdministradorClient();
+                var response = servicio.guardarProducto(new ProductoRequest
+                {
+                    AplicaExistencias = model.AplicaExistencias,
+                    Descripcion = model.Descripcion,
+                    Existencias = model.Existencias,
+                    Id = model.Id,
+                    IdCategoria = model.IdCategoria,
+                    Nombre = model.Nombre,
+                    PrecioMXN = model.PrecioMXN,
+                    PrecioUSD = model.PrecioUSD,
+                    Foto = Encoding.UTF8.GetBytes(model.Nombre),
+                    SKU = model.Sku
+                });
+                return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public JsonResult eliminarEstatus(productomodel model)
+        {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root")
+            {
+                Session.Clear();
+                return Json(new ProductoResponse(), JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                var servicio = new AdministradorClient();
+                var response = servicio.guardarProducto(new ProductoRequest
+                {
+                    AplicaExistencias = model.AplicaExistencias,
+                    Descripcion = model.Descripcion,
+                    Existencias = model.Existencias,
+                    Id = model.Id,
+                    IdCategoria = model.IdCategoria,
+                    Nombre = model.Nombre,
+                    PrecioMXN = model.PrecioMXN,
+                    PrecioUSD = model.PrecioUSD,
+                    Foto = Encoding.UTF8.GetBytes(model.Nombre),
+                    SKU = model.Sku
+                });
+                return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         public ActionResult Guias()
         {
             return View();
@@ -139,7 +279,29 @@ namespace Jadet.Controllers
                 Session.Clear();
                 return RedirectToAction("Index", "Home");
             }
-            return View();
+            var servicio = new AdministradorClient();
+            var response = servicio.listarCatalogo(new CatalogoRequest
+            {
+                Id = 0,
+                IdTipoCatalogo = 0
+            });
+            var resultado = new listacatalogoModel();
+            resultado.Items.AddRange(response.Items.Select(i => new catalogoModel
+            {
+                Id = i.Id,
+                IdTipoCatalogo = i.IdTipoCatalogo,
+                Nombre = i.Nombre,
+                Tabla = "CATÁLOGO"
+            }));
+            var response2 = servicio.listarEstatus(new EstatusRequest { Id = 0, IdTipoEstatus = 0 });
+            resultado.Items.AddRange(response2.Items.Select(i => new catalogoModel
+            {
+                Id = i.Id,
+                IdTipoCatalogo = i.IdTipoEstatus,
+                Nombre = i.Nombre,
+                Tabla = "ESTÁTUS"
+            }));
+            return View(resultado);
         }
 
         public JsonResult obtenerDiccionario(int IdTipo)
@@ -148,6 +310,17 @@ namespace Jadet.Controllers
             var response = servicio.listarCatalogo(new CatalogoRequest
             {
                 IdTipoCatalogo = IdTipo
+            });
+
+            return Json(response.Items.Select(e => new { id = e.Id, nombre = e.Nombre }).ToArray(), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult obtenerTiposCatalogos(int IdTipo)
+        {
+            var servicio = new AdministradorClient();
+            var response = servicio.listarTipoCatalogo(new TipoCatalogoRequest
+            {
+                Id = IdTipo
             });
 
             return Json(response.Items.Select(e => new { id = e.Id, nombre = e.Nombre }).ToArray(), JsonRequestBehavior.AllowGet);

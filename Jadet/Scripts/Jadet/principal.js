@@ -11,6 +11,15 @@
                 }
             }
         )
+        $.get(
+            "/Administrador/obtenerTiposCatalogos"
+            , { IdTipo: 0 }
+            , function (data) {
+                for (i = 0; i < data.length; i++) {
+                    tiposcatalogos.push(data[i]);
+                }
+            }
+        )
     }
 
     cargarDiccionarios();
@@ -141,7 +150,7 @@
             $("#modalHdr").text("Eliminar producto");
             $bodyModal.empty();
             $bodyModal.append(
-                '<form action="/Administrador/guardarProducto" method="post" id="frmProducto">' +
+                '<form action="/Administrador/eliminarProducto" method="post" id="frmProducto">' +
                 '  <input type="hidden" id="txtId" value="" name="Id" />' +
                 '  <div class= "row" > ' +
                 '    <div class="col-sm-12" id="txtContenido"></div>' +
@@ -394,4 +403,77 @@
             $("#btnGuardar").hide();
             $("#myModal").modal("show");
         });
+
+    $('[id^="btneditarCatalogo"]').off()
+        .on("click", function (e) {
+            $this = $(this);
+            var $componentes = $this.parent().siblings();
+            var $bodyModal = $("#divModalBody");
+            $("#modalHdr").text("Editar catálogo");
+            $bodyModal.empty();
+            $bodyModal.append(
+                '<form action="/Administrador/guardarCatalogo" method="post" id="frmCatalogo">' +
+                '  <div class= "row" > ' +
+                '    <div class="col-sm-3">Id: </div>' +
+                '    <div class="col-sm-9"><input type="text" class="form-control" name="Id" id="txtId" readonly="readonly" /></div>' +
+                '  </div>' +
+                '  <div class= "row" > ' +
+                '    <div class="col-sm-3">Nombre: </div>' +
+                '    <div class="col-sm-9"><input type="text" class="form-control" name="Nombre" id="txtNombre" /></div>' +
+                '  </div>' +
+                '  <div class= "row" > ' +
+                '    <div class="col-sm-3">Tipo de catálogo: </div>' +
+                '    <div class="col-sm-9"><select class="form-control" id="selIdTipoCatalogo" name="TipoCatalogo" /></select>' +
+                '  </div>' +
+                '</form>');
+
+            $("#txtId").val($($componentes[0]).text());
+            $("#txtNombre").val($($componentes[1]).text());
+            var $categoria = $("#selIdTipoCatalogo");
+            var opcion = "";
+            for (i = 0; i < tiposcatalogos.length; i++) {
+                opcion = '<option value="' + tiposcatalogos[i].id + '" ';
+                if ($this.prop("data-content") == tiposcatalogos[i].id)
+                    opcion += 'selected="selected"';
+                opcion += '>' + tiposcatalogos[i].nombre + '</option> ';
+                $categoria.append(opcion);
+
+            }
+
+            $("#btnEliminar").hide();
+            $("#btnGuardar").show();
+            $("#myModal").modal("show");
+        });
+
+    $('[id^="btneditarEstatus"]').off()
+        .on("click", function (e) {
+            $this = $(this);
+            var $componentes = $this.parent().siblings();
+            var $bodyModal = $("#divModalBody");
+            $("#modalHdr").text("Editar catálogo");
+            $bodyModal.empty();
+            $bodyModal.append(
+                '<form action="/Administrador/guardarEstatus" method="post" id="frmEstatus">' +
+                '  <div class= "row" > ' +
+                '    <div class="col-sm-3">Id: </div>' +
+                '    <div class="col-sm-9"><input type="text" class="form-control" id="txtId" readonly="readonly" /></div>' +
+                '  </div>' +
+                '  <div class= "row" > ' +
+                '    <div class="col-sm-3">Nombre: </div>' +
+                '    <div class="col-sm-9"><input type="text" class="form-control" id="txtNombre" /></div>' +
+                '  </div>' +
+                '  <div class= "row" > ' +
+                '    <div class="col-sm-3">Tipo de catáloo: </div>' +
+                '    <div class="col-sm-9"><input type="text" class="form-control" id="txtTipoCatalogo" /></div>' +
+                '  </div>' +
+                '</form>');
+
+            $("#txtId").val($($componentes[0]).text());
+            $("#txtNombre").val($($componentes[1]).text());
+
+            $("#btnEliminar").hide();
+            $("#btnGuardar").show();
+            $("#myModal").modal("show");
+        });
+
 });

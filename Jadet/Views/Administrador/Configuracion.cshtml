@@ -1,4 +1,4 @@
-﻿@model Jadet.Models.listaproductosmodel
+﻿@model Jadet.Models.listacatalogoModel
 @{
     ViewBag.Title = "Configuración";
     Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
@@ -18,15 +18,15 @@
         </tr>
     </thead>
     <tbody>
-        @if (Model!=null && Model.Items != null)
+        @if (Model != null && Model.Items != null)
         {
-            foreach (var item in Model.Items)
+            foreach (var item in Model.Items.Where(i => i.Tabla.Equals("ESTÁTUS")))
             {
                 <tr>
                     <td>@item.Id</td>
                     <td>@item.Nombre</td>
                     <td>
-                        <a href="#" class="btn btn-warning" data-content="@item.Id" id="btneditarEstatus">Editar</a>
+                        <a href="#@("btneditarEstatus"+@item.Id)" class="btn btn-warning" data-content="@item.Id" id="@("btneditarEstatus"+@item.Id)">Editar</a>
                         <a href="#" class="btn btn-danger" data-content="@item.Id" id="btneliminarEstatus">Eliminar</a>
                     </td>
                 </tr>
@@ -49,14 +49,14 @@
     <tbody>
         @if (Model != null && Model.Items != null)
         {
-            foreach (var item in Model.Items)
+            foreach (var item in Model.Items.Where(i => i.Tabla.Equals("CATÁLOGO") && i.IdTipoCatalogo.Equals(3)))
             {
                 <tr>
                     <td>@item.Id</td>
                     <td>@item.Nombre</td>
                     <td>
-                        <a href="#" class="btn btn-warning" data-content="@item.Id" id="btneditarEstatus">Editar</a>
-                        <a href="#" class="btn btn-danger" data-content="@item.Id" id="btneliminarEstatus">Eliminar</a>
+                        <a href="#@("btneditarCatalogo"+@item.Id)" class="btn btn-warning" data-content="@item.IdTipoCatalogo" id="@("btneditarCatalogo"+@item.Id)">Editar</a>
+                        <a href="#" class="btn btn-danger" data-content="@item.Id" id="btneliminaCatalogo">Eliminar</a>
                     </td>
                 </tr>
             }
@@ -78,14 +78,43 @@
     <tbody>
         @if (Model != null && Model.Items != null)
         {
-            foreach (var item in Model.Items)
+            foreach (var item in Model.Items.Where(i => i.Tabla.Equals("CATÁLOGO") && i.IdTipoCatalogo.Equals(2)))
             {
                 <tr>
                     <td>@item.Id</td>
                     <td>@item.Nombre</td>
                     <td>
-                        <a href="#" class="btn btn-warning" data-content="@item.Id" id="btneditarEstatus">Editar</a>
-                        <a href="#" class="btn btn-danger" data-content="@item.Id" id="btneliminarEstatus">Eliminar</a>
+                        <a href="#@("btneditarCatalogo"+@item.Id)" class="btn btn-warning" data-content="@item.Id" id="@("btneditarCatalogo"+@item.Id)">Editar</a>
+                        <a href="#" class="btn btn-danger" data-content="@item.Id" id="btneliminarCatalogo">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<h3>Catálogo de tipos de notas</h3>
+<table class="table table-active table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>
+                <a href="#" class="btn btn-success" id="btnagregarEstatus">Agregar</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Items != null)
+        {
+            foreach (var item in Model.Items.Where(i => i.Tabla.Equals("CATÁLOGO") && i.IdTipoCatalogo.Equals(1)))
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Nombre</td>
+                    <td>
+                        <a href="#@("btneditarCatalogo"+@item.Id)" class="btn btn-warning" data-content="@item.Id" id="@("btneditarCatalogo"+@item.Id)">Editar</a>
+                        <a href="#" class="btn btn-danger" data-content="@item.Id" id="btneliminarCatalogo">Eliminar</a>
                     </td>
                 </tr>
             }
