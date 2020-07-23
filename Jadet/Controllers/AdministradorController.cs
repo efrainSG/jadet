@@ -64,7 +64,7 @@ namespace Jadet.Controllers
             if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root")
             {
                 Session.Clear();
-                return Json(new ProductoResponse(), JsonRequestBehavior.AllowGet);
+                return Json(new { respuesta = new ProductoResponse() }, JsonRequestBehavior.AllowGet);
             }
             else
             {
@@ -115,84 +115,63 @@ namespace Jadet.Controllers
         }
 
         [HttpPost]
-        public JsonResult guardarCatalogo(productomodel model)
+        public JsonResult guardarCatalogo(catalogoModel model)
         {
             if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root")
             {
                 Session.Clear();
-                return Json(new ProductoResponse(), JsonRequestBehavior.AllowGet);
+                return Json(new { respuesta = new CatalogoResponse() }, JsonRequestBehavior.AllowGet);
             }
             else
             {
                 var servicio = new AdministradorClient();
-                var response = servicio.guardarProducto(new ProductoRequest
+                var response = servicio.guardarCatalogo(new CatalogoRequest
                 {
-                    AplicaExistencias = model.AplicaExistencias,
-                    Descripcion = model.Descripcion,
-                    Existencias = model.Existencias,
                     Id = model.Id,
-                    IdCategoria = model.IdCategoria,
                     Nombre = model.Nombre,
-                    PrecioMXN = model.PrecioMXN,
-                    PrecioUSD = model.PrecioUSD,
-                    Foto = Encoding.UTF8.GetBytes(model.Nombre),
-                    SKU = model.Sku
+                    IdTipoCatalogo = model.IdTipoCatalogo
                 });
                 return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
             }
         }
 
         [HttpPost]
-        public JsonResult eliminarCatalogo(productomodel model)
+        public JsonResult eliminarCatalogo(catalogoModel model)
         {
             if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root")
             {
                 Session.Clear();
-                return Json(new ProductoResponse(), JsonRequestBehavior.AllowGet);
+                return Json(new { respuesta = new ProductoResponse() }, JsonRequestBehavior.AllowGet);
             }
             else
             {
                 var servicio = new AdministradorClient();
-                var response = servicio.guardarProducto(new ProductoRequest
+                var response = servicio.bajaCatalogo(new CatalogoRequest
                 {
-                    AplicaExistencias = model.AplicaExistencias,
-                    Descripcion = model.Descripcion,
-                    Existencias = model.Existencias,
                     Id = model.Id,
-                    IdCategoria = model.IdCategoria,
                     Nombre = model.Nombre,
-                    PrecioMXN = model.PrecioMXN,
-                    PrecioUSD = model.PrecioUSD,
-                    Foto = Encoding.UTF8.GetBytes(model.Nombre),
-                    SKU = model.Sku
+                    IdTipoCatalogo = model.IdTipoCatalogo
                 });
                 return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
             }
         }
 
         [HttpPost]
-        public JsonResult guardarEstatus(productomodel model)
+        public JsonResult guardarEstatus(catalogoModel model)
         {
             if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root")
             {
                 Session.Clear();
-                return Json(new ProductoResponse(), JsonRequestBehavior.AllowGet);
+                return Json(new { respuesta = new ProductoResponse() }, JsonRequestBehavior.AllowGet);
             }
             else
             {
                 var servicio = new AdministradorClient();
-                var response = servicio.guardarProducto(new ProductoRequest
+                var response = servicio.guardarEstatus(new EstatusRequest
                 {
-                    AplicaExistencias = model.AplicaExistencias,
-                    Descripcion = model.Descripcion,
-                    Existencias = model.Existencias,
                     Id = model.Id,
-                    IdCategoria = model.IdCategoria,
                     Nombre = model.Nombre,
-                    PrecioMXN = model.PrecioMXN,
-                    PrecioUSD = model.PrecioUSD,
-                    Foto = Encoding.UTF8.GetBytes(model.Nombre),
-                    SKU = model.Sku
+                    IdTipoEstatus = model.IdTipoCatalogo
                 });
                 return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
             }
@@ -221,6 +200,62 @@ namespace Jadet.Controllers
                     PrecioUSD = model.PrecioUSD,
                     Foto = Encoding.UTF8.GetBytes(model.Nombre),
                     SKU = model.Sku
+                });
+                return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public JsonResult guardarCliente(clientemodel model)
+        {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root")
+            {
+                Session.Clear();
+                return Json(new { respuesta = new ClienteResponse() }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                var servicio = new AdministradorClient();
+                var response = servicio.guardarCliente(new ClienteRequest
+                {
+                    Direccion = model.Direccion,
+                    IdCliente = model.IdCliente,
+                    IdEstatus = model.IdEstatus,
+                    IdRol = model.IdRol,
+                    Nombre = model.Nombre,
+                    Password = Encoding.UTF8.GetBytes(model.password ?? string.Empty),
+                    Telefono = model.Telefono,
+                    UserName = model.usuario,
+                    Foto = Encoding.UTF8.GetBytes(model.Nombre),
+                    ZonaPaqueteria = model.ZonaPaqueteria
+                });
+                return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public JsonResult eliminarCliente(clientemodel model)
+        {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root")
+            {
+                Session.Clear();
+                return Json(new { respuesta = new ClienteResponse() }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                var servicio = new AdministradorClient();
+                var response = servicio.bajaCliente(new ClienteRequest
+                {
+                    Direccion = model.Direccion,
+                    IdCliente = model.IdCliente,
+                    IdEstatus = model.IdEstatus,
+                    IdRol = model.IdRol,
+                    Nombre = model.Nombre,
+                    Foto = Encoding.UTF8.GetBytes(model.Nombre),
+                    Password = Encoding.UTF8.GetBytes(model.password),
+                    Telefono = model.Telefono,
+                    UserName = model.usuario,
+                    ZonaPaqueteria = model.ZonaPaqueteria
                 });
                 return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
             }
@@ -322,8 +357,17 @@ namespace Jadet.Controllers
             {
                 Id = IdTipo
             });
-
             return Json(response.Items.Select(e => new { id = e.Id, nombre = e.Nombre }).ToArray(), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult obtenerEstatus(int IdTipo)
+        {
+            var servicio = new AdministradorClient();
+            var response = servicio.listarEstatus(new EstatusRequest
+            {
+                Id = IdTipo
+            });
+            return Json(response.Items.Select(e => new { id = e.Id, nombre = e.Nombre, Tipo = e.IdTipoEstatus }).ToArray(), JsonRequestBehavior.AllowGet);
         }
     }
 }
