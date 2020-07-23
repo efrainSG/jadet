@@ -176,7 +176,7 @@ create procedure Seguridad.guardarUsuario
 	@Telefono varchar(20),
 	@Foto varbinary(max),
 	@Usuario varchar(50),
-	@Passwd varbinary(max),
+	@Passwd varbinary(max)=null,
 	@IdRol int,
 	@ZonaPaqueteria int,
 	@IdEstatus int
@@ -190,7 +190,7 @@ begin
 			Telefono = @Telefono,
 			Foto = @Foto,
 			Usuario = @Usuario,
-			Passwd = @Passwd,
+			Passwd = isnull(@Passwd,Passwd),
 			IdRol = @IdRol,
 			ZonaPaqueteria = @ZonaPaqueteria,
 			IdEstatus = @IdEstatus
@@ -304,5 +304,41 @@ begin
 	from	Ventas.Producto P (nolock)
 	join	Administracion.Catalogo C (nolock) on P.IdCatalogo = C.Id
 	where	P.Id = isnull(@Id, P.Id)
+end;
+go
+
+create procedure Ventas.borrarProducto
+	@Id int
+as
+begin
+	declare @ErrNo int = 0,
+			@ErrMsg varchar(max) = ''
+
+	begin try
+		delete from Ventas.Producto
+		where Id = @Id
+	end try
+	begin catch
+		select @ErrNo = Error_number(), @ErrMsg = Error_Message()
+	end catch
+	select @ErrNo ErrorNumero, @ErrMsg Mensaje
+end;
+go
+
+create procedure Seguridad.iniciarSesion
+	@USuario varchar(50),
+	@Passwd varbinary(max)
+as
+begin
+	if exists (select 1 from Seguridad.Usuario U (nolock) where U.Id = @Id and U.Passwd = @Passwd)
+	begin
+		select	Id, Nombre, Usuario, IdRol, 0 ErrorNumero, '' Mensaje
+		from	Seguridad.Usuario U (nolock)
+		where	U.Id = @Id and U.Passwd = @Passwd
+	end
+	else
+	begin
+		select	'00000000-0000-0000-0000-000000000000' Id, '' Nombre, '' Usuario, 0 IdRol, 1 ErrorNumero, 'Credenciales inválidas' Mensaje
+	end
 end;
 go
