@@ -369,5 +369,15 @@ namespace Jadet.Controllers
             });
             return Json(response.Items.Select(e => new { id = e.Id, nombre = e.Nombre, Tipo = e.IdTipoEstatus }).ToArray(), JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult obtenerTipoEstatus(int IdTipo)
+        {
+            var servicio = new AdministradorClient();
+            var response = servicio.listarTipoEstatus(new TipoEstatusRequest
+            {
+                Id = IdTipo
+            });
+            return Json(response.Items.Select(e => new { id = e.Id, nombre = e.Nombre }).ToArray(), JsonRequestBehavior.AllowGet);
+        }
     }
 }

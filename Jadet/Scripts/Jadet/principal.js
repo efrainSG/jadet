@@ -38,6 +38,15 @@
                 }
             }
         );
+        $.get(
+            "/Administrador/obtenerTipoEstatus"
+            , { IdTipo: 0 }
+            , function (data) {
+                for (i = 0; i < data.length; i++) {
+                    tipoestatus.push(data[i]);
+                }
+            }
+        );
     }
 
     cargarDiccionarios();
@@ -472,11 +481,11 @@
             $("#txtNombre").val($($componentes[1]).text());
             var $categoria = $("#selIdTipoCatalogo");
             var opcion = "";
-            for (i = 0; i < tiposcatalogos.length; i++) {
-                opcion = '<option value="' + tiposcatalogos[i].id + '" ';
-                if ($this.prop("data-content") == tiposcatalogos[i].id)
+            for (i = 0; i < tipoestatus.length; i++) {
+                opcion = '<option value="' + tipoestatus[i].id + '" ';
+                if ($this.prop("data-content") == tipoestatus[i].id)
                     opcion += 'selected="selected"';
-                opcion += '>' + tiposcatalogos[i].nombre + '</option> ';
+                opcion += '>' + tipoestatus[i].nombre + '</option> ';
                 $categoria.append(opcion);
 
             }

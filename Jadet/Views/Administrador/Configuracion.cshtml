@@ -6,7 +6,7 @@
 
 <h2>@ViewBag.Title</h2>
 
-<h3>Catálogo de estátus</h3>
+<h3>Catálogo de estátus de usuarios</h3>
 <table class="table table-active table-bordered">
     <thead>
         <tr>
@@ -20,7 +20,65 @@
     <tbody>
         @if (Model != null && Model.Items != null)
         {
-            foreach (var item in Model.Items.Where(i => i.Tabla.Equals("ESTÁTUS")))
+            foreach (var item in Model.Items.Where(i => i.Tabla.Equals("ESTÁTUS") & i.IdTipoCatalogo.Equals(1)))
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Nombre</td>
+                    <td>
+                        <a href="#@("btneditarEstatus"+@item.Id)" class="btn btn-warning" data-content="@item.Id" id="@("btneditarEstatus"+@item.Id)">Editar</a>
+                        <a href="#" class="btn btn-danger" data-content="@item.Id" id="btneliminarEstatus">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<h3>Catálogo de estátus de producto</h3>
+<table class="table table-active table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>
+                <a href="#" class="btn btn-success" id="btnagregarEstatus">Agregar</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Items != null)
+        {
+            foreach (var item in Model.Items.Where(i => i.Tabla.Equals("ESTÁTUS") & i.IdTipoCatalogo.Equals(2)))
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Nombre</td>
+                    <td>
+                        <a href="#@("btneditarEstatus"+@item.Id)" class="btn btn-warning" data-content="@item.Id" id="@("btneditarEstatus"+@item.Id)">Editar</a>
+                        <a href="#" class="btn btn-danger" data-content="@item.Id" id="btneliminarEstatus">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<h3>Catálogo de estátus de nota</h3>
+<table class="table table-active table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>
+                <a href="#" class="btn btn-success" id="btnagregarEstatus">Agregar</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Items != null)
+        {
+            foreach (var item in Model.Items.Where(i => i.Tabla.Equals("ESTÁTUS") & i.IdTipoCatalogo.Equals(3)))
             {
                 <tr>
                     <td>@item.Id</td>
