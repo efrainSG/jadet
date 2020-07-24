@@ -122,9 +122,37 @@ namespace SernaSistemas.Jadet.DataAccess
         {
             throw new Exception("No implementado");
         }
-        public ResultadoBorrado borrarProducto()
+        public ResultadoBorrado borrarProducto(int id)
         {
-            throw new Exception("No implementado");
+            ResultadoBorrado resultado = new ResultadoBorrado();
+            using (SqlConnection conn = new SqlConnection(CadenaConexion))
+            {
+                using (SqlCommand cmd = new SqlCommand()
+                {
+                    CommandText = "Ventas.borrarProducto",
+                    CommandType = System.Data.CommandType.StoredProcedure,
+                    Connection = conn
+                })
+                {
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = id,
+                        ParameterName = "@Id"
+                    });
+                    conn.Open();
+                    var dr = cmd.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        dr.Read();
+                        resultado.ErrorNumero = (int)dr["ErrorNumero"];
+                        resultado.ErrorMensaje = dr["Mensaje"].ToString();
+                    }
+                    conn.Close();
+                }
+            }
+            return resultado;
         }
 
         public Catalogo guardarCatalogo(Catalogo catalogo)
@@ -429,7 +457,7 @@ namespace SernaSistemas.Jadet.DataAccess
                     if (dr.HasRows)
                     {
                         dr.Read();
-                        resultado.Id =(int)dr["Id"];
+                        resultado.Id = (int)dr["Id"];
                         resultado.Nombre = dr["Nombre"].ToString();
                         resultado.Descripcion = dr["Descripcion"].ToString();
                         resultado.Foto = (byte[])dr["Foto"];
@@ -539,6 +567,7 @@ namespace SernaSistemas.Jadet.DataAccess
         public List<Usuario> listarUsuario(Usuario usuario)
         {
             List<Usuario> resultado = new List<Usuario>();
+            Usuario usuario1 = new Usuario();
             using (SqlConnection conn = new SqlConnection(CadenaConexion))
             {
                 using (SqlCommand cmd = new SqlCommand()
@@ -573,13 +602,13 @@ namespace SernaSistemas.Jadet.DataAccess
                                 Id = new Guid(dr["Id"].ToString()),
                                 Nombre = dr["Nombre"].ToString(),
                                 Direccion = dr["Direccion"].ToString(),
-                                Foto = (byte[])dr["Foto"],
+                                Foto = (dr["Foto"] == DBNull.Value) ? new byte[0] : (byte[])dr["Foto"],
                                 IdEstatus = (int)dr["IdEstatus"],
                                 IdRol = (int)dr["IdRol"],
-                                Password = (byte[])dr["Passwd"],
+                                Password = (dr["Passwd"] == DBNull.Value) ? new byte[0] : (byte[])dr["Passwd"],
                                 Telefono = dr["Telefono"].ToString(),
                                 UserName = dr["Usuario"].ToString(),
-                                ZonaPaqueteria = (int)dr["ZonaPaqueteria"]
+                                ZonaPaqueteria = (dr["ZonaPaqueteria"] == DBNull.Value) ? 0 : (int)dr["ZonaPaqueteria"],
                             });
                         }
                     }
@@ -633,7 +662,7 @@ namespace SernaSistemas.Jadet.DataAccess
                             {
                                 Id = (int)dr["Id"],
                                 Nombre = dr["Nombre"].ToString(),
-                                AplicaExistencias= (bool)dr["AplicaExistencias"],
+                                AplicaExistencias = (bool)dr["AplicaExistencias"],
                                 Descripcion = dr["Descripcion"].ToString(),
                                 Existencias = (int)dr["Existencias"],
                                 Foto = (byte[])dr["Foto"],
@@ -760,6 +789,50 @@ namespace SernaSistemas.Jadet.DataAccess
             }
             return resultado;
         }
-
+        public Usuario iniciarSesion(Usuario usuario)
+        {
+            Usuario resultado = new Usuario();
+            using (SqlConnection conn = new SqlConnection(CadenaConexion))
+            {
+                using (SqlCommand cmd = new SqlCommand()
+                {
+                    CommandText = "Seguridad.iniciarSesion",
+                    CommandType = System.Data.CommandType.StoredProcedure,
+                    Connection = conn
+                })
+                {
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.String,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = usuario.UserName,
+                        ParameterName = "@Usuario"
+                    });
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.Binary,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = usuario.Password,
+                        ParameterName = "@Passwd"
+                    });
+                    conn.Open();
+                    var dr = cmd.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        dr.Read();
+                        resultado = new Usuario
+                        {
+                            Id = (Guid)dr["Id"],
+                            Nombre = dr["Nombre"].ToString(),
+                            UserName = dr["Usuario"].ToString(),
+                            IdRol = (int)dr["IdRol"],
+                            ErrorMensaje = dr["Mensaje"].ToString(),
+                            ErrorNumero = (int)dr["ErrorNumero"]
+                        };
+                    }
+                }
+            }
+            return resultado;
+        }
     }
 }
