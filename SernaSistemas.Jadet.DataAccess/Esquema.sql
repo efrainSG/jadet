@@ -67,7 +67,11 @@ create table Ventas.Producto(
 	AplicaExistencias bit not null,
 	Foto varbinary(max),
 	IdCatalogo int not null,
+	IdEstatus int not null,
 	Constraint fk_Catalogo_Producto foreign key(IdCatalogo)
+		references Administracion.Catalogo(Id)
+		on update no action on delete no action,
+	Constraint fk_Estatus_Producto foreign key(IdCatalogo)
 		references Administracion.Catalogo(Id)
 		on update no action on delete no action
 );

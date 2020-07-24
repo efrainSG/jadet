@@ -37,6 +37,8 @@ namespace SernaSistemas.Jadet.DataAccess
         public int IdRol { get; set; }
         public int ZonaPaqueteria { get; set; }
         public int IdEstatus { get; set; }
+        public int ErrorNumero { get; set; }
+        public string ErrorMensaje { get; set; }
     }
 
     public class TipoCatalogo
@@ -68,5 +70,6 @@ namespace SernaSistemas.Jadet.DataAccess
         public bool AplicaExistencias { get; set; }
         public byte[] Foto { get; set; }
         public int IdCatalogo { get; set; }
+        public int IdEstatus { get; set; }
     }
 }

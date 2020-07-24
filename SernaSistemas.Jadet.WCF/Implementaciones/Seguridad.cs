@@ -1,6 +1,8 @@
 ﻿using SernaSistemas.Jadet.WCF.Contratos;
 using SernaSistemas.Jadet.WCF.Modelos;
 using System;
+using System.Configuration;
+using System.Text;
 
 namespace SernaSistemas.Jadet.WCF.Implementaciones
 {
@@ -8,7 +10,40 @@ namespace SernaSistemas.Jadet.WCF.Implementaciones
     {
         public UsuarioResponse cambiarPerfil(UsuarioRequest request)
         {
-            throw new NotImplementedException();
+            DataAccess.DataAccess da = new DataAccess.DataAccess
+            {
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
+            };
+            var resultado = da.guardarUsuario(new DataAccess.Usuario
+            {
+                Direccion = request.Direccion,
+                Foto = request.Foto,
+                Id = request.Id,
+                IdEstatus = request.IdEstatus,
+                IdRol = request.IdRol,
+                Nombre = request.Nombre,
+                Telefono = request.Telefono,
+                UserName = request.Usuario,
+                Password = request.Password,
+                ZonaPaqueteria = request.ZonaPaqueteria
+            });
+
+            UsuarioResponse response = new UsuarioResponse
+            {
+                Usuario = resultado.UserName,
+                ErrorMensaje = resultado.ErrorMensaje,
+                ErrorNumero = resultado.ErrorNumero,
+                Id = resultado.Id,
+                Nombre = resultado.Nombre,
+                Direccion = resultado.Direccion,
+                Password = resultado.Password,
+                Foto = resultado.Foto,
+                IdEstatus = resultado.IdEstatus,
+                IdRol = resultado.IdRol,
+                Telefono = resultado.Telefono,
+                ZonaPaqueteria = resultado.ZonaPaqueteria
+            };
+            return response;
         }
 
         public LoginResponse CerrarSesion(LoginRequest request)
@@ -18,27 +53,30 @@ namespace SernaSistemas.Jadet.WCF.Implementaciones
 
         public LoginResponse IniciarSesion(LoginRequest request)
         {
-            bool resultado = (request.Usuario.Equals("admin") && request.password.Equals("123")) ||
-                (request.Usuario.Equals("user") && request.password.Equals("456"));
+            DataAccess.DataAccess da = new DataAccess.DataAccess
+            {
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
+            };
+            var resultado = da.iniciarSesion(new DataAccess.Usuario
+            {
+                UserName = request.Usuario,
+                Password = Encoding.UTF8.GetBytes(request.password)
+            });
+
             LoginResponse response = new LoginResponse
             {
-                ErrorNumero = Convert.ToInt32(!resultado),
-                ErrorMensaje = resultado ? "" : "Usuario o contraseña incorrectos.",
-                IdUsuario = resultado ? Guid.NewGuid() : new Guid(),
-                NombreUsuario = resultado && request.Usuario.Equals("admin") ? "Administrador" :
-                    (resultado && request.Usuario.Equals("user") ? "Cliente" : string.Empty),
+                Usuario = resultado.UserName,
+                ErrorMensaje = resultado.ErrorMensaje,
+                ErrorNumero = resultado.ErrorNumero,
+                IdUsuario = resultado.Id,
+                NombreUsuario = resultado.Nombre,
                 RolUsuario = new Rol
                 {
-                    Nombre = resultado && request.Usuario.Equals("admin") ? "Administrador" :
-                    (resultado && request.Usuario.Equals("user") ? "Cliente" : string.Empty)
+                    IdRol = resultado.IdRol,
+                    Nombre = string.Empty
                 },
-                UltimoInicio = DateTime.Today,
-                Usuario = request.Usuario
+                UltimoInicio = DateTime.Today
             };
-
-            response.RolUsuario.IdRol = response.RolUsuario.Nombre.Equals("Administrador") ? 1 :
-                (response.RolUsuario.Nombre.Equals("Cliente") ? 2 : 0);
-
             return response;
         }
     }

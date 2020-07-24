@@ -6,6 +6,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI;
 
 namespace SernaSistemas.Jadet.DataAccess.Tests
 {
@@ -42,7 +43,6 @@ namespace SernaSistemas.Jadet.DataAccess.Tests
             }
         }
 
-
         [TestMethod()]
         public void borrarEstatusTest()
         {
@@ -68,7 +68,7 @@ namespace SernaSistemas.Jadet.DataAccess.Tests
         {
             try
             {
-                var item = da.listarUsuario(new Usuario {Id = new Guid(), IdRol = 0 })
+                var item = da.listarUsuario(new Usuario { Id = new Guid(), IdRol = 0 })
                     .OrderByDescending(c => c.Id)
                     .FirstOrDefault();
                 var resultado = da.borrarUsuario(item.Id);
@@ -76,6 +76,27 @@ namespace SernaSistemas.Jadet.DataAccess.Tests
                     resultado.ErrorNumero,
                     resultado.ErrorMensaje
                     );
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+        }
+
+        [TestMethod()]
+        public void borrarProductoTest()
+        {
+            try
+            {
+                var producto = da.listarProductos(0).OrderByDescending(i => i.Id).FirstOrDefault();
+                if (producto != null)
+                {
+                    var resultado = da.borrarProducto(producto.Id);
+                    Console.WriteLine("Error número: {0}\nMensaje: {1}\n",
+                        resultado.ErrorNumero,
+                        resultado.ErrorMensaje
+                        );
+                }
             }
             catch (Exception ex)
             {
@@ -103,12 +124,6 @@ namespace SernaSistemas.Jadet.DataAccess.Tests
 
         //[TestMethod()]
         //public void borrarTicketTest()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //[TestMethod()]
-        //public void borrarProductoTest()
         //{
         //    throw new NotImplementedException();
         //}
@@ -160,21 +175,21 @@ namespace SernaSistemas.Jadet.DataAccess.Tests
             {
                 var resultado = da.guardarUsuario(new Usuario
                 {
-                    Id = Guid.NewGuid(),
-                    Nombre = "prueba01",
+                    Id = new Guid("0a305737-6ab2-4ebc-b7ba-4185ee448a9a"),
+                    Nombre = "USUARIO ADMINISTRADOR",
                     Direccion = "Conocida",
                     IdEstatus = 1,
                     Foto = Encoding.UTF8.GetBytes("0"),
-                    IdRol = 2,
-                    Password = Encoding.UTF8.GetBytes("0"),
+                    IdRol = 1,
+                    Password = Encoding.UTF8.GetBytes("123"),
                     Telefono = "12345367890",
-                    UserName = "UsuarioPruebas" + DateTime.Now.Ticks.ToString(),
+                    UserName = "admin",// + DateTime.Now.Ticks.ToString(),
                     ZonaPaqueteria = 6
                 });
                 Console.WriteLine("Id: {0}\nNombre: {1}\nDirección: {2}\nId de estátus: {3}\nId de rol: {4}\nNombre de usuario: {5}\nContraseña: {6}\nTeléfono: {7}\nZona de paquetería: {8}\n",
                     resultado.Id, resultado.Nombre, resultado.Direccion,
                     resultado.IdEstatus, resultado.IdRol, resultado.UserName,
-                    resultado.Password, resultado.Telefono, resultado.ZonaPaqueteria);
+                    Encoding.UTF8.GetString(resultado.Password), resultado.Telefono, resultado.ZonaPaqueteria);
             }
             catch (Exception ex)
             {
@@ -222,12 +237,13 @@ namespace SernaSistemas.Jadet.DataAccess.Tests
                     IdCatalogo = (DateTime.Now.Second % 3) + 1,
                     PrecioMXN = DateTime.Now.Second * 20,
                     PrecioUSD = DateTime.Now.Second,
-                    Foto = Encoding.UTF8.GetBytes("0")
+                    Foto = Encoding.UTF8.GetBytes("0"),
+                    IdEstatus = 4
                 });
-                Console.WriteLine("Id: {0}\nSKU: {1}\nNombre: {2}\nDescripcion: {3}\nAplica existencias: {4}\nExistencias: {5}\nId de catálogo: {6}\nPrecio MXN: {7}\nPrecio USD: {8}\n",
+                Console.WriteLine("Id: {0}\nSKU: {1}\nNombre: {2}\nDescripcion: {3}\nAplica existencias: {4}\nExistencias: {5}\nId de catálogo: {6}\nPrecio MXN: {7}\nPrecio USD: {8}\nId de estátus: {9}\n",
                     resultado.Id, resultado.SKU, resultado.Nombre, resultado.Descripcion,
                     resultado.AplicaExistencias, resultado.Existencias, resultado.IdCatalogo,
-                    resultado.PrecioMXN, resultado.PrecioUSD);
+                    resultado.PrecioMXN, resultado.PrecioUSD, resultado.IdEstatus);
             }
             catch (Exception ex)
             {
@@ -291,12 +307,12 @@ namespace SernaSistemas.Jadet.DataAccess.Tests
                     Id = new Guid(),
                     IdRol = 0
                 });
-                Console.WriteLine("--------------- Tipo de estátus ---------------");
+                Console.WriteLine("--------------- Tipo de usuarios ---------------");
                 foreach (var item in resultado)
                 {
                     Console.WriteLine("--------------------------\nId: {0}\nNombre: {1}\nDirección: {2}\nId de estátus: {3}\nId de rol: {4}\nNombre de usuario: {5}\nContraseña: {6}\nTeléfono: {7}\nZona de paquetería: {8}\n",
                         item.Id, item.Nombre, item.Direccion, item.IdEstatus,
-                        item.IdRol, item.UserName, item.Password, item.Telefono,
+                        item.IdRol, item.UserName, Encoding.UTF8.GetString(item.Password), item.Telefono,
                         item.ZonaPaqueteria);
 
                 }
@@ -340,10 +356,10 @@ namespace SernaSistemas.Jadet.DataAccess.Tests
                 Console.WriteLine("--------------- Productos ---------------");
                 foreach (var item in resultado)
                 {
-                    Console.WriteLine("Id: {0}\nSKU: {1}\nNombre: {2}\nDescripcion: {3}\nExistencias: {4}\nAplica Existencias: {5}\nId Catalogo: {6}\nPrecio MXN: {7}\nPrecio: {8}\n",
+                    Console.WriteLine("Id: {0}\nSKU: {1}\nNombre: {2}\nDescripcion: {3}\nExistencias: {4}\nAplica Existencias: {5}\nId Catalogo: {6}\nPrecio MXN: {7}\nPrecio: {8}\n Id de estátus: {9}\n",
                         item.Id, item.SKU, item.Nombre, item.Descripcion,
                         item.Existencias, item.AplicaExistencias, item.IdCatalogo,
-                        item.PrecioMXN, item.PrecioUSD);
+                        item.PrecioMXN, item.PrecioUSD, item.IdEstatus);
                 }
             }
             catch (Exception ex)
@@ -402,6 +418,49 @@ namespace SernaSistemas.Jadet.DataAccess.Tests
                     Console.WriteLine("Id: {0}\nNombre: {1}\n",
                         item.Id, item.Nombre);
                 }
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+        }
+
+        [TestMethod()]
+        public void listarProductosTest()
+        {
+            try
+            {
+                var resultado = da.listarProductos(0);
+                Console.WriteLine("--------------- Roles ---------------");
+                foreach (var item in resultado)
+                {
+                    Console.WriteLine("Id: {0}\nSKU: {1}\nNombre: {2}\nDescripcion: {3}\nAplica existencias: {4}\nExistencias: {5}\nId de catálogo: {6}\nPrecio MXN: {7}\nPrecio USD: {8}\nId de estátus: {9}\n",
+                       item.Id, item.SKU, item.Nombre, item.Descripcion, item.AplicaExistencias,
+                       item.Existencias, item.IdCatalogo, item.PrecioMXN, item.PrecioUSD,
+                       item.IdEstatus);
+                }
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+        }
+
+        [TestMethod()]
+        public void iniciarSesionTest()
+        {
+            try
+            {
+                var resultado = da.iniciarSesion(new Usuario
+                {
+                    UserName = "admin",
+                    Password = Encoding.UTF8.GetBytes("123")
+                });
+
+                Console.WriteLine("--------------- Inicio de sesión ---------------");
+                Console.WriteLine("Id: {0}\nUsuario: {1}\nNombre: {2}\nId de rol: {3}\nNúmero de error: {4}\nMensaje: {5}\n",
+                   resultado.Id.ToString(), resultado.UserName, resultado.Nombre, resultado.IdRol,
+                   resultado.ErrorNumero, resultado.ErrorMensaje);
             }
             catch (Exception ex)
             {
