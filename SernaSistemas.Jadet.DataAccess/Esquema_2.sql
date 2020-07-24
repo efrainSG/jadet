@@ -259,7 +259,8 @@ create procedure Ventas.guardarProducto
 	@Existencias int,
 	@AplicaExistencias bit,
 	@Foto varbinary(max),
-	@IdCatalogo int
+	@IdCatalogo int,
+	@IdEstatus int
 as
 begin
 	declare @identity int
@@ -270,7 +271,7 @@ begin
 		set sku = @sku, Nombre = @Nombre, Descripcion = @Descripcion,
 			PrecioMXN = @PrecioMXN, PrecioUSD = @PrecioUSD, Existencias = @Existencias,
 			AplicaExistencias = @AplicaExistencias, Foto = @Foto,
-			IdCatalogo = @IdCatalogo
+			IdCatalogo = @IdCatalogo, IdEstatus = @IdEstatus
 		where Id = @Id
 		set @identity = @id
 	end
@@ -278,15 +279,15 @@ begin
 	begin
 		insert into Ventas.Producto (	sku, Nombre, Descripcion, PrecioMXN, PrecioUSD,
 										Existencias, AplicaExistencias, Foto,
-										IdCatalogo)
+										IdCatalogo, IdEstatus)
 		values (@sku, @Nombre, @Descripcion, @PrecioMXN, @PrecioUSD, @Existencias,
-				@AplicaExistencias, @Foto, @IdCatalogo)
+				@AplicaExistencias, @Foto, @IdCatalogo, @IdEstatus)
 		select @identity = SCOPE_IDENTITY()
 	end
 	select	@identity Id, @sku Sku, @Nombre Nombre, @Descripcion Descripcion,
 			@PrecioMXN PrecioMXN, @PrecioUSD PrecioUSD, @Existencias Existencias,
 			@AplicaExistencias AplicaExistencias, @Foto Foto,
-			@IdCatalogo IdCatalogo
+			@IdCatalogo IdCatalogo, @IdEstatus IdEstatus
 end;
 go
 
@@ -299,10 +300,11 @@ begin
 		set @Id = null
 	end
 	select	P.Id, P.sku, P.Nombre, P.Descripcion, P.PrecioMXN, P.PrecioUSD,
-			P.Existencias, P.APlicaExistencias, P.Foto, P.IdCatalogo,
-			C.Nombre Categoria
+			P.Existencias, P.APlicaExistencias, P.Foto, P.IdCatalogo, P.IdEstatus,
+			C.Nombre Categoria, E.Nombre Estatus
 	from	Ventas.Producto P (nolock)
 	join	Administracion.Catalogo C (nolock) on P.IdCatalogo = C.Id
+	join	Administracion.Estatus E (nolock) on P.IdEstatus = E.Id
 	where	P.Id = isnull(@Id, P.Id)
 end;
 go
@@ -326,19 +328,19 @@ end;
 go
 
 create procedure Seguridad.iniciarSesion
-	@USuario varchar(50),
+	@Usuario varchar(50),
 	@Passwd varbinary(max)
 as
 begin
-	if exists (select 1 from Seguridad.Usuario U (nolock) where U.Id = @Id and U.Passwd = @Passwd)
+	if exists (select 1 from Seguridad.Usuario U (nolock) where U.Usuario = @Usuario and U.Passwd = @Passwd)
 	begin
 		select	Id, Nombre, Usuario, IdRol, 0 ErrorNumero, '' Mensaje
 		from	Seguridad.Usuario U (nolock)
-		where	U.Id = @Id and U.Passwd = @Passwd
+		where	U.Usuario = @Usuario and U.Passwd = @Passwd
 	end
 	else
 	begin
-		select	'00000000-0000-0000-0000-000000000000' Id, '' Nombre, '' Usuario, 0 IdRol, 1 ErrorNumero, 'Credenciales inválidas' Mensaje
+		select	cast('00000000-0000-0000-0000-000000000000' as uniqueidentifier) Id, '' Nombre, '' Usuario, 0 IdRol, 1 ErrorNumero, 'Credenciales inválidas' Mensaje
 	end
 end;
 go
