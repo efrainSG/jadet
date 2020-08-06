@@ -133,7 +133,7 @@
                 '      </div>' +
 
                 '      <div class="col-sm-2">' +
-                '        <a href="#" class="btn btn-sm btn-success">Cargar</a>' +
+                '        <a href="#" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-cloud-upload"></i></a>' +
                 '      </div>' +
 
                 '    </div>' +

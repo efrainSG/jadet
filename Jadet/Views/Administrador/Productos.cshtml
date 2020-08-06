@@ -19,7 +19,7 @@
             <th rowspan="2">Aplica Existencias</th>
             <th rowspan="2">Categoría</th>
             <th rowspan="2">
-                <a href="#" class="btn btn-success" id="btnnuevoProducto">Agregar</a>
+                <a href="#" class="btn btn-success" id="btnnuevoProducto"><i class="glyphicon glyphicon-plus"></i></a>
             </th>
         </tr>
         <tr>
@@ -52,8 +52,8 @@
             </td>
             <td>@item.Categoria</td>
             <td>
-                <a href="#@("btneditarProducto"+@item.Sku)" class="btn btn-warning" id="@("btneditarProducto"+@item.Sku)">Editar</a>
-                <a href="#@("btneliminarProducto"+@item.Sku)" class="btn btn-danger" id="@("btneliminarProducto"+@item.Sku)">Eliminar</a>
+                <a href="#@("btneditarProducto"+@item.Sku)" class="btn btn-warning" id="@("btneditarProducto"+@item.Sku)"><i class="glyphicon glyphicon-edit"></i></a>
+                <a href="#@("btneliminarProducto"+@item.Sku)" class="btn btn-danger" id="@("btneliminarProducto"+@item.Sku)"><i class="glyphicon glyphicon-trash"></i></a>
             </td>
         </tr>
     }

@@ -16,7 +16,7 @@
             <th>Zona de paquetería</th>
             <th>Estátus</th>
             <th>
-                <a href="#" class="btn btn-success" id="btnagregarCliente">Agregar</a>
+                <a href="#" class="btn btn-success" id="btnagregarCliente"><i class="glyphicon glyphicon-plus"></i></a>
             </th>
         </tr>
     </thead>
@@ -31,8 +31,8 @@
             <td>@item.ZonaPaqueteria</td>
             <td>@item.IdEstatus</td>
             <td>
-                <a href="#" class="btn btn-warning" data-content="@item.IdCliente" id="btneditarCliente">Editar</a>
-                <a href="#" class="btn btn-danger" data-content="@item.IdCliente" id="btneliminarCliente">Eliminar</a>
+                <a href="#" class="btn btn-warning" data-content="@item.IdCliente" id="btneditarCliente"><i class="glyphicon glyphicon-edit"></i></a>
+                <a href="#" class="btn btn-danger" data-content="@item.IdCliente" id="btneliminarCliente"><i class="glyphicon glyphicon-trash"></i></a>
             </td>
         </tr>
         }
