@@ -106,19 +106,19 @@ namespace SernaSistemas.Jadet.DataAccess
             }
             return resultado;
         }
-        public ResultadoBorrado borrarDetalle()
+        public ResultadoBorrado borrarDetalle(int id)
         {
             throw new Exception("No implementado");
         }
-        public ResultadoBorrado borrarNota()
+        public ResultadoBorrado borrarNota(int id)
         {
             throw new Exception("No implementado");
         }
-        public ResultadoBorrado borrarComentario()
+        public ResultadoBorrado borrarComentario(int id)
         {
             throw new Exception("No implementado");
         }
-        public ResultadoBorrado borrarTicket()
+        public ResultadoBorrado borrarTicket(int id)
         {
             throw new Exception("No implementado");
         }
@@ -353,19 +353,19 @@ namespace SernaSistemas.Jadet.DataAccess
             }
             return resultado;
         }
-        public void guardarDetalle()
+        public void guardarDetalle(DetalleNota detalle)
         {
             throw new Exception("No implementado");
         }
-        public void guardarNota()
+        public void guardarNota(Nota nota)
         {
             throw new Exception("No implementado");
         }
-        public void guardarComentario()
+        public void guardarComentario(ComentarioNota comentario)
         {
             throw new Exception("No implementado");
         }
-        public void guardarTicket()
+        public void guardarTicket(TicketNota ticket)
         {
             throw new Exception("No implementado");
         }
@@ -450,6 +450,13 @@ namespace SernaSistemas.Jadet.DataAccess
                         Direction = System.Data.ParameterDirection.Input,
                         Value = producto.IdCatalogo,
                         ParameterName = "@IdCatalogo"
+                    });
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = producto.IdEstatus,
+                        ParameterName = "@IdEstatus"
                     });
 
                     conn.Open();
@@ -617,19 +624,60 @@ namespace SernaSistemas.Jadet.DataAccess
             }
             return resultado;
         }
-        public void listarDetalle()
+        public void listarDetalle(int idNota)
         {
             throw new Exception("No implementado");
         }
-        public void listarNota()
+        public void listarNota(Nota nota)
+        {
+            List<Nota> resultado = new List<Nota>();
+            using (SqlConnection conn = new SqlConnection(CadenaConexion))
+            {
+                using (SqlCommand cmd = new SqlCommand()
+                {
+                    CommandText = "Ventas.listarProductos",
+                    CommandType = System.Data.CommandType.StoredProcedure,
+                    Connection = conn
+                })
+                {
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = id,
+                        ParameterName = "@Id"
+                    });
+                    conn.Open();
+                    var dr = cmd.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            resultado.Add(new Producto
+                            {
+                                Id = (int)dr["Id"],
+                                Nombre = dr["Nombre"].ToString(),
+                                AplicaExistencias = (bool)dr["AplicaExistencias"],
+                                Descripcion = dr["Descripcion"].ToString(),
+                                Existencias = (int)dr["Existencias"],
+                                Foto = (byte[])dr["Foto"],
+                                SKU = dr["Sku"].ToString(),
+                                PrecioMXN = (decimal)dr["PrecioMXN"],
+                                IdCatalogo = (int)dr["IdCatalogo"],
+                                PrecioUSD = (decimal)dr["PrecioUSD"]
+                            });
+                        }
+                    }
+                    conn.Close();
+                }
+            }
+            return resultado;
+        }
+        public void listarComentario(ComentarioNota comentario)
         {
             throw new Exception("No implementado");
         }
-        public void listarComentario()
-        {
-            throw new Exception("No implementado");
-        }
-        public void listarTicket()
+        public void listarTicket(TicketNota ticket)
         {
             throw new Exception("No implementado");
         }

@@ -64,13 +64,6 @@
     <Content Include="datos.sql" />
     <Content Include="Esquema.sql" />
     <Content Include="Esquema_2.sql" />
-    <Content Include="JadetBD.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="JadetBD_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>JadetBD.mdf</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

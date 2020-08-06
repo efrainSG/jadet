@@ -19,7 +19,7 @@ namespace SernaSistemas.Jadet.DataAccess.Tests
         {
             da = new DataAccess
             {
-                CadenaConexion = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\efsern\source\repos\SernaSistemas.Jadet\SernaSistemas.Jadet.DataAccess\JadetBD.mdf;Integrated Security=True"
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
             };
         }
 
@@ -175,7 +175,7 @@ namespace SernaSistemas.Jadet.DataAccess.Tests
             {
                 var resultado = da.guardarUsuario(new Usuario
                 {
-                    Id = new Guid("0a305737-6ab2-4ebc-b7ba-4185ee448a9a"),
+                    Id = new Guid("25079902-9FAA-4B66-9093-43029827F2FD"),
                     Nombre = "USUARIO ADMINISTRADOR",
                     Direccion = "Conocida",
                     IdEstatus = 1,
