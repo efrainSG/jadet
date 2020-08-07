@@ -68,13 +68,14 @@ namespace SernaSistemas.Jadet.DataAccess.Tests
         {
             try
             {
-                var item = da.listarUsuario(new Usuario { Id = new Guid(), IdRol = 0 })
-                    .OrderByDescending(c => c.Id)
-                    .FirstOrDefault();
-                var resultado = da.borrarUsuario(item.Id);
+                var usuarioId = da.listarUsuario(new Usuario { Id = new Guid(), IdRol = 2 })
+                    .OrderByDescending(u => u.Id).FirstOrDefault().Id;
+
+                var item = da.borrarUsuario(usuarioId);
+
                 Console.WriteLine("Error número: {0}\nMensaje: {1}\n",
-                    resultado.ErrorNumero,
-                    resultado.ErrorMensaje
+                    item.ErrorNumero,
+                    item.ErrorMensaje
                     );
             }
             catch (Exception ex)

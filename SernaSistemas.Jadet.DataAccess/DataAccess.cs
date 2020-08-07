@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SernaSistemas.Jadet.DataAccess
 {
@@ -628,14 +625,14 @@ namespace SernaSistemas.Jadet.DataAccess
         {
             throw new Exception("No implementado");
         }
-        public void listarNota(Nota nota)
+        public List<Nota> listarNota(Nota nota)
         {
             List<Nota> resultado = new List<Nota>();
             using (SqlConnection conn = new SqlConnection(CadenaConexion))
             {
                 using (SqlCommand cmd = new SqlCommand()
                 {
-                    CommandText = "Ventas.listarProductos",
+                    CommandText = "Ventas.listarNotas",
                     CommandType = System.Data.CommandType.StoredProcedure,
                     Connection = conn
                 })
@@ -644,8 +641,23 @@ namespace SernaSistemas.Jadet.DataAccess
                     {
                         DbType = System.Data.DbType.Int32,
                         Direction = System.Data.ParameterDirection.Input,
-                        Value = id,
-                        ParameterName = "@Id"
+                        Value = nota.Folio,
+                        ParameterName = "@Folio"
+                    });
+                    if (nota.Fecha.HasValue)
+                        cmd.Parameters.Add(new SqlParameter
+                        {
+                            DbType = System.Data.DbType.Date,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = nota.Fecha.Value,
+                            ParameterName = "@Fecha"
+                        });
+                    cmd.Parameters.Add(new SqlParameter
+                    {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = nota.IdEstatus,
+                        ParameterName = "@IdEstatus"
                     });
                     conn.Open();
                     var dr = cmd.ExecuteReader();
@@ -653,18 +665,20 @@ namespace SernaSistemas.Jadet.DataAccess
                     {
                         while (dr.Read())
                         {
-                            resultado.Add(new Producto
+                            resultado.Add(new Nota
                             {
-                                Id = (int)dr["Id"],
-                                Nombre = dr["Nombre"].ToString(),
-                                AplicaExistencias = (bool)dr["AplicaExistencias"],
-                                Descripcion = dr["Descripcion"].ToString(),
-                                Existencias = (int)dr["Existencias"],
-                                Foto = (byte[])dr["Foto"],
-                                SKU = dr["Sku"].ToString(),
-                                PrecioMXN = (decimal)dr["PrecioMXN"],
-                                IdCatalogo = (int)dr["IdCatalogo"],
-                                PrecioUSD = (decimal)dr["PrecioUSD"]
+                                Folio = (int)dr["Folio"],
+                                Fecha = (DateTime)dr["Fecha"],
+                                FechaEnvio = (DateTime)dr["FechaEnvio"],
+                                Guia = dr["Guia"].ToString(),
+                                IdCliente = new Guid(dr["IdCliente"].ToString()),
+                                IdEstatus = (int)dr["IdEstatus"],
+                                IdPaqueteria = (int)dr["IdPaqueteria"],
+                                IdTipo = (int)dr["IdTipo"],
+                                MontoMXN = (decimal)dr["MontoMXN"],
+                                MontoUSD = (decimal)dr["MontoUSD"],
+                                SaldoMXN = (decimal)dr["SaldoMXN"],
+                                SaldoUSD = (decimal)dr["SaldoUSD"]
                             });
                         }
                     }

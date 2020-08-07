@@ -77,7 +77,7 @@ namespace SernaSistemas.Jadet.DataAccess
     public class Nota
     {
         public int Folio { get; set; }
-        public DateTime Fecha { get; set; }
+        public DateTime? Fecha { get; set; }
         public int IdTipo { get; set; }
         public int IdEstatus { get; set; }
         public int IdPaqueteria { get; set; }
