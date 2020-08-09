@@ -63,6 +63,7 @@
   <ItemGroup>
     <Content Include="datos.sql" />
     <Content Include="Esquema.sql" />
+    <Content Include="Esquema_3.sql" />
     <Content Include="Esquema_2.sql" />
   </ItemGroup>
   <ItemGroup>

@@ -4,18 +4,13 @@ using System;
 using System.Configuration;
 using System.Text;
 
-namespace SernaSistemas.Jadet.WCF.Implementaciones
-{
-    public class Seguridad : ISeguridad
-    {
-        public UsuarioResponse cambiarPerfil(UsuarioRequest request)
-        {
-            DataAccess.DataAccess da = new DataAccess.DataAccess
-            {
+namespace SernaSistemas.Jadet.WCF.Implementaciones {
+    public class Seguridad : ISeguridad {
+        public UsuarioResponse cambiarPerfil(UsuarioRequest request) {
+            DataAccess.DataAccess da = new DataAccess.DataAccess {
                 CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
             };
-            var resultado = da.guardarUsuario(new DataAccess.Usuario
-            {
+            var resultado = da.guardarUsuario(new DataAccess.Usuario {
                 Direccion = request.Direccion,
                 Foto = request.Foto,
                 Id = request.Id,
@@ -28,8 +23,7 @@ namespace SernaSistemas.Jadet.WCF.Implementaciones
                 ZonaPaqueteria = request.ZonaPaqueteria
             });
 
-            UsuarioResponse response = new UsuarioResponse
-            {
+            UsuarioResponse response = new UsuarioResponse {
                 Usuario = resultado.UserName,
                 ErrorMensaje = resultado.ErrorMensaje,
                 ErrorNumero = resultado.ErrorNumero,
@@ -46,32 +40,26 @@ namespace SernaSistemas.Jadet.WCF.Implementaciones
             return response;
         }
 
-        public LoginResponse CerrarSesion(LoginRequest request)
-        {
+        public LoginResponse CerrarSesion(LoginRequest request) {
             throw new NotImplementedException();
         }
 
-        public LoginResponse IniciarSesion(LoginRequest request)
-        {
-            DataAccess.DataAccess da = new DataAccess.DataAccess
-            {
+        public LoginResponse IniciarSesion(LoginRequest request) {
+            DataAccess.DataAccess da = new DataAccess.DataAccess {
                 CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
             };
-            var resultado = da.iniciarSesion(new DataAccess.Usuario
-            {
+            var resultado = da.iniciarSesion(new DataAccess.Usuario {
                 UserName = request.Usuario,
                 Password = Encoding.UTF8.GetBytes(request.password)
             });
 
-            LoginResponse response = new LoginResponse
-            {
+            LoginResponse response = new LoginResponse {
                 Usuario = resultado.UserName,
                 ErrorMensaje = resultado.ErrorMensaje,
                 ErrorNumero = resultado.ErrorNumero,
                 IdUsuario = resultado.Id,
                 NombreUsuario = resultado.Nombre,
-                RolUsuario = new Rol
-                {
+                RolUsuario = new Rol {
                     IdRol = resultado.IdRol,
                     Nombre = string.Empty
                 },

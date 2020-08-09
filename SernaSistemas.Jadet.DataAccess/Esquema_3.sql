@@ -74,13 +74,13 @@ go
 
 create procedure Ventas.guardarNota
 	@Folio int,
-	@Fecha date,
+	@Fecha date = null,
 	@IdTipo int,
 	@IdEstatus int,
 	@IdPaqueteria int,
 	@IdCliente uniqueidentifier,
 	@Guia varchar(50),
-	@FechaEnvio date,
+	@FechaEnvio date = null,
 	@MontoMXN decimal(10,2),
 	@MontoUSD decimal(10,2),
 	@SaldoMXN decimal(10,2),
@@ -106,7 +106,7 @@ begin
 				@MontoUSD, @SaldoMXN, @SaldoUSD)
 		select @identity = SCOPE_IDENTITY()
 	end
-	select	@identity Id, @Fecha Fecha, @IdTipo IdTipo, @IdEstatus IdEstatus, @IdPaqueteria IdPaqueteria, @IdCliente IdCliente,
+	select	@identity Folio, @Fecha Fecha, @IdTipo IdTipo, @IdEstatus IdEstatus, @IdPaqueteria IdPaqueteria, @IdCliente IdCliente,
 			@Guia Guia, @FechaEnvio FechaEnvio, @MontoMXN MontoMXN, @MontoUSD MontoUSD, @SaldoMXN SaldoMXN, @SaldoUSD SaldoUSD
 end;
 go

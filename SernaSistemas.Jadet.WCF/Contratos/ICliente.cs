@@ -4,11 +4,9 @@ using System.Collections.Generic;
 using System.ServiceModel;
 using System.Text;
 
-namespace SernaSisitemas.Jadet.WCF.Contratos
-{
+namespace SernaSisitemas.Jadet.WCF.Contratos {
     [ServiceContract]
-    public interface ICliente
-    {
+    public interface ICliente {
         [OperationContract]
         ArchivoResponse subirFoto(ArchivoRequest request);
 

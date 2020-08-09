@@ -6,31 +6,26 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SernaSistemas.Jadet.WCF.Modelos
-{
+namespace SernaSistemas.Jadet.WCF.Modelos {
     [DataContract]
-    public class BaseRequest
-    {
+    public class BaseRequest {
 
     }
 
     [DataContract]
-    public class BaseResponse
-    {
+    public class BaseResponse {
         [DataMember]
         public int ErrorNumero { get; set; }
         [DataMember]
         public string ErrorMensaje { get; set; }
-        public BaseResponse()
-        {
+        public BaseResponse() {
             ErrorNumero = 0;
             ErrorMensaje = string.Empty;
         }
     }
 
     [DataContract]
-    public class ArchivoRequest : BaseRequest
-    {
+    public class ArchivoRequest : BaseRequest {
         [DataMember]
         public string Ruta { get; set; }
         [DataMember]
@@ -44,14 +39,12 @@ namespace SernaSistemas.Jadet.WCF.Modelos
     }
 
     [DataContract]
-    public class ArchivoResponse : BaseResponse
-    {
+    public class ArchivoResponse : BaseResponse {
 
     }
 
     [DataContract]
-    public class CatalogoRequest : BaseRequest
-    {
+    public class CatalogoRequest : BaseRequest {
         [DataMember]
         public int Id { get; set; }
         [DataMember]
@@ -61,8 +54,7 @@ namespace SernaSistemas.Jadet.WCF.Modelos
     }
 
     [DataContract]
-    public class CatalogoResponse : BaseResponse
-    {
+    public class CatalogoResponse : BaseResponse {
         [DataMember]
         public int Id { get; set; }
         [DataMember]
@@ -72,19 +64,16 @@ namespace SernaSistemas.Jadet.WCF.Modelos
     }
 
     [DataContract]
-    public class ColeccionCatalogoResponse : BaseResponse
-    {
+    public class ColeccionCatalogoResponse : BaseResponse {
         [DataMember]
         public List<CatalogoResponse> Items { get; set; }
-        public ColeccionCatalogoResponse()
-        {
+        public ColeccionCatalogoResponse() {
             Items = new List<CatalogoResponse>();
         }
     }
 
     [DataContract]
-    public class TipoCatalogoResponse : BaseResponse
-    {
+    public class TipoCatalogoResponse : BaseResponse {
         [DataMember]
         public int Id { get; set; }
         [DataMember]
@@ -92,8 +81,7 @@ namespace SernaSistemas.Jadet.WCF.Modelos
     }
 
     [DataContract]
-    public class TipoCatalogoRequest : BaseRequest
-    {
+    public class TipoCatalogoRequest : BaseRequest {
         [DataMember]
         public int Id { get; set; }
         [DataMember]
@@ -101,19 +89,16 @@ namespace SernaSistemas.Jadet.WCF.Modelos
     }
 
     [DataContract]
-    public class ColeccionTipoCatalogoResponse : BaseResponse
-    {
+    public class ColeccionTipoCatalogoResponse : BaseResponse {
         [DataMember]
         public List<TipoCatalogoResponse> Items { get; set; }
-        public ColeccionTipoCatalogoResponse()
-        {
+        public ColeccionTipoCatalogoResponse() {
             Items = new List<TipoCatalogoResponse>();
         }
     }
 
     [DataContract]
-    public class EstatusRequest : BaseRequest
-    {
+    public class EstatusRequest : BaseRequest {
         [DataMember]
         public int Id { get; set; }
         [DataMember]
@@ -123,8 +108,7 @@ namespace SernaSistemas.Jadet.WCF.Modelos
     }
 
     [DataContract]
-    public class EstatusResponse : BaseResponse
-    {
+    public class EstatusResponse : BaseResponse {
         [DataMember]
         public int Id { get; set; }
         [DataMember]
@@ -134,19 +118,16 @@ namespace SernaSistemas.Jadet.WCF.Modelos
     }
 
     [DataContract]
-    public class ColeccionEstatusResponse : BaseResponse
-    {
+    public class ColeccionEstatusResponse : BaseResponse {
         [DataMember]
         public List<EstatusResponse> Items { get; set; }
-        public ColeccionEstatusResponse()
-        {
+        public ColeccionEstatusResponse() {
             Items = new List<EstatusResponse>();
         }
-    }   
-    
+    }
+
     [DataContract]
-    public class TipoEstatusRequest : BaseRequest
-    {
+    public class TipoEstatusRequest : BaseRequest {
         [DataMember]
         public int Id { get; set; }
         [DataMember]
@@ -154,8 +135,7 @@ namespace SernaSistemas.Jadet.WCF.Modelos
     }
 
     [DataContract]
-    public class TipoEstatusResponse : BaseResponse
-    {
+    public class TipoEstatusResponse : BaseResponse {
         [DataMember]
         public int Id { get; set; }
         [DataMember]
@@ -163,12 +143,10 @@ namespace SernaSistemas.Jadet.WCF.Modelos
     }
 
     [DataContract]
-    public class ColeccionTipoEstatusResponse : BaseResponse
-    {
+    public class ColeccionTipoEstatusResponse : BaseResponse {
         [DataMember]
         public List<TipoEstatusResponse> Items { get; set; }
-        public ColeccionTipoEstatusResponse()
-        {
+        public ColeccionTipoEstatusResponse() {
             Items = new List<TipoEstatusResponse>();
         }
     }
