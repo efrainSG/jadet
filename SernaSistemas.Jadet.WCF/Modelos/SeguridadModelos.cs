@@ -6,19 +6,16 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SernaSistemas.Jadet.WCF.Modelos
-{
+namespace SernaSistemas.Jadet.WCF.Modelos {
     [DataContract]
-    public class LoginRequest : BaseRequest
-    {
+    public class LoginRequest : BaseRequest {
         [DataMember]
         public string Usuario { get; set; }
         [DataMember]
         public string password { get; set; }
     }
     [DataContract]
-    public class LoginResponse : BaseResponse
-    {
+    public class LoginResponse : BaseResponse {
         [DataMember]
         public Guid IdUsuario { get; set; }
         [DataMember]
@@ -32,8 +29,7 @@ namespace SernaSistemas.Jadet.WCF.Modelos
     }
 
     [DataContract]
-    public class Rol
-    {
+    public class Rol {
         [DataMember]
         public int IdRol { get; set; }
         [DataMember]
@@ -41,8 +37,7 @@ namespace SernaSistemas.Jadet.WCF.Modelos
     }
 
     [DataContract]
-    public class UsuarioResponse : BaseResponse
-    {
+    public class UsuarioResponse : BaseResponse {
         [DataMember]
         public Guid Id { get; set; }
         [DataMember]
@@ -66,8 +61,7 @@ namespace SernaSistemas.Jadet.WCF.Modelos
     }
 
     [DataContract]
-    public class UsuarioRequest : BaseRequest
-    {
+    public class UsuarioRequest : BaseRequest {
         [DataMember]
         public Guid Id { get; set; }
         [DataMember]

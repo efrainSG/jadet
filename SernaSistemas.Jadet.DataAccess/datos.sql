@@ -88,9 +88,9 @@ insert	into Seguridad.Usuario(	Id, Nombre, Direccion, Telefono, Foto, Usuario, P
 values	(	newid(), 'Administrador 1', 'Dirección 1', '1234567890', null, 'admin', cast('' as varbinary),
 			1, null, 1),
 		(	newid(), 'Cliente 1', 'Dirección 2', '1234567890', null, 'user1', cast('' as varbinary),
-			1, null, 1),
+			2, null, 1),
 		(	newid(), 'Cliente 2', 'Dirección 3', '1234567890', null, 'user2', cast('' as varbinary),
-			1, null, 1);
+			2, null, 1);
 
 select * from Administracion.TipoCatalogo;
 select * from Administracion.TipoEstatus;

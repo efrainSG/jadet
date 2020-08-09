@@ -4,11 +4,9 @@ using System.Collections.Generic;
 using System.ServiceModel;
 using System.Text;
 
-namespace SernaSisitemas.Jadet.WCF.Contratos
-{
+namespace SernaSisitemas.Jadet.WCF.Contratos {
     [ServiceContract]
-    public interface IAdministrador
-    {
+    public interface IAdministrador {
         [OperationContract]
         CatalogoResponse guardarCatalogo(CatalogoRequest request);
         [OperationContract]
@@ -60,11 +58,20 @@ namespace SernaSisitemas.Jadet.WCF.Contratos
         [OperationContract]
         NotaResponse guardarNota(NotaRequest request);
         [OperationContract]
-        coleccionNotasResponse listarNotas(BaseRequest request);
+        coleccionNotasResponse listarNotas(NotaRequest request);
         [OperationContract]
         NotaResponse cargarNota(NotaRequest request);
         [OperationContract]
         NotaResponse bajaNota(NotaRequest request);
+
+        [OperationContract]
+        DetalleNotaResponse guardarDetalleNota(DetalleNotaRequest request);
+        [OperationContract]
+        coleccionDetalleNotaResponse listarDetalleNota(DetalleNotaRequest request);
+        [OperationContract]
+        DetalleNotaResponse cargarDetalleNota(DetalleNotaRequest request);
+        [OperationContract]
+        DetalleNotaResponse bajaDetalleNota(DetalleNotaRequest request);
 
 
         [OperationContract]

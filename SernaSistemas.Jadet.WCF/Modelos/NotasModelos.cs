@@ -6,15 +6,13 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SernaSistemas.Jadet.WCF.Modelos
-{
+namespace SernaSistemas.Jadet.WCF.Modelos {
     [DataContract]
-    public class NotaRequest : BaseRequest
-    {
+    public class NotaRequest : BaseRequest {
         [DataMember]
         public int Folio { get; set; }
         [DataMember]
-        public DateTime Fecha { get; set; }
+        public DateTime? Fecha { get; set; }
         [DataMember]
         public int IdTipo { get; set; }
         [DataMember]
@@ -26,7 +24,7 @@ namespace SernaSistemas.Jadet.WCF.Modelos
         [DataMember]
         public string Guia { get; set; }
         [DataMember]
-        public DateTime FechaEnvio { get; set; }
+        public DateTime? FechaEnvio { get; set; }
         [DataMember]
         public decimal MontoMXN { get; set; }
         [DataMember]
@@ -38,12 +36,11 @@ namespace SernaSistemas.Jadet.WCF.Modelos
     }
 
     [DataContract]
-    public class NotaResponse : BaseResponse
-    {
+    public class NotaResponse : BaseResponse {
         [DataMember]
         public int Folio { get; set; }
         [DataMember]
-        public DateTime Fecha { get; set; }
+        public DateTime? Fecha { get; set; }
         [DataMember]
         public int IdTipo { get; set; }
         [DataMember]
@@ -55,7 +52,7 @@ namespace SernaSistemas.Jadet.WCF.Modelos
         [DataMember]
         public string Guia { get; set; }
         [DataMember]
-        public DateTime FechaEnvio { get; set; }
+        public DateTime? FechaEnvio { get; set; }
         [DataMember]
         public decimal MontoMXN { get; set; }
         [DataMember]
@@ -67,15 +64,16 @@ namespace SernaSistemas.Jadet.WCF.Modelos
     }
 
     [DataContract]
-    public class coleccionNotasResponse : BaseResponse
-    {
+    public class coleccionNotasResponse : BaseResponse {
         [DataMember]
         public List<NotaResponse> Items { get; set; }
+        public coleccionNotasResponse() {
+            Items = new List<NotaResponse>();
+        }
     }
 
     [DataContract]
-    public class DetalleNotaRequest : BaseRequest
-    {
+    public class DetalleNotaRequest : BaseRequest {
         [DataMember]
         public int Id { get; set; }
         [DataMember]
@@ -91,8 +89,7 @@ namespace SernaSistemas.Jadet.WCF.Modelos
     }
 
     [DataContract]
-    public class DetalleNotaResponse : BaseResponse
-    {
+    public class DetalleNotaResponse : BaseResponse {
         [DataMember]
         public int Id { get; set; }
         [DataMember]
@@ -108,15 +105,13 @@ namespace SernaSistemas.Jadet.WCF.Modelos
     }
 
     [DataContract]
-    public class coleccionDetalleNotaResponse : BaseResponse
-    {
+    public class coleccionDetalleNotaResponse : BaseResponse {
         [DataMember]
         public List<DetalleNotaResponse> Items { get; set; }
     }
 
     [DataContract]
-    public class NotaComentarioRequest : BaseRequest
-    {
+    public class NotaComentarioRequest : BaseRequest {
         [DataMember]
         public int Id { get; set; }
         [DataMember]
@@ -128,8 +123,7 @@ namespace SernaSistemas.Jadet.WCF.Modelos
     }
 
     [DataContract]
-    public class NotaComentarioResponse : BaseResponse
-    {
+    public class NotaComentarioResponse : BaseResponse {
         [DataMember]
         public int Id { get; set; }
         [DataMember]
@@ -141,15 +135,13 @@ namespace SernaSistemas.Jadet.WCF.Modelos
     }
 
     [DataContract]
-    public class coleccionNotaComentarioResponse : BaseResponse
-    {
+    public class coleccionNotaComentarioResponse : BaseResponse {
         [DataMember]
         public List<NotaComentarioResponse> Items { get; set; }
     }
 
     [DataContract]
-    public class NotaTicketRequest:BaseRequest
-    {
+    public class NotaTicketRequest : BaseRequest {
         [DataMember]
         public int Id { get; set; }
         [DataMember]
@@ -161,8 +153,7 @@ namespace SernaSistemas.Jadet.WCF.Modelos
     }
 
     [DataContract]
-    public class NotaTicketResponse : BaseResponse
-    {
+    public class NotaTicketResponse : BaseResponse {
         [DataMember]
         public int Id { get; set; }
         [DataMember]
@@ -174,8 +165,7 @@ namespace SernaSistemas.Jadet.WCF.Modelos
     }
 
     [DataContract]
-    public class coleccionNotaTicketResponse : BaseResponse
-    {
+    public class coleccionNotaTicketResponse : BaseResponse {
         [DataMember]
         public List<NotaTicketResponse> Items { get; set; }
     }
