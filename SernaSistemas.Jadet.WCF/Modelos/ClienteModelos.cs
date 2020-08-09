@@ -6,11 +6,9 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SernaSistemas.Jadet.WCF.Modelos
-{
+namespace SernaSistemas.Jadet.WCF.Modelos {
     [DataContract]
-    public class ClienteRequest : BaseRequest
-    {
+    public class ClienteRequest : BaseRequest {
         [DataMember]
         public Guid IdCliente { get; set; }
         [DataMember]
@@ -34,8 +32,7 @@ namespace SernaSistemas.Jadet.WCF.Modelos
     }
 
     [DataContract]
-    public class ClienteResponse : BaseResponse
-    {
+    public class ClienteResponse : BaseResponse {
         [DataMember]
         public Guid IdCliente { get; set; }
         [DataMember]
@@ -59,18 +56,15 @@ namespace SernaSistemas.Jadet.WCF.Modelos
     }
 
     [DataContract]
-    public class HistorialClienteResponse : BaseResponse
-    {
+    public class HistorialClienteResponse : BaseResponse {
 
     }
 
     [DataContract]
-    public class coleccionClientesResponse : BaseResponse
-    {
+    public class coleccionClientesResponse : BaseResponse {
         [DataMember]
         public List<ClienteResponse> Items { get; set; }
-        public coleccionClientesResponse()
-        {
+        public coleccionClientesResponse() {
             Items = new List<ClienteResponse>();
         }
     }
