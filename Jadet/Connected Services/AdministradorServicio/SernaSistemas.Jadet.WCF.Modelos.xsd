@@ -262,6 +262,7 @@
           <xs:element minOccurs="0" name="Foto" nillable="true" type="xs:base64Binary" />
           <xs:element minOccurs="0" name="Id" type="xs:int" />
           <xs:element minOccurs="0" name="IdCategoria" type="xs:int" />
+          <xs:element minOccurs="0" name="IdEstatus" type="xs:int" />
           <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="PrecioMXN" type="xs:decimal" />
           <xs:element minOccurs="0" name="PrecioUSD" type="xs:decimal" />
@@ -281,6 +282,7 @@
           <xs:element minOccurs="0" name="Foto" nillable="true" type="xs:base64Binary" />
           <xs:element minOccurs="0" name="Id" type="xs:int" />
           <xs:element minOccurs="0" name="IdCategoria" type="xs:int" />
+          <xs:element minOccurs="0" name="IdEstatus" type="xs:int" />
           <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="PrecioMXN" type="xs:decimal" />
           <xs:element minOccurs="0" name="PrecioUSD" type="xs:decimal" />
@@ -310,8 +312,8 @@
     <xs:complexContent mixed="false">
       <xs:extension base="tns:BaseRequest">
         <xs:sequence>
-          <xs:element minOccurs="0" name="Fecha" type="xs:dateTime" />
-          <xs:element minOccurs="0" name="FechaEnvio" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Fecha" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="FechaEnvio" nillable="true" type="xs:dateTime" />
           <xs:element minOccurs="0" name="Folio" type="xs:int" />
           <xs:element minOccurs="0" name="Guia" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="IdCliente" type="ser:guid" />
@@ -331,8 +333,8 @@
     <xs:complexContent mixed="false">
       <xs:extension base="tns:BaseResponse">
         <xs:sequence>
-          <xs:element minOccurs="0" name="Fecha" type="xs:dateTime" />
-          <xs:element minOccurs="0" name="FechaEnvio" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Fecha" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="FechaEnvio" nillable="true" type="xs:dateTime" />
           <xs:element minOccurs="0" name="Folio" type="xs:int" />
           <xs:element minOccurs="0" name="Guia" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="IdCliente" type="ser:guid" />
@@ -364,6 +366,52 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfNotaResponse" nillable="true" type="tns:ArrayOfNotaResponse" />
+  <xs:complexType name="DetalleNotaRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Cantidad" type="xs:int" />
+          <xs:element minOccurs="0" name="Id" type="xs:int" />
+          <xs:element minOccurs="0" name="IdNota" type="xs:int" />
+          <xs:element minOccurs="0" name="IdProducto" type="xs:int" />
+          <xs:element minOccurs="0" name="PrecioMXN" type="xs:decimal" />
+          <xs:element minOccurs="0" name="PrecioUSD" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DetalleNotaRequest" nillable="true" type="tns:DetalleNotaRequest" />
+  <xs:complexType name="DetalleNotaResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Cantidad" type="xs:int" />
+          <xs:element minOccurs="0" name="Id" type="xs:int" />
+          <xs:element minOccurs="0" name="IdNota" type="xs:int" />
+          <xs:element minOccurs="0" name="IdProducto" type="xs:int" />
+          <xs:element minOccurs="0" name="PrecioMXN" type="xs:decimal" />
+          <xs:element minOccurs="0" name="PrecioUSD" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DetalleNotaResponse" nillable="true" type="tns:DetalleNotaResponse" />
+  <xs:complexType name="coleccionDetalleNotaResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfDetalleNotaResponse" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="coleccionDetalleNotaResponse" nillable="true" type="tns:coleccionDetalleNotaResponse" />
+  <xs:complexType name="ArrayOfDetalleNotaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DetalleNotaResponse" nillable="true" type="tns:DetalleNotaResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDetalleNotaResponse" nillable="true" type="tns:ArrayOfDetalleNotaResponse" />
   <xs:complexType name="GuiaRequest">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:BaseRequest">

@@ -143,6 +143,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\notasModel.cs" />
     <Compile Include="Models\Clientemodel.cs" />
     <Compile Include="Models\catalogosModel.cs" />
     <Compile Include="Models\productosmodel.cs" />
@@ -201,6 +202,12 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Connected Services\AdministradorServicio\Jadet.AdministradorServicio.TipoEstatusResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\AdministradorServicio\Jadet.AdministradorServicio.coleccionDetalleNotaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\AdministradorServicio\Jadet.AdministradorServicio.DetalleNotaResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\AdministradorServicio\Reference.svcmap">

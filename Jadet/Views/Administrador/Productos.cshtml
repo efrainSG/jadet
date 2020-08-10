@@ -28,8 +28,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Items)
-        {
+        @foreach (var item in Model.Items) {
             <tr>
                 <td>@item.Id</td>
                 <td>@item.Sku</td>
@@ -41,24 +40,18 @@
                 <td>@item.PrecioUSD</td>
                 <td>@item.Existencias</td>
                 <td>
-                    @if (item.AplicaExistencias)
-                    {
+                    @if (item.AplicaExistencias) {
                         @:Sí
-                    }
-                    else
-                    {
+                    } else {
                         @:No
                     }
-            </td>
-            <td>@item.Categoria</td>
-            <td>
-                <a href="#@("btneditarProducto"+@item.Sku)" class="btn btn-warning" id="@("btneditarProducto"+@item.Sku)"><i class="glyphicon glyphicon-edit"></i></a>
-                <a href="#@("btneliminarProducto"+@item.Sku)" class="btn btn-danger" id="@("btneliminarProducto"+@item.Sku)"><i class="glyphicon glyphicon-trash"></i></a>
-            </td>
-        </tr>
-    }
+                </td>
+                <td>@item.Categoria</td>
+                <td>
+                    <a href="#@("btneditarProducto"+@item.Sku)" class="btn btn-warning" id="@("btneditarProducto"+@item.Sku)"><i class="glyphicon glyphicon-edit"></i></a>
+                    <a href="#@("btneliminarProducto"+@item.Sku)" class="btn btn-danger" id="@("btneliminarProducto"+@item.Sku)"><i class="glyphicon glyphicon-trash"></i></a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
-
-
-

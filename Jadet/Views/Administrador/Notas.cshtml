@@ -1,4 +1,5 @@
-﻿
+﻿@model Jadet.Models.listaNotaModel
+
 @{
     ViewBag.Title = "Notas";
     Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
@@ -6,6 +7,54 @@
 
 <h2>@ViewBag.Title</h2>
 
-<blockquote>
-    No tengo la más remota idea de qué mostar aquí :-(
-</blockquote>
+<table class="table table-active table-bordered">
+    <thead>
+        <tr>
+            <td>Folio</td>
+            <td colspan="2">Tipo</td>
+            <td colspan="2">Cliente</td>
+            <td>Fecha</td>
+            <td>FechaEnvio</td>
+            <td>Guia</td>
+            <td colspan="2">Estatus</td>
+            <td colspan="2">Paqueteria</td>
+            <td>MontoMXN</td>
+            <td>MontoUSD</td>
+            <td>SaldoMXN</td>
+            <td>SaldoUSD</td>
+            <th rowspan="2">
+                <a href="#" class="btn btn-success" id="btnnuevoProducto"><i class="glyphicon glyphicon-plus"></i></a>
+            </th>
+        </tr>
+        <tr>
+            <th>MXN</th>
+            <th>USD</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items) {
+        <tr>
+            <td>@item.Folio</td>
+            <td>@item.IdTipo</td>
+            <td>@item.Tipo</td>
+            <td>@item.IdCliente</td>
+            <td>@item.Cliente</td>
+            <td>@item.Fecha</td>
+            <td>@item.FechaEnvio</td>
+            <td>@item.Guia</td>
+            <td>@item.IdEstatus</td>
+            <td>@item.Estatus</td>
+            <td>@item.IdPaqueteria</td>
+            <td>@item.Paqueteria</td>
+            <td>@item.MontoMXN</td>
+            <td>@item.MontoUSD</td>
+            <td>@item.SaldoMXN</td>
+            <td>@item.SaldoUSD</td>
+            <td>
+                <a href="#@("btneditarProducto"+@item.Folio)" class="btn btn-warning" id="@("btneditarProducto"+@item.Folio)"><i class="glyphicon glyphicon-edit"></i></a>
+                <a href="#@("btneliminarProducto"+@item.Folio)" class="btn btn-danger" id="@("btneliminarProducto"+@item.Foliou)"><i class="glyphicon glyphicon-trash"></i></a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Jadet.Models
-{
-    public class productomodel
-    {
+namespace Jadet.Models {
+    public class productomodel {
         public string Sku { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
@@ -21,11 +19,9 @@ namespace Jadet.Models
         public int IdCategoria { get; set; }
         public string Categoria { get; set; }
     }
-    public class listaproductosmodel
-    {
+    public class listaproductosmodel {
         public List<productomodel> Items { get; set; }
-        public listaproductosmodel()
-        {
+        public listaproductosmodel() {
             Items = new List<productomodel>();
         }
     }

@@ -8,39 +8,31 @@ using System.Web;
 using System.Web.Mvc;
 using WebGrease.Configuration;
 
-namespace Jadet.Controllers
-{
-    public class AdministradorController : Controller
-    {
+namespace Jadet.Controllers {
+    public class AdministradorController : Controller {
         // GET: Administrador
-        public ActionResult Index()
-        {
+        public ActionResult Index() {
             if (Session["usuario"] != null && (Session["usuario"] as loginmodel).usuario == "Root")
                 return View();
-            else
-            {
+            else {
                 Session.Clear();
                 return RedirectToAction("Index", "Home");
             }
         }
 
-        public ActionResult Productos()
-        {
-            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root")
-            {
+        public ActionResult Productos() {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
                 Session.Clear();
                 return RedirectToAction("Index", "Home");
             }
             listaproductosmodel productos = new listaproductosmodel();
             var servicio = new AdministradorClient();
-            var response = servicio.listarProductos(new ProductoRequest
-            {
+            var response = servicio.listarProductos(new ProductoRequest {
                 Id = 0
             });
             var responseCategorias = servicio.listarCatalogo(new CatalogoRequest { IdTipoCatalogo = 0 });
             productos.Items.AddRange(
-                response.Items.Select(p => new productomodel
-                {
+                response.Items.Select(p => new productomodel {
                     Descripcion = p.Descripcion,
                     ErrorMensaje = p.ErrorMensaje,
                     ErrorNumero = p.ErrorNumero,
@@ -59,18 +51,13 @@ namespace Jadet.Controllers
         }
 
         [HttpPost]
-        public JsonResult guardarProducto(productomodel model)
-        {
-            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root")
-            {
+        public JsonResult guardarProducto(productomodel model) {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
                 Session.Clear();
                 return Json(new { respuesta = new ProductoResponse() }, JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
+            } else {
                 var servicio = new AdministradorClient();
-                var response = servicio.guardarProducto(new ProductoRequest
-                {
+                var response = servicio.guardarProducto(new ProductoRequest {
                     AplicaExistencias = model.AplicaExistencias,
                     Descripcion = model.Descripcion,
                     Existencias = model.Existencias,
@@ -87,18 +74,13 @@ namespace Jadet.Controllers
         }
 
         [HttpPost]
-        public JsonResult eliminarProducto(productomodel model)
-        {
-            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root")
-            {
+        public JsonResult eliminarProducto(productomodel model) {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
                 Session.Clear();
                 return Json(new ProductoResponse(), JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
+            } else {
                 var servicio = new AdministradorClient();
-                var response = servicio.guardarProducto(new ProductoRequest
-                {
+                var response = servicio.guardarProducto(new ProductoRequest {
                     AplicaExistencias = model.AplicaExistencias,
                     Descripcion = model.Descripcion,
                     Existencias = model.Existencias,
@@ -115,18 +97,13 @@ namespace Jadet.Controllers
         }
 
         [HttpPost]
-        public JsonResult guardarCatalogo(catalogoModel model)
-        {
-            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root")
-            {
+        public JsonResult guardarCatalogo(catalogoModel model) {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
                 Session.Clear();
                 return Json(new { respuesta = new CatalogoResponse() }, JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
+            } else {
                 var servicio = new AdministradorClient();
-                var response = servicio.guardarCatalogo(new CatalogoRequest
-                {
+                var response = servicio.guardarCatalogo(new CatalogoRequest {
                     Id = model.Id,
                     Nombre = model.Nombre,
                     IdTipoCatalogo = model.IdTipoCatalogo
@@ -136,18 +113,13 @@ namespace Jadet.Controllers
         }
 
         [HttpPost]
-        public JsonResult eliminarCatalogo(catalogoModel model)
-        {
-            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root")
-            {
+        public JsonResult eliminarCatalogo(catalogoModel model) {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
                 Session.Clear();
                 return Json(new { respuesta = new ProductoResponse() }, JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
+            } else {
                 var servicio = new AdministradorClient();
-                var response = servicio.bajaCatalogo(new CatalogoRequest
-                {
+                var response = servicio.bajaCatalogo(new CatalogoRequest {
                     Id = model.Id,
                     Nombre = model.Nombre,
                     IdTipoCatalogo = model.IdTipoCatalogo
@@ -157,18 +129,13 @@ namespace Jadet.Controllers
         }
 
         [HttpPost]
-        public JsonResult guardarEstatus(catalogoModel model)
-        {
-            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root")
-            {
+        public JsonResult guardarEstatus(catalogoModel model) {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
                 Session.Clear();
                 return Json(new { respuesta = new ProductoResponse() }, JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
+            } else {
                 var servicio = new AdministradorClient();
-                var response = servicio.guardarEstatus(new EstatusRequest
-                {
+                var response = servicio.guardarEstatus(new EstatusRequest {
                     Id = model.Id,
                     Nombre = model.Nombre,
                     IdTipoEstatus = model.IdTipoCatalogo
@@ -178,18 +145,13 @@ namespace Jadet.Controllers
         }
 
         [HttpPost]
-        public JsonResult eliminarEstatus(productomodel model)
-        {
-            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root")
-            {
+        public JsonResult eliminarEstatus(productomodel model) {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
                 Session.Clear();
                 return Json(new ProductoResponse(), JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
+            } else {
                 var servicio = new AdministradorClient();
-                var response = servicio.guardarProducto(new ProductoRequest
-                {
+                var response = servicio.guardarProducto(new ProductoRequest {
                     AplicaExistencias = model.AplicaExistencias,
                     Descripcion = model.Descripcion,
                     Existencias = model.Existencias,
@@ -206,18 +168,13 @@ namespace Jadet.Controllers
         }
 
         [HttpPost]
-        public JsonResult guardarCliente(clientemodel model)
-        {
-            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root")
-            {
+        public JsonResult guardarCliente(clientemodel model) {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
                 Session.Clear();
                 return Json(new { respuesta = new ClienteResponse() }, JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
+            } else {
                 var servicio = new AdministradorClient();
-                var response = servicio.guardarCliente(new ClienteRequest
-                {
+                var response = servicio.guardarCliente(new ClienteRequest {
                     Direccion = model.Direccion,
                     IdCliente = model.IdCliente,
                     IdEstatus = model.IdEstatus,
@@ -234,18 +191,13 @@ namespace Jadet.Controllers
         }
 
         [HttpPost]
-        public JsonResult eliminarCliente(clientemodel model)
-        {
-            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root")
-            {
+        public JsonResult eliminarCliente(clientemodel model) {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
                 Session.Clear();
                 return Json(new { respuesta = new ClienteResponse() }, JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
+            } else {
                 var servicio = new AdministradorClient();
-                var response = servicio.bajaCliente(new ClienteRequest
-                {
+                var response = servicio.bajaCliente(new ClienteRequest {
                     Direccion = model.Direccion,
                     IdCliente = model.IdCliente,
                     IdEstatus = model.IdEstatus,
@@ -261,29 +213,24 @@ namespace Jadet.Controllers
             }
         }
 
-        public ActionResult Guias()
-        {
+        public ActionResult Guias() {
             return View();
         }
 
-        public ActionResult Clientes()
-        {
-            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root")
-            {
+        public ActionResult Clientes() {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
                 Session.Clear();
                 return RedirectToAction("Index", "Home");
             }
 
             listaclientesmodel clientes = new listaclientesmodel();
             var servicio = new AdministradorServicio.AdministradorClient();
-            var response = servicio.listarClientes(new ClienteRequest
-            {
+            var response = servicio.listarClientes(new ClienteRequest {
                 IdCliente = new Guid(),
                 IdRol = 2
             });
             clientes.Items.AddRange(
-                response.Items.Select(p => new clientemodel
-                {
+                response.Items.Select(p => new clientemodel {
                     Nombre = p.Nombre,
                     usuario = p.UserName,
                     Direccion = p.Direccion,
@@ -297,40 +244,73 @@ namespace Jadet.Controllers
             return View(clientes);
         }
 
-        public ActionResult Notas()
-        {
-            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root")
-            {
+        public ActionResult Notas() {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
                 Session.Clear();
                 return RedirectToAction("Index", "Home");
             }
-            return View();
+
+            listaNotaModel notas = new listaNotaModel();
+            var servicio = new AdministradorServicio.AdministradorClient();
+            var response = servicio.listarNotas(new NotaRequest {
+                Folio = 0,
+                Fecha = null,
+                IdEstatus = 0
+            });
+            var responseClientes = servicio.listarClientes(new ClienteRequest {
+                IdCliente = new Guid(),
+                IdRol = 2
+            });
+            var responseTipos = servicio.listarCatalogo(new CatalogoRequest {
+                Id = 0,
+                IdTipoCatalogo = 0
+            });
+            var responseEstatus = servicio.listarEstatus(new EstatusRequest{
+                Id = 0,
+                IdTipoEstatus = 0
+            });
+
+            notas.Items.AddRange(
+                response.Items.Select(p => new notaModel {
+                    Fecha = p.Fecha,
+                    FechaEnvio = p.FechaEnvio,
+                    Folio = p.Folio,
+                    IdPaqueteria = p.IdPaqueteria,
+                    Paqueteria = responseTipos.Items.FirstOrDefault(pa=>pa.Id==p.IdPaqueteria).Nombre,
+                    Guia = p.Guia,
+                    IdEstatus = p.IdEstatus,
+                    Estatus = responseEstatus.Items.FirstOrDefault(e => e.Id == p.IdPaqueteria).Nombre,
+                    IdCliente = p.IdCliente,
+                    Cliente = responseClientes.Items.FirstOrDefault(c=>c.IdCliente==p.IdCliente).Nombre,
+                    IdTipo = p.IdTipo,
+                    Tipo = responseTipos.Items.FirstOrDefault(t=>t.Id==p.IdTipo).Nombre,
+                    MontoMXN = p.MontoMXN,
+                    MontoUSD = p.MontoUSD,
+                    SaldoMXN = p.SaldoMXN,
+                    SaldoUSD = p.SaldoUSD
+                }));
+            return View(notas);
         }
 
-        public ActionResult Configuracion()
-        {
-            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root")
-            {
+        public ActionResult Configuracion() {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
                 Session.Clear();
                 return RedirectToAction("Index", "Home");
             }
             var servicio = new AdministradorClient();
-            var response = servicio.listarCatalogo(new CatalogoRequest
-            {
+            var response = servicio.listarCatalogo(new CatalogoRequest {
                 Id = 0,
                 IdTipoCatalogo = 0
             });
             var resultado = new listacatalogoModel();
-            resultado.Items.AddRange(response.Items.Select(i => new catalogoModel
-            {
+            resultado.Items.AddRange(response.Items.Select(i => new catalogoModel {
                 Id = i.Id,
                 IdTipoCatalogo = i.IdTipoCatalogo,
                 Nombre = i.Nombre,
                 Tabla = "CATÁLOGO"
             }));
             var response2 = servicio.listarEstatus(new EstatusRequest { Id = 0, IdTipoEstatus = 0 });
-            resultado.Items.AddRange(response2.Items.Select(i => new catalogoModel
-            {
+            resultado.Items.AddRange(response2.Items.Select(i => new catalogoModel {
                 Id = i.Id,
                 IdTipoCatalogo = i.IdTipoEstatus,
                 Nombre = i.Nombre,
@@ -339,42 +319,34 @@ namespace Jadet.Controllers
             return View(resultado);
         }
 
-        public JsonResult obtenerDiccionario(int IdTipo)
-        {
+        public JsonResult obtenerDiccionario(int IdTipo) {
             var servicio = new AdministradorClient();
-            var response = servicio.listarCatalogo(new CatalogoRequest
-            {
+            var response = servicio.listarCatalogo(new CatalogoRequest {
                 IdTipoCatalogo = IdTipo
             });
 
             return Json(response.Items.Select(e => new { id = e.Id, nombre = e.Nombre }).ToArray(), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult obtenerTiposCatalogos(int IdTipo)
-        {
+        public JsonResult obtenerTiposCatalogos(int IdTipo) {
             var servicio = new AdministradorClient();
-            var response = servicio.listarTipoCatalogo(new TipoCatalogoRequest
-            {
+            var response = servicio.listarTipoCatalogo(new TipoCatalogoRequest {
                 Id = IdTipo
             });
             return Json(response.Items.Select(e => new { id = e.Id, nombre = e.Nombre }).ToArray(), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult obtenerEstatus(int IdTipo)
-        {
+        public JsonResult obtenerEstatus(int IdTipo) {
             var servicio = new AdministradorClient();
-            var response = servicio.listarEstatus(new EstatusRequest
-            {
+            var response = servicio.listarEstatus(new EstatusRequest {
                 Id = IdTipo
             });
             return Json(response.Items.Select(e => new { id = e.Id, nombre = e.Nombre, Tipo = e.IdTipoEstatus }).ToArray(), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult obtenerTipoEstatus(int IdTipo)
-        {
+        public JsonResult obtenerTipoEstatus(int IdTipo) {
             var servicio = new AdministradorClient();
-            var response = servicio.listarTipoEstatus(new TipoEstatusRequest
-            {
+            var response = servicio.listarTipoEstatus(new TipoEstatusRequest {
                 Id = IdTipo
             });
             return Json(response.Items.Select(e => new { id = e.Id, nombre = e.Nombre }).ToArray(), JsonRequestBehavior.AllowGet);
