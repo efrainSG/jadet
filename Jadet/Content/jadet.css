@@ -1,0 +1,23 @@
+﻿.btn-warning-jadet {
+    background-color: #ffb3f3;
+    border-color: #ffb3f3;
+    color:#fff;
+}
+
+.btn-danger-jadet {
+    background-color: #9f3ffe;
+    border-color: #9f3ffe;
+    color: #fff;
+}
+
+.btn-warning-jadet:hover {
+    background-color: #fc95ec;
+    border-color: #fc95ec;
+    color: #fff;
+}
+
+.btn-danger-jadet:hover {
+    background-color: #8000ff;
+    border-color: #8000ff;
+    color: #fff;
+}

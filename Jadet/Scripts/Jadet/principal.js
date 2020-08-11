@@ -464,7 +464,7 @@
                 '</form>');
 
             $("#txtContenido")
-                .append('<span>USuario: ' + $($componentes[0]).text() + '</span><br />')
+                .append('<span>Usuario: ' + $($componentes[0]).text() + '</span><br />')
                 .append('<span>Nombre: ' + $($componentes[1]).text() + '</span><br />')
                 .append('<span>Dirección: ' + $($componentes[2]).text() + '</span><br />')
                 .append('<span>Teléfono: ' + $($componentes[3]).text() + '</span><br />')
@@ -567,6 +567,34 @@
 
             $("#btnEliminar, #btnGuardar, #btnGuardarCliente, #btnEliminarCliente, #btnEliminarCatalogo").hide();
             $("#btnGuardarCatalogo").show();
+            $("#myModal").modal("show");
+        });
+
+    $('[id^="btneliminarCatalogo"]').off()
+        .on("click", function (e) {
+            $this = $(this);
+            var $componentes = $this.parent().siblings();
+            var $bodyModal = $("#divModalBody");
+            $("#modalHdr").text("Eliminar cliente");
+            $bodyModal.empty();
+            $bodyModal.append(
+                '<form action="/Administrador/eliminarCatalogo" method="post" id="frmProducto">' +
+                '  <input type="hidden" id="txtId" value="" name="Id" />' +
+                '  <div class= "row" > ' +
+                '    <div class="col-sm-12" id="txtContenido"></div>' +
+                '  </div>' +
+                '</form>');
+
+            $("#txtContenido")
+                .append('<span>USuario: ' + $($componentes[0]).text() + '</span><br />')
+                .append('<span>Nombre: ' + $($componentes[1]).text() + '</span><br />')
+                .append('<span>Dirección: ' + $($componentes[2]).text() + '</span><br />')
+                .append('<span>Teléfono: ' + $($componentes[3]).text() + '</span><br />')
+                .append('<span>Zona de paquetería: ' + $($componentes[4]).text() + '</span><br />')
+                .append('<span>Estátus: ' + $($componentes[5]).text() + '</span><br />')
+
+            $("#btnGuardarCliente, #btnGuardar, #btnGuardarCatalogo, #btnEliminarCliente, #btnEliminarCatalogo").hide();
+            $("#btnEliminar").show();
             $("#myModal").modal("show");
         });
 
