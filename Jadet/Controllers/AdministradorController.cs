@@ -50,6 +50,156 @@ namespace Jadet.Controllers {
             return View(productos);
         }
 
+        public ActionResult Guias() {
+            return View();
+        }
+
+        public ActionResult Clientes() {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+                Session.Clear();
+                return RedirectToAction("Index", "Home");
+            }
+
+            listaclientesmodel clientes = new listaclientesmodel();
+            var servicio = new AdministradorServicio.AdministradorClient();
+            var response = servicio.listarClientes(new ClienteRequest {
+                IdCliente = new Guid(),
+                IdRol = 2
+            });
+            clientes.Items.AddRange(
+                response.Items.Select(p => new clientemodel {
+                    Nombre = p.Nombre,
+                    usuario = p.UserName,
+                    Direccion = p.Direccion,
+                    ErrorMensaje = p.ErrorMensaje,
+                    ErrorNumero = p.ErrorNumero,
+                    IdCliente = p.IdCliente,
+                    IdEstatus = p.IdEstatus,
+                    Telefono = p.Telefono,
+                    ZonaPaqueteria = p.ZonaPaqueteria
+                }));
+            return View(clientes);
+        }
+
+        public ActionResult Notas() {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+                Session.Clear();
+                return RedirectToAction("Index", "Home");
+            }
+
+            listaNotaModel notas = new listaNotaModel();
+            var servicio = new AdministradorServicio.AdministradorClient();
+            var response = servicio.listarNotas(new NotaRequest {
+                Folio = 0,
+                Fecha = null,
+                IdEstatus = 0
+            });
+            var responseClientes = servicio.listarClientes(new ClienteRequest {
+                IdCliente = new Guid(),
+                IdRol = 2
+            });
+            var responseTipos = servicio.listarCatalogo(new CatalogoRequest {
+                Id = 0,
+                IdTipoCatalogo = 0
+            });
+            var responseEstatus = servicio.listarEstatus(new EstatusRequest {
+                Id = 0,
+                IdTipoEstatus = 0
+            });
+
+            notas.Items.AddRange(
+                response.Items.Select(p => new notaModel {
+                    Fecha = p.Fecha,
+                    FechaEnvio = p.FechaEnvio,
+                    Folio = p.Folio,
+                    IdPaqueteria = p.IdPaqueteria,
+                    Paqueteria = (p.IdPaqueteria != 0) ? responseTipos.Items.FirstOrDefault(pa => pa.Id == p.IdPaqueteria).Nombre : string.Empty,
+                    Guia = p.Guia,
+                    IdEstatus = p.IdEstatus,
+                    Estatus = (p.IdEstatus != 0) ? responseEstatus.Items.FirstOrDefault(e => e.Id == p.IdEstatus).Nombre : string.Empty,
+                    IdCliente = p.IdCliente,
+                    Cliente = responseClientes.Items.FirstOrDefault(c => c.IdCliente == p.IdCliente).Nombre,
+                    IdTipo = p.IdTipo,
+                    Tipo = (p.IdTipo != 0) ? responseTipos.Items.FirstOrDefault(t => t.Id == p.IdTipo).Nombre : string.Empty,
+                    MontoMXN = p.MontoMXN,
+                    MontoUSD = p.MontoUSD,
+                    SaldoMXN = p.SaldoMXN,
+                    SaldoUSD = p.SaldoUSD
+                }));
+            return View(notas);
+        }
+
+        public ActionResult Configuracion() {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+                Session.Clear();
+                return RedirectToAction("Index", "Home");
+            }
+            var servicio = new AdministradorClient();
+            var response = servicio.listarCatalogo(new CatalogoRequest {
+                Id = 0,
+                IdTipoCatalogo = 0
+            });
+            var resultado = new listacatalogoModel();
+            resultado.Items.AddRange(response.Items.Select(i => new catalogoModel {
+                Id = i.Id,
+                IdTipoCatalogo = i.IdTipoCatalogo,
+                Nombre = i.Nombre,
+                Tabla = "CATÁLOGO"
+            }));
+            var response2 = servicio.listarEstatus(new EstatusRequest { Id = 0, IdTipoEstatus = 0 });
+            resultado.Items.AddRange(response2.Items.Select(i => new catalogoModel {
+                Id = i.Id,
+                IdTipoCatalogo = i.IdTipoEstatus,
+                Nombre = i.Nombre,
+                Tabla = "ESTÁTUS"
+            }));
+            return View(resultado);
+        }
+
+        [HttpGet]
+        public ActionResult DetalleNota(int folio) {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+                Session.Clear();
+                return RedirectToAction("Index", "Home");
+            }
+            var servicio = new AdministradorClient();
+            notacompletaModel model;
+            var response = servicio.cargarNota(new NotaRequest { Folio = folio });
+            var responsedetalle = servicio.cargarDetalleNota(new DetalleNotaRequest { IdNota = folio });
+            var responseClientes = servicio.listarClientes(new ClienteRequest { IdCliente = new Guid(), IdRol = 2 });
+            var responseTipos = servicio.listarCatalogo(new CatalogoRequest { Id = 0, IdTipoCatalogo = 0 });
+            var responseEstatus = servicio.listarEstatus(new EstatusRequest { Id = 0, IdTipoEstatus = 0 });
+            var responseItems = servicio.listarDetalleNota(new DetalleNotaRequest {IdNota = folio });
+            model = new notacompletaModel {
+                Fecha = response.Fecha,
+                FechaEnvio = response.FechaEnvio,
+                Folio = response.Folio,
+                Guia = response.Guia,
+                IdCliente = response.IdCliente,
+                Cliente = responseClientes.Items.FirstOrDefault(c => c.IdCliente == response.IdCliente).Nombre,
+                IdEstatus = response.IdEstatus,
+                Estatus = (response.IdEstatus != 0) ? responseEstatus.Items.FirstOrDefault(e => e.Id == response.IdEstatus).Nombre : string.Empty,
+                IdPaqueteria = response.IdPaqueteria,
+                Paqueteria = (response.IdPaqueteria != 0) ? responseTipos.Items.FirstOrDefault(pa => pa.Id == response.IdPaqueteria).Nombre : string.Empty,
+                IdTipo = response.IdTipo,
+                Tipo = (response.IdTipo != 0) ? responseTipos.Items.FirstOrDefault(t => t.Id == response.IdTipo).Nombre : string.Empty,
+                MontoMXN = response.MontoMXN,
+                MontoUSD = response.MontoUSD,
+                SaldoMXN = response.SaldoMXN,
+                SaldoUSD = response.SaldoUSD
+            };
+            model.Items.AddRange(responseItems.Items.Select(i => new detallenotaModel { 
+                Cantidad = i.Cantidad,
+                Id = i.Id,
+                IdNota = i.IdNota,
+                IdProducto = i.IdProducto,
+                PrecioMXN = i.PrecioMXN,
+                PrecioUSD = i.PrecioUSD
+            }));
+
+            return View(model);
+        }
+
         [HttpPost]
         public JsonResult guardarProducto(productomodel model) {
             if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
@@ -213,110 +363,54 @@ namespace Jadet.Controllers {
             }
         }
 
-        public ActionResult Guias() {
-            return View();
-        }
-
-        public ActionResult Clientes() {
+        [HttpPost]
+        public JsonResult guardarNota(notaModel model) {
             if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
                 Session.Clear();
-                return RedirectToAction("Index", "Home");
+                return Json(new { respuesta = new ClienteResponse() }, JsonRequestBehavior.AllowGet);
+            } else {
+                var servicio = new AdministradorClient();
+                var response = servicio.guardarNota(new NotaRequest {
+                    Fecha = model.Fecha,
+                    FechaEnvio = model.FechaEnvio,
+                    Folio = model.Folio,
+                    Guia = model.Guia,
+                    IdCliente = model.IdCliente,
+                    IdEstatus = model.IdEstatus,
+                    IdPaqueteria = model.IdPaqueteria,
+                    IdTipo = model.IdTipo,
+                    MontoMXN = model.MontoMXN,
+                    MontoUSD = model.MontoUSD,
+                    SaldoMXN = model.SaldoMXN,
+                    SaldoUSD = model.SaldoUSD
+                });
+                return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
             }
-
-            listaclientesmodel clientes = new listaclientesmodel();
-            var servicio = new AdministradorServicio.AdministradorClient();
-            var response = servicio.listarClientes(new ClienteRequest {
-                IdCliente = new Guid(),
-                IdRol = 2
-            });
-            clientes.Items.AddRange(
-                response.Items.Select(p => new clientemodel {
-                    Nombre = p.Nombre,
-                    usuario = p.UserName,
-                    Direccion = p.Direccion,
-                    ErrorMensaje = p.ErrorMensaje,
-                    ErrorNumero = p.ErrorNumero,
-                    IdCliente = p.IdCliente,
-                    IdEstatus = p.IdEstatus,
-                    Telefono = p.Telefono,
-                    ZonaPaqueteria = p.ZonaPaqueteria
-                }));
-            return View(clientes);
         }
 
-        public ActionResult Notas() {
+        [HttpPost]
+        public JsonResult eliminarNota(notaModel model) {
             if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
                 Session.Clear();
-                return RedirectToAction("Index", "Home");
+                return Json(new { respuesta = new ClienteResponse() }, JsonRequestBehavior.AllowGet);
+            } else {
+                var servicio = new AdministradorClient();
+                var response = servicio.bajaNota(new NotaRequest {
+                    Fecha = model.Fecha,
+                    FechaEnvio = model.FechaEnvio,
+                    Folio = model.Folio,
+                    Guia = model.Guia,
+                    IdCliente = model.IdCliente,
+                    IdEstatus = model.IdEstatus,
+                    IdPaqueteria = model.IdPaqueteria,
+                    IdTipo = model.IdTipo,
+                    MontoMXN = model.MontoMXN,
+                    MontoUSD = model.MontoUSD,
+                    SaldoMXN = model.SaldoMXN,
+                    SaldoUSD = model.SaldoUSD
+                });
+                return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
             }
-
-            listaNotaModel notas = new listaNotaModel();
-            var servicio = new AdministradorServicio.AdministradorClient();
-            var response = servicio.listarNotas(new NotaRequest {
-                Folio = 0,
-                Fecha = null,
-                IdEstatus = 0
-            });
-            var responseClientes = servicio.listarClientes(new ClienteRequest {
-                IdCliente = new Guid(),
-                IdRol = 2
-            });
-            var responseTipos = servicio.listarCatalogo(new CatalogoRequest {
-                Id = 0,
-                IdTipoCatalogo = 0
-            });
-            var responseEstatus = servicio.listarEstatus(new EstatusRequest{
-                Id = 0,
-                IdTipoEstatus = 0
-            });
-
-            notas.Items.AddRange(
-                response.Items.Select(p => new notaModel {
-                    Fecha = p.Fecha,
-                    FechaEnvio = p.FechaEnvio,
-                    Folio = p.Folio,
-                    IdPaqueteria = p.IdPaqueteria,
-                    Paqueteria = responseTipos.Items.FirstOrDefault(pa=>pa.Id==p.IdPaqueteria).Nombre,
-                    Guia = p.Guia,
-                    IdEstatus = p.IdEstatus,
-                    Estatus = responseEstatus.Items.FirstOrDefault(e => e.Id == p.IdPaqueteria).Nombre,
-                    IdCliente = p.IdCliente,
-                    Cliente = responseClientes.Items.FirstOrDefault(c=>c.IdCliente==p.IdCliente).Nombre,
-                    IdTipo = p.IdTipo,
-                    Tipo = responseTipos.Items.FirstOrDefault(t=>t.Id==p.IdTipo).Nombre,
-                    MontoMXN = p.MontoMXN,
-                    MontoUSD = p.MontoUSD,
-                    SaldoMXN = p.SaldoMXN,
-                    SaldoUSD = p.SaldoUSD
-                }));
-            return View(notas);
-        }
-
-        public ActionResult Configuracion() {
-            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
-                Session.Clear();
-                return RedirectToAction("Index", "Home");
-            }
-            var servicio = new AdministradorClient();
-            var response = servicio.listarCatalogo(new CatalogoRequest {
-                Id = 0,
-                IdTipoCatalogo = 0
-            });
-            var resultado = new listacatalogoModel();
-            resultado.Items.AddRange(response.Items.Select(i => new catalogoModel {
-                Id = i.Id,
-                IdTipoCatalogo = i.IdTipoCatalogo,
-                Nombre = i.Nombre,
-                Tabla = "CATÁLOGO"
-            }));
-            var response2 = servicio.listarEstatus(new EstatusRequest { Id = 0, IdTipoEstatus = 0 });
-            resultado.Items.AddRange(response2.Items.Select(i => new catalogoModel {
-                Id = i.Id,
-                IdTipoCatalogo = i.IdTipoEstatus,
-                Nombre = i.Nombre,
-                Tabla = "ESTÁTUS"
-            }));
-            return View(resultado);
         }
 
         public JsonResult obtenerDiccionario(int IdTipo) {

@@ -27,6 +27,11 @@ namespace Jadet.Models {
         public List<detallenotaModel> Items { get; set; }
         public List<comentarioModel> Comentarios { get; set; }
         public List<ticketModel> Tickets { get; set; }
+        public notacompletaModel() {
+            Items = new List<detallenotaModel>();
+            Comentarios = new List<comentarioModel>();
+            Tickets = new List<ticketModel>();
+        }
     }
 
     public class detallenotaModel {

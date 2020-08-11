@@ -55,7 +55,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+            <p>&copy; @DateTime.Now.Year - Jadet</p>
         </footer>
     </div>
 
@@ -70,19 +70,25 @@
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="modalHdr">Modal Header</h3>
-                    @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <h3 class="modal-title" id="modalHdr">Modal Header</h3>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal"><i class="fa fa-lg fa-times"></i></button>
+                        </div>
+                        @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                    </div>
                 </div>
                 <div class="modal-body" id="divModalBody">
                 </div>
                 <div class="modal-footer" id="divModalFooter">
-                    <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal" id="btnGuardar"><i class="glyphicon glyphicon-ok"></i></button>
-                    <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal" id="btnGuardarCliente"><i class="glyphicon glyphicon-ok"></i></button>
-                    <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal" id="btnGuardarCatalogo"><i class="glyphicon glyphicon-ok"></i></button>
-                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal" id="btnEliminar"><i class="glyphicon glyphicon-remove"></i></button>
-                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal" id="btnEliminarCliente"><i class="glyphicon glyphicon-remove"></i></button>
-                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal" id="btnEliminarCatalogo"><i class="glyphicon glyphicon-remove"></i></button>
-                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal"><i class="glyphicon glyphicon-log-out"></i></button>
+                    <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal" id="btnGuardar"><i class="fa fa-lg fa-check"></i></button>
+                    <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal" id="btnGuardarCliente"><i class="fa fa-lg fa-check"></i></button>
+                    <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal" id="btnGuardarCatalogo"><i class="fa fa-lg fa-check"></i></button>
+                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal" id="btnEliminar"><i class="fa fa-lg fa-trash"></i></button>
+                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal" id="btnEliminarCliente"><i class="fa fa-lg fa-trash"></i></button>
+                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal" id="btnEliminarCatalogo"><i class="fa fa-lg fa-trash"></i></button>
                 </div>
             </div>
 
