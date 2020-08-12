@@ -32,17 +32,31 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones.Tests {
             throw new NotImplementedException();
         }
 
-        //[TestMethod()]
-        //public void bajaNotaTest()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        [TestMethod()]
+        public void bajaNotaTest() {
+            try {
+                var Nota = servicio.listarNotas(new NotaRequest { Folio = 0, IdEstatus = 0 }).Items
+                    .OrderByDescending(n => n.Folio)
+                    .FirstOrDefault();
+                var response = servicio.bajaNota(new NotaRequest { Folio = Nota.Folio });
+                Console.WriteLine("{0}\n{1}\n", response.ErrorNumero, response.ErrorMensaje);
+            } catch (Exception ex) {
+                Assert.Fail(ex.Message);
+            }
+        }
 
-        //[TestMethod()]
-        //public void bajaProductoTest()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        [TestMethod()]
+        public void bajaProductoTest() {
+            try {
+                var producto = servicio.listarProductos(new ProductoRequest { Id = 0, IdEstatus = 0 }).Items
+                .OrderByDescending(n => n.Id)
+                .FirstOrDefault();
+                var response = servicio.bajaProducto(new ProductoRequest { Id = producto.Id });
+                Console.WriteLine("{0}\n{1}\n", response.ErrorNumero, response.ErrorMensaje);
+            } catch (Exception ex) {
+                Assert.Fail(ex.Message);
+            }
+        }
 
         //[TestMethod()]
         //public void cambiarEstatusPaginaTest()
@@ -112,30 +126,20 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones.Tests {
         //    throw new NotImplementedException();
         //}
 
-        //[TestMethod()]
-        //public void cargarNotaTest() {
-        //    try {
-        //        var response = servicio.cargarNota(new NotaRequest {
-        //            Folio = 3,
-        //            Fecha = null,
-        //            IdEstatus = 0
-        //        });
-        //        Console.WriteLine("Id: {0}\nSKU: {1}\nId de categoría: {2}\nNombre: {3}\nDescripción: {4}\nAplica existencias: {5}\nExistencias: {6}\nFoto: {7}\nPrecio MXN: {8}\nPrecio USD: {9}\n----------------------------",
-        //            response.Id,
-        //            response.SKU,
-        //            response.IdCategoria,
-        //            response.Nombre,
-        //            response.Descripcion,
-        //            response.AplicaExistencias,
-        //            response.Existencias,
-        //            response.Foto,
-        //            response.PrecioMXN,
-        //            response.PrecioUSD
-        //            );
-        //    } catch (Exception ex) {
-        //        Assert.Fail(ex.Message);
-        //    }
-        //}
+        [TestMethod()]
+        public void cargarNotaTest() {
+            try {
+                var _id = servicio.listarNotas(new NotaRequest { Folio = 0, IdEstatus = 0 }).Items.FirstOrDefault().Folio;
+                var nota = servicio.cargarNota(new NotaRequest { Folio = _id });
+                Console.WriteLine("Folio: {0}\nFecha: {1}\nFecha de envio: {2}\nGuía: {3}\nId de cliente: {4}\nId de estátus:{5}\nId de paquetería: {6}\nId de tipo: {7}\nMonto MXN: {8}\nMonto USD: {9}\nSaldo MXN:{10}\nSaldo USD: {11}\n",
+                        nota.Folio, nota.Fecha, nota.FechaEnvio,
+                        nota.Guia, nota.IdCliente, nota.IdEstatus,
+                        nota.IdPaqueteria, nota.IdTipo, nota.MontoMXN,
+                        nota.MontoUSD, nota.SaldoMXN, nota.SaldoUSD);
+            } catch (Exception ex) {
+                Assert.Fail(ex.Message);
+            }
+        }
 
         [TestMethod()]
         public void cargarProductoTest() {
@@ -188,14 +192,26 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones.Tests {
 
         [TestMethod()]
         public void guardarCatalogoTest() {
-            throw new NotImplementedException();
+            var response = servicio.guardarCatalogo(new CatalogoRequest {
+                Id = 0,
+                IdTipoCatalogo = 3,
+                Nombre = "Elemento de catálogo " + DateTime.Today.ToString("yyyyMMddhhmm")
+            });
+            Console.WriteLine("Id: {0}\nId de Tipo de catálogo: {1}\nNombre: {2}\nError número: {3}\nMensaje: {4}\n",
+                response.Id,
+                response.IdTipoCatalogo,
+                response.Nombre,
+                response.ErrorNumero,
+                response.ErrorMensaje);
         }
 
-        //[TestMethod()]
-        //public void guardarClienteTest()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        [TestMethod()]
+        public void guardarClienteTest() {
+            try {
+            } catch (Exception ex) {
+                Assert.Fail(ex.Message);
+            }
+        }
 
         [TestMethod()]
         public void guardarEstatusTest() {
@@ -229,11 +245,34 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones.Tests {
             }
         }
 
-        //[TestMethod()]
-        //public void guardarProductoTest()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        [TestMethod()]
+        public void guardarProductoTest() {
+            var response = servicio.guardarProducto(new ProductoRequest {
+                Id = 0,
+                Nombre = "Producto " + DateTime.Today.ToString("yyyyMMddhhmm"),
+                AplicaExistencias = false,
+                Descripcion = "Descripción de prueba " + DateTime.Today.ToString("yyyyMMddhhmm"),
+                Existencias = 0,
+                Foto = Encoding.UTF8.GetBytes("0"),
+                IdCategoria = 10,
+                IdEstatus = 5,
+                PrecioMXN = 150m,
+                PrecioUSD = 7.5m,
+                SKU = DateTime.Today.ToString("yyyyMMddhhmm")
+            });
+            Console.WriteLine("Id: {0}\nSKU: {1}\nId de categoría: {2}\nNombre: {3}\nDescripción: {4}\nAplica existencias: {5}\nExistencias: {6}\nFoto: {7}\nPrecio MXN: {8}\nPrecio USD: {9}\n----------------------------",
+                response.Id,
+                response.SKU,
+                response.IdCategoria,
+                response.Nombre,
+                response.Descripcion,
+                response.AplicaExistencias,
+                response.Existencias,
+                response.Foto,
+                response.PrecioMXN,
+                response.PrecioUSD
+                );
+        }
 
         [TestMethod()]
         public void listarCatalogoTest() {
@@ -367,6 +406,16 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones.Tests {
             } catch (Exception ex) {
                 Assert.Fail(ex.Message);
             }
+        }
+
+        [TestMethod()]
+        public void guardarDetalleNotaTest() {
+
+        }
+
+        [TestMethod()]
+        public void listarDetalleNotaTest() {
+
         }
 
         //[TestMethod()]

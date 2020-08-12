@@ -34,7 +34,14 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones {
         }
 
         public DetalleNotaResponse bajaDetalleNota(DetalleNotaRequest request) {
-            throw new NotImplementedException();
+            DataAccess da = new DataAccess {
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
+            };
+            var resultado = da.borrarDetalle(request.Id);
+            return new DetalleNotaResponse {
+                ErrorMensaje = resultado.ErrorMensaje,
+                ErrorNumero = resultado.ErrorNumero
+            };
         }
 
         public BaseResponse bajaEstatus(EstatusRequest request) {
@@ -49,11 +56,25 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones {
         }
 
         public NotaResponse bajaNota(NotaRequest request) {
-            throw new NotImplementedException();
+            DataAccess da = new DataAccess {
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
+            };
+            var resultado = da.borrarNota(request.Folio);
+            return new NotaResponse {
+                ErrorMensaje = resultado.ErrorMensaje,
+                ErrorNumero = resultado.ErrorNumero
+            };
         }
 
-        public BaseResponse bajaProducto(ProductoRequest request) {
-            throw new NotImplementedException();
+        public ProductoResponse bajaProducto(ProductoRequest request) {
+            DataAccess da = new DataAccess {
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
+            };
+            var resultado = da.borrarProducto(request.Id);
+            return new ProductoResponse {
+                ErrorMensaje = resultado.ErrorMensaje,
+                ErrorNumero = resultado.ErrorNumero
+            };
         }
 
         public BaseResponse cambiarEstatusPagina(BaseRequest request) {
@@ -102,7 +123,22 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones {
         }
 
         public DetalleNotaResponse cargarDetalleNota(DetalleNotaRequest request) {
-            throw new NotImplementedException();
+            DetalleNotaResponse response;
+            DataAccess da = new DataAccess {
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
+            };
+            var resultado = da.listarDetalle(request.Id, request.IdNota, request.IdProducto).FirstOrDefault();
+            response = new DetalleNotaResponse {
+                ErrorMensaje = string.Empty,
+                ErrorNumero = 0,
+                Cantidad = resultado.Cantidad,
+                IdProducto = resultado.IdProducto,
+                IdNota = resultado.IdNota,
+                Id = resultado.Id,
+                PrecioMXN = resultado.PrecioMXN,
+                PrecioUSD = resultado.PrecioUSD
+            };
+            return response;
         }
 
         public EstatusResponse cargarEstatus(EstatusRequest request) {
@@ -127,7 +163,28 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones {
         }
 
         public NotaResponse cargarNota(NotaRequest request) {
-            throw new NotImplementedException();
+            NotaResponse response;
+            DataAccess da = new DataAccess {
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
+            };
+            var resultado = da.listarNota(new Nota { Folio = request.Folio }).FirstOrDefault();
+            response = new NotaResponse {
+                ErrorMensaje = string.Empty,
+                ErrorNumero = 0,
+                Fecha = resultado.Fecha,
+                FechaEnvio = resultado.FechaEnvio,
+                Folio = resultado.Folio,
+                Guia = resultado.Guia,
+                IdCliente = resultado.IdCliente,
+                IdEstatus = resultado.IdEstatus,
+                IdPaqueteria = resultado.IdPaqueteria,
+                IdTipo = resultado.IdTipo,
+                MontoMXN = resultado.MontoMXN,
+                MontoUSD = resultado.MontoUSD,
+                SaldoMXN = resultado.SaldoMXN,
+                SaldoUSD = resultado.SaldoUSD
+            };
+            return response;
         }
 
         public ProductoResponse cargarProducto(ProductoRequest request) {
@@ -191,7 +248,37 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones {
         }
 
         public ClienteResponse guardarCliente(ClienteRequest request) {
-            throw new NotImplementedException();
+            DataAccess da = new DataAccess {
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
+            };
+            var resultado = da.guardarUsuario(new Usuario {
+                Id = request.IdCliente,
+                Direccion = request.Direccion,
+                ErrorMensaje = string.Empty,
+                ErrorNumero = 0,
+                Foto = request.Foto,
+                IdEstatus = request.IdEstatus,
+                IdRol = request.IdRol,
+                Nombre = request.Nombre,
+                Password = request.Password,
+                Telefono = request.Telefono,
+                UserName = request.UserName,
+                ZonaPaqueteria = request.ZonaPaqueteria
+            });
+            return new ClienteResponse {
+                IdCliente = resultado.Id,
+                Direccion = resultado.Direccion,
+                ErrorMensaje = string.Empty,
+                ErrorNumero = 0,
+                Foto = resultado.Foto,
+                IdEstatus = resultado.IdEstatus,
+                IdRol = resultado.IdRol,
+                Nombre = resultado.Nombre,
+                Password = resultado.Password,
+                Telefono = resultado.Telefono,
+                UserName = resultado.UserName,
+                ZonaPaqueteria = resultado.ZonaPaqueteria
+            };
         }
 
         public DetalleNotaResponse guardarDetalleNota(DetalleNotaRequest request) {
