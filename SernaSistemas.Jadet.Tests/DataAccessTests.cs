@@ -218,11 +218,28 @@ namespace SernaSistemas.Jadet.DataAccess.Tests {
             }
         }
 
-        //[TestMethod()]
-        //public void guardarComentarioTest()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        [TestMethod()]
+        public void guardarComentarioTest() {
+            try {
+                var nota = da.listarNota(new Nota{
+                    Folio = 0,
+                    IdEstatus = 0,
+                    IdTipo = 0
+                }).FirstOrDefault();
+
+                var resultado = da.guardarComentario(new ComentarioNota {
+                    Fecha = DateTime.Today,
+                    Id = 0,
+                    IdNota = nota.Folio,
+                    Comentario = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim."
+                });
+                Console.WriteLine("Id: {0}\nId de nota: {1}\nFecha: {2}\nComentario: {3}\n",
+                    resultado.Id, resultado.IdNota, resultado.Fecha,
+                    resultado.Comentario);
+            } catch (Exception ex) {
+                Assert.Fail(ex.Message);
+            }
+        }
 
         //[TestMethod()]
         //public void guardarTicketTest()
@@ -348,11 +365,10 @@ namespace SernaSistemas.Jadet.DataAccess.Tests {
             }
         }
 
-        //[TestMethod()]
-        //public void listarComentarioTest()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        [TestMethod()]
+        public void listarComentarioTest() {
+            throw new NotImplementedException();
+        }
 
         //[TestMethod()]
         //public void listarTicketTest()

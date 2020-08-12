@@ -458,8 +458,51 @@ namespace SernaSistemas.Jadet.DataAccess {
             }
             return resultado;
         }
-        public void guardarComentario(ComentarioNota comentario) {
-            throw new Exception("No implementado");
+        public ComentarioNota guardarComentario(ComentarioNota comentario) {
+            ComentarioNota resultado = new ComentarioNota();
+            using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
+                using (SqlCommand cmd = new SqlCommand() {
+                    CommandText = "Ventas.guardarComentario",
+                    CommandType = System.Data.CommandType.StoredProcedure,
+                    Connection = conn
+                }) {
+                    cmd.Parameters.Add(new SqlParameter {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = comentario.Id,
+                        ParameterName = "@Id"
+                    });
+                    cmd.Parameters.Add(new SqlParameter {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = comentario.IdNota,
+                        ParameterName = "@IdNota"
+                    });
+                    cmd.Parameters.Add(new SqlParameter {
+                        DbType = System.Data.DbType.String,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = comentario.Comentario,
+                        ParameterName = "@Comentario"
+                    });
+                    cmd.Parameters.Add(new SqlParameter {
+                        DbType = System.Data.DbType.Date,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = comentario.Fecha,
+                        ParameterName = "@Fecha"
+                    });
+                    conn.Open();
+                    var dr = cmd.ExecuteReader();
+                    if (dr.HasRows) {
+                        dr.Read();
+                        resultado.Id = (int)dr["Id"];
+                        resultado.IdNota = (int)dr["IdNota"];
+                        resultado.Comentario = dr["Comentario"].ToString();
+                        resultado.Fecha = (DateTime)dr["Fecha"];
+                    }
+                    conn.Close();
+                }
+            }
+            return resultado;
         }
         public void guardarTicket(TicketNota ticket) {
             throw new Exception("No implementado");
@@ -551,7 +594,7 @@ namespace SernaSistemas.Jadet.DataAccess {
                         resultado.Existencias = (int)dr["Existencias"];
                         resultado.IdCatalogo = (int)dr["IdCatalogo"];
                         resultado.PrecioMXN = (decimal)dr["PrecioMXN"];
-                        resultado.PrecioUSD = (decimal)dr["PrecioMXN"];
+                        resultado.PrecioUSD = (decimal)dr["PrecioUSD"];
                         resultado.SKU = dr["Sku"].ToString();
                     }
                     conn.Close();
@@ -777,11 +820,80 @@ namespace SernaSistemas.Jadet.DataAccess {
             }
             return resultado;
         }
-        public void listarComentario(ComentarioNota comentario) {
-            throw new Exception("No implementado");
+        public List<ComentarioNota> listarComentario(ComentarioNota comentario) {
+            List<ComentarioNota> resultado = new List<ComentarioNota>();
+            using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
+                using (SqlCommand cmd = new SqlCommand() {
+                    CommandText = "Ventas.listarComentarios",
+                    CommandType = System.Data.CommandType.StoredProcedure,
+                    Connection = conn
+                }) {
+                    cmd.Parameters.Add(new SqlParameter {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = comentario.Id,
+                        ParameterName = "@Id"
+                    });
+                    cmd.Parameters.Add(new SqlParameter {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = comentario.IdNota,
+                        ParameterName = "@IdNota"
+                    });
+                    conn.Open();
+                    var dr = cmd.ExecuteReader();
+                    if (dr.HasRows) {
+                        while (dr.Read()) {
+                            resultado.Add(new ComentarioNota {
+                                Id = (int)dr["Id"],
+                                IdNota = (int)dr["IdNota"],
+                                Comentario = dr["Comentario"].ToString(),
+                                Fecha = (DateTime)dr["Fecha"]
+                            });
+                        }
+                    }
+                    conn.Close();
+                }
+            }
+            return resultado;
         }
-        public void listarTicket(TicketNota ticket) {
-            throw new Exception("No implementado");
+        public List<TicketNota> listarTicket(TicketNota ticket) {
+            List<TicketNota> resultado = new List<TicketNota>();
+
+            using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
+                using (SqlCommand cmd = new SqlCommand() {
+                    CommandText = "Ventas.listarTickets",
+                    CommandType = System.Data.CommandType.StoredProcedure,
+                    Connection = conn
+                }) {
+                    cmd.Parameters.Add(new SqlParameter {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = ticket.Id,
+                        ParameterName = "@Id"
+                    });
+                    cmd.Parameters.Add(new SqlParameter {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = ticket.IdNota,
+                        ParameterName = "@IdNota"
+                    });
+                    conn.Open();
+                    var dr = cmd.ExecuteReader();
+                    if (dr.HasRows) {
+                        while (dr.Read()) {
+                            resultado.Add(new TicketNota {
+                                Id = (int)dr["Id"],
+                                IdNota = (int)dr["IdNota"],
+                                Fecha = (DateTime)dr["Fecha"],
+                                Ticket = (dr["Ticket"] == DBNull.Value) ? new byte[0] : (byte[])dr["Ticket"]
+                            });
+                        }
+                    }
+                    conn.Close();
+                }
+            }
+            return resultado;
         }
         public List<Producto> listarProductos(int id) {
             List<Producto> resultado = new List<Producto>();
