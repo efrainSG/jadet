@@ -108,6 +108,9 @@ namespace SernaSistemas.Jadet.WCF.Modelos {
     public class coleccionDetalleNotaResponse : BaseResponse {
         [DataMember]
         public List<DetalleNotaResponse> Items { get; set; }
+        public coleccionDetalleNotaResponse() {
+            Items = new List<DetalleNotaResponse>();
+        }
     }
 
     [DataContract]
@@ -138,6 +141,9 @@ namespace SernaSistemas.Jadet.WCF.Modelos {
     public class coleccionNotaComentarioResponse : BaseResponse {
         [DataMember]
         public List<NotaComentarioResponse> Items { get; set; }
+        public coleccionNotaComentarioResponse() {
+            Items = new List<NotaComentarioResponse>();
+        }
     }
 
     [DataContract]
@@ -168,5 +174,8 @@ namespace SernaSistemas.Jadet.WCF.Modelos {
     public class coleccionNotaTicketResponse : BaseResponse {
         [DataMember]
         public List<NotaTicketResponse> Items { get; set; }
+        public coleccionNotaTicketResponse() {
+            Items = new List<NotaTicketResponse>();
+        }
     }
 }
