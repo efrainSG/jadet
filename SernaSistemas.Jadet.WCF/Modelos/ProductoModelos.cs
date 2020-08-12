@@ -80,5 +80,8 @@ namespace SernaSistemas.Jadet.WCF.Modelos {
     public class coleccionCategoriasResponse : BaseResponse {
         [DataMember]
         public List<categoriaResponse> Items { get; set; }
+        public coleccionCategoriasResponse() {
+            Items = new List<categoriaResponse>();
+        }
     }
 }
