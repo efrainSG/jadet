@@ -49,7 +49,7 @@ namespace SernaSisitemas.Jadet.WCF.Contratos {
         [OperationContract]
         ProductoResponse guardarProducto(ProductoRequest request);
         [OperationContract]
-        BaseResponse bajaProducto(ProductoRequest request);
+        ProductoResponse bajaProducto(ProductoRequest request);
         [OperationContract]
         ProductoResponse cargarProducto(ProductoRequest request);
         [OperationContract]
