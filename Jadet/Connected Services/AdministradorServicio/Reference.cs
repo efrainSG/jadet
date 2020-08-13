@@ -2256,10 +2256,10 @@ namespace Jadet.AdministradorServicio {
         System.Threading.Tasks.Task<Jadet.AdministradorServicio.ProductoResponse> guardarProductoAsync(Jadet.AdministradorServicio.ProductoRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/bajaProducto", ReplyAction="http://tempuri.org/IAdministrador/bajaProductoResponse")]
-        Jadet.AdministradorServicio.BaseResponse bajaProducto(Jadet.AdministradorServicio.ProductoRequest request);
+        Jadet.AdministradorServicio.ProductoResponse bajaProducto(Jadet.AdministradorServicio.ProductoRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/bajaProducto", ReplyAction="http://tempuri.org/IAdministrador/bajaProductoResponse")]
-        System.Threading.Tasks.Task<Jadet.AdministradorServicio.BaseResponse> bajaProductoAsync(Jadet.AdministradorServicio.ProductoRequest request);
+        System.Threading.Tasks.Task<Jadet.AdministradorServicio.ProductoResponse> bajaProductoAsync(Jadet.AdministradorServicio.ProductoRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/cargarProducto", ReplyAction="http://tempuri.org/IAdministrador/cargarProductoResponse")]
         Jadet.AdministradorServicio.ProductoResponse cargarProducto(Jadet.AdministradorServicio.ProductoRequest request);
@@ -2511,11 +2511,11 @@ namespace Jadet.AdministradorServicio {
             return base.Channel.guardarProductoAsync(request);
         }
         
-        public Jadet.AdministradorServicio.BaseResponse bajaProducto(Jadet.AdministradorServicio.ProductoRequest request) {
+        public Jadet.AdministradorServicio.ProductoResponse bajaProducto(Jadet.AdministradorServicio.ProductoRequest request) {
             return base.Channel.bajaProducto(request);
         }
         
-        public System.Threading.Tasks.Task<Jadet.AdministradorServicio.BaseResponse> bajaProductoAsync(Jadet.AdministradorServicio.ProductoRequest request) {
+        public System.Threading.Tasks.Task<Jadet.AdministradorServicio.ProductoResponse> bajaProductoAsync(Jadet.AdministradorServicio.ProductoRequest request) {
             return base.Channel.bajaProductoAsync(request);
         }
         

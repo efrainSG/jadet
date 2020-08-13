@@ -10,6 +10,7 @@ namespace Jadet.Models {
         public string Descripcion { get; set; }
         public int Existencias { get; set; }
         public byte[] Imagen { get; set; }
+        public HttpPostedFile ImgArchivo { get; set; }
         public decimal PrecioMXN { get; set; }
         public decimal PrecioUSD { get; set; }
         public int ErrorNumero { get; set; }
@@ -18,6 +19,8 @@ namespace Jadet.Models {
         public int Id { get; set; }
         public int IdCategoria { get; set; }
         public string Categoria { get; set; }
+        public int IdEstatus { get; set; }
+        public string Estatus { get; set; }
     }
     public class listaproductosmodel {
         public List<productomodel> Items { get; set; }

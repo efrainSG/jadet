@@ -166,10 +166,9 @@
             $("#modalHdr").text("Editar producto");
             $bodyModal.empty();
             $bodyModal.append(
-                '<form action="/Administrador/guardarProducto" method="post" id="frmProducto">' +
+                '<form action="/Administrador/guardarProducto" method="post" id="frmProducto" enctype="multipart/form-data">' +
                 '  <input type="hidden" id="txtId" value="" name="Id" />' +
                 '  <div class= "row" > ' +
-
                 '    <div class="col-sm-2">SKU</div >' +
                 '    <div class= "col-sm-4">' +
                 '      <input type = "text" id = "txtsku" class= "form-control" name="Sku" />' +
@@ -179,16 +178,13 @@
                 '    <div class= "col-sm-4">' +
                 '      <select id = "selIdCategoria" name="IdCategoria" class= "form-control"></select>' +
                 '    </div>' +
-
                 '  </div>' +
 
                 '  <div class= "row">' +
-
                 '    <div class= "col-sm-2">Producto</div>' +
                 '    <div class="col-sm-10">' +
                 '      <input type="text" id="txtproducto" name="Nombre" class="form-control" />' +
                 '    </div>' +
-
                 '  </div>' +
 
                 '  <div class="row">' +
@@ -197,11 +193,16 @@
                 '    <div class="col-sm-10">' +
                 '      <textarea id="Descripcion" name="Descripcion" rows="4" cols="50" class="form-control"></textarea>' +
                 '    </div>' +
+                '  </div>' +
 
+                '  <div class= "row">' +
+                '    <div class= "col-sm-2">Estátus</div>' +
+                '    <div class="col-sm-10">' +
+                '      <select id = "selIdEstatus" name="IdEstatus" class= "form-control"></select>' +
+                '    </div>' +
                 '  </div>' +
 
                 '  <div class="row">' +
-
                 '    <div class="col-sm-2">Precio MXN.</div>' +
                 '    <div class="col-sm-4">' +
                 '      <input type="text" id="txtPrecioMXN" name="PrecioMXN" class="form-control" />' +
@@ -233,12 +234,8 @@
                 '  <div class="row">' +
 
                 '    <div class="col-sm-2">Foto</div>' +
-                '      <div class="col-sm-8">' +
-                '        <input type="text" id="txtruta" class="form-control" />' +
-                '      </div>' +
-
-                '      <div class="col-sm-2">' +
-                '        <a href="#" class="btn btn-sm btn-success"><i class="fa fa-lg fa-cloud-upload"></i></a>' +
+                '      <div class="col-sm-10">' +
+                '        <input type="file" id="ImgArchivo" name="ImgArchivo" class="form-control" />' +
                 '      </div>' +
 
                 '    </div>' +
@@ -255,6 +252,18 @@
                     opcion += 'selected="selected"';
                 opcion += '>' + categorias[i].nombre + '</option> ';
                 $categoria.append(opcion);
+
+            }
+
+            var $estatus = $("#selIdEstatus");
+            var opcion1 = "";
+            var $estatusProd = $.grep(estatus, function (o) { return o.Tipo == 2; });
+            for (i = 0; i < $estatusProd.length; i++) {
+                opcion1 = '<option value="' + $estatusProd[i].id + '" ';
+                //if ($($componentes[9]).text() == estatus[i].nombre)
+                //    opcion1 += 'selected="selected"';
+                opcion1 += '>' + $estatusProd[i].nombre + '</option> ';
+                $estatus.append(opcion1);
 
             }
 
@@ -311,9 +320,19 @@
     //realiza el guardado de los datos de producto mediante POST.
     $("#btnGuardar").off()
         .on("click", function () {
-            $.post(
-                "/Administrador/guardarProducto",
-                $("#frmProducto").serialize())
+            debugger;
+            var formData = new FormData($("#frmProducto")[0]);
+            var archivoLoad = $("#ImgArchivo").get(0);
+            var archivo = archivoLoad.files;
+
+            formData.append("imgArch", archivo);
+            $.post({
+                url: '/Administrador/guardarProducto',
+                data: formData,
+                dataType: 'json',
+                contentType: false,
+                processData: false
+            })
                 .done(function (data) {
                     console.log(data);
                     if (data.respuesta.ErrorNumero == 0)
@@ -340,7 +359,9 @@
                 '  <input type="hidden" id="txtIdRol" value="" name="IdRol" />' +
                 '  <div class= "row" > ' +
                 '    <div class="col-sm-3">Usuario: </div>' +
-                '    <div class="col-sm-9"><input type="text" class="form-control" id="txtUsuario" name="usuario" /></div>' +
+                '    <div class="col-sm-3"><input type="text" class="form-control" id="txtUsuario" name="usuario" /></div>' +
+                '    <div class="col-sm-3">Contraseña: </div>' +
+                '    <div class="col-sm-3"><input type="password" class="form-control" id="txtPasswd" name="Password" /></div>' +
                 '  </div>' +
                 '  <div class= "row" > ' +
                 '    <div class="col-sm-3">Nombre: </div>' +
@@ -397,7 +418,9 @@
                 '  <input type="hidden" id="txtIdRol" value="" name="IdRol" />' +
                 '  <div class= "row" > ' +
                 '    <div class="col-sm-3">Usuario: </div>' +
-                '    <div class="col-sm-9"><input type="text" class="form-control" id="txtUsuario" name="usuario" /></div>' +
+                '    <div class="col-sm-3"><input type="text" class="form-control" id="txtUsuario" name="usuario" /></div>' +
+                '    <div class="col-sm-3">Contraseña: </div>' +
+                '    <div class="col-sm-3"><input type="password" class="form-control" id="txtPasswd" name="Password" /></div>' +
                 '  </div>' +
                 '  <div class= "row" > ' +
                 '    <div class="col-sm-3">Nombre: </div>' +

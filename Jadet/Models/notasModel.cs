@@ -38,9 +38,12 @@ namespace Jadet.Models {
         public int Id { get; set; }
         public int IdNota { get; set; }
         public int IdProducto { get; set; }
+        public string Producto { get; set; }
         public int Cantidad { get; set; }
         public decimal PrecioMXN { get; set; }
         public decimal PrecioUSD { get; set; }
+        public decimal MontoMXN { get { return Cantidad * PrecioMXN; } }
+        public decimal MontoUSD { get { return Cantidad * PrecioUSD; } }
     }
 
     public class comentarioModel {

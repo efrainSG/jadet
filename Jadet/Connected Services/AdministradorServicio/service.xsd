@@ -263,7 +263,7 @@
   <xs:element name="bajaProductoResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="bajaProductoResult" nillable="true" type="q38:BaseResponse" />
+        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="bajaProductoResult" nillable="true" type="q38:ProductoResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

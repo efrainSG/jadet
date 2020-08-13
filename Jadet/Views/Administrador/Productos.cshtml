@@ -30,11 +30,10 @@
     <tbody>
         @foreach (var item in Model.Items) {
             <tr>
-                <td>@item.Id</td>
+                <td class="bg-secondary">@item.Id</td>
                 <td>@item.Sku</td>
-                @*<td><img src="@item.RutaImagen" width="50px"</td>*@
                 <td>@item.Nombre</td>
-                <td></td>
+                <td><img src="~/Content/productos/@(System.Text.Encoding.UTF8.GetString(item.Imagen))" width="50px" /></td>
                 <td>@item.Descripcion</td>
                 <td>@item.PrecioMXN</td>
                 <td>@item.PrecioUSD</td>

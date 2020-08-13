@@ -2,6 +2,7 @@
 using Jadet.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -169,7 +170,8 @@ namespace Jadet.Controllers {
             var responseClientes = servicio.listarClientes(new ClienteRequest { IdCliente = new Guid(), IdRol = 2 });
             var responseTipos = servicio.listarCatalogo(new CatalogoRequest { Id = 0, IdTipoCatalogo = 0 });
             var responseEstatus = servicio.listarEstatus(new EstatusRequest { Id = 0, IdTipoEstatus = 0 });
-            var responseItems = servicio.listarDetalleNota(new DetalleNotaRequest {IdNota = folio });
+            var responseItems = servicio.listarDetalleNota(new DetalleNotaRequest { IdNota = folio });
+            var productos = servicio.listarProductos(new ProductoRequest { Id = 0 });
             model = new notacompletaModel {
                 Fecha = response.Fecha,
                 FechaEnvio = response.FechaEnvio,
@@ -188,11 +190,12 @@ namespace Jadet.Controllers {
                 SaldoMXN = response.SaldoMXN,
                 SaldoUSD = response.SaldoUSD
             };
-            model.Items.AddRange(responseItems.Items.Select(i => new detallenotaModel { 
+            model.Items.AddRange(responseItems.Items.Select(i => new detallenotaModel {
                 Cantidad = i.Cantidad,
                 Id = i.Id,
                 IdNota = i.IdNota,
                 IdProducto = i.IdProducto,
+                Producto = productos.Items.FirstOrDefault(p => p.Id == i.IdProducto).Nombre,
                 PrecioMXN = i.PrecioMXN,
                 PrecioUSD = i.PrecioUSD
             }));
@@ -201,12 +204,18 @@ namespace Jadet.Controllers {
         }
 
         [HttpPost]
-        public JsonResult guardarProducto(productomodel model) {
+        public JsonResult guardarProducto(productomodel model, HttpPostedFileBase imgArch) {
             if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
                 Session.Clear();
                 return Json(new { respuesta = new ProductoResponse() }, JsonRequestBehavior.AllowGet);
             } else {
                 var servicio = new AdministradorClient();
+                var archivo = Request.Files[0];
+                if (archivo != null && archivo.ContentLength > 0) {
+                    string _nomArch = Path.GetFileName(archivo.FileName);
+                    string _ruta = Path.Combine(Server.MapPath("~/Content/productos"), _nomArch);
+                    archivo.SaveAs(_ruta);
+                }
                 var response = servicio.guardarProducto(new ProductoRequest {
                     AplicaExistencias = model.AplicaExistencias,
                     Descripcion = model.Descripcion,
@@ -215,8 +224,9 @@ namespace Jadet.Controllers {
                     IdCategoria = model.IdCategoria,
                     Nombre = model.Nombre,
                     PrecioMXN = model.PrecioMXN,
+                    IdEstatus = model.IdEstatus,
                     PrecioUSD = model.PrecioUSD,
-                    Foto = Encoding.UTF8.GetBytes(model.Nombre),
+                    Foto = Encoding.UTF8.GetBytes(archivo.FileName),
                     SKU = model.Sku
                 });
                 return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
@@ -328,7 +338,7 @@ namespace Jadet.Controllers {
                     Direccion = model.Direccion,
                     IdCliente = model.IdCliente,
                     IdEstatus = model.IdEstatus,
-                    IdRol = model.IdRol,
+                    IdRol = (model.IdRol != 0) ? model.IdRol : 2,
                     Nombre = model.Nombre,
                     Password = Encoding.UTF8.GetBytes(model.password ?? string.Empty),
                     Telefono = model.Telefono,
