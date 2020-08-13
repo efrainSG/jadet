@@ -240,7 +240,7 @@ namespace Jadet.Controllers {
                 return Json(new ProductoResponse(), JsonRequestBehavior.AllowGet);
             } else {
                 var servicio = new AdministradorClient();
-                var response = servicio.guardarProducto(new ProductoRequest {
+                var response = servicio.bajaProducto(new ProductoRequest {
                     AplicaExistencias = model.AplicaExistencias,
                     Descripcion = model.Descripcion,
                     Existencias = model.Existencias,

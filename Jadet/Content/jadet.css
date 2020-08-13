@@ -1,7 +1,7 @@
 ﻿.btn-warning-jadet {
     background-color: #ffb3f3;
     border-color: #ffb3f3;
-    color:#fff;
+    color: #fff;
 }
 
 .btn-danger-jadet {
@@ -20,4 +20,25 @@
     background-color: #8000ff;
     border-color: #8000ff;
     color: #fff;
+}
+
+dl.dl-jadet {
+    width: 100%;
+    overflow: hidden;
+    background-color: #fffe;
+    padding: 0;
+    margin: 0;
+}
+
+dt.dt-jadet {
+    float: left;
+    clear: left;
+    background-color: #fff;
+    padding: 0;
+    margin: 0;
+    width: 150px;
+}
+
+dd.dd-jadet {
+    background-color: #fff;
 }
