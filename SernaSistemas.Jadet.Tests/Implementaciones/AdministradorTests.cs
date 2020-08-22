@@ -32,9 +32,46 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones.Tests {
 
         [TestMethod()]
         public void bajaClienteTest() {
-            var icliente = servicio.listarClientes(new ClienteRequest()).Items.Where(i => i.Nombre.Contains("prueba")).FirstOrDefault();
-            var response = servicio.bajaCliente(new ClienteRequest { IdCliente = icliente.IdCliente });
-            Console.WriteLine("{0}\n{1}\n", response.ErrorNumero, response.ErrorMensaje);
+            try {
+                var icliente = servicio.listarClientes(new ClienteRequest()).Items.Where(i => i.Nombre.Contains("prueba")).FirstOrDefault();
+                var response = servicio.bajaCliente(new ClienteRequest { IdCliente = icliente.IdCliente });
+                Console.WriteLine("{0}\n{1}\n", response.ErrorNumero, response.ErrorMensaje);
+            } catch (Exception ex) {
+                Assert.Fail(ex.Message);
+            }
+        }
+
+        [TestMethod()]
+        public void bajaComentarioNotaTest() {
+            try {
+                var icomentario = servicio.listarComentarioNota(new NotaComentarioRequest()).Items.OrderByDescending(i => i.Id).FirstOrDefault();
+                var response = servicio.bajaComentarioNota(new NotaComentarioRequest { Id = icomentario.Id });
+                Console.WriteLine("{0}\n{1}\n", response.ErrorNumero, response.ErrorMensaje);
+            } catch (Exception ex) {
+                Assert.Fail(ex.Message);
+            }
+        }
+
+        [TestMethod()]
+        public void bajaDetalleNotaTest() {
+            try {
+                var idetalle = servicio.listarDetalleNota(new DetalleNotaRequest()).Items.OrderByDescending(i => i.Id).FirstOrDefault();
+                var response = servicio.bajaDetalleNota(new DetalleNotaRequest { Id = idetalle.Id });
+                Console.WriteLine("{0}\n{1}\n", response.ErrorNumero, response.ErrorMensaje);
+            } catch (Exception ex) {
+                Assert.Fail(ex.Message);
+            }
+        }
+
+        [TestMethod()]
+        public void bajaTicketNotaTest() {
+            try {
+                var iticket = servicio.listarTicketNota(new NotaTicketRequest()).Items.OrderByDescending(i => i.Id).FirstOrDefault();
+                var response = servicio.bajaTicketNota(new NotaTicketRequest { Id = iticket.Id });
+                Console.WriteLine("{0}\n{1}\n", response.ErrorNumero, response.ErrorMensaje);
+            } catch (Exception ex) {
+                Assert.Fail(ex.Message);
+            }
         }
 
         [TestMethod()]
@@ -120,7 +157,44 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones.Tests {
             } catch (Exception ex) {
                 Assert.Fail(ex.Message);
             }
+        }
 
+        [TestMethod()]
+        public void cargarComentarioNotaTest() {
+            try {
+                var response = servicio.cargarComentarioNota(new NotaComentarioRequest {
+                    Id = 1
+                });
+                Console.WriteLine("Id: {0}\nId de nota: {1}\nFecha: {2}\nComentario: {3}\nError número: {4}\nMensaje de error: {5}\n",
+                    response.Id,
+                    response.IdNota,
+                    response.Fecha,
+                    response.Comentario,
+                    response.ErrorNumero,
+                    response.ErrorMensaje);
+            } catch (Exception ex) {
+                Assert.Fail(ex.Message);
+            }
+        }
+
+        [TestMethod()]
+        public void cargarDetalleNotaTest() {
+            try {
+                var response = servicio.cargarDetalleNota(new DetalleNotaRequest {
+                    Id = 1
+                });
+                Console.WriteLine("Id: {0}\nId de nota: {1}\nId de producto: {2}\nPrecio MXN: {3}\nPrecio USD: {4}\nCantidad: {5}\nError número: {6}\nMensaje de error: {7}\n",
+                    response.Id,
+                    response.IdNota,
+                    response.IdProducto,
+                    response.PrecioMXN,
+                    response.PrecioUSD,
+                    response.Cantidad,
+                    response.ErrorNumero,
+                    response.ErrorMensaje);
+            } catch (Exception ex) {
+                Assert.Fail(ex.Message);
+            }
         }
 
         [TestMethod()]
@@ -177,6 +251,25 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones.Tests {
                     response.Foto,
                     response.PrecioMXN,
                     response.PrecioUSD
+                    );
+            } catch (Exception ex) {
+                Assert.Fail(ex.Message);
+            }
+        }
+
+        [TestMethod()]
+        public void cargarTicketNotaTest() {
+            try {
+                var item = servicio.listarTicketNota(new NotaTicketRequest()).Items.OrderByDescending(i => i.Id).FirstOrDefault();
+                var response = servicio.cargarTicketNota(new NotaTicketRequest {
+                    Id = item.Id
+                });
+                Console.WriteLine("Id: {0}\nId de nota: {1}\nTicket: {2}\nError número: {3}\nMensaje de error: {4}\n",
+                    response.Id,
+                    response.IdNota,
+                    Encoding.UTF8.GetString(response.Ticket),
+                    response.ErrorNumero,
+                    response.ErrorMensaje
                     );
             } catch (Exception ex) {
                 Assert.Fail(ex.Message);
@@ -250,6 +343,57 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones.Tests {
                     responseNuevo.ZonaPaqueteria,
                     responseNuevo.UserName,
                     Encoding.UTF8.GetString(responseNuevo.Password)
+                    );
+            } catch (Exception ex) {
+                Assert.Fail(ex.Message);
+            }
+        }
+
+        [TestMethod()]
+        public void guardarNuevoComentarioNotaTest() {
+            try {
+                var nota = servicio.listarNotas(new NotaRequest()).Items.FirstOrDefault();
+                var responseNuevo = servicio.guardarComentarioNota(new NotaComentarioRequest {
+                    Id = 0,
+                    IdNota = nota.Folio,
+                    Comentario = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+                    Fecha = DateTime.Today
+                });
+                Console.WriteLine("Id: {0}\nId de nota: {1}\nFecha: {2}\nComentario: {3}\nError número: {4}\nMensaje de error: {5}\n",
+                    responseNuevo.Id,
+                    responseNuevo.IdNota,
+                    responseNuevo.Fecha,
+                    responseNuevo.Comentario,
+                    responseNuevo.ErrorNumero,
+                    responseNuevo.ErrorMensaje
+                    );
+            } catch (Exception ex) {
+                Assert.Fail(ex.Message);
+            }
+        }
+
+        [TestMethod()]
+        public void guardarNuevoDetalleNotaTest() {
+            try {
+                var nota = servicio.listarNotas(new NotaRequest()).Items.FirstOrDefault();
+                var producto = servicio.listarProductos(new ProductoRequest()).Items.FirstOrDefault();
+                var responseNuevo = servicio.guardarDetalleNota(new DetalleNotaRequest {
+                    Id = 0,
+                    IdNota = nota.Folio,
+                    Cantidad = 10,
+                    IdProducto = producto.Id,
+                    PrecioMXN = producto.PrecioMXN,
+                    PrecioUSD = producto.PrecioUSD
+                });
+                Console.WriteLine("Id: {0}\nId de nota: {1}\nId de producto: {2}\nCantidad: {3}\nPrecio MXN: {4}\nPrecio USD: {5}\nError número: {6}\nMensaje de error: {7}\n",
+                    responseNuevo.Id,
+                    responseNuevo.IdNota,
+                    responseNuevo.IdProducto,
+                    responseNuevo.Cantidad,
+                    responseNuevo.PrecioMXN,
+                    responseNuevo.PrecioUSD,
+                    responseNuevo.ErrorNumero,
+                    responseNuevo.ErrorMensaje
                     );
             } catch (Exception ex) {
                 Assert.Fail(ex.Message);
@@ -378,6 +522,56 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones.Tests {
                     response.ZonaPaqueteria,
                     response.UserName,
                     Encoding.UTF8.GetString(response.Password)
+                    );
+            } catch (Exception ex) {
+                Assert.Fail(ex.Message);
+            }
+        }
+
+        [TestMethod()]
+        public void guardarComentarioNotaTest() {
+            try {
+                var comentario = servicio.listarComentarioNota(new NotaComentarioRequest()).Items.FirstOrDefault();
+                var response = servicio.guardarComentarioNota(new NotaComentarioRequest {
+                    Id = 0,
+                    IdNota = comentario.IdNota,
+                    Comentario = string.Format("Editado: {0}",comentario.Comentario).Substring(0,200),
+                    Fecha = DateTime.Today
+                });
+                Console.WriteLine("Id: {0}\nId de nota: {1}\nComentario: {2}\nfecha: {3}\nError número: {4}\nMensaje de error: {5}\n",
+                    response.Id,
+                    response.IdNota,
+                    response.Comentario,
+                    response.Fecha,
+                    response.ErrorNumero,
+                    response.ErrorMensaje
+                    );
+            } catch (Exception ex) {
+                Assert.Fail(ex.Message);
+            }
+        }
+
+        [TestMethod()]
+        public void guardarDetalleNotaTest() {
+            try {
+                var detalle = servicio.listarDetalleNota(new DetalleNotaRequest()).Items.FirstOrDefault();
+                var response = servicio.guardarDetalleNota(new DetalleNotaRequest {
+                    Id = detalle.Id,
+                    IdNota = detalle.IdNota,
+                    Cantidad = 19,
+                    IdProducto = detalle.IdProducto,
+                    PrecioMXN = detalle.PrecioMXN * 1.16m,
+                    PrecioUSD = detalle.PrecioUSD * 1.16m
+                });
+                Console.WriteLine("Id: {0}\nId de nota: {1}\nId de producto: {2}\nCantidad: {3}\nPrecio MXN: {4}\nPrecio USD: {5}\nError número: {6}\nMensaje de error: {7}\n",
+                    response.Id,
+                    response.IdNota,
+                    response.IdProducto,
+                    response.Cantidad,
+                    response.PrecioMXN,
+                    response.PrecioUSD,
+                    response.ErrorNumero,
+                    response.ErrorMensaje
                     );
             } catch (Exception ex) {
                 Assert.Fail(ex.Message);
@@ -584,6 +778,46 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones.Tests {
         }
 
         [TestMethod()]
+        public void listarComentarioNotaTest() {
+            try {
+                var response = servicio.listarComentarioNota(new NotaComentarioRequest {
+                    Id = 0
+                });
+                foreach (var item in response.Items)
+                    Console.WriteLine("Id: {0}\nId de nota: {1}\nComentario: {2}\nFecha: {3}\nError número: {4}\nMensaje de error: {5}\n----------------------------\n",
+                        item.Id,
+                        item.IdNota,
+                        item.Comentario,
+                        item.Fecha,
+                        item.ErrorNumero,
+                        item.ErrorMensaje);
+            } catch (Exception ex) {
+                Assert.Fail(ex.Message);
+            }
+        }
+
+        [TestMethod()]
+        public void listarDetalleNotaTest() {
+            try {
+                var response = servicio.listarDetalleNota(new DetalleNotaRequest {
+                    Id = 0
+                });
+                foreach (var item in response.Items)
+                    Console.WriteLine("Id: {0}\nId de nota: {1}\nId de producto: {2}\nCantidad: {3}\nPrecio MXN: {4}\nPrecio USD:{5}\nError número: {6}\nMensaje de error: {7}\n----------------------------\n",
+                        item.Id,
+                        item.IdNota,
+                        item.IdProducto,
+                        item.Cantidad,
+                        item.PrecioMXN,
+                        item.PrecioUSD,
+                        item.ErrorNumero,
+                        item.ErrorMensaje);
+            } catch (Exception ex) {
+                Assert.Fail(ex.Message);
+            }
+        }
+
+        [TestMethod()]
         public void listarTipoEstatusTest() {
             try {
                 var response = servicio.listarTipoEstatus(new TipoEstatusRequest {
@@ -594,16 +828,6 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones.Tests {
             } catch (Exception ex) {
                 Assert.Fail(ex.Message);
             }
-        }
-
-        [TestMethod()]
-        public void guardarDetalleNotaTest() {
-
-        }
-
-        [TestMethod()]
-        public void listarDetalleNotaTest() {
-
         }
 
         //[TestMethod()]

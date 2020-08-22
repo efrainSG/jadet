@@ -367,7 +367,19 @@ namespace SernaSistemas.Jadet.DataAccess.Tests {
 
         [TestMethod()]
         public void listarComentarioTest() {
-            throw new NotImplementedException();
+            try {
+                var resultado = da.listarComentario(new ComentarioNota {
+                    IdNota = 0
+                });
+                Console.WriteLine("--------------- comentarios ---------------");
+                foreach (var item in resultado) {
+                    Console.WriteLine("Id: {0}\nFecha: {1}\nFolio de nota: {2}\nComentario: {3}\n",
+                        item.Id, item.Fecha, item.IdNota,
+                        item.Comentario);
+                }
+            } catch (Exception ex) {
+                Assert.Fail(ex.Message);
+            }
         }
 
         //[TestMethod()]
