@@ -198,6 +198,7 @@ begin
 	end;
 	else
 	begin
+		set @Id = NEWID();
 		insert into Seguridad.Usuario (	Id, Nombre, Direccion, Telefono, Foto, Usuario,
 										Passwd, IdRol, ZonaPaqueteria, IdEstatus)
 		values (@Id, @Nombre, @Direccion, @Telefono, @Foto, @Usuario,

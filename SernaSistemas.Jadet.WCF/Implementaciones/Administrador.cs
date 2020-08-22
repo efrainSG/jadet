@@ -33,6 +33,17 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones {
             };
         }
 
+        public NotaComentarioResponse bajaComentarioNota(NotaComentarioRequest request) {
+            DataAccess da = new DataAccess {
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
+            };
+            var resultado = da.borrarComentario(request.Id);
+            return new NotaComentarioResponse {
+                ErrorMensaje = resultado.ErrorMensaje,
+                ErrorNumero = resultado.ErrorNumero
+            };
+        }
+
         public DetalleNotaResponse bajaDetalleNota(DetalleNotaRequest request) {
             DataAccess da = new DataAccess {
                 CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
@@ -72,6 +83,17 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones {
             };
             var resultado = da.borrarProducto(request.Id);
             return new ProductoResponse {
+                ErrorMensaje = resultado.ErrorMensaje,
+                ErrorNumero = resultado.ErrorNumero
+            };
+        }
+
+        public NotaTicketResponse bajaTicketNota(NotaTicketRequest request) {
+            DataAccess da = new DataAccess {
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
+            };
+            var resultado = da.borrarTicket(request.Id);
+            return new NotaTicketResponse {
                 ErrorMensaje = resultado.ErrorMensaje,
                 ErrorNumero = resultado.ErrorNumero
             };
@@ -118,6 +140,23 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones {
                 Telefono = resultado.Telefono,
                 UserName = resultado.UserName,
                 ZonaPaqueteria = resultado.ZonaPaqueteria
+            };
+            return response;
+        }
+
+        public NotaComentarioResponse cargarComentarioNota(NotaComentarioRequest request) {
+            NotaComentarioResponse response;
+            DataAccess da = new DataAccess {
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
+            };
+            var resultado = da.listarComentario(new ComentarioNota { Id = request.Id, IdNota = request.IdNota, Comentario = request.Comentario, Fecha = request.Fecha }).FirstOrDefault();
+            response = new NotaComentarioResponse {
+                ErrorMensaje = string.Empty,
+                ErrorNumero = 0,
+                IdNota = resultado.IdNota,
+                Id = resultado.Id,
+                Comentario = resultado.Comentario,
+                Fecha = resultado.Fecha
             };
             return response;
         }
@@ -208,6 +247,23 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones {
             return response;
         }
 
+        public NotaTicketResponse cargarTicketNota(NotaTicketRequest request) {
+            NotaTicketResponse response;
+            DataAccess da = new DataAccess {
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
+            };
+            var resultado = da.listarTicket(new TicketNota { Id = request.Id }).FirstOrDefault();
+            response = new NotaTicketResponse {
+                ErrorMensaje = string.Empty,
+                ErrorNumero = 0,
+                IdNota = resultado.IdNota,
+                Id = resultado.Id,
+                Fecha = resultado.Fecha,
+                Ticket = resultado.Ticket
+            };
+            return response;
+        }
+
         public TipoEstatusResponse cargarTipoEstatus(TipoEstatusRequest request) {
             DataAccess da = new DataAccess {
                 CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
@@ -278,6 +334,26 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones {
                 Telefono = resultado.Telefono,
                 UserName = resultado.UserName,
                 ZonaPaqueteria = resultado.ZonaPaqueteria
+            };
+        }
+
+        public NotaComentarioResponse guardarComentarioNota(NotaComentarioRequest request) {
+            DataAccess da = new DataAccess {
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
+            };
+            var resultado = da.guardarComentario(new ComentarioNota {
+                Id = request.Id,
+                Comentario = request.Comentario,
+                Fecha = request.Fecha,
+                IdNota = request.IdNota
+            });
+            return new NotaComentarioResponse {
+                Id = resultado.Id,
+                Comentario = resultado.Comentario,
+                Fecha = resultado.Fecha,
+                IdNota = resultado.IdNota,
+                ErrorMensaje = string.Empty,
+                ErrorNumero = 0
             };
         }
 
@@ -392,6 +468,10 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones {
 
         }
 
+        public NotaTicketResponse guardarTicketNota(NotaTicketRequest request) {
+            throw new NotImplementedException();
+        }
+
         public ColeccionCatalogoResponse listarCatalogo(CatalogoRequest request) {
             ColeccionCatalogoResponse response = new ColeccionCatalogoResponse();
             DataAccess da = new DataAccess {
@@ -436,6 +516,27 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones {
                     ZonaPaqueteria = i.ZonaPaqueteria
                 }
                 ));
+            return response;
+        }
+
+        public coleccionNotaComentarioResponse listarComentarioNota(NotaComentarioRequest request) {
+            coleccionNotaComentarioResponse response = new coleccionNotaComentarioResponse();
+            DataAccess da = new DataAccess {
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
+            };
+            var resultado = da.listarComentario(new ComentarioNota { 
+                Id = request.Id,
+                IdNota = request.IdNota
+            });
+            response.Items.AddRange(
+                resultado.Select(i => new NotaComentarioResponse {
+                    Id = i.Id,
+                    IdNota = i.IdNota,
+                    ErrorMensaje = string.Empty,
+                    ErrorNumero = 0,
+                    Comentario = i.Comentario,
+                    Fecha = i.Fecha
+                }));
             return response;
         }
 
@@ -522,6 +623,10 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones {
                 }
                 ));
             return response;
+        }
+
+        public coleccionNotaTicketResponse listarTicketNota(NotaTicketRequest request) {
+            throw new NotImplementedException();
         }
 
         public ColeccionTipoCatalogoResponse listarTipoCatalogo(TipoCatalogoRequest request) {

@@ -73,6 +73,23 @@ namespace SernaSisitemas.Jadet.WCF.Contratos {
         [OperationContract]
         DetalleNotaResponse bajaDetalleNota(DetalleNotaRequest request);
 
+        [OperationContract]
+        NotaComentarioResponse guardarComentarioNota(NotaComentarioRequest request);
+        [OperationContract]
+        coleccionNotaComentarioResponse listarComentarioNota(NotaComentarioRequest request);
+        [OperationContract]
+        NotaComentarioResponse cargarComentarioNota(NotaComentarioRequest request);
+        [OperationContract]
+        NotaComentarioResponse bajaComentarioNota(NotaComentarioRequest request);
+
+        [OperationContract]
+        NotaTicketResponse guardarTicketNota(NotaTicketRequest request);
+        [OperationContract]
+        coleccionNotaTicketResponse listarTicketNota(NotaTicketRequest request);
+        [OperationContract]
+        NotaTicketResponse cargarTicketNota(NotaTicketRequest request);
+        [OperationContract]
+        NotaTicketResponse bajaTicketNota(NotaTicketRequest request);
 
         [OperationContract]
         GuiaResponse generarGuias(GuiaRequest request);
