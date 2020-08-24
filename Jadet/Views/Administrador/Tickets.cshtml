@@ -1,0 +1,34 @@
+﻿@model Jadet.Models.listaticketsmodel
+
+@{
+    ViewBag.Title = "Clientes";
+    Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+<table class="table table-active table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nota</th>
+            <th>Ticket</th>
+            <th>Fecha</th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model.Items)
+        {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.IdNota</td>
+            <td>@item.Ticket</td>
+            <td>@item.Fecha</td>
+            <td>
+                <!-->a href="#" class="btn btn-warning-jadet" data-content="@item.IdCliente" id="btneditarCliente"><i class="fa fa-lg fa-edit"></i></a-->
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

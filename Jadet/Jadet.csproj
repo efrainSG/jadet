@@ -209,6 +209,18 @@
     <Content Include="Connected Services\AdministradorServicio\Jadet.AdministradorServicio.DetalleNotaResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\AdministradorServicio\Jadet.AdministradorServicio.coleccionNotaComentarioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\AdministradorServicio\Jadet.AdministradorServicio.coleccionNotaTicketResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\AdministradorServicio\Jadet.AdministradorServicio.NotaComentarioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\AdministradorServicio\Jadet.AdministradorServicio.NotaTicketResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\AdministradorServicio\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -442,6 +454,8 @@
     <Content Include="Views\Cliente\Preventa.cshtml" />
     <Content Include="Views\Administrador\Configuracion.cshtml" />
     <Content Include="Views\Administrador\DetalleNota.cshtml" />
+    <Content Include="Views\Administrador\Comentarios.cshtml" />
+    <Content Include="Views\Administrador\Tickets.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

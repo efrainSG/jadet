@@ -67,4 +67,18 @@ namespace Jadet.Models {
         }
     }
 
+    public class listacomentariosModel {
+        public List<comentarioModel> Items { get; set; }
+        public listacomentariosModel() {
+            Items = new List<comentarioModel>();
+        }
+    }
+
+    public class listaticketsmodel {
+        public List<ticketModel> Items { get; set; }
+        public listaticketsmodel() {
+            Items = new List<ticketModel>();
+        }
+    }
+
 }

@@ -181,6 +181,54 @@
   <wsdl:message name="IAdministrador_bajaDetalleNota_OutputMessage">
     <wsdl:part name="parameters" element="tns:bajaDetalleNotaResponse" />
   </wsdl:message>
+  <wsdl:message name="IAdministrador_guardarComentarioNota_InputMessage">
+    <wsdl:part name="parameters" element="tns:guardarComentarioNota" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_guardarComentarioNota_OutputMessage">
+    <wsdl:part name="parameters" element="tns:guardarComentarioNotaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_listarComentarioNota_InputMessage">
+    <wsdl:part name="parameters" element="tns:listarComentarioNota" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_listarComentarioNota_OutputMessage">
+    <wsdl:part name="parameters" element="tns:listarComentarioNotaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_cargarComentarioNota_InputMessage">
+    <wsdl:part name="parameters" element="tns:cargarComentarioNota" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_cargarComentarioNota_OutputMessage">
+    <wsdl:part name="parameters" element="tns:cargarComentarioNotaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_bajaComentarioNota_InputMessage">
+    <wsdl:part name="parameters" element="tns:bajaComentarioNota" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_bajaComentarioNota_OutputMessage">
+    <wsdl:part name="parameters" element="tns:bajaComentarioNotaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_guardarTicketNota_InputMessage">
+    <wsdl:part name="parameters" element="tns:guardarTicketNota" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_guardarTicketNota_OutputMessage">
+    <wsdl:part name="parameters" element="tns:guardarTicketNotaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_listarTicketNota_InputMessage">
+    <wsdl:part name="parameters" element="tns:listarTicketNota" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_listarTicketNota_OutputMessage">
+    <wsdl:part name="parameters" element="tns:listarTicketNotaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_cargarTicketNota_InputMessage">
+    <wsdl:part name="parameters" element="tns:cargarTicketNota" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_cargarTicketNota_OutputMessage">
+    <wsdl:part name="parameters" element="tns:cargarTicketNotaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_bajaTicketNota_InputMessage">
+    <wsdl:part name="parameters" element="tns:bajaTicketNota" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_bajaTicketNota_OutputMessage">
+    <wsdl:part name="parameters" element="tns:bajaTicketNotaResponse" />
+  </wsdl:message>
   <wsdl:message name="IAdministrador_generarGuias_InputMessage">
     <wsdl:part name="parameters" element="tns:generarGuias" />
   </wsdl:message>
@@ -315,6 +363,38 @@
     <wsdl:operation name="bajaDetalleNota">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/bajaDetalleNota" message="tns:IAdministrador_bajaDetalleNota_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/bajaDetalleNotaResponse" message="tns:IAdministrador_bajaDetalleNota_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="guardarComentarioNota">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/guardarComentarioNota" message="tns:IAdministrador_guardarComentarioNota_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/guardarComentarioNotaResponse" message="tns:IAdministrador_guardarComentarioNota_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="listarComentarioNota">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/listarComentarioNota" message="tns:IAdministrador_listarComentarioNota_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/listarComentarioNotaResponse" message="tns:IAdministrador_listarComentarioNota_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="cargarComentarioNota">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/cargarComentarioNota" message="tns:IAdministrador_cargarComentarioNota_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/cargarComentarioNotaResponse" message="tns:IAdministrador_cargarComentarioNota_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="bajaComentarioNota">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/bajaComentarioNota" message="tns:IAdministrador_bajaComentarioNota_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/bajaComentarioNotaResponse" message="tns:IAdministrador_bajaComentarioNota_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="guardarTicketNota">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/guardarTicketNota" message="tns:IAdministrador_guardarTicketNota_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/guardarTicketNotaResponse" message="tns:IAdministrador_guardarTicketNota_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="listarTicketNota">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/listarTicketNota" message="tns:IAdministrador_listarTicketNota_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/listarTicketNotaResponse" message="tns:IAdministrador_listarTicketNota_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="cargarTicketNota">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/cargarTicketNota" message="tns:IAdministrador_cargarTicketNota_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/cargarTicketNotaResponse" message="tns:IAdministrador_cargarTicketNota_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="bajaTicketNota">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/bajaTicketNota" message="tns:IAdministrador_bajaTicketNota_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/bajaTicketNotaResponse" message="tns:IAdministrador_bajaTicketNota_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="generarGuias">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/generarGuias" message="tns:IAdministrador_generarGuias_InputMessage" />
@@ -585,6 +665,78 @@
     </wsdl:operation>
     <wsdl:operation name="bajaDetalleNota">
       <soap:operation soapAction="http://tempuri.org/IAdministrador/bajaDetalleNota" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="guardarComentarioNota">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/guardarComentarioNota" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listarComentarioNota">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/listarComentarioNota" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cargarComentarioNota">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/cargarComentarioNota" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bajaComentarioNota">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/bajaComentarioNota" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="guardarTicketNota">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/guardarTicketNota" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listarTicketNota">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/listarTicketNota" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cargarTicketNota">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/cargarTicketNota" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bajaTicketNota">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/bajaTicketNota" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

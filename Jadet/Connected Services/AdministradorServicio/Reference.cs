@@ -25,6 +25,8 @@ namespace Jadet.AdministradorServicio {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.ProductoRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.NotaRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.DetalleNotaRequest))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.NotaComentarioRequest))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.NotaTicketRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.GuiaRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.CatalogoRequest))]
     public partial class BaseRequest : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -926,6 +928,148 @@ namespace Jadet.AdministradorServicio {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="NotaComentarioRequest", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
+    [System.SerializableAttribute()]
+    public partial class NotaComentarioRequest : Jadet.AdministradorServicio.BaseRequest {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ComentarioField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime FechaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdNotaField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Comentario {
+            get {
+                return this.ComentarioField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ComentarioField, value) != true)) {
+                    this.ComentarioField = value;
+                    this.RaisePropertyChanged("Comentario");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Fecha {
+            get {
+                return this.FechaField;
+            }
+            set {
+                if ((this.FechaField.Equals(value) != true)) {
+                    this.FechaField = value;
+                    this.RaisePropertyChanged("Fecha");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdNota {
+            get {
+                return this.IdNotaField;
+            }
+            set {
+                if ((this.IdNotaField.Equals(value) != true)) {
+                    this.IdNotaField = value;
+                    this.RaisePropertyChanged("IdNota");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="NotaTicketRequest", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
+    [System.SerializableAttribute()]
+    public partial class NotaTicketRequest : Jadet.AdministradorServicio.BaseRequest {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime FechaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdNotaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] TicketField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Fecha {
+            get {
+                return this.FechaField;
+            }
+            set {
+                if ((this.FechaField.Equals(value) != true)) {
+                    this.FechaField = value;
+                    this.RaisePropertyChanged("Fecha");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdNota {
+            get {
+                return this.IdNotaField;
+            }
+            set {
+                if ((this.IdNotaField.Equals(value) != true)) {
+                    this.IdNotaField = value;
+                    this.RaisePropertyChanged("IdNota");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Ticket {
+            get {
+                return this.TicketField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TicketField, value) != true)) {
+                    this.TicketField = value;
+                    this.RaisePropertyChanged("Ticket");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="GuiaRequest", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
     [System.SerializableAttribute()]
     public partial class GuiaRequest : Jadet.AdministradorServicio.BaseRequest {
@@ -1023,6 +1167,10 @@ namespace Jadet.AdministradorServicio {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.coleccionNotasResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.DetalleNotaResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.coleccionDetalleNotaResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.NotaComentarioResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.coleccionNotaComentarioResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.NotaTicketResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.coleccionNotaTicketResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.GuiaResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.AdministradorServicio.CatalogoResponse))]
     public partial class BaseResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -2067,6 +2215,194 @@ namespace Jadet.AdministradorServicio {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="NotaComentarioResponse", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
+    [System.SerializableAttribute()]
+    public partial class NotaComentarioResponse : Jadet.AdministradorServicio.BaseResponse {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ComentarioField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime FechaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdNotaField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Comentario {
+            get {
+                return this.ComentarioField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ComentarioField, value) != true)) {
+                    this.ComentarioField = value;
+                    this.RaisePropertyChanged("Comentario");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Fecha {
+            get {
+                return this.FechaField;
+            }
+            set {
+                if ((this.FechaField.Equals(value) != true)) {
+                    this.FechaField = value;
+                    this.RaisePropertyChanged("Fecha");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdNota {
+            get {
+                return this.IdNotaField;
+            }
+            set {
+                if ((this.IdNotaField.Equals(value) != true)) {
+                    this.IdNotaField = value;
+                    this.RaisePropertyChanged("IdNota");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="coleccionNotaComentarioResponse", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
+    [System.SerializableAttribute()]
+    public partial class coleccionNotaComentarioResponse : Jadet.AdministradorServicio.BaseResponse {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Jadet.AdministradorServicio.NotaComentarioResponse[] ItemsField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Jadet.AdministradorServicio.NotaComentarioResponse[] Items {
+            get {
+                return this.ItemsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ItemsField, value) != true)) {
+                    this.ItemsField = value;
+                    this.RaisePropertyChanged("Items");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="NotaTicketResponse", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
+    [System.SerializableAttribute()]
+    public partial class NotaTicketResponse : Jadet.AdministradorServicio.BaseResponse {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime FechaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdNotaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] TicketField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Fecha {
+            get {
+                return this.FechaField;
+            }
+            set {
+                if ((this.FechaField.Equals(value) != true)) {
+                    this.FechaField = value;
+                    this.RaisePropertyChanged("Fecha");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdNota {
+            get {
+                return this.IdNotaField;
+            }
+            set {
+                if ((this.IdNotaField.Equals(value) != true)) {
+                    this.IdNotaField = value;
+                    this.RaisePropertyChanged("IdNota");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Ticket {
+            get {
+                return this.TicketField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TicketField, value) != true)) {
+                    this.TicketField = value;
+                    this.RaisePropertyChanged("Ticket");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="coleccionNotaTicketResponse", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
+    [System.SerializableAttribute()]
+    public partial class coleccionNotaTicketResponse : Jadet.AdministradorServicio.BaseResponse {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Jadet.AdministradorServicio.NotaTicketResponse[] ItemsField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Jadet.AdministradorServicio.NotaTicketResponse[] Items {
+            get {
+                return this.ItemsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ItemsField, value) != true)) {
+                    this.ItemsField = value;
+                    this.RaisePropertyChanged("Items");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="GuiaResponse", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
     [System.SerializableAttribute()]
     public partial class GuiaResponse : Jadet.AdministradorServicio.BaseResponse {
@@ -2320,6 +2656,54 @@ namespace Jadet.AdministradorServicio {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/bajaDetalleNota", ReplyAction="http://tempuri.org/IAdministrador/bajaDetalleNotaResponse")]
         System.Threading.Tasks.Task<Jadet.AdministradorServicio.DetalleNotaResponse> bajaDetalleNotaAsync(Jadet.AdministradorServicio.DetalleNotaRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/guardarComentarioNota", ReplyAction="http://tempuri.org/IAdministrador/guardarComentarioNotaResponse")]
+        Jadet.AdministradorServicio.NotaComentarioResponse guardarComentarioNota(Jadet.AdministradorServicio.NotaComentarioRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/guardarComentarioNota", ReplyAction="http://tempuri.org/IAdministrador/guardarComentarioNotaResponse")]
+        System.Threading.Tasks.Task<Jadet.AdministradorServicio.NotaComentarioResponse> guardarComentarioNotaAsync(Jadet.AdministradorServicio.NotaComentarioRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/listarComentarioNota", ReplyAction="http://tempuri.org/IAdministrador/listarComentarioNotaResponse")]
+        Jadet.AdministradorServicio.coleccionNotaComentarioResponse listarComentarioNota(Jadet.AdministradorServicio.NotaComentarioRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/listarComentarioNota", ReplyAction="http://tempuri.org/IAdministrador/listarComentarioNotaResponse")]
+        System.Threading.Tasks.Task<Jadet.AdministradorServicio.coleccionNotaComentarioResponse> listarComentarioNotaAsync(Jadet.AdministradorServicio.NotaComentarioRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/cargarComentarioNota", ReplyAction="http://tempuri.org/IAdministrador/cargarComentarioNotaResponse")]
+        Jadet.AdministradorServicio.NotaComentarioResponse cargarComentarioNota(Jadet.AdministradorServicio.NotaComentarioRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/cargarComentarioNota", ReplyAction="http://tempuri.org/IAdministrador/cargarComentarioNotaResponse")]
+        System.Threading.Tasks.Task<Jadet.AdministradorServicio.NotaComentarioResponse> cargarComentarioNotaAsync(Jadet.AdministradorServicio.NotaComentarioRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/bajaComentarioNota", ReplyAction="http://tempuri.org/IAdministrador/bajaComentarioNotaResponse")]
+        Jadet.AdministradorServicio.NotaComentarioResponse bajaComentarioNota(Jadet.AdministradorServicio.NotaComentarioRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/bajaComentarioNota", ReplyAction="http://tempuri.org/IAdministrador/bajaComentarioNotaResponse")]
+        System.Threading.Tasks.Task<Jadet.AdministradorServicio.NotaComentarioResponse> bajaComentarioNotaAsync(Jadet.AdministradorServicio.NotaComentarioRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/guardarTicketNota", ReplyAction="http://tempuri.org/IAdministrador/guardarTicketNotaResponse")]
+        Jadet.AdministradorServicio.NotaTicketResponse guardarTicketNota(Jadet.AdministradorServicio.NotaTicketRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/guardarTicketNota", ReplyAction="http://tempuri.org/IAdministrador/guardarTicketNotaResponse")]
+        System.Threading.Tasks.Task<Jadet.AdministradorServicio.NotaTicketResponse> guardarTicketNotaAsync(Jadet.AdministradorServicio.NotaTicketRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/listarTicketNota", ReplyAction="http://tempuri.org/IAdministrador/listarTicketNotaResponse")]
+        Jadet.AdministradorServicio.coleccionNotaTicketResponse listarTicketNota(Jadet.AdministradorServicio.NotaTicketRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/listarTicketNota", ReplyAction="http://tempuri.org/IAdministrador/listarTicketNotaResponse")]
+        System.Threading.Tasks.Task<Jadet.AdministradorServicio.coleccionNotaTicketResponse> listarTicketNotaAsync(Jadet.AdministradorServicio.NotaTicketRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/cargarTicketNota", ReplyAction="http://tempuri.org/IAdministrador/cargarTicketNotaResponse")]
+        Jadet.AdministradorServicio.NotaTicketResponse cargarTicketNota(Jadet.AdministradorServicio.NotaTicketRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/cargarTicketNota", ReplyAction="http://tempuri.org/IAdministrador/cargarTicketNotaResponse")]
+        System.Threading.Tasks.Task<Jadet.AdministradorServicio.NotaTicketResponse> cargarTicketNotaAsync(Jadet.AdministradorServicio.NotaTicketRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/bajaTicketNota", ReplyAction="http://tempuri.org/IAdministrador/bajaTicketNotaResponse")]
+        Jadet.AdministradorServicio.NotaTicketResponse bajaTicketNota(Jadet.AdministradorServicio.NotaTicketRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/bajaTicketNota", ReplyAction="http://tempuri.org/IAdministrador/bajaTicketNotaResponse")]
+        System.Threading.Tasks.Task<Jadet.AdministradorServicio.NotaTicketResponse> bajaTicketNotaAsync(Jadet.AdministradorServicio.NotaTicketRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdministrador/generarGuias", ReplyAction="http://tempuri.org/IAdministrador/generarGuiasResponse")]
         Jadet.AdministradorServicio.GuiaResponse generarGuias(Jadet.AdministradorServicio.GuiaRequest request);
@@ -2597,6 +2981,70 @@ namespace Jadet.AdministradorServicio {
         
         public System.Threading.Tasks.Task<Jadet.AdministradorServicio.DetalleNotaResponse> bajaDetalleNotaAsync(Jadet.AdministradorServicio.DetalleNotaRequest request) {
             return base.Channel.bajaDetalleNotaAsync(request);
+        }
+        
+        public Jadet.AdministradorServicio.NotaComentarioResponse guardarComentarioNota(Jadet.AdministradorServicio.NotaComentarioRequest request) {
+            return base.Channel.guardarComentarioNota(request);
+        }
+        
+        public System.Threading.Tasks.Task<Jadet.AdministradorServicio.NotaComentarioResponse> guardarComentarioNotaAsync(Jadet.AdministradorServicio.NotaComentarioRequest request) {
+            return base.Channel.guardarComentarioNotaAsync(request);
+        }
+        
+        public Jadet.AdministradorServicio.coleccionNotaComentarioResponse listarComentarioNota(Jadet.AdministradorServicio.NotaComentarioRequest request) {
+            return base.Channel.listarComentarioNota(request);
+        }
+        
+        public System.Threading.Tasks.Task<Jadet.AdministradorServicio.coleccionNotaComentarioResponse> listarComentarioNotaAsync(Jadet.AdministradorServicio.NotaComentarioRequest request) {
+            return base.Channel.listarComentarioNotaAsync(request);
+        }
+        
+        public Jadet.AdministradorServicio.NotaComentarioResponse cargarComentarioNota(Jadet.AdministradorServicio.NotaComentarioRequest request) {
+            return base.Channel.cargarComentarioNota(request);
+        }
+        
+        public System.Threading.Tasks.Task<Jadet.AdministradorServicio.NotaComentarioResponse> cargarComentarioNotaAsync(Jadet.AdministradorServicio.NotaComentarioRequest request) {
+            return base.Channel.cargarComentarioNotaAsync(request);
+        }
+        
+        public Jadet.AdministradorServicio.NotaComentarioResponse bajaComentarioNota(Jadet.AdministradorServicio.NotaComentarioRequest request) {
+            return base.Channel.bajaComentarioNota(request);
+        }
+        
+        public System.Threading.Tasks.Task<Jadet.AdministradorServicio.NotaComentarioResponse> bajaComentarioNotaAsync(Jadet.AdministradorServicio.NotaComentarioRequest request) {
+            return base.Channel.bajaComentarioNotaAsync(request);
+        }
+        
+        public Jadet.AdministradorServicio.NotaTicketResponse guardarTicketNota(Jadet.AdministradorServicio.NotaTicketRequest request) {
+            return base.Channel.guardarTicketNota(request);
+        }
+        
+        public System.Threading.Tasks.Task<Jadet.AdministradorServicio.NotaTicketResponse> guardarTicketNotaAsync(Jadet.AdministradorServicio.NotaTicketRequest request) {
+            return base.Channel.guardarTicketNotaAsync(request);
+        }
+        
+        public Jadet.AdministradorServicio.coleccionNotaTicketResponse listarTicketNota(Jadet.AdministradorServicio.NotaTicketRequest request) {
+            return base.Channel.listarTicketNota(request);
+        }
+        
+        public System.Threading.Tasks.Task<Jadet.AdministradorServicio.coleccionNotaTicketResponse> listarTicketNotaAsync(Jadet.AdministradorServicio.NotaTicketRequest request) {
+            return base.Channel.listarTicketNotaAsync(request);
+        }
+        
+        public Jadet.AdministradorServicio.NotaTicketResponse cargarTicketNota(Jadet.AdministradorServicio.NotaTicketRequest request) {
+            return base.Channel.cargarTicketNota(request);
+        }
+        
+        public System.Threading.Tasks.Task<Jadet.AdministradorServicio.NotaTicketResponse> cargarTicketNotaAsync(Jadet.AdministradorServicio.NotaTicketRequest request) {
+            return base.Channel.cargarTicketNotaAsync(request);
+        }
+        
+        public Jadet.AdministradorServicio.NotaTicketResponse bajaTicketNota(Jadet.AdministradorServicio.NotaTicketRequest request) {
+            return base.Channel.bajaTicketNota(request);
+        }
+        
+        public System.Threading.Tasks.Task<Jadet.AdministradorServicio.NotaTicketResponse> bajaTicketNotaAsync(Jadet.AdministradorServicio.NotaTicketRequest request) {
+            return base.Channel.bajaTicketNotaAsync(request);
         }
         
         public Jadet.AdministradorServicio.GuiaResponse generarGuias(Jadet.AdministradorServicio.GuiaRequest request) {

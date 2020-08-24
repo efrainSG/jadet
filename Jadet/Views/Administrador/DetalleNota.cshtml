@@ -98,17 +98,21 @@
                     Comentarios
                 </div>
                 <div class="col-sm-2 text-center">
-                    <span class="badge progress-bar-info">
-                        @Model.Comentarios.Count &nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-circle-right"></i>
-                    </span>
+                    <a href="~/Administrador/Comentarios?folio=@(Model.Folio)">
+                        <span class="badge progress-bar-info">
+                            @Model.Comentarios.Count &nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-circle-right"></i>
+                        </span>
+                    </a>
                 </div>
                 <div class="col-sm-2">
                     Tickets
                 </div>
                 <div class="col-sm-2 text-center">
-                    <span class="badge progress-bar-info">
-                        @Model.Tickets.Count &nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-circle-right"></i>
-                    </span>
+                    <a href="#">
+                        <span class="badge progress-bar-info">
+                            @Model.Tickets.Count &nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-circle-right"></i>
+                        </span>
+                    </a>
                 </div>
             </div>
         </div>

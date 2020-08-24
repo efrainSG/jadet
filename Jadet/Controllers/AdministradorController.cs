@@ -172,6 +172,8 @@ namespace Jadet.Controllers {
             var responseEstatus = servicio.listarEstatus(new EstatusRequest { Id = 0, IdTipoEstatus = 0 });
             var responseItems = servicio.listarDetalleNota(new DetalleNotaRequest { IdNota = folio });
             var productos = servicio.listarProductos(new ProductoRequest { Id = 0 });
+            var comentarios = servicio.listarComentarioNota(new NotaComentarioRequest { IdNota = folio }).Items;
+            //var tickets = servicio.listarTicketNota(new NotaTicketRequest { IdNota = folio }).Items;
             model = new notacompletaModel {
                 Fecha = response.Fecha,
                 FechaEnvio = response.FechaEnvio,
@@ -188,7 +190,9 @@ namespace Jadet.Controllers {
                 MontoMXN = response.MontoMXN,
                 MontoUSD = response.MontoUSD,
                 SaldoMXN = response.SaldoMXN,
-                SaldoUSD = response.SaldoUSD
+                SaldoUSD = response.SaldoUSD,
+                Comentarios = comentarios.Select(i => new comentarioModel { Id = i.Id, Fecha = i.Fecha, IdNota = i.IdNota, Comentario = i.Comentario }).ToList(),
+                //Tickets = tickets.Select(i => new ticketModel { Id = i.Id, Fecha = i.Fecha, IdNota = i.IdNota, Ticket = i.Ticket}).ToList()
             };
             model.Items.AddRange(responseItems.Items.Select(i => new detallenotaModel {
                 Cantidad = i.Cantidad,
@@ -201,6 +205,42 @@ namespace Jadet.Controllers {
             }));
 
             return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult Tickets(int folio) {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+                Session.Clear();
+                return RedirectToAction("Index", "Home");
+            }
+            var servicio = new AdministradorClient();
+            var listatickets = new Models.listaticketsmodel();
+            var response = servicio.listarTicketNota(new NotaTicketRequest { IdNota = folio });
+            listatickets.Items.AddRange(response.Items.Select(i => new ticketModel {
+                Id = i.Id,
+                Fecha = i.Fecha,
+                IdNota = i.IdNota,
+                Ticket = i.Ticket
+            }));
+            return View(listatickets);
+        }
+
+        [HttpGet]
+        public ActionResult Comentarios(int folio) {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+                Session.Clear();
+                return RedirectToAction("Index", "Home");
+            }
+            var servicio = new AdministradorClient();
+            var listacomentarios = new Models.listacomentariosModel();
+            var response = servicio.listarComentarioNota(new NotaComentarioRequest { IdNota = folio });
+            listacomentarios.Items.AddRange(response.Items.Select(i => new comentarioModel {
+                Id = i.Id,
+                Fecha = i.Fecha,
+                IdNota = i.IdNota,
+                Comentario = i.Comentario
+            }));
+            return View(listacomentarios);
         }
 
         [HttpPost]
