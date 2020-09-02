@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.ServiceModel.Configuration;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
@@ -20,7 +21,7 @@ namespace Jadet.Controllers {
                 return RedirectToAction("Index", "Home");
             }
         }
-
+        #region Carga de listas
         public ActionResult Productos() {
             if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
                 Session.Clear();
@@ -242,6 +243,8 @@ namespace Jadet.Controllers {
             }));
             return View(listacomentarios);
         }
+        #endregion Carga de listas
+
 
         [HttpPost]
         public JsonResult guardarProducto(productomodel model, HttpPostedFileBase imgArch) {
@@ -281,16 +284,16 @@ namespace Jadet.Controllers {
             } else {
                 var servicio = new AdministradorClient();
                 var response = servicio.bajaProducto(new ProductoRequest {
-                    AplicaExistencias = model.AplicaExistencias,
-                    Descripcion = model.Descripcion,
-                    Existencias = model.Existencias,
+                    //AplicaExistencias = model.AplicaExistencias,
+                    //Descripcion = model.Descripcion,
+                    //Existencias = model.Existencias,
                     Id = model.Id,
-                    IdCategoria = model.IdCategoria,
-                    Nombre = model.Nombre,
-                    PrecioMXN = model.PrecioMXN,
-                    PrecioUSD = model.PrecioUSD,
-                    Foto = Encoding.UTF8.GetBytes(model.Nombre),
-                    SKU = model.Sku
+                    //IdCategoria = model.IdCategoria,
+                    //Nombre = model.Nombre,
+                    //PrecioMXN = model.PrecioMXN,
+                    //PrecioUSD = model.PrecioUSD,
+                    //Foto = Encoding.UTF8.GetBytes(model.Nombre),
+                    //SKU = model.Sku
                 });
                 return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
             }
@@ -345,23 +348,15 @@ namespace Jadet.Controllers {
         }
 
         [HttpPost]
-        public JsonResult eliminarEstatus(productomodel model) {
+        public JsonResult eliminarEstatus(catalogoModel model) {
             if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
                 Session.Clear();
                 return Json(new ProductoResponse(), JsonRequestBehavior.AllowGet);
             } else {
                 var servicio = new AdministradorClient();
-                var response = servicio.guardarProducto(new ProductoRequest {
-                    AplicaExistencias = model.AplicaExistencias,
-                    Descripcion = model.Descripcion,
-                    Existencias = model.Existencias,
+                var response = servicio.bajaEstatus(new EstatusRequest {
                     Id = model.Id,
-                    IdCategoria = model.IdCategoria,
-                    Nombre = model.Nombre,
-                    PrecioMXN = model.PrecioMXN,
-                    PrecioUSD = model.PrecioUSD,
-                    Foto = Encoding.UTF8.GetBytes(model.Nombre),
-                    SKU = model.Sku
+                    Nombre = model.Nombre
                 });
                 return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
             }
@@ -398,21 +393,59 @@ namespace Jadet.Controllers {
             } else {
                 var servicio = new AdministradorClient();
                 var response = servicio.bajaCliente(new ClienteRequest {
-                    Direccion = model.Direccion,
+                    //Direccion = model.Direccion,
                     IdCliente = model.IdCliente,
-                    IdEstatus = model.IdEstatus,
-                    IdRol = model.IdRol,
-                    Nombre = model.Nombre,
-                    Foto = Encoding.UTF8.GetBytes(model.Nombre),
-                    Password = Encoding.UTF8.GetBytes(model.password),
-                    Telefono = model.Telefono,
-                    UserName = model.usuario,
-                    ZonaPaqueteria = model.ZonaPaqueteria
+                    //IdEstatus = model.IdEstatus,
+                    //IdRol = model.IdRol,
+                    //Nombre = model.Nombre,
+                    //Foto = Encoding.UTF8.GetBytes(model.Nombre),
+                    //Password = Encoding.UTF8.GetBytes(model.password),
+                    //Telefono = model.Telefono,
+                    //UserName = model.usuario,
+                    //ZonaPaqueteria = model.ZonaPaqueteria
                 });
                 return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
             }
         }
 
+        public JsonResult ObtenerNota(int folio) {
+            var servicio = new AdministradorClient();
+            var preresponse = servicio.cargarNota(new NotaRequest { 
+                Folio = folio
+            });
+            var responseClientes = servicio.listarClientes(new ClienteRequest {
+                IdCliente = preresponse.IdCliente
+            });
+            var responseTipos = servicio.listarCatalogo(new CatalogoRequest {
+                Id = preresponse.IdTipo
+            });
+            var responseEstatus = servicio.listarEstatus(new EstatusRequest {
+                Id = preresponse.IdEstatus
+            });
+            var responsePaqueterias = servicio.listarCatalogo(new CatalogoRequest {
+                Id = preresponse.IdPaqueteria
+            });
+
+            notaModel response = new notaModel {
+                Cliente = responseClientes.Items.FirstOrDefault().Nombre,
+                IdCliente = preresponse.IdCliente,
+                Estatus = responseEstatus.Items.FirstOrDefault().Nombre,
+                IdEstatus = preresponse.IdEstatus,
+                Fecha = preresponse.Fecha,
+                FechaEnvio = preresponse.FechaEnvio,
+                Folio = preresponse.Folio,
+                Guia = preresponse.Guia,
+                IdPaqueteria = preresponse.IdPaqueteria,
+                Paqueteria = responsePaqueterias.Items.FirstOrDefault().Nombre,
+                IdTipo = preresponse.IdTipo,
+                Tipo = responseTipos.Items.FirstOrDefault().Nombre,
+                MontoMXN = preresponse.MontoMXN,
+                MontoUSD = preresponse.MontoUSD,
+                SaldoMXN = preresponse.SaldoMXN,
+                SaldoUSD = preresponse.SaldoUSD
+            };
+            return Json(response, JsonRequestBehavior.AllowGet);
+        }
         [HttpPost]
         public JsonResult guardarNota(notaModel model) {
             if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {

@@ -110,7 +110,7 @@ const modalCliente =
 
 const modalEliminarCliente =
     '<form action="/Administrador/eliminarCliente" method="post" id="frmCliente">' +
-    '  <input type="hidden" id="txtId" value="" name="Id" />' +
+    '  <input type="hidden" id="txtId" value="" name="IdCliente" />' +
     '  <div class= "row" > ' +
     '    <div class="col-sm-12" id="txtContenido"></div>' +
     '  </div>' +
@@ -171,7 +171,97 @@ const modalEliminarEstatus =
 //-- NOTA -------------------------------------------------------------------------------
 
 const modalNota =
-    '<form action="/Administrador/guardarNota" method="post" id="frmEstatus">' +
+    '<form action="/Administrador/guardarNota" method="post" id="frmNota">' +
+    '<input type="hidden" class="form-control" name="IdCliente" id="hidIdCliente" value="" />' +
+    '<div class="row">' +
+    '    ​<div class="col-sm-2">' +
+    '        <label for="hidFolio">Folio</label>' +
+    '    </div>' +
+    '    <div class="col-sm-4">' +
+    '        <input type="text" class="form-control" name="Folio" id="hidFolio" value="" readonly="readonly"/>' +
+    '    </div>' +
+    '    ​<div class="col-sm-2">' +
+    '        <label for="selTipo">Tipo de nota</label>' +
+    '    </div>' +
+    '    <div class="col-sm-4">' +
+    '        <select class="form-control" name="IdTipo" id="selTipo"></select>' +
+    '    </div>' +
+    '</div>' +
+    '<div class="row">' +
+    '    ​<div class="col-sm-2">' +
+    '        <label for="selIdEstatus">Estátus</label>' +
+    '    </div>' +
+    '    <div class="col-sm-4">' +
+    '        <select class="form-control" name="IdEstatus" id="selIdEstatus"></select>' +
+    '    </div>' +
+    '    ​<div class="col-sm-2">' +
+    '        <label for="selIdPaqueteria">Paquetería</label>' +
+    '    </div>' +
+    '    <div class="col-sm-4">' +
+    '        <select class="form-control" name="IdPaqueteria" id="selIdPaqueteria"></select>' +
+    '    </div>' +
+    '</div>' +
+    '<div class="row">' +
+    '    <div class="col-sm-2">' +
+    '        <label for="hidCliente">Cliente</label>' +
+    '    </div>' +
+    '    <div class="col-sm-10">' +
+    '        <input type="text" class="form-control" name="Cliente" id="hidCliente" value="" readonly="readonly" />' +
+    '    </div>' +
+    '</div>' +
+    '<div class="row">' +
+    '    ​<div class="col-sm-2">' +
+    '        <label for="hidMontoMXN">Monto (MXN)</label>' +
+    '    </div>' +
+    '    <div class="col-sm-4">' +
+    '        <input type="text" class="form-control" name="MontoMXN" id="hidMontoMXN" value="" readonly="readonly"/>' +
+    '    </div>' +
+    '    ​<div class="col-sm-2">' +
+    '        <label for="hidSaldoMXN">Saldo (MXN)</label>' +
+    '    </div>' +
+    '    <div class="col-sm-4">' +
+    '        <input type="text" class="form-control" name="SaldoMXN" id="hidSaldoMXN" value="" readonly="readonly"/>' +
+    '    </div>' +
+    '</div>' +
+    '<div class="row">' +
+    '    ​<div class="col-sm-2">' +
+    '        <label for="hidMontoUSD">Monto (USD)</label>' +
+    '    </div>' +
+    '    <div class="col-sm-4">' +
+    '        <input type="text" class="form-control" name="MontoUSD" id="hidMontoUSD" value="" readonly="readonly"/>' +
+    '    </div>' +
+    '    ​<div class="col-sm-2">' +
+    '        <label for="hidSaldoUSD">Saldo (USD)</label>' +
+    '    </div>' +
+    '    <div class="col-sm-4">' +
+    '        <input type="text" class="form-control" name="SaldoUSD" id="hidSaldoUSD" value="" readonly="readonly"/>' +
+    '    </div>' +
+    '</div>' +
+    '<div class="row">' +
+    '    <div class="col-sm-2">' +
+    '        <label for="hidFecha">Fecha</label>' +
+    '    </div>' +
+    '    <div class="col-sm-4">' +
+    '        <input type="text" class="form-control" name="Fecha" id="hidFecha" value="" readonly="readonly"/>' +
+    '    </div>' +
+    '    <div class="col-sm-2">' +
+    '        <label for="hidFechaEnvio">Envío</label>' +
+    '    </div>' +
+    '    <div class="col-sm-4">' +
+    '        <input type="text" class="form-control" name="FechaEnvio" id="hidFechaEnvio" value="" readonly="readonly"/>' +
+    '    </div>' +
+    '</div>' +
+    '<div class="row">' +
+    '    ​​<div class="col-sm-2">' +
+    '        <label for="hidGuia">Guía</label>' +
+    '    </div>' +
+    '    <div class="col-sm-10">' +
+    '        <input type="text" class="form-control" name="Guia" id="hidGuia" value="" readonly="readonly"/>' +
+    '    </div>' +
+    '</div>' +
+    '<div class="row" >' + 
+    '<div class="col-sm-12" id="txtContenido"></div>' +
+    '</div>' +
     '</form>';
 
     //---------------------------------------------------------------------------------------

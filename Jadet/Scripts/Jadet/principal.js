@@ -173,14 +173,13 @@
 
     $("#btnEliminar").off()
         .on("click", function () {
-            debugger;
-            $.post({
-                url: '/Administrador/eliminarProducto',
-                data: {"id": $("#ddId").text() },
-                dataType: 'json',
-                contentType: false,
-                processData: false
-            })
+            var _frm = $('<form method="post">')
+                .append($('<input type="hidden" name="Id">')
+                    .val($("#ddId").text()));
+            $.post(
+                "/Administrador/eliminarProducto",
+                _frm.serialize(),
+            )
                 .done(function (data) {
                     console.log(data);
                     if (data.respuesta.ErrorNumero == 0)
@@ -252,7 +251,7 @@
             $("#modalHdr").text("Eliminar cliente");
             $bodyModal.empty();
             $bodyModal.append(modalEliminarCliente);
-
+            $("#txtId").val($this.attr('data-content'));
             $("#txtContenido")
                 .append('<dt class="dt-jadet">Usuario:</dt><dd class="jadet">' + $($componentes[0]).text() + '</dd>')
                 .append('<dt class="dt-jadet">Nombre:</dt><dd class="jadet">' + $($componentes[1]).text() + '</dd>')
@@ -281,7 +280,20 @@
         });
 
     $("#btnEliminarCliente").off()
-        .on("click", function () { });
+        .on("click", function () {
+            var _frm = $('#frmCliente')
+            $.post(
+                "/Administrador/eliminarCliente",
+                _frm.serialize(),
+            )
+                .done(function (data) {
+                    console.log(data);
+                    if (data.respuesta.ErrorNumero == 0)
+                        location.reload();
+                    else
+                        alert(data.respuesta.ErrorMensaje);
+                });
+        });
     //-- CATÁLOGO ---------------------------------------------------------------------------
 
     // #btnGuardarCatalogo
@@ -335,7 +347,7 @@
             $bodyModal.append(modalEliminarCatalogo);
 
             $("#txtContenido")
-                .append('<dt class="dt-jadet">Id:</dt><dd class="jadet">' + $($componentes[0]).text() + '</dd>')
+                .append('<dt class="dt-jadet">Id:</dt><dd class="jadet" id="ddId">' + $($componentes[0]).text() + '</dd>')
                 .append('<dt class="dt-jadet">Nombre:</dt><dd class="jadet">' + $($componentes[1]).text() + '</dd>');
 
             $(botones).hide();
@@ -358,7 +370,22 @@
         });
 
     $("#btnEliminarCatalogo").off()
-        .on("click", function () { });
+        .on("click", function () {
+            var _frm = $('<form method="post">')
+                .append($('<input type="hidden" name="Id">')
+                    .val($("#ddId").text()));
+            $.post(
+                "/Administrador/eliminarCatalogo",
+                _frm.serialize(),
+            )
+                .done(function (data) {
+                    console.log(data);
+                    if (data.respuesta.ErrorNumero == 0)
+                        location.reload();
+                    else
+                        alert(data.respuesta.ErrorMensaje);
+                });
+        });
     //-- ESTÁTUS ----------------------------------------------------------------------------
 
     // #btnGuardarEstatus
@@ -410,7 +437,7 @@
             $bodyModal.append(modalEliminarEstatus);
 
             $("#txtContenido")
-                .append('<dt class="dt-jadet">Id:</dt><dd class="jadet">' + $($componentes[0]).text() + '</dd>')
+                .append('<dt class="dt-jadet">Id:</dt><dd class="jadet" id="ddId">' + $($componentes[0]).text() + '</dd>')
                 .append('<dt class="dt-jadet">Nombre:</dt><dd class="jadet">' + $($componentes[1]).text() + '</dd>');
 
             $(botones).hide();
@@ -433,10 +460,58 @@
         });
 
     $("#btnEliminarEstatus").off()
-        .on("click", function () { });
+        .on("click", function () {
+            var _frm = $('<form method="post">')
+                .append($('<input type="hidden" name="Id">')
+                    .val($("#ddId").text()));
+            $.post(
+                "/Administrador/eliminarEstatus",
+                _frm.serialize(),
+            )
+                .done(function (data) {
+                    console.log(data);
+                    if (data.respuesta.ErrorNumero == 0)
+                        location.reload();
+                    else
+                        alert(data.respuesta.ErrorMensaje);
+                });
+        });
     //-- NOTA -------------------------------------------------------------------------------
 
+    $('[id^="btneditarNota"]').off()
+        .on("click", function () {
+            $this = $(this);
+            var $componentes = $this.parent().siblings();
+            var $bodyModal = $("#divModalBody");
+            $("#modalHdr").text("Revisar nota");
+            $bodyModal.empty();
+            $bodyModal.append(modalNota);
 
+            $.get("/Administrador/ObtenerNota",
+                { "folio": $this.attr("id").substring(13) })
+                .done(function (data) {
+                    llenarSelect($("#selTipo"), tiposcatalogos);
+                    llenarSelect($("#selIdEstatus"), estatus);
+                    llenarSelect($("#selIdPaqueteria"), zonas);
+                    $("#hidIdCliente").val(data.IdCliente);
+                    $("#hidFolio").val(data.Folio);
+                    $("#selTipo").val(data.IdTipo);
+                    $("#selIdEstatus").val(data.IdEstatus);
+                    $("#selIdPaqueteria").val(data.IdPaqueteria);
+                    $("#hidCliente").val(data.Cliente);
+                    $("#hidMontoMXN").val(data.MontoMXN);
+                    $("#hidSaldoMXN").val(data.SaldoMXN);
+                    $("#hidMontoUSD").val(data.MontoUSD);
+                    $("#hidSaldoUSD").val(data.SaldoUSD);
+                    $("#hidFecha").val((new Date(parseInt(data.Fecha.substr(6)))).toLocaleDateString("es-mx"));
+                    $("#hidFechaEnvio").val((new Date(parseInt(data.FechaEnvio.substr(6)))).toLocaleDateString("es-mx"));
+                    $("#hidGuia").val(data.Guia);
+                });
+
+            $(botones).hide();
+            $("#btnEliminarEstatus").show();
+            $("#myModal").modal("show");
+        });
 
     //---------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------
