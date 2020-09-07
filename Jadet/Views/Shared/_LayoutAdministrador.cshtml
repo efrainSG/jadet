@@ -21,8 +21,12 @@
         var tiposcatalogos = new Array();
         var estatus = new Array();
         var zonas = new Array();
+        var tiposnotas = new Array();
         var tipoestatus = new Array();
-        const botones = "#btnGuardar, #btnGuardarCliente, #btnGuardarCatalogo, #btnGuardarEstatus, #btnEliminar, #btnEliminarCliente, #btnEliminarCatalogo, #btnEliminarEstatus";
+        const botones = "#btnGuardar, #btnGuardarCliente, #btnGuardarCatalogo, #btnGuardarEstatus, #btnEliminar, #btnGuardarNota, #btnEliminarCliente, #btnEliminarCatalogo, #btnEliminarEstatus";
+        const K_ESTATUSNOTA = 3;
+        const K_ESTATUSUSUARIO = 1;
+        const K_ESTATUSPRODUCTO = 2;
     </script>
 </head>
 <body>
@@ -47,7 +51,7 @@
                     <li>@Html.ActionLink("Productos", "Productos", "Administrador")</li>
                     <li>@Html.ActionLink("Clientes", "Clientes", "Administrador")</li>
                     <li>@Html.ActionLink("Notas", "Notas", "Administrador")</li>
-                    <li>@Html.ActionLink("Guías", "Guias", "Administrador")</li>
+@*                    <li>@Html.ActionLink("Guías", "Guias", "Administrador")</li>*@
                     <li>@Html.ActionLink("Configuración", "Configuracion", "Administrador")</li>
                 </ul>
             </div>
@@ -89,6 +93,7 @@
                     <button type="button" class="btn btn-sm btn-info" data-dismiss="modal" id="btnGuardarCliente"><i class="fa fa-lg fa-check"></i></button>
                     <button type="button" class="btn btn-sm btn-info" data-dismiss="modal" id="btnGuardarCatalogo"><i class="fa fa-lg fa-check"></i></button>
                     <button type="button" class="btn btn-sm btn-info" data-dismiss="modal" id="btnGuardarEstatus"><i class="fa fa-lg fa-check"></i></button>
+                    <button type="button" class="btn btn-sm btn-info" data-dismiss="modal" id="btnGuardarNota"><i class="fa fa-lg fa-check"></i></button>
                     <button type="button" class="btn btn-sm btn-danger-jadet" data-dismiss="modal" id="btnEliminar"><i class="fa fa-lg fa-trash"></i></button>
                     <button type="button" class="btn btn-sm btn-danger-jadet" data-dismiss="modal" id="btnEliminarCliente"><i class="fa fa-lg fa-trash"></i></button>
                     <button type="button" class="btn btn-sm btn-danger-jadet" data-dismiss="modal" id="btnEliminarCatalogo"><i class="fa fa-lg fa-trash"></i></button>

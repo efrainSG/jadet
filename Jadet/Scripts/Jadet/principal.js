@@ -47,13 +47,32 @@
                 }
             }
         );
+        $.get(
+            "/Administrador/obtenerDiccionario"
+            , { IdTipo: 1 }
+            , function (data) {
+                for (i = 0; i < data.length; i++) {
+                    tiposnotas.push(data[i]);
+                }
+            }
+        );
     }
 
-    var llenarSelect = function ($select, listado) {
+    var llenarSelect = function ($select, listado, filtro) {
         var opcion = "";
-        for (i = 0; i < listado.length; i++) {
-            opcion = '<option value="' + listado[i].id + '">' + listado[i].nombre + '</option>';
-            $select.append(opcion);
+        if (filtro == undefined) {
+            for (i = 0; i < listado.length; i++) {
+                opcion = '<option value="' + listado[i].id + '">' + listado[i].nombre + '</option>';
+                $select.append(opcion);
+            }
+        } else {
+            for (i = 0; i < listado.length; i++) {
+                if (listado[i].Tipo == filtro) {
+                    opcion = '<option value="' + listado[i].id + '">' + listado[i].nombre + '</option>';
+                    $select.append(opcion);
+                }
+
+            }
         }
     };
 
@@ -76,7 +95,7 @@
             var $estatusProd = $.grep(estatus, function (o) { return o.Tipo == 2; });
 
             llenarSelect($categoria, categorias);
-            llenarSelect($estatus, $estatusProd);
+            llenarSelect($estatus, $estatusProd, K_ESTATUSPRODUCTO);
 
             $(botones).hide();
             $("#btnGuardar").show();
@@ -101,7 +120,7 @@
             var $estatusProd = $.grep(estatus, function (o) { return o.Tipo == 2; });
 
             llenarSelect($categoria, categorias);
-            llenarSelect($estatus, $estatusProd);
+            llenarSelect($estatus, $estatusProd, K_ESTATUSPRODUCTO);
 
             $("#txtId").val($($componentes[0]).text());
             $("#txtsku").val($($componentes[1]).text());
@@ -204,7 +223,7 @@
             var $estatus = $("#selIdEstatus");
             var $zonas = $("#selZonaPaqueteria");
 
-            llenarSelect($estatus, estatus);
+            llenarSelect($estatus, estatus, K_ESTATUSUSUARIO);
             llenarSelect($zonas, zonas);
 
             $(botones).hide();
@@ -225,7 +244,7 @@
             var $estatus = $("#selIdEstatus");
             var $zonas = $("#selZonaPaqueteria");
 
-            llenarSelect($estatus, estatus);
+            llenarSelect($estatus, estatus, K_ESTATUSUSUARIO);
             llenarSelect($zonas, zonas);
 
             $("#txtUsuario").val($($componentes[0]).text());
@@ -287,7 +306,6 @@
                 _frm.serialize(),
             )
                 .done(function (data) {
-                    console.log(data);
                     if (data.respuesta.ErrorNumero == 0)
                         location.reload();
                     else
@@ -490,8 +508,8 @@
             $.get("/Administrador/ObtenerNota",
                 { "folio": $this.attr("id").substring(13) })
                 .done(function (data) {
-                    llenarSelect($("#selTipo"), tiposcatalogos);
-                    llenarSelect($("#selIdEstatus"), estatus);
+                    llenarSelect($("#selTipo"), tiposnotas);
+                    llenarSelect($("#selIdEstatus"), estatus, K_ESTATUSNOTA);
                     llenarSelect($("#selIdPaqueteria"), zonas);
                     $("#hidIdCliente").val(data.IdCliente);
                     $("#hidFolio").val(data.Folio);
@@ -509,10 +527,23 @@
                 });
 
             $(botones).hide();
-            $("#btnEliminarEstatus").show();
+            $("#btnGuardarNota").show();
             $("#myModal").modal("show");
         });
-
+    $("#btnGuardarNota").off()
+        .on("click", function () {
+            $this = $(this);
+            $.post(
+                "/Administrador/guardarNota",
+                $("#frmNota").serialize()
+            ).done(function (data) {
+                console.log(data);
+                if (data.respuesta.ErrorNumero == 0)
+                    location.reload();
+                else
+                    alert(data.respuesta.ErrorMensaje);
+            });
+        });
     //---------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------

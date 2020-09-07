@@ -248,7 +248,7 @@ const modalNota =
     '        <label for="hidFechaEnvio">Envío</label>' +
     '    </div>' +
     '    <div class="col-sm-4">' +
-    '        <input type="text" class="form-control" name="FechaEnvio" id="hidFechaEnvio" value="" readonly="readonly"/>' +
+    '        <input type="text" class="form-control" name="FechaEnvio" id="hidFechaEnvio" value="" placeholder="dd/mm/aaaa" />' +
     '    </div>' +
     '</div>' +
     '<div class="row">' +
@@ -256,7 +256,7 @@ const modalNota =
     '        <label for="hidGuia">Guía</label>' +
     '    </div>' +
     '    <div class="col-sm-10">' +
-    '        <input type="text" class="form-control" name="Guia" id="hidGuia" value="" readonly="readonly"/>' +
+    '        <input type="text" class="form-control" name="Guia" id="hidGuia" value="" />' +
     '    </div>' +
     '</div>' +
     '<div class="row" >' + 
