@@ -182,6 +182,8 @@ create procedure Seguridad.guardarUsuario
 	@IdEstatus int
 as
 begin
+	if (@Passwd = '')
+		set @Passwd = null
 	if exists (select 1 from Seguridad.Usuario U (nolock) where U.Id = @Id)
 	begin
 		update Seguridad.Usuario

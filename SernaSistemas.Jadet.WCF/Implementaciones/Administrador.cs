@@ -597,7 +597,13 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones {
                 Folio = i.Folio,
                 Guia = i.Guia,
                 IdCliente = i.IdCliente,
-                IdEstatus = i.IdEstatus
+                IdEstatus = i.IdEstatus,
+                IdPaqueteria = i.IdPaqueteria,
+                IdTipo = i.IdTipo,
+                MontoMXN = i.MontoMXN,
+                MontoUSD = i.MontoUSD,
+                SaldoMXN = i.SaldoMXN,
+                SaldoUSD = i.SaldoUSD
             }));
             return response;
         }
