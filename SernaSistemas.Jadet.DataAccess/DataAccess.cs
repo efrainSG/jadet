@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Text;
 
 namespace SernaSistemas.Jadet.DataAccess {
     public class DataAccess {
@@ -244,12 +245,13 @@ namespace SernaSistemas.Jadet.DataAccess {
                         Value = usuario.UserName,
                         ParameterName = "@Usuario"
                     });
-                    cmd.Parameters.Add(new SqlParameter {
-                        DbType = System.Data.DbType.Binary,
-                        Direction = System.Data.ParameterDirection.Input,
-                        Value = usuario.Password,
-                        ParameterName = "@Passwd"
-                    });
+                    if (!string.IsNullOrEmpty(Encoding.UTF8.GetString(usuario.Password)))
+                        cmd.Parameters.Add(new SqlParameter {
+                            DbType = System.Data.DbType.Binary,
+                            Direction = System.Data.ParameterDirection.Input,
+                            Value = usuario.Password,
+                            ParameterName = "@Passwd"
+                        });
                     cmd.Parameters.Add(new SqlParameter {
                         DbType = System.Data.DbType.Int32,
                         Direction = System.Data.ParameterDirection.Input,
