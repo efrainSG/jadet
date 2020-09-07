@@ -6,47 +6,65 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SernaSistemas.Jadet.WCF.Modelos
-{
+namespace SernaSistemas.Jadet.WCF.Modelos {
     [DataContract]
-    public class ClienteRequest : BaseRequest
-    {
+    public class ClienteRequest : BaseRequest {
         [DataMember]
-        public int IdCliente { get; set; }
+        public Guid IdCliente { get; set; }
         [DataMember]
         public string Nombre { get; set; }
         [DataMember]
         public byte[] Password { get; set; }
         [DataMember]
-        public string Foto { get; set; }
+        public byte[] Foto { get; set; }
+        [DataMember]
+        public string Direccion { get; set; }
+        [DataMember]
+        public int IdEstatus { get; set; }
+        [DataMember]
+        public int IdRol { get; set; }
+        [DataMember]
+        public string Telefono { get; set; }
+        [DataMember]
+        public string UserName { get; set; }
+        [DataMember]
+        public int ZonaPaqueteria { get; set; }
     }
 
     [DataContract]
-    public class ClienteResponse : BaseResponse
-    {
+    public class ClienteResponse : BaseResponse {
         [DataMember]
-        public int IdCliente { get; set; }
+        public Guid IdCliente { get; set; }
         [DataMember]
         public string Nombre { get; set; }
         [DataMember]
         public byte[] Password { get; set; }
         [DataMember]
-        public string Foto { get; set; }
+        public byte[] Foto { get; set; }
+        [DataMember]
+        public string Direccion { get; set; }
+        [DataMember]
+        public int IdEstatus { get; set; }
+        [DataMember]
+        public int IdRol { get; set; }
+        [DataMember]
+        public string Telefono { get; set; }
+        [DataMember]
+        public string UserName { get; set; }
+        [DataMember]
+        public int ZonaPaqueteria { get; set; }
     }
 
     [DataContract]
-    public class HistorialClienteResponse : BaseResponse
-    {
+    public class HistorialClienteResponse : BaseResponse {
 
     }
 
     [DataContract]
-    public class coleccionClientesResponse : BaseResponse
-    {
+    public class coleccionClientesResponse : BaseResponse {
         [DataMember]
         public List<ClienteResponse> Items { get; set; }
-        public coleccionClientesResponse()
-        {
+        public coleccionClientesResponse() {
             Items = new List<ClienteResponse>();
         }
     }

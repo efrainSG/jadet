@@ -176,12 +176,14 @@ create procedure Seguridad.guardarUsuario
 	@Telefono varchar(20),
 	@Foto varbinary(max),
 	@Usuario varchar(50),
-	@Passwd varbinary(max),
+	@Passwd varbinary(max)=null,
 	@IdRol int,
 	@ZonaPaqueteria int,
 	@IdEstatus int
 as
 begin
+	if (@Passwd = '')
+		set @Passwd = null
 	if exists (select 1 from Seguridad.Usuario U (nolock) where U.Id = @Id)
 	begin
 		update Seguridad.Usuario
@@ -190,7 +192,7 @@ begin
 			Telefono = @Telefono,
 			Foto = @Foto,
 			Usuario = @Usuario,
-			Passwd = @Passwd,
+			Passwd = isnull(@Passwd,Passwd),
 			IdRol = @IdRol,
 			ZonaPaqueteria = @ZonaPaqueteria,
 			IdEstatus = @IdEstatus
@@ -198,6 +200,7 @@ begin
 	end;
 	else
 	begin
+		set @Id = NEWID();
 		insert into Seguridad.Usuario (	Id, Nombre, Direccion, Telefono, Foto, Usuario,
 										Passwd, IdRol, ZonaPaqueteria, IdEstatus)
 		values (@Id, @Nombre, @Direccion, @Telefono, @Foto, @Usuario,
@@ -259,7 +262,8 @@ create procedure Ventas.guardarProducto
 	@Existencias int,
 	@AplicaExistencias bit,
 	@Foto varbinary(max),
-	@IdCatalogo int
+	@IdCatalogo int,
+	@IdEstatus int
 as
 begin
 	declare @identity int
@@ -270,7 +274,7 @@ begin
 		set sku = @sku, Nombre = @Nombre, Descripcion = @Descripcion,
 			PrecioMXN = @PrecioMXN, PrecioUSD = @PrecioUSD, Existencias = @Existencias,
 			AplicaExistencias = @AplicaExistencias, Foto = @Foto,
-			IdCatalogo = @IdCatalogo
+			IdCatalogo = @IdCatalogo, IdEstatus = @IdEstatus
 		where Id = @Id
 		set @identity = @id
 	end
@@ -278,15 +282,15 @@ begin
 	begin
 		insert into Ventas.Producto (	sku, Nombre, Descripcion, PrecioMXN, PrecioUSD,
 										Existencias, AplicaExistencias, Foto,
-										IdCatalogo)
+										IdCatalogo, IdEstatus)
 		values (@sku, @Nombre, @Descripcion, @PrecioMXN, @PrecioUSD, @Existencias,
-				@AplicaExistencias, @Foto, @IdCatalogo)
+				@AplicaExistencias, @Foto, @IdCatalogo, @IdEstatus)
 		select @identity = SCOPE_IDENTITY()
 	end
 	select	@identity Id, @sku Sku, @Nombre Nombre, @Descripcion Descripcion,
 			@PrecioMXN PrecioMXN, @PrecioUSD PrecioUSD, @Existencias Existencias,
 			@AplicaExistencias AplicaExistencias, @Foto Foto,
-			@IdCatalogo IdCatalogo
+			@IdCatalogo IdCatalogo, @IdEstatus IdEstatus
 end;
 go
 
@@ -299,10 +303,47 @@ begin
 		set @Id = null
 	end
 	select	P.Id, P.sku, P.Nombre, P.Descripcion, P.PrecioMXN, P.PrecioUSD,
-			P.Existencias, P.APlicaExistencias, P.Foto, P.IdCatalogo,
-			C.Nombre Categoria
+			P.Existencias, P.APlicaExistencias, P.Foto, P.IdCatalogo, P.IdEstatus,
+			C.Nombre Categoria, E.Nombre Estatus
 	from	Ventas.Producto P (nolock)
 	join	Administracion.Catalogo C (nolock) on P.IdCatalogo = C.Id
+	join	Administracion.Estatus E (nolock) on P.IdEstatus = E.Id
 	where	P.Id = isnull(@Id, P.Id)
+end;
+go
+
+create procedure Ventas.borrarProducto
+	@Id int
+as
+begin
+	declare @ErrNo int = 0,
+			@ErrMsg varchar(max) = ''
+
+	begin try
+		delete from Ventas.Producto
+		where Id = @Id
+	end try
+	begin catch
+		select @ErrNo = Error_number(), @ErrMsg = Error_Message()
+	end catch
+	select @ErrNo ErrorNumero, @ErrMsg Mensaje
+end;
+go
+
+create procedure Seguridad.iniciarSesion
+	@Usuario varchar(50),
+	@Passwd varbinary(max)
+as
+begin
+	if exists (select 1 from Seguridad.Usuario U (nolock) where U.Usuario = @Usuario and U.Passwd = @Passwd)
+	begin
+		select	Id, Nombre, Usuario, IdRol, 0 ErrorNumero, '' Mensaje
+		from	Seguridad.Usuario U (nolock)
+		where	U.Usuario = @Usuario and U.Passwd = @Passwd
+	end
+	else
+	begin
+		select	cast('00000000-0000-0000-0000-000000000000' as uniqueidentifier) Id, '' Nombre, '' Usuario, 0 IdRol, 1 ErrorNumero, 'Credenciales inválidas' Mensaje
+	end
 end;
 go
