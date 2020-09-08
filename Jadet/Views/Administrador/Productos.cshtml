@@ -10,13 +10,16 @@
 <table class="table table-active table-bordered">
     <thead>
         <tr>
+            <th rowspan="2">Id</th>
             <th rowspan="2">SKU</th>
             <th rowspan="2" colspan="2">Producto</th>
             <th rowspan="2">Descripción</th>
             <th colspan="2">Precio</th>
             <th rowspan="2">Existencias</th>
+            <th rowspan="2">Aplica Existencias</th>
+            <th rowspan="2">Categoría</th>
             <th rowspan="2">
-                <a href="#" class="btn btn-success">Agregar</a>
+                <a href="#" class="btn btn-info" id="btnnuevoProducto"><i class="fa fa-lg fa-plus"></i></a>
             </th>
         </tr>
         <tr>
@@ -25,22 +28,29 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Items)
-        {
-        <tr>
-            <td>@item.Sku</td>
-            <td><img src="@item.RutaImagen" width="50px"</td>
-            <td>@item.Nombre</td>
-            <td>@item.Descripcion</td>
-            <td>@item.PrecioMXN</td>
-            <td>@item.PrecioUSD</td>
-            <td>@item.Existencias</td>
-            <td>
-                <a href="#" class="btn btn-warning" id="@("btneditar"+@item.Sku)">Editar</a>
-                <a href="#" class="btn btn-danger" id="@("btneliminar"+@item.Sku)">Eliminar</a>
-            </td>
-        </tr>
+        @foreach (var item in Model.Items) {
+            <tr>
+                <td class="bg-secondary">@item.Id</td>
+                <td>@item.Sku</td>
+                <td>@item.Nombre</td>
+                <td><img src="~/Content/productos/@(System.Text.Encoding.UTF8.GetString(item.Imagen))" width="50px" /></td>
+                <td>@item.Descripcion</td>
+                <td>@item.PrecioMXN</td>
+                <td>@item.PrecioUSD</td>
+                <td>@item.Existencias</td>
+                <td>
+                    @if (item.AplicaExistencias) {
+                        @:Sí
+                    } else {
+                        @:No
+                    }
+                </td>
+                <td>@item.Categoria</td>
+                <td>
+                    <a href="#@("btneditarProducto"+@item.Sku)" class="btn btn-warning-jadet" id="@("btneditarProducto"+@item.Sku)"><i class="fa fa-lg fa-edit"></i></a>
+                    <a href="#@("btneliminarProducto"+@item.Sku)" class="btn btn-danger-jadet" id="@("btneliminarProducto"+@item.Sku)"><i class="fa fa-lg fa-trash"></i></a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
-

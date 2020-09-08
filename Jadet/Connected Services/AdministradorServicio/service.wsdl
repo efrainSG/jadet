@@ -7,6 +7,72 @@
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IAdministrador_guardarCatalogo_InputMessage">
+    <wsdl:part name="parameters" element="tns:guardarCatalogo" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_guardarCatalogo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:guardarCatalogoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_bajaCatalogo_InputMessage">
+    <wsdl:part name="parameters" element="tns:bajaCatalogo" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_bajaCatalogo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:bajaCatalogoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_cargarCatalogo_InputMessage">
+    <wsdl:part name="parameters" element="tns:cargarCatalogo" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_cargarCatalogo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:cargarCatalogoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_listarCatalogo_InputMessage">
+    <wsdl:part name="parameters" element="tns:listarCatalogo" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_listarCatalogo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:listarCatalogoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_listarTipoCatalogo_InputMessage">
+    <wsdl:part name="parameters" element="tns:listarTipoCatalogo" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_listarTipoCatalogo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:listarTipoCatalogoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_guardarEstatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:guardarEstatus" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_guardarEstatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:guardarEstatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_bajaEstatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:bajaEstatus" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_bajaEstatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:bajaEstatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_cargarEstatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:cargarEstatus" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_cargarEstatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:cargarEstatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_listarEstatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:listarEstatus" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_listarEstatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:listarEstatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_listarTipoEstatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:listarTipoEstatus" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_listarTipoEstatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:listarTipoEstatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_cargarTipoEstatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:cargarTipoEstatus" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_cargarTipoEstatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:cargarTipoEstatusResponse" />
+  </wsdl:message>
   <wsdl:message name="IAdministrador_guardarCliente_InputMessage">
     <wsdl:part name="parameters" element="tns:guardarCliente" />
   </wsdl:message>
@@ -25,17 +91,23 @@
   <wsdl:message name="IAdministrador_cargarCliente_OutputMessage">
     <wsdl:part name="parameters" element="tns:cargarClienteResponse" />
   </wsdl:message>
-  <wsdl:message name="IAdministrador_subirFotos_InputMessage">
-    <wsdl:part name="parameters" element="tns:subirFotos" />
+  <wsdl:message name="IAdministrador_listarClientes_InputMessage">
+    <wsdl:part name="parameters" element="tns:listarClientes" />
   </wsdl:message>
-  <wsdl:message name="IAdministrador_subirFotos_OutputMessage">
-    <wsdl:part name="parameters" element="tns:subirFotosResponse" />
+  <wsdl:message name="IAdministrador_listarClientes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:listarClientesResponse" />
   </wsdl:message>
   <wsdl:message name="IAdministrador_cargarHistorialCliente_InputMessage">
     <wsdl:part name="parameters" element="tns:cargarHistorialCliente" />
   </wsdl:message>
   <wsdl:message name="IAdministrador_cargarHistorialCliente_OutputMessage">
     <wsdl:part name="parameters" element="tns:cargarHistorialClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_subirFotos_InputMessage">
+    <wsdl:part name="parameters" element="tns:subirFotos" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_subirFotos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:subirFotosResponse" />
   </wsdl:message>
   <wsdl:message name="IAdministrador_guardarProducto_InputMessage">
     <wsdl:part name="parameters" element="tns:guardarProducto" />
@@ -61,23 +133,101 @@
   <wsdl:message name="IAdministrador_listarProductos_OutputMessage">
     <wsdl:part name="parameters" element="tns:listarProductosResponse" />
   </wsdl:message>
+  <wsdl:message name="IAdministrador_guardarNota_InputMessage">
+    <wsdl:part name="parameters" element="tns:guardarNota" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_guardarNota_OutputMessage">
+    <wsdl:part name="parameters" element="tns:guardarNotaResponse" />
+  </wsdl:message>
   <wsdl:message name="IAdministrador_listarNotas_InputMessage">
     <wsdl:part name="parameters" element="tns:listarNotas" />
   </wsdl:message>
   <wsdl:message name="IAdministrador_listarNotas_OutputMessage">
     <wsdl:part name="parameters" element="tns:listarNotasResponse" />
   </wsdl:message>
-  <wsdl:message name="IAdministrador_verNota_InputMessage">
-    <wsdl:part name="parameters" element="tns:verNota" />
+  <wsdl:message name="IAdministrador_cargarNota_InputMessage">
+    <wsdl:part name="parameters" element="tns:cargarNota" />
   </wsdl:message>
-  <wsdl:message name="IAdministrador_verNota_OutputMessage">
-    <wsdl:part name="parameters" element="tns:verNotaResponse" />
+  <wsdl:message name="IAdministrador_cargarNota_OutputMessage">
+    <wsdl:part name="parameters" element="tns:cargarNotaResponse" />
   </wsdl:message>
-  <wsdl:message name="IAdministrador_borrarNota_InputMessage">
-    <wsdl:part name="parameters" element="tns:borrarNota" />
+  <wsdl:message name="IAdministrador_bajaNota_InputMessage">
+    <wsdl:part name="parameters" element="tns:bajaNota" />
   </wsdl:message>
-  <wsdl:message name="IAdministrador_borrarNota_OutputMessage">
-    <wsdl:part name="parameters" element="tns:borrarNotaResponse" />
+  <wsdl:message name="IAdministrador_bajaNota_OutputMessage">
+    <wsdl:part name="parameters" element="tns:bajaNotaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_guardarDetalleNota_InputMessage">
+    <wsdl:part name="parameters" element="tns:guardarDetalleNota" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_guardarDetalleNota_OutputMessage">
+    <wsdl:part name="parameters" element="tns:guardarDetalleNotaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_listarDetalleNota_InputMessage">
+    <wsdl:part name="parameters" element="tns:listarDetalleNota" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_listarDetalleNota_OutputMessage">
+    <wsdl:part name="parameters" element="tns:listarDetalleNotaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_cargarDetalleNota_InputMessage">
+    <wsdl:part name="parameters" element="tns:cargarDetalleNota" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_cargarDetalleNota_OutputMessage">
+    <wsdl:part name="parameters" element="tns:cargarDetalleNotaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_bajaDetalleNota_InputMessage">
+    <wsdl:part name="parameters" element="tns:bajaDetalleNota" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_bajaDetalleNota_OutputMessage">
+    <wsdl:part name="parameters" element="tns:bajaDetalleNotaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_guardarComentarioNota_InputMessage">
+    <wsdl:part name="parameters" element="tns:guardarComentarioNota" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_guardarComentarioNota_OutputMessage">
+    <wsdl:part name="parameters" element="tns:guardarComentarioNotaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_listarComentarioNota_InputMessage">
+    <wsdl:part name="parameters" element="tns:listarComentarioNota" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_listarComentarioNota_OutputMessage">
+    <wsdl:part name="parameters" element="tns:listarComentarioNotaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_cargarComentarioNota_InputMessage">
+    <wsdl:part name="parameters" element="tns:cargarComentarioNota" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_cargarComentarioNota_OutputMessage">
+    <wsdl:part name="parameters" element="tns:cargarComentarioNotaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_bajaComentarioNota_InputMessage">
+    <wsdl:part name="parameters" element="tns:bajaComentarioNota" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_bajaComentarioNota_OutputMessage">
+    <wsdl:part name="parameters" element="tns:bajaComentarioNotaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_guardarTicketNota_InputMessage">
+    <wsdl:part name="parameters" element="tns:guardarTicketNota" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_guardarTicketNota_OutputMessage">
+    <wsdl:part name="parameters" element="tns:guardarTicketNotaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_listarTicketNota_InputMessage">
+    <wsdl:part name="parameters" element="tns:listarTicketNota" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_listarTicketNota_OutputMessage">
+    <wsdl:part name="parameters" element="tns:listarTicketNotaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_cargarTicketNota_InputMessage">
+    <wsdl:part name="parameters" element="tns:cargarTicketNota" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_cargarTicketNota_OutputMessage">
+    <wsdl:part name="parameters" element="tns:cargarTicketNotaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_bajaTicketNota_InputMessage">
+    <wsdl:part name="parameters" element="tns:bajaTicketNota" />
+  </wsdl:message>
+  <wsdl:message name="IAdministrador_bajaTicketNota_OutputMessage">
+    <wsdl:part name="parameters" element="tns:bajaTicketNotaResponse" />
   </wsdl:message>
   <wsdl:message name="IAdministrador_generarGuias_InputMessage">
     <wsdl:part name="parameters" element="tns:generarGuias" />
@@ -98,6 +248,50 @@
     <wsdl:part name="parameters" element="tns:cambiarEstatusPaginaResponse" />
   </wsdl:message>
   <wsdl:portType name="IAdministrador">
+    <wsdl:operation name="guardarCatalogo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/guardarCatalogo" message="tns:IAdministrador_guardarCatalogo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/guardarCatalogoResponse" message="tns:IAdministrador_guardarCatalogo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="bajaCatalogo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/bajaCatalogo" message="tns:IAdministrador_bajaCatalogo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/bajaCatalogoResponse" message="tns:IAdministrador_bajaCatalogo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="cargarCatalogo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/cargarCatalogo" message="tns:IAdministrador_cargarCatalogo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/cargarCatalogoResponse" message="tns:IAdministrador_cargarCatalogo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="listarCatalogo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/listarCatalogo" message="tns:IAdministrador_listarCatalogo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/listarCatalogoResponse" message="tns:IAdministrador_listarCatalogo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="listarTipoCatalogo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/listarTipoCatalogo" message="tns:IAdministrador_listarTipoCatalogo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/listarTipoCatalogoResponse" message="tns:IAdministrador_listarTipoCatalogo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="guardarEstatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/guardarEstatus" message="tns:IAdministrador_guardarEstatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/guardarEstatusResponse" message="tns:IAdministrador_guardarEstatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="bajaEstatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/bajaEstatus" message="tns:IAdministrador_bajaEstatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/bajaEstatusResponse" message="tns:IAdministrador_bajaEstatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="cargarEstatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/cargarEstatus" message="tns:IAdministrador_cargarEstatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/cargarEstatusResponse" message="tns:IAdministrador_cargarEstatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="listarEstatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/listarEstatus" message="tns:IAdministrador_listarEstatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/listarEstatusResponse" message="tns:IAdministrador_listarEstatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="listarTipoEstatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/listarTipoEstatus" message="tns:IAdministrador_listarTipoEstatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/listarTipoEstatusResponse" message="tns:IAdministrador_listarTipoEstatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="cargarTipoEstatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/cargarTipoEstatus" message="tns:IAdministrador_cargarTipoEstatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/cargarTipoEstatusResponse" message="tns:IAdministrador_cargarTipoEstatus_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="guardarCliente">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/guardarCliente" message="tns:IAdministrador_guardarCliente_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/guardarClienteResponse" message="tns:IAdministrador_guardarCliente_OutputMessage" />
@@ -110,13 +304,17 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/cargarCliente" message="tns:IAdministrador_cargarCliente_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/cargarClienteResponse" message="tns:IAdministrador_cargarCliente_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="subirFotos">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/subirFotos" message="tns:IAdministrador_subirFotos_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/subirFotosResponse" message="tns:IAdministrador_subirFotos_OutputMessage" />
+    <wsdl:operation name="listarClientes">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/listarClientes" message="tns:IAdministrador_listarClientes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/listarClientesResponse" message="tns:IAdministrador_listarClientes_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="cargarHistorialCliente">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/cargarHistorialCliente" message="tns:IAdministrador_cargarHistorialCliente_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/cargarHistorialClienteResponse" message="tns:IAdministrador_cargarHistorialCliente_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="subirFotos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/subirFotos" message="tns:IAdministrador_subirFotos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/subirFotosResponse" message="tns:IAdministrador_subirFotos_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="guardarProducto">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/guardarProducto" message="tns:IAdministrador_guardarProducto_InputMessage" />
@@ -134,17 +332,69 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/listarProductos" message="tns:IAdministrador_listarProductos_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/listarProductosResponse" message="tns:IAdministrador_listarProductos_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="guardarNota">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/guardarNota" message="tns:IAdministrador_guardarNota_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/guardarNotaResponse" message="tns:IAdministrador_guardarNota_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="listarNotas">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/listarNotas" message="tns:IAdministrador_listarNotas_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/listarNotasResponse" message="tns:IAdministrador_listarNotas_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="verNota">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/verNota" message="tns:IAdministrador_verNota_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/verNotaResponse" message="tns:IAdministrador_verNota_OutputMessage" />
+    <wsdl:operation name="cargarNota">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/cargarNota" message="tns:IAdministrador_cargarNota_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/cargarNotaResponse" message="tns:IAdministrador_cargarNota_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="borrarNota">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/borrarNota" message="tns:IAdministrador_borrarNota_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/borrarNotaResponse" message="tns:IAdministrador_borrarNota_OutputMessage" />
+    <wsdl:operation name="bajaNota">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/bajaNota" message="tns:IAdministrador_bajaNota_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/bajaNotaResponse" message="tns:IAdministrador_bajaNota_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="guardarDetalleNota">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/guardarDetalleNota" message="tns:IAdministrador_guardarDetalleNota_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/guardarDetalleNotaResponse" message="tns:IAdministrador_guardarDetalleNota_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="listarDetalleNota">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/listarDetalleNota" message="tns:IAdministrador_listarDetalleNota_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/listarDetalleNotaResponse" message="tns:IAdministrador_listarDetalleNota_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="cargarDetalleNota">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/cargarDetalleNota" message="tns:IAdministrador_cargarDetalleNota_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/cargarDetalleNotaResponse" message="tns:IAdministrador_cargarDetalleNota_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="bajaDetalleNota">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/bajaDetalleNota" message="tns:IAdministrador_bajaDetalleNota_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/bajaDetalleNotaResponse" message="tns:IAdministrador_bajaDetalleNota_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="guardarComentarioNota">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/guardarComentarioNota" message="tns:IAdministrador_guardarComentarioNota_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/guardarComentarioNotaResponse" message="tns:IAdministrador_guardarComentarioNota_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="listarComentarioNota">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/listarComentarioNota" message="tns:IAdministrador_listarComentarioNota_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/listarComentarioNotaResponse" message="tns:IAdministrador_listarComentarioNota_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="cargarComentarioNota">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/cargarComentarioNota" message="tns:IAdministrador_cargarComentarioNota_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/cargarComentarioNotaResponse" message="tns:IAdministrador_cargarComentarioNota_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="bajaComentarioNota">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/bajaComentarioNota" message="tns:IAdministrador_bajaComentarioNota_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/bajaComentarioNotaResponse" message="tns:IAdministrador_bajaComentarioNota_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="guardarTicketNota">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/guardarTicketNota" message="tns:IAdministrador_guardarTicketNota_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/guardarTicketNotaResponse" message="tns:IAdministrador_guardarTicketNota_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="listarTicketNota">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/listarTicketNota" message="tns:IAdministrador_listarTicketNota_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/listarTicketNotaResponse" message="tns:IAdministrador_listarTicketNota_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="cargarTicketNota">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/cargarTicketNota" message="tns:IAdministrador_cargarTicketNota_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/cargarTicketNotaResponse" message="tns:IAdministrador_cargarTicketNota_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="bajaTicketNota">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/bajaTicketNota" message="tns:IAdministrador_bajaTicketNota_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdministrador/bajaTicketNotaResponse" message="tns:IAdministrador_bajaTicketNota_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="generarGuias">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdministrador/generarGuias" message="tns:IAdministrador_generarGuias_InputMessage" />
@@ -161,6 +411,105 @@
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IAdministrador" type="tns:IAdministrador">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="guardarCatalogo">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/guardarCatalogo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bajaCatalogo">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/bajaCatalogo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cargarCatalogo">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/cargarCatalogo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listarCatalogo">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/listarCatalogo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listarTipoCatalogo">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/listarTipoCatalogo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="guardarEstatus">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/guardarEstatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bajaEstatus">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/bajaEstatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cargarEstatus">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/cargarEstatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listarEstatus">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/listarEstatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listarTipoEstatus">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/listarTipoEstatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cargarTipoEstatus">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/cargarTipoEstatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="guardarCliente">
       <soap:operation soapAction="http://tempuri.org/IAdministrador/guardarCliente" style="document" />
       <wsdl:input>
@@ -188,8 +537,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="subirFotos">
-      <soap:operation soapAction="http://tempuri.org/IAdministrador/subirFotos" style="document" />
+    <wsdl:operation name="listarClientes">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/listarClientes" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -199,6 +548,15 @@
     </wsdl:operation>
     <wsdl:operation name="cargarHistorialCliente">
       <soap:operation soapAction="http://tempuri.org/IAdministrador/cargarHistorialCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="subirFotos">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/subirFotos" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -242,6 +600,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="guardarNota">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/guardarNota" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="listarNotas">
       <soap:operation soapAction="http://tempuri.org/IAdministrador/listarNotas" style="document" />
       <wsdl:input>
@@ -251,8 +618,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="verNota">
-      <soap:operation soapAction="http://tempuri.org/IAdministrador/verNota" style="document" />
+    <wsdl:operation name="cargarNota">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/cargarNota" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -260,8 +627,116 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="borrarNota">
-      <soap:operation soapAction="http://tempuri.org/IAdministrador/borrarNota" style="document" />
+    <wsdl:operation name="bajaNota">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/bajaNota" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="guardarDetalleNota">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/guardarDetalleNota" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listarDetalleNota">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/listarDetalleNota" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cargarDetalleNota">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/cargarDetalleNota" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bajaDetalleNota">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/bajaDetalleNota" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="guardarComentarioNota">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/guardarComentarioNota" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listarComentarioNota">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/listarComentarioNota" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cargarComentarioNota">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/cargarComentarioNota" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bajaComentarioNota">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/bajaComentarioNota" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="guardarTicketNota">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/guardarTicketNota" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listarTicketNota">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/listarTicketNota" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cargarTicketNota">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/cargarTicketNota" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bajaTicketNota">
+      <soap:operation soapAction="http://tempuri.org/IAdministrador/bajaTicketNota" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

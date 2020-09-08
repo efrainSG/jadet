@@ -10,12 +10,24 @@
     <link rel="stylesheet" href="~/Content/jquery-ui.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+    <link rel="stylesheet" href="~/Content/jadet.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="~/Scripts/jquery-ui.js"></script>
-    <script src="~/Scripts/Jadet/principal.js"></script>
-
+    <script src="~/Scripts/Jadet/forms.js" type="text/javascript"></script>
+    <script src="~/Scripts/Jadet/principal.js" type="text/javascript"></script>
+    <script>
+        var categorias = new Array();
+        var tiposcatalogos = new Array();
+        var estatus = new Array();
+        var zonas = new Array();
+        var tiposnotas = new Array();
+        var tipoestatus = new Array();
+        const botones = "#btnGuardar, #btnGuardarCliente, #btnGuardarCatalogo, #btnGuardarEstatus, #btnEliminar, #btnGuardarNota, #btnEliminarCliente, #btnEliminarCatalogo, #btnEliminarEstatus";
+        const K_ESTATUSNOTA = 3;
+        const K_ESTATUSUSUARIO = 1;
+        const K_ESTATUSPRODUCTO = 2;
+    </script>
 </head>
 <body>
     <div class="navbar navbar-inverse">
@@ -39,7 +51,8 @@
                     <li>@Html.ActionLink("Productos", "Productos", "Administrador")</li>
                     <li>@Html.ActionLink("Clientes", "Clientes", "Administrador")</li>
                     <li>@Html.ActionLink("Notas", "Notas", "Administrador")</li>
-                    <li>@Html.ActionLink("Guías", "Guias", "Administrador")</li>
+@*                    <li>@Html.ActionLink("Guías", "Guias", "Administrador")</li>*@
+                    <li>@Html.ActionLink("Configuración", "Configuracion", "Administrador")</li>
                 </ul>
             </div>
         </div>
@@ -48,7 +61,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+            <p>&copy; @DateTime.Now.Year - Jadet</p>
         </footer>
     </div>
 
@@ -63,14 +76,28 @@
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="modalHdr">Modal Header</h3>
-                    @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <h3 class="modal-title" id="modalHdr">Modal Header</h3>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-sm btn-warning-jadet" data-dismiss="modal"><i class="fa fa-lg fa-times"></i></button>
+                        </div>
+                        @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                    </div>
                 </div>
                 <div class="modal-body" id="divModalBody">
                 </div>
                 <div class="modal-footer" id="divModalFooter">
-                    <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">Guardar</button>
-                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-sm btn-info" data-dismiss="modal" id="btnGuardar"><i class="fa fa-lg fa-check"></i></button>
+                    <button type="button" class="btn btn-sm btn-info" data-dismiss="modal" id="btnGuardarCliente"><i class="fa fa-lg fa-check"></i></button>
+                    <button type="button" class="btn btn-sm btn-info" data-dismiss="modal" id="btnGuardarCatalogo"><i class="fa fa-lg fa-check"></i></button>
+                    <button type="button" class="btn btn-sm btn-info" data-dismiss="modal" id="btnGuardarEstatus"><i class="fa fa-lg fa-check"></i></button>
+                    <button type="button" class="btn btn-sm btn-info" data-dismiss="modal" id="btnGuardarNota"><i class="fa fa-lg fa-check"></i></button>
+                    <button type="button" class="btn btn-sm btn-danger-jadet" data-dismiss="modal" id="btnEliminar"><i class="fa fa-lg fa-trash"></i></button>
+                    <button type="button" class="btn btn-sm btn-danger-jadet" data-dismiss="modal" id="btnEliminarCliente"><i class="fa fa-lg fa-trash"></i></button>
+                    <button type="button" class="btn btn-sm btn-danger-jadet" data-dismiss="modal" id="btnEliminarCatalogo"><i class="fa fa-lg fa-trash"></i></button>
+                    <button type="button" class="btn btn-sm btn-danger-jadet" data-dismiss="modal" id="btnEliminarEstatus"><i class="fa fa-lg fa-trash"></i></button>
                 </div>
             </div>
 

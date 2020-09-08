@@ -1,0 +1,181 @@
+﻿@model Jadet.Models.listacatalogoModel
+@{
+    ViewBag.Title = "Configuración";
+    Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>Catálogo de estátus de usuarios</h3>
+<table class="table table-active table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>
+                <a href="#" class="btn btn-info" id="btnagregarEstatus"><i class="fa fa-lg fa-plus"></i></a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Items != null)
+        {
+            foreach (var item in Model.Items.Where(i => i.Tabla.Equals("ESTÁTUS") & i.IdTipoCatalogo.Equals(1)))
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Nombre</td>
+                    <td>
+                        <a href="#@("btneditarEstatus"+@item.Id)" class="btn btn-warning-jadet" data-content="@item.Id" id="@("btneditarEstatus"+@item.Id)"><i class="fa fa-lg fa-edit"></i></a>
+                        <a href="#" class="btn btn-danger-jadet" data-content="@item.Id" id="btneliminarEstatus"><i class="fa fa-lg fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<h3>Catálogo de estátus de producto</h3>
+<table class="table table-active table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>
+                <a href="#" class="btn btn-info" id="btnagregarEstatus"><i class="fa fa-lg fa-plus"></i></a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Items != null)
+        {
+            foreach (var item in Model.Items.Where(i => i.Tabla.Equals("ESTÁTUS") & i.IdTipoCatalogo.Equals(2)))
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Nombre</td>
+                    <td>
+                        <a href="#@("btneditarEstatus"+@item.Id)" class="btn btn-warning-jadet" data-content="@item.Id" id="@("btneditarEstatus"+@item.Id)"><i class="fa fa-lg fa-edit"></i></a>
+                        <a href="#" class="btn btn-danger-jadet" data-content="@item.Id" id="btneliminarEstatus"><i class="fa fa-lg fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<h3>Catálogo de estátus de nota</h3>
+<table class="table table-active table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>
+                <a href="#" class="btn btn-info" id="btnagregarEstatus"><i class="fa fa-lg fa-plus"></i></a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Items != null)
+        {
+            foreach (var item in Model.Items.Where(i => i.Tabla.Equals("ESTÁTUS") & i.IdTipoCatalogo.Equals(3)))
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Nombre</td>
+                    <td>
+                        <a href="#@("btneditarEstatus"+@item.Id)" class="btn btn-warning-jadet" data-content="@item.Id" id="@("btneditarEstatus"+@item.Id)"><i class="fa fa-lg fa-edit"></i></a>
+                        <a href="#" class="btn btn-danger-jadet" data-content="@item.Id" id="btneliminarEstatus"><i class="fa fa-lg fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+    
+<h3>Catálogo de categorías</h3>
+<table class="table table-active table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>
+                <a href="#" class="btn btn-info" id="btnagregarCatalogo"><i class="fa fa-lg fa-plus"></i></a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Items != null)
+        {
+            foreach (var item in Model.Items.Where(i => i.Tabla.Equals("CATÁLOGO") && i.IdTipoCatalogo.Equals(3)))
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Nombre</td>
+                    <td>
+                        <a href="#@("btneditarCatalogo"+@item.Id)" class="btn btn-warning-jadet" data-content="@item.IdTipoCatalogo" id="@("btneditarCatalogo"+@item.Id)"><i class="fa fa-lg fa-edit"></i></a>
+                        <a href="#@("btneliminarCatalogo"+item.Id)" class="btn btn-danger-jadet" data-content="@item.Id" id="@("btneliminarCatalogo"+item.Id)"><i class="fa fa-lg fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<h3>Catálogo de paqueterías</h3>
+<table class="table table-active table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>
+                <a href="#" class="btn btn-info" id="btnagregarCatalogo"><i class="fa fa-lg fa-plus"></i></a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Items != null)
+        {
+            foreach (var item in Model.Items.Where(i => i.Tabla.Equals("CATÁLOGO") && i.IdTipoCatalogo.Equals(2)))
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Nombre</td>
+                    <td>
+                        <a href="#@("btneditarCatalogo"+@item.Id)" class="btn btn-warning-jadet" data-content="@item.Id" id="@("btneditarCatalogo"+@item.Id)"><i class="fa fa-lg fa-edit"></i></a>
+                        <a href="#@("btneliminarCatalogo"+item.Id)" class="btn btn-danger-jadet" data-content="@item.Id" id="@("btneliminarCatalogo"+item.Id)"><i class="fa fa-lg fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<h3>Catálogo de tipos de notas</h3>
+<table class="table table-active table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>
+                <a href="#" class="btn btn-info" id="btnagregarCatalogo"><i class="fa fa-lg fa-plus"></i></a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Items != null)
+        {
+            foreach (var item in Model.Items.Where(i => i.Tabla.Equals("CATÁLOGO") && i.IdTipoCatalogo.Equals(1)))
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Nombre</td>
+                    <td>
+                        <a href="#@("btneditarCatalogo"+@item.Id)" class="btn btn-warning-jadet" data-content="@item.Id" id="@("btneditarCatalogo"+@item.Id)"><i class="fa fa-lg fa-edit"></i></a>
+                        <a href="#@("btneliminarCatalogo"+item.Id)" class="btn btn-danger-jadet" data-content="@item.Id" id="@("btneliminarCatalogo"+item.Id)"><i class="fa fa-lg fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

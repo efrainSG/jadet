@@ -21,7 +21,7 @@
       <xs:extension base="tns:BaseResponse">
         <xs:sequence>
           <xs:element minOccurs="0" name="IdUsuario" type="ser:guid" />
-          <xs:element minOccurs="0" name="NombreUsuario" nillable="true" type="tns:Nombre" />
+          <xs:element minOccurs="0" name="NombreUsuario" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="RolUsuario" nillable="true" type="tns:Rol" />
           <xs:element minOccurs="0" name="UltimoInicio" type="xs:dateTime" />
           <xs:element minOccurs="0" name="Usuario" nillable="true" type="xs:string" />
@@ -37,19 +37,49 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="BaseResponse" nillable="true" type="tns:BaseResponse" />
-  <xs:complexType name="Nombre">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="ApellidoMaterno" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ApellidoPaterno" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Nombres" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Nombre" nillable="true" type="tns:Nombre" />
   <xs:complexType name="Rol">
     <xs:sequence>
       <xs:element minOccurs="0" name="IdRol" type="xs:int" />
-      <xs:element minOccurs="0" name="NombreRol" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Rol" nillable="true" type="tns:Rol" />
+  <xs:complexType name="UsuarioRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Direccion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Foto" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="Id" type="ser:guid" />
+          <xs:element minOccurs="0" name="IdEstatus" type="xs:int" />
+          <xs:element minOccurs="0" name="IdRol" type="xs:int" />
+          <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Password" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="Telefono" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Usuario" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ZonaPaqueteria" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UsuarioRequest" nillable="true" type="tns:UsuarioRequest" />
+  <xs:complexType name="UsuarioResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Direccion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Foto" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="Id" type="ser:guid" />
+          <xs:element minOccurs="0" name="IdEstatus" type="xs:int" />
+          <xs:element minOccurs="0" name="IdRol" type="xs:int" />
+          <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Password" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="Telefono" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Usuario" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ZonaPaqueteria" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UsuarioResponse" nillable="true" type="tns:UsuarioResponse" />
 </xs:schema>
