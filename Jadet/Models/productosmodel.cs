@@ -22,7 +22,10 @@ namespace Jadet.Models {
         public int IdEstatus { get; set; }
         public string Estatus { get; set; }
     }
-    public class listaproductosmodel {
+    public class listaproductosmodel
+    {
+        public int IdTipoVenta { get; set; }
+        public string TipoVenta { get; set; }
         public List<productomodel> Items { get; set; }
         public listaproductosmodel() {
             Items = new List<productomodel>();
