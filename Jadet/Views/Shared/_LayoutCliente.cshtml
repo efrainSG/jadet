@@ -33,19 +33,30 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Jadet", "Index", "Home", new
-                {
+                @Html.ActionLink("Jadet", "Index", "Home", new {
                     area = ""
-                }, new
-                {
+                }, new {
                     @class = "navbar-brand"
                 })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Preventa", "Preventa", "Cliente")</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Ventas
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink(linkText: "Preventa", actionName: "Productos", controllerName: "Cliente", routeValues: new { idTipo = 1 }, htmlAttributes: null)</li>
+                            <li>@Html.ActionLink(linkText: "VIP", actionName: "Productos", controllerName: "Cliente", routeValues: new { idTipo = 2 }, htmlAttributes: null)</li>
+                            <li>@Html.ActionLink(linkText: "En vivo (Live)", actionName: "Productos", controllerName: "Cliente", routeValues: new { idTipo = 3 }, htmlAttributes: null)</li>
+                            <li>@Html.ActionLink(linkText: "Existencias", actionName: "Productos", controllerName: "Cliente", routeValues: new { idTipo = 4 }, htmlAttributes: null)</li>
+                            <li>@Html.ActionLink(linkText: "Venta exprés", actionName: "Productos", controllerName: "Cliente", routeValues: new { idTipo = 5 }, htmlAttributes: null)</li>
+                        </ul>
+                    </li>
                     <li>@Html.ActionLink("Ver carrito", "Carrito", "Cliente")</li>
                     <li>@Html.ActionLink("Ver pedidos", "Pedidos", "Cliente")</li>
+                    <li>@Html.ActionLink("Ver perfil", "Perfil", "Cliente")</li>
                 </ul>
             </div>
         </div>

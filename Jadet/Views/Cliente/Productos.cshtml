@@ -1,0 +1,43 @@
+﻿@model Jadet.Models.listaproductosmodel
+
+@{
+
+    Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    @foreach (var item in Model.Items) {
+        <div class="col-sm-3 card">
+            <div class="row card-header">
+                <div class="col-sm-4 card-header">
+                    @if (item.AplicaExistencias) {
+                        <h3 class="badge badge-secondary">@item.Existencias <br /> existencias</h3>
+                    }
+                </div>  
+                <div class="col-sm-8 card-header">
+                    <h3 class="text-capitalize">
+                        @item.Nombre<br />
+                        <small>SKU: @item.Sku</small>
+                    </h3>
+                </div>
+            </div>
+            <div class="row card-body">
+                <div class="row col-sm-12 text-center">
+                    <img src="~/Content/productos/@item.strImagen" class="img-thumbnail" width="150px" /><br />
+                    <span class="card-text">@item.Descripcion</span>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 card-footer">
+                        <h4 class="text-info text-lg-center">$@item.PrecioMXN M.N. (@item.PrecioUSD USD)</h4>
+                    </div>
+                    <div class="col-sm-6 card-footer">
+                        <a href="#" class="btn btn-lg btn-success" id="@("btnagregarCarrito"+@item.Id)"><i class="fa fa-lg fa-cart-plus"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

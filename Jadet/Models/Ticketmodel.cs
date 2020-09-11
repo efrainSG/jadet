@@ -5,6 +5,7 @@ using System.Web;
 
 namespace Jadet.Models {
     public class Ticketmodel {
+
     }
 
     public class listaTicketsmodel {

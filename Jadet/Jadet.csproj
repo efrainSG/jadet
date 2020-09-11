@@ -454,11 +454,13 @@
     <Content Include="Views\Administrador\Guias.cshtml" />
     <Content Include="Views\Cliente\Pedidos.cshtml" />
     <Content Include="Views\Cliente\Carrito.cshtml" />
-    <Content Include="Views\Cliente\Preventa.cshtml" />
+    <Content Include="Views\Cliente\Productos.cshtml" />
     <Content Include="Views\Administrador\Configuracion.cshtml" />
     <Content Include="Views\Administrador\DetalleNota.cshtml" />
     <Content Include="Views\Administrador\Comentarios.cshtml" />
     <Content Include="Views\Administrador\Tickets.cshtml" />
+    <Content Include="Views\Cliente\Comentarios.cshtml" />
+    <Content Include="Views\Cliente\Perfil.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
