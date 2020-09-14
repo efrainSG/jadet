@@ -272,20 +272,10 @@ namespace Jadet.ClienteServicio {
         System.Threading.Tasks.Task<Jadet.ClienteServicio.ItemCarritoResponse> agregarACarritoAsync(Jadet.ClienteServicio.ItemCarritoRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICliente/quitarDelCarrito", ReplyAction="http://tempuri.org/ICliente/quitarDelCarritoResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Jadet.ClienteServicio.ArchivoRequest))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Jadet.ClienteServicio.BaseRequest))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Jadet.ClienteServicio.ArchivoResponse))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Jadet.ClienteServicio.BaseResponse))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Jadet.ClienteServicio.ItemCarritoRequest))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Jadet.ClienteServicio.ItemCarritoResponse))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Jadet.ClienteServicio.CarritoResponse))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Jadet.ClienteServicio.CarritoRequest))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Jadet.ClienteServicio.ColeccionCarritoResponse))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Jadet.ClienteServicio.CarritoResponse[]))]
-        object quitarDelCarrito(Jadet.ClienteServicio.ItemCarritoRequest request);
+        Jadet.ClienteServicio.BaseResponse quitarDelCarrito(Jadet.ClienteServicio.ItemCarritoRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICliente/quitarDelCarrito", ReplyAction="http://tempuri.org/ICliente/quitarDelCarritoResponse")]
-        System.Threading.Tasks.Task<object> quitarDelCarritoAsync(Jadet.ClienteServicio.ItemCarritoRequest request);
+        System.Threading.Tasks.Task<Jadet.ClienteServicio.BaseResponse> quitarDelCarritoAsync(Jadet.ClienteServicio.ItemCarritoRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICliente/vaciarCarrito", ReplyAction="http://tempuri.org/ICliente/vaciarCarritoResponse")]
         Jadet.ClienteServicio.CarritoResponse vaciarCarrito(Jadet.ClienteServicio.BaseRequest request);
@@ -361,11 +351,11 @@ namespace Jadet.ClienteServicio {
             return base.Channel.agregarACarritoAsync(request);
         }
         
-        public object quitarDelCarrito(Jadet.ClienteServicio.ItemCarritoRequest request) {
+        public Jadet.ClienteServicio.BaseResponse quitarDelCarrito(Jadet.ClienteServicio.ItemCarritoRequest request) {
             return base.Channel.quitarDelCarrito(request);
         }
         
-        public System.Threading.Tasks.Task<object> quitarDelCarritoAsync(Jadet.ClienteServicio.ItemCarritoRequest request) {
+        public System.Threading.Tasks.Task<Jadet.ClienteServicio.BaseResponse> quitarDelCarritoAsync(Jadet.ClienteServicio.ItemCarritoRequest request) {
             return base.Channel.quitarDelCarritoAsync(request);
         }
         

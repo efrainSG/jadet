@@ -434,7 +434,7 @@ namespace SernaSistemas.Jadet.DataAccess {
                     cmd.Parameters.Add(new SqlParameter {
                         DbType = System.Data.DbType.String,
                         Direction = System.Data.ParameterDirection.Input,
-                        Value = nota.Guia,
+                        Value = !string.IsNullOrEmpty(nota.Guia) ? nota.Guia : string.Empty,
                         ParameterName = "@Guia"
                     });
                     if (nota.FechaEnvio.HasValue) {

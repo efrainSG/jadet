@@ -1,218 +1,532 @@
-﻿using Jadet.Models;
+﻿using Jadet.AdministradorServicio;
+using Jadet.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.ServiceModel.Configuration;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using WebGrease.Configuration;
 
-namespace Jadet.Controllers
-{
-    public class AdministradorController : Controller
-    {
+namespace Jadet.Controllers {
+    public class AdministradorController : Controller {
         // GET: Administrador
-        public ActionResult Index()
-        {
+        public ActionResult Index() {
             if (Session["usuario"] != null && (Session["usuario"] as loginmodel).usuario == "Root")
                 return View();
-            else
-            {
+            else {
                 Session.Clear();
                 return RedirectToAction("Index", "Home");
             }
         }
-
-        public ActionResult Productos()
-        {
-            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root")
-            {
+        #region Carga de listas
+        public ActionResult Productos() {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
                 Session.Clear();
                 return RedirectToAction("Index", "Home");
             }
             listaproductosmodel productos = new listaproductosmodel();
-            productos.Items.Add(new productomodel
-            {
-                Sku = "A00000",
-                Nombre = "Producto 1",
-                Descripcion = "Producto uno",
-                Existencias = 10,
-                RutaImagen = "../Content/imgs/103373701_745367459536215_6683955577034642454_n.jpg",
-                ErrorNumero = 0,
-                ErrorMensaje = string.Empty,
-                PrecioMXN = 150m,
-                PrecioUSD = 7.5m
+            var servicio = new AdministradorClient();
+            var response = servicio.listarProductos(new ProductoRequest {
+                Id = 0
             });
-            productos.Items.Add(new productomodel
-            {
-                Sku = "A00001",
-                Nombre = "Producto 2",
-                Descripcion = "Producto dos",
-                Existencias = 10,
-                RutaImagen = "../Content/imgs/106726574_619939592236905_8451229284513577533_n.jpg",
-                ErrorNumero = 0,
-                ErrorMensaje = string.Empty,
-                PrecioMXN = 150m,
-                PrecioUSD = 7.5m
-            });
-            productos.Items.Add(new productomodel
-            {
-                Sku = "A00002",
-                Nombre = "Producto 3",
-                Descripcion = "Producto tres",
-                Existencias = 10,
-                RutaImagen = "../Content/imgs/106925028_276980433358784_3564958967851603976_n.jpg",
-                ErrorNumero = 0,
-                ErrorMensaje = string.Empty,
-                PrecioMXN = 150m,
-                PrecioUSD = 7.5m
-            });
-            productos.Items.Add(new productomodel
-            {
-                Sku = "A00003",
-                Nombre = "Producto 4",
-                Descripcion = "Producto cuatro",
-                Existencias = 10,
-                RutaImagen = "../Content/imgs/107100168_575722183139154_7671637487869851358_n.jpg",
-                ErrorNumero = 0,
-                ErrorMensaje = string.Empty,
-                PrecioMXN = 150m,
-                PrecioUSD = 7.5m
-            });
-            productos.Items.Add(new productomodel
-            {
-                Sku = "A00004",
-                Nombre = "Producto 5",
-                Descripcion = "Producto cinco",
-                Existencias = 10,
-                RutaImagen = "../Content/imgs/107343952_285192662700377_4387108442096812264_n.jpg",
-                ErrorNumero = 0,
-                ErrorMensaje = string.Empty,
-                PrecioMXN = 150m,
-                PrecioUSD = 7.5m
-            });
-            productos.Items.Add(new productomodel
-            {
-                Sku = "A00005",
-                Nombre = "Producto 6",
-                Descripcion = "Producto seis",
-                Existencias = 10,
-                RutaImagen = "../Content/imgs/107485999_761173144656157_7653469568639381490_n.jpg",
-                ErrorNumero = 0,
-                ErrorMensaje = string.Empty,
-                PrecioMXN = 150m,
-                PrecioUSD = 7.5m
-            });
-            productos.Items.Add(new productomodel
-            {
-                Sku = "A00006",
-                Nombre = "Producto 7",
-                Descripcion = "Producto siete",
-                Existencias = 10,
-                RutaImagen = "../Content/imgs/107700091_605326170114874_5692240400939541068_n.jpg",
-                ErrorNumero = 0,
-                ErrorMensaje = string.Empty,
-                PrecioMXN = 150m,
-                PrecioUSD = 7.5m
-            });
-            productos.Items.Add(new productomodel
-            {
-                Sku = "A00007",
-                Nombre = "Producto 8",
-                Descripcion = "Producto ocho",
-                Existencias = 10,
-                RutaImagen = "../Content/imgs/107728691_741771619931603_148549030520414310_n.jpg",
-                ErrorNumero = 0,
-                ErrorMensaje = string.Empty,
-                PrecioMXN = 150m,
-                PrecioUSD = 7.5m
-            });
-            productos.Items.Add(new productomodel
-            {
-                Sku = "A00008",
-                Nombre = "Producto 9",
-                Descripcion = "Producto nueve",
-                Existencias = 10,
-                RutaImagen = "../Content/imgs/107761698_275912170409017_4174448911657339959_n.jpg",
-                ErrorNumero = 0,
-                ErrorMensaje = string.Empty,
-                PrecioMXN = 150m,
-                PrecioUSD = 7.5m
-            });
-            productos.Items.Add(new productomodel
-            {
-                Sku = "A00009",
-                Nombre = "Producto 10",
-                Descripcion = "Producto diez",
-                Existencias = 10,
-                RutaImagen = "../Content/imgs/107856000_702503103934248_1656178707960925460_n.jpg",
-                ErrorNumero = 0,
-                ErrorMensaje = string.Empty,
-                PrecioMXN = 150m,
-                PrecioUSD = 7.5m
-            });
+            var responseCategorias = servicio.listarCatalogo(new CatalogoRequest { IdTipoCatalogo = 0 });
+            productos.Items.AddRange(
+                response.Items.Select(p => new productomodel {
+                    Descripcion = p.Descripcion,
+                    ErrorMensaje = p.ErrorMensaje,
+                    ErrorNumero = p.ErrorNumero,
+                    Existencias = p.Existencias,
+                    Nombre = p.Nombre,
+                    PrecioMXN = p.PrecioMXN,
+                    PrecioUSD = p.PrecioUSD,
+                    Imagen = p.Foto,
+                    Sku = p.SKU,
+                    AplicaExistencias = p.AplicaExistencias,
+                    Id = p.Id,
+                    IdCategoria = p.IdCategoria,
+                    Categoria = responseCategorias.Items.First(c => c.Id.Equals(p.IdCategoria)).Nombre
+                }));
             return View(productos);
         }
 
-        public ActionResult Guias()
-        {
+        public ActionResult Guias() {
             return View();
         }
 
-        public ActionResult Clientes()
-        {
-            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root")
-            {
+        public ActionResult Clientes() {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
                 Session.Clear();
                 return RedirectToAction("Index", "Home");
             }
 
             listaclientesmodel clientes = new listaclientesmodel();
-            clientes.Items.Add(new clientemodel
-            {
-                ErrorMensaje = string.Empty,
-                ErrorNumero = 0,
-                Nombre = "Usuario uno",
-                usuario = "user1",
-                password = string.Empty
+            var servicio = new AdministradorServicio.AdministradorClient();
+            var response = servicio.listarClientes(new ClienteRequest {
+                IdCliente = new Guid(),
+                IdRol = 2
             });
-            clientes.Items.Add(new clientemodel
-            {
-                ErrorMensaje = string.Empty,
-                ErrorNumero = 0,
-                Nombre = "Usuario dos",
-                usuario = "user2",
-                password = string.Empty
-            });
-            clientes.Items.Add(new clientemodel
-            {
-                ErrorMensaje = string.Empty,
-                ErrorNumero = 0,
-                Nombre = "Usuario tres",
-                usuario = "user3",
-                password = string.Empty
-            });
-            clientes.Items.Add(new clientemodel
-            {
-                ErrorMensaje = string.Empty,
-                ErrorNumero = 0,
-                Nombre = "Usuario cuatro",
-                usuario = "user4",
-                password = string.Empty
-            });
-            clientes.Items.Add(new clientemodel
-            {
-                ErrorMensaje = string.Empty,
-                ErrorNumero = 0,
-                Nombre = "Usuario cinco",
-                usuario = "user5",
-                password = string.Empty
-            });
+            clientes.Items.AddRange(
+                response.Items.Select(p => new clientemodel {
+                    Nombre = p.Nombre,
+                    usuario = p.UserName,
+                    Direccion = p.Direccion,
+                    ErrorMensaje = p.ErrorMensaje,
+                    ErrorNumero = p.ErrorNumero,
+                    IdCliente = p.IdCliente,
+                    IdEstatus = p.IdEstatus,
+                    Telefono = p.Telefono,
+                    ZonaPaqueteria = p.ZonaPaqueteria
+                }));
             return View(clientes);
         }
 
-        public ActionResult Notas()
-        {
-            return View();
+        public ActionResult Notas() {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+                Session.Clear();
+                return RedirectToAction("Index", "Home");
+            }
+
+            listaNotaModel notas = new listaNotaModel();
+            var servicio = new AdministradorServicio.AdministradorClient();
+            var response = servicio.listarNotas(new NotaRequest {
+                Folio = 0,
+                Fecha = null,
+                IdEstatus = 0
+            });
+            var responseClientes = servicio.listarClientes(new ClienteRequest {
+                IdCliente = new Guid(),
+                IdRol = 2
+            });
+            var responseTipos = servicio.listarCatalogo(new CatalogoRequest {
+                Id = 0,
+                IdTipoCatalogo = 0
+            });
+            var responseEstatus = servicio.listarEstatus(new EstatusRequest {
+                Id = 0,
+                IdTipoEstatus = 0
+            });
+
+            notas.Items.AddRange(
+                response.Items.Select(p => new notaModel {
+                    Fecha = p.Fecha,
+                    FechaEnvio = p.FechaEnvio,
+                    Folio = p.Folio,
+                    IdPaqueteria = p.IdPaqueteria,
+                    Paqueteria = (p.IdPaqueteria != 0) ? responseTipos.Items.FirstOrDefault(pa => pa.Id == p.IdPaqueteria).Nombre : string.Empty,
+                    Guia = p.Guia,
+                    IdEstatus = p.IdEstatus,
+                    Estatus = (p.IdEstatus != 0) ? responseEstatus.Items.FirstOrDefault(e => e.Id == p.IdEstatus).Nombre : string.Empty,
+                    IdCliente = p.IdCliente,
+                    Cliente = responseClientes.Items.FirstOrDefault(c => c.IdCliente == p.IdCliente).Nombre,
+                    IdTipo = p.IdTipo,
+                    Tipo = (p.IdTipo != 0) ? responseTipos.Items.FirstOrDefault(t => t.Id == p.IdTipo).Nombre : string.Empty,
+                    MontoMXN = p.MontoMXN,
+                    MontoUSD = p.MontoUSD,
+                    SaldoMXN = p.SaldoMXN,
+                    SaldoUSD = p.SaldoUSD
+                }));
+            return View(notas);
         }
 
+        public ActionResult Configuracion() {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+                Session.Clear();
+                return RedirectToAction("Index", "Home");
+            }
+            var servicio = new AdministradorClient();
+            var response = servicio.listarCatalogo(new CatalogoRequest {
+                Id = 0,
+                IdTipoCatalogo = 0
+            });
+            var resultado = new listacatalogoModel();
+            resultado.Items.AddRange(response.Items.Select(i => new catalogoModel {
+                Id = i.Id,
+                IdTipoCatalogo = i.IdTipoCatalogo,
+                Nombre = i.Nombre,
+                Tabla = "CATÁLOGO"
+            }));
+            var response2 = servicio.listarEstatus(new EstatusRequest { Id = 0, IdTipoEstatus = 0 });
+            resultado.Items.AddRange(response2.Items.Select(i => new catalogoModel {
+                Id = i.Id,
+                IdTipoCatalogo = i.IdTipoEstatus,
+                Nombre = i.Nombre,
+                Tabla = "ESTÁTUS"
+            }));
+            return View(resultado);
+        }
+
+        [HttpGet]
+        public ActionResult DetalleNota(int folio) {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+                Session.Clear();
+                return RedirectToAction("Index", "Home");
+            }
+            var servicio = new AdministradorClient();
+            notacompletaModel model;
+            var response = servicio.cargarNota(new NotaRequest { Folio = folio });
+            var responsedetalle = servicio.cargarDetalleNota(new DetalleNotaRequest { IdNota = folio });
+            var responseClientes = servicio.listarClientes(new ClienteRequest { IdCliente = new Guid(), IdRol = 2 });
+            var responseTipos = servicio.listarCatalogo(new CatalogoRequest { Id = 0, IdTipoCatalogo = 0 });
+            var responseEstatus = servicio.listarEstatus(new EstatusRequest { Id = 0, IdTipoEstatus = 0 });
+            var responseItems = servicio.listarDetalleNota(new DetalleNotaRequest { IdNota = folio });
+            var productos = servicio.listarProductos(new ProductoRequest { Id = 0 });
+            var comentarios = servicio.listarComentarioNota(new NotaComentarioRequest { IdNota = folio }).Items;
+            //var tickets = servicio.listarTicketNota(new NotaTicketRequest { IdNota = folio }).Items;
+            model = new notacompletaModel {
+                Fecha = response.Fecha,
+                FechaEnvio = response.FechaEnvio,
+                Folio = response.Folio,
+                Guia = response.Guia,
+                IdCliente = response.IdCliente,
+                Cliente = responseClientes.Items.FirstOrDefault(c => c.IdCliente == response.IdCliente).Nombre,
+                IdEstatus = response.IdEstatus,
+                Estatus = (response.IdEstatus != 0) ? responseEstatus.Items.FirstOrDefault(e => e.Id == response.IdEstatus).Nombre : string.Empty,
+                IdPaqueteria = response.IdPaqueteria,
+                Paqueteria = (response.IdPaqueteria != 0) ? responseTipos.Items.FirstOrDefault(pa => pa.Id == response.IdPaqueteria).Nombre : string.Empty,
+                IdTipo = response.IdTipo,
+                Tipo = (response.IdTipo != 0) ? responseTipos.Items.FirstOrDefault(t => t.Id == response.IdTipo).Nombre : string.Empty,
+                MontoMXN = response.MontoMXN,
+                MontoUSD = response.MontoUSD,
+                SaldoMXN = response.SaldoMXN,
+                SaldoUSD = response.SaldoUSD,
+                Comentarios = comentarios.Select(i => new comentarioModel { Id = i.Id, Fecha = i.Fecha, IdNota = i.IdNota, Comentario = i.Comentario }).ToList(),
+                //Tickets = tickets.Select(i => new ticketModel { Id = i.Id, Fecha = i.Fecha, IdNota = i.IdNota, Ticket = i.Ticket}).ToList()
+            };
+            model.Items.AddRange(responseItems.Items.Select(i => new detallenotaModel {
+                Cantidad = i.Cantidad,
+                Id = i.Id,
+                IdNota = i.IdNota,
+                IdProducto = i.IdProducto,
+                Producto = productos.Items.FirstOrDefault(p => p.Id == i.IdProducto).Nombre,
+                PrecioMXN = i.PrecioMXN,
+                PrecioUSD = i.PrecioUSD
+            }));
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult Tickets(int folio) {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+                Session.Clear();
+                return RedirectToAction("Index", "Home");
+            }
+            var servicio = new AdministradorClient();
+            var listatickets = new Models.listaticketsmodel();
+            var response = servicio.listarTicketNota(new NotaTicketRequest { IdNota = folio });
+            listatickets.Items.AddRange(response.Items.Select(i => new ticketModel {
+                Id = i.Id,
+                Fecha = i.Fecha,
+                IdNota = i.IdNota,
+                Ticket = i.Ticket
+            }));
+            return View(listatickets);
+        }
+
+        [HttpGet]
+        public ActionResult Comentarios(int folio) {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+                Session.Clear();
+                return RedirectToAction("Index", "Home");
+            }
+            var servicio = new AdministradorClient();
+            var listacomentarios = new Models.listacomentariosModel();
+            var response = servicio.listarComentarioNota(new NotaComentarioRequest { IdNota = folio });
+            listacomentarios.Items.AddRange(response.Items.Select(i => new comentarioModel {
+                Id = i.Id,
+                Fecha = i.Fecha,
+                IdNota = i.IdNota,
+                Comentario = i.Comentario
+            }));
+            return View(listacomentarios);
+        }
+        #endregion Carga de listas
+
+
+        [HttpPost]
+        public JsonResult guardarProducto(productomodel model, HttpPostedFileBase imgArch) {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+                Session.Clear();
+                return Json(new { respuesta = new ProductoResponse() }, JsonRequestBehavior.AllowGet);
+            } else {
+                var servicio = new AdministradorClient();
+                var archivo = Request.Files[0];
+                if (archivo != null && archivo.ContentLength > 0) {
+                    string _nomArch = Path.GetFileName(archivo.FileName);
+                    string _ruta = Path.Combine(Server.MapPath("~/Content/productos"), _nomArch);
+                    archivo.SaveAs(_ruta);
+                }
+                var response = servicio.guardarProducto(new ProductoRequest {
+                    AplicaExistencias = model.AplicaExistencias,
+                    Descripcion = model.Descripcion,
+                    Existencias = model.Existencias,
+                    Id = model.Id,
+                    IdCategoria = model.IdCategoria,
+                    Nombre = model.Nombre,
+                    PrecioMXN = model.PrecioMXN,
+                    IdEstatus = model.IdEstatus,
+                    PrecioUSD = model.PrecioUSD,
+                    Foto = Encoding.UTF8.GetBytes(archivo.FileName),
+                    SKU = model.Sku
+                });
+                return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public JsonResult eliminarProducto(productomodel model) {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+                Session.Clear();
+                return Json(new ProductoResponse(), JsonRequestBehavior.AllowGet);
+            } else {
+                var servicio = new AdministradorClient();
+                var response = servicio.bajaProducto(new ProductoRequest {
+                    //AplicaExistencias = model.AplicaExistencias,
+                    //Descripcion = model.Descripcion,
+                    //Existencias = model.Existencias,
+                    Id = model.Id,
+                    //IdCategoria = model.IdCategoria,
+                    //Nombre = model.Nombre,
+                    //PrecioMXN = model.PrecioMXN,
+                    //PrecioUSD = model.PrecioUSD,
+                    //Foto = Encoding.UTF8.GetBytes(model.Nombre),
+                    //SKU = model.Sku
+                });
+                return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public JsonResult guardarCatalogo(catalogoModel model) {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+                Session.Clear();
+                return Json(new { respuesta = new CatalogoResponse() }, JsonRequestBehavior.AllowGet);
+            } else {
+                var servicio = new AdministradorClient();
+                var response = servicio.guardarCatalogo(new CatalogoRequest {
+                    Id = model.Id,
+                    Nombre = model.Nombre,
+                    IdTipoCatalogo = model.IdTipoCatalogo
+                });
+                return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public JsonResult eliminarCatalogo(catalogoModel model) {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+                Session.Clear();
+                return Json(new { respuesta = new ProductoResponse() }, JsonRequestBehavior.AllowGet);
+            } else {
+                var servicio = new AdministradorClient();
+                var response = servicio.bajaCatalogo(new CatalogoRequest {
+                    Id = model.Id,
+                    Nombre = model.Nombre,
+                    IdTipoCatalogo = model.IdTipoCatalogo
+                });
+                return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public JsonResult guardarEstatus(catalogoModel model) {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+                Session.Clear();
+                return Json(new { respuesta = new ProductoResponse() }, JsonRequestBehavior.AllowGet);
+            } else {
+                var servicio = new AdministradorClient();
+                var response = servicio.guardarEstatus(new EstatusRequest {
+                    Id = model.Id,
+                    Nombre = model.Nombre,
+                    IdTipoEstatus = model.IdTipoCatalogo
+                });
+                return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public JsonResult eliminarEstatus(catalogoModel model) {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+                Session.Clear();
+                return Json(new ProductoResponse(), JsonRequestBehavior.AllowGet);
+            } else {
+                var servicio = new AdministradorClient();
+                var response = servicio.bajaEstatus(new EstatusRequest {
+                    Id = model.Id,
+                    Nombre = model.Nombre
+                });
+                return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public JsonResult guardarCliente(clientemodel model) {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+                Session.Clear();
+                return Json(new { respuesta = new ClienteResponse() }, JsonRequestBehavior.AllowGet);
+            } else {
+                var servicio = new AdministradorClient();
+                var response = servicio.guardarCliente(new ClienteRequest {
+                    Direccion = model.Direccion,
+                    IdCliente = model.IdCliente,
+                    IdEstatus = model.IdEstatus,
+                    IdRol = (model.IdRol != 0) ? model.IdRol : 2,
+                    Nombre = model.Nombre,
+                    Password = Encoding.UTF8.GetBytes(model.password ?? string.Empty),
+                    Telefono = model.Telefono,
+                    UserName = model.usuario,
+                    Foto = Encoding.UTF8.GetBytes(model.Nombre),
+                    ZonaPaqueteria = model.ZonaPaqueteria
+                });
+                return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public JsonResult eliminarCliente(clientemodel model) {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+                Session.Clear();
+                return Json(new { respuesta = new ClienteResponse() }, JsonRequestBehavior.AllowGet);
+            } else {
+                var servicio = new AdministradorClient();
+                var response = servicio.bajaCliente(new ClienteRequest {
+                    //Direccion = model.Direccion,
+                    IdCliente = model.IdCliente,
+                    //IdEstatus = model.IdEstatus,
+                    //IdRol = model.IdRol,
+                    //Nombre = model.Nombre,
+                    //Foto = Encoding.UTF8.GetBytes(model.Nombre),
+                    //Password = Encoding.UTF8.GetBytes(model.password),
+                    //Telefono = model.Telefono,
+                    //UserName = model.usuario,
+                    //ZonaPaqueteria = model.ZonaPaqueteria
+                });
+                return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public JsonResult ObtenerNota(int folio) {
+            var servicio = new AdministradorClient();
+            var preresponse = servicio.cargarNota(new NotaRequest { 
+                Folio = folio
+            });
+            var responseClientes = servicio.listarClientes(new ClienteRequest {
+                IdCliente = preresponse.IdCliente
+            });
+            var responseTipos = servicio.listarCatalogo(new CatalogoRequest {
+                Id = preresponse.IdTipo
+            });
+            var responseEstatus = servicio.listarEstatus(new EstatusRequest {
+                Id = preresponse.IdEstatus
+            });
+            var responsePaqueterias = servicio.listarCatalogo(new CatalogoRequest {
+                Id = preresponse.IdPaqueteria
+            });
+
+            notaModel response = new notaModel {
+                Cliente = responseClientes.Items.FirstOrDefault().Nombre,
+                IdCliente = preresponse.IdCliente,
+                Estatus = responseEstatus.Items.FirstOrDefault().Nombre,
+                IdEstatus = preresponse.IdEstatus,
+                Fecha = preresponse.Fecha,
+                FechaEnvio = preresponse.FechaEnvio,
+                Folio = preresponse.Folio,
+                Guia = preresponse.Guia,
+                IdPaqueteria = preresponse.IdPaqueteria,
+                Paqueteria = responsePaqueterias.Items.FirstOrDefault().Nombre,
+                IdTipo = preresponse.IdTipo,
+                Tipo = responseTipos.Items.FirstOrDefault().Nombre,
+                MontoMXN = preresponse.MontoMXN,
+                MontoUSD = preresponse.MontoUSD,
+                SaldoMXN = preresponse.SaldoMXN,
+                SaldoUSD = preresponse.SaldoUSD
+            };
+            return Json(response, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult guardarNota(notaModel model) {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+                Session.Clear();
+                return Json(new { respuesta = new ClienteResponse() }, JsonRequestBehavior.AllowGet);
+            } else {
+                var servicio = new AdministradorClient();
+                var response = servicio.guardarNota(new NotaRequest {
+                    Fecha = model.Fecha,
+                    FechaEnvio = model.FechaEnvio,
+                    Folio = model.Folio,
+                    Guia = model.Guia,
+                    IdCliente = model.IdCliente,
+                    IdEstatus = model.IdEstatus,
+                    IdPaqueteria = model.IdPaqueteria,
+                    IdTipo = model.IdTipo,
+                    MontoMXN = model.MontoMXN,
+                    MontoUSD = model.MontoUSD,
+                    SaldoMXN = model.SaldoMXN,
+                    SaldoUSD = model.SaldoUSD
+                });
+                return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public JsonResult eliminarNota(notaModel model) {
+            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+                Session.Clear();
+                return Json(new { respuesta = new ClienteResponse() }, JsonRequestBehavior.AllowGet);
+            } else {
+                var servicio = new AdministradorClient();
+                var response = servicio.bajaNota(new NotaRequest {
+                    Fecha = model.Fecha,
+                    FechaEnvio = model.FechaEnvio,
+                    Folio = model.Folio,
+                    Guia = model.Guia,
+                    IdCliente = model.IdCliente,
+                    IdEstatus = model.IdEstatus,
+                    IdPaqueteria = model.IdPaqueteria,
+                    IdTipo = model.IdTipo,
+                    MontoMXN = model.MontoMXN,
+                    MontoUSD = model.MontoUSD,
+                    SaldoMXN = model.SaldoMXN,
+                    SaldoUSD = model.SaldoUSD
+                });
+                return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public JsonResult obtenerDiccionario(int IdTipo) {
+            var servicio = new AdministradorClient();
+            var response = servicio.listarCatalogo(new CatalogoRequest {
+                IdTipoCatalogo = IdTipo
+            });
+
+            return Json(response.Items.Select(e => new { id = e.Id, nombre = e.Nombre }).ToArray(), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult obtenerTiposCatalogos(int IdTipo) {
+            var servicio = new AdministradorClient();
+            var response = servicio.listarTipoCatalogo(new TipoCatalogoRequest {
+                Id = IdTipo
+            });
+            return Json(response.Items.Select(e => new { id = e.Id, nombre = e.Nombre }).ToArray(), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult obtenerEstatus(int IdTipo) {
+            var servicio = new AdministradorClient();
+            var response = servicio.listarEstatus(new EstatusRequest {
+                Id = IdTipo
+            });
+            return Json(response.Items.Select(e => new { id = e.Id, nombre = e.Nombre, Tipo = e.IdTipoEstatus }).ToArray(), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult obtenerTipoEstatus(int IdTipo) {
+            var servicio = new AdministradorClient();
+            var response = servicio.listarTipoEstatus(new TipoEstatusRequest {
+                Id = IdTipo
+            });
+            return Json(response.Items.Select(e => new { id = e.Id, nombre = e.Nombre }).ToArray(), JsonRequestBehavior.AllowGet);
+        }
     }
 }
