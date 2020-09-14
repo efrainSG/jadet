@@ -11,11 +11,14 @@ namespace SernaSisitemas.Jadet.WCF.Contratos {
         ArchivoResponse subirFoto(ArchivoRequest request);
 
         [OperationContract]
+        CarritoResponse nuevoCarrito(CarritoRequest request);
+
+        [OperationContract]
         ItemCarritoResponse agregarACarrito(ItemCarritoRequest request);
         [OperationContract]
         BaseResponse quitarDelCarrito(ItemCarritoRequest request);
         [OperationContract]
-        CarritoResponse vaciarCarrito(BaseRequest request);
+        CarritoResponse vaciarCarrito(CarritoRequest request);
 
         [OperationContract]
         BaseResponse generarPedido(CarritoRequest request);

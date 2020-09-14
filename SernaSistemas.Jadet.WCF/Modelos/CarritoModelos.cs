@@ -8,22 +8,20 @@ using System.Threading.Tasks;
 
 namespace SernaSistemas.Jadet.WCF.Modelos {
     [DataContract]
-    public class ItemCarritoRequest : BaseRequest {
+    public class ItemCarritoRequest : DetalleNotaRequest {
+    }
+
+    [DataContract]
+    public class ItemCarritoResponse : DetalleNotaResponse {
 
     }
 
     [DataContract]
-    public class ItemCarritoResponse : BaseResponse {
-
+    public class CarritoRequest : NotaRequest {
     }
 
     [DataContract]
-    public class CarritoRequest : BaseRequest {
-
-    }
-
-    [DataContract]
-    public class CarritoResponse : BaseResponse {
+    public class CarritoResponse : NotaResponse {
         public List<ItemCarritoResponse> Items { get; set; }
         public CarritoResponse() {
             Items = new List<ItemCarritoResponse>();

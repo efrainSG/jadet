@@ -166,6 +166,15 @@ begin
 end;
 go
 
+create procedure Ventas.vaciarCarrito
+	@IdCarrito int
+as
+begin
+	delete from Ventas.Detalle
+	where IdNota = @IdCarrito
+end;
+go
+
 --create procedure Ventas.guardarTicket
 --as
 --begin
