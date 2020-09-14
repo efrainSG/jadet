@@ -84,9 +84,19 @@ namespace SernaSistemas.Jadet.DataAccess {
             }
             return resultado;
         }
+        /// <summary>
+        /// Retira un producto de un carrito.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ResultadoBorrado borrarDetalle(int id) {
             throw new Exception("No implementado");
         }
+        /// <summary>
+        /// Elimina un carrito (debe estar vacío)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ResultadoBorrado borrarNota(int id) {
             throw new Exception("No implementado");
         }
@@ -95,6 +105,32 @@ namespace SernaSistemas.Jadet.DataAccess {
         }
         public ResultadoBorrado borrarTicket(int id) {
             throw new Exception("No implementado");
+        }
+        public ResultadoBorrado vaciarCarrito(int id) {
+            ResultadoBorrado resultado = new ResultadoBorrado();
+            using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
+                using (SqlCommand cmd = new SqlCommand() {
+                    CommandText = "Ventas.vaciarCarrito",
+                    CommandType = System.Data.CommandType.StoredProcedure,
+                    Connection = conn
+                }) {
+                    cmd.Parameters.Add(new SqlParameter {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = id,
+                        ParameterName = "@IdCarrito"
+                    });
+                    conn.Open();
+                    var dr = cmd.ExecuteReader();
+                    if (dr.HasRows) {
+                        dr.Read();
+                        resultado.ErrorNumero = (int)dr["ErrorNumero"];
+                        resultado.ErrorMensaje = dr["Mensaje"].ToString();
+                    }
+                    conn.Close();
+                }
+            }
+            return resultado;
         }
         public ResultadoBorrado borrarProducto(int id) {
             ResultadoBorrado resultado = new ResultadoBorrado();
@@ -122,7 +158,6 @@ namespace SernaSistemas.Jadet.DataAccess {
             }
             return resultado;
         }
-
         public Catalogo guardarCatalogo(Catalogo catalogo) {
             Catalogo resultado = new Catalogo();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
@@ -604,7 +639,6 @@ namespace SernaSistemas.Jadet.DataAccess {
             }
             return resultado;
         }
-
         public List<Catalogo> listarCatalogo(Catalogo catalogo) {
             List<Catalogo> resultado = new List<Catalogo>();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
