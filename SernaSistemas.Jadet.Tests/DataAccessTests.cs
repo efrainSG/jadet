@@ -474,6 +474,17 @@ namespace SernaSistemas.Jadet.DataAccess.Tests {
                 Console.WriteLine("Id: {0}\nUsuario: {1}\nNombre: {2}\nId de rol: {3}\nNúmero de error: {4}\nMensaje: {5}\n",
                    resultado.Id.ToString(), resultado.UserName, resultado.Nombre, resultado.IdRol,
                    resultado.ErrorNumero, resultado.ErrorMensaje);
+
+                resultado = da.iniciarSesion(new Usuario {
+                    UserName = "may",
+                    Password = Encoding.UTF8.GetBytes("may")
+                });
+
+                Console.WriteLine("--------------- Inicio de sesión ---------------");
+                Console.WriteLine("Id: {0}\nUsuario: {1}\nNombre: {2}\nId de rol: {3}\nNúmero de error: {4}\nMensaje: {5}\n",
+                   resultado.Id.ToString(), resultado.UserName, resultado.Nombre, resultado.IdRol,
+                   resultado.ErrorNumero, resultado.ErrorMensaje);
+
             } catch (Exception ex) {
                 Assert.Fail(ex.Message);
             }
