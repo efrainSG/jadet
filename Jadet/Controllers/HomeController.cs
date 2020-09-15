@@ -41,26 +41,21 @@ namespace Jadet.Controllers
 
                 if (response.ErrorNumero == 0)
                 {
+                    Session.Clear();
+                    Session.Add("usuario", new loginmodel { usuario = response.Usuario, password = "****" });
                     switch (response.RolUsuario.IdRol)
                     {
                         case 1:
-                            Session.Clear();
-                            Session.Add("usuario", new loginmodel { usuario = "Root", password = "****" });
                             controlador = "Administrador";
-                            return RedirectToAction(accion, controlador);
                             break;
                         case 2:
-                            Session.Clear();
-                            Session.Add("usuario", new loginmodel { usuario = "User", password = "xxxx" });
                             controlador = "Cliente";
-                            return RedirectToAction(accion, controlador);
                             break;
                         default:
-                            Session.Clear();
                             break;
                     }
+                    return RedirectToAction(accion, controlador);
                 }
-                Session.Clear();
                 return View("Index", new loginmodel()
                 {
                     ErrorNumero = response.ErrorNumero,

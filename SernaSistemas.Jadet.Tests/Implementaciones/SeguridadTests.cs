@@ -32,8 +32,8 @@ namespace SernaSistemas.Jadet.WCF.Implementaciones.Tests
 
             resultado = seguridad.IniciarSesion(new LoginRequest
             {
-                Usuario = "admin",
-                password = "456"
+                Usuario = "may",
+                password = "may"
             });
             Console.WriteLine("----------------------------\nNúmero de error: {0}\nMensaje: {1}\nId de usuario: {2}\nNombre de usuario: {3}\nRol: {4}\nÚltimo inicio de sesión: {5}\nUsuario: {6}\n----------------------------\n",
                 resultado.ErrorNumero,
