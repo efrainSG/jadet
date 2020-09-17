@@ -22,6 +22,8 @@ namespace Jadet.Models {
         public string Categoria { get; set; }
         public int IdEstatus { get; set; }
         public string Estatus { get; set; }
+        public int IdTipo { get; set; }
+        public string Tipo { get; set; }
     }
     public class listaproductosmodel {
         public int IdTipoVenta { get; set; }

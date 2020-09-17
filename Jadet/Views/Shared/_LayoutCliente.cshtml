@@ -14,15 +14,19 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="~/Scripts/jquery-ui.js"></script>
-    <script src="~/Scripts/Serna/contactoWidget.js"></script>
-    <script src="~/Scripts/Serna/SeguidorDeProyectoWidget.js"></script>
-    <script src="~/Scripts/Serna/LoginWidget.js"></script>
-    <script src="~/Scripts/Negocios/BuscarWidget.js"></script>
-    <script src="~/Scripts/Negocios/ListarCatalogoWidget.js"></script>
-    <script src="~/Scripts/Negocios/ListarResultadosWidget.js"></script>
-    <script src="~/Scripts/Negocios/MenuWidget.js"></script>
-    <script src="~/Scripts/Negocios/PerfilWidget.js"></script>
-    <script src="~/Scripts/Negocios/ProdServWidget.js"></script>
+    <script src="~/Scripts/Jadet/carrito.js"></script>
+    <script>
+        var categorias = new Array();
+        var tiposcatalogos = new Array();
+        var estatus = new Array();
+        var zonas = new Array();
+        var tiposnotas = new Array();
+        var tipoestatus = new Array();
+        const botones = "#btnGuardar, #btnGuardarCliente, #btnGuardarCatalogo, #btnGuardarEstatus, #btnEliminar, #btnGuardarNota, #btnEliminarCliente, #btnEliminarCatalogo, #btnEliminarEstatus";
+        const K_ESTATUSNOTA = 3;
+        const K_ESTATUSUSUARIO = 1;
+        const K_ESTATUSPRODUCTO = 2;
+    </script>
 </head>
 <body>
     <div class="navbar navbar-inverse">

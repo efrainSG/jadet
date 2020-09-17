@@ -9,7 +9,7 @@
 
 <div class="row">
     @foreach (var item in Model.Items) {
-        <div class="col-sm-3 card">
+        <div class="col-sm-3 card producto-jadet">
             <div class="row card-header">
                 <div class="col-sm-4 card-header">
                     @if (item.AplicaExistencias) {
@@ -34,7 +34,7 @@
                         <h4 class="text-info text-lg-center">$@item.PrecioMXN M.N. (@item.PrecioUSD USD)</h4>
                     </div>
                     <div class="col-sm-6 card-footer">
-                        <a href="#" class="btn btn-lg btn-success" id="@("btnagregarCarrito"+@item.Id)"><i class="fa fa-lg fa-cart-plus"></i></a>
+                        <a href="#" class="btn btn-lg btn-success" data-content="@(item.IdTipo)" id="@("btnagregarCarrito"+@item.Id)"><i class="fa fa-lg fa-cart-plus"></i></a>
                     </div>
                 </div>
             </div>

@@ -4,10 +4,11 @@ using System.Linq;
 using System.Web;
 
 namespace Jadet.Models {
-    public class Carritomodel {
+    public class Carritomodel : notaModel {
+
     }
 
-    public class ItemCarritomodel {
-
+    public class ItemCarritomodel : detallenotaModel {
+        public int IdTipo { get; set; }
     }
 }

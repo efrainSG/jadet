@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:complexType name="ArchivoRequest">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:BaseRequest">
@@ -33,38 +34,110 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="BaseResponse" nillable="true" type="tns:BaseResponse" />
-  <xs:complexType name="ItemCarritoRequest">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:BaseRequest">
-        <xs:sequence />
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="ItemCarritoRequest" nillable="true" type="tns:ItemCarritoRequest" />
-  <xs:complexType name="ItemCarritoResponse">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:BaseResponse">
-        <xs:sequence />
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="ItemCarritoResponse" nillable="true" type="tns:ItemCarritoResponse" />
-  <xs:complexType name="CarritoResponse">
-    <xs:complexContent mixed="false">
-      <xs:extension base="tns:BaseResponse">
-        <xs:sequence />
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name="CarritoResponse" nillable="true" type="tns:CarritoResponse" />
   <xs:complexType name="CarritoRequest">
     <xs:complexContent mixed="false">
-      <xs:extension base="tns:BaseRequest">
+      <xs:extension base="tns:NotaRequest">
         <xs:sequence />
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="CarritoRequest" nillable="true" type="tns:CarritoRequest" />
+  <xs:complexType name="NotaRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Fecha" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="FechaEnvio" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Folio" type="xs:int" />
+          <xs:element minOccurs="0" name="Guia" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IdCliente" type="ser:guid" />
+          <xs:element minOccurs="0" name="IdEstatus" type="xs:int" />
+          <xs:element minOccurs="0" name="IdPaqueteria" type="xs:int" />
+          <xs:element minOccurs="0" name="IdTipo" type="xs:int" />
+          <xs:element minOccurs="0" name="MontoMXN" type="xs:decimal" />
+          <xs:element minOccurs="0" name="MontoUSD" type="xs:decimal" />
+          <xs:element minOccurs="0" name="SaldoMXN" type="xs:decimal" />
+          <xs:element minOccurs="0" name="SaldoUSD" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NotaRequest" nillable="true" type="tns:NotaRequest" />
+  <xs:complexType name="CarritoResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:NotaResponse">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CarritoResponse" nillable="true" type="tns:CarritoResponse" />
+  <xs:complexType name="NotaResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Fecha" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="FechaEnvio" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Folio" type="xs:int" />
+          <xs:element minOccurs="0" name="Guia" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IdCliente" type="ser:guid" />
+          <xs:element minOccurs="0" name="IdEstatus" type="xs:int" />
+          <xs:element minOccurs="0" name="IdPaqueteria" type="xs:int" />
+          <xs:element minOccurs="0" name="IdTipo" type="xs:int" />
+          <xs:element minOccurs="0" name="MontoMXN" type="xs:decimal" />
+          <xs:element minOccurs="0" name="MontoUSD" type="xs:decimal" />
+          <xs:element minOccurs="0" name="SaldoMXN" type="xs:decimal" />
+          <xs:element minOccurs="0" name="SaldoUSD" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NotaResponse" nillable="true" type="tns:NotaResponse" />
+  <xs:complexType name="ItemCarritoRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DetalleNotaRequest">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ItemCarritoRequest" nillable="true" type="tns:ItemCarritoRequest" />
+  <xs:complexType name="DetalleNotaRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Cantidad" type="xs:int" />
+          <xs:element minOccurs="0" name="Id" type="xs:int" />
+          <xs:element minOccurs="0" name="IdNota" type="xs:int" />
+          <xs:element minOccurs="0" name="IdProducto" type="xs:int" />
+          <xs:element minOccurs="0" name="PrecioMXN" type="xs:decimal" />
+          <xs:element minOccurs="0" name="PrecioUSD" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DetalleNotaRequest" nillable="true" type="tns:DetalleNotaRequest" />
+  <xs:complexType name="ItemCarritoResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DetalleNotaResponse">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ItemCarritoResponse" nillable="true" type="tns:ItemCarritoResponse" />
+  <xs:complexType name="DetalleNotaResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Cantidad" type="xs:int" />
+          <xs:element minOccurs="0" name="Id" type="xs:int" />
+          <xs:element minOccurs="0" name="IdNota" type="xs:int" />
+          <xs:element minOccurs="0" name="IdProducto" type="xs:int" />
+          <xs:element minOccurs="0" name="PrecioMXN" type="xs:decimal" />
+          <xs:element minOccurs="0" name="PrecioUSD" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DetalleNotaResponse" nillable="true" type="tns:DetalleNotaResponse" />
   <xs:complexType name="ColeccionCarritoResponse">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:BaseResponse">
