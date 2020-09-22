@@ -30,9 +30,40 @@ namespace Jadet.Controllers {
                 Session.Clear();
                 return RedirectToAction("Index", "Home");
             }
-            var servicio = new ClienteClient();
-            
-            return View();
+            ClienteClient servicio = new ClienteClient();
+            AdministradorClient servicioAdmin = new AdministradorClient();
+            var response = servicio.listarPedidos(new CarritoRequest {
+                IdCliente = (Session["usuario"] as loginmodel).usrguid,
+                IdEstatus = 6
+            });
+            var responseTipos = servicioAdmin.listarCatalogo(new CatalogoRequest {
+                Id = 0,
+                IdTipoCatalogo = 0
+            });
+            var responseEstatus = servicioAdmin.listarEstatus(new EstatusRequest {
+                Id = 0,
+                IdTipoEstatus = 0
+            });
+
+            notacollectionModel pedidos = new notacollectionModel();
+            pedidos.Items.AddRange(response.Items.Select(i => new notaModel {
+                IdCliente = i.IdCliente,
+                Estatus = (i.IdEstatus != 0) ? responseEstatus.Items.FirstOrDefault(e => e.Id == i.IdEstatus).Nombre : string.Empty,
+                IdEstatus = i.IdEstatus,
+                Fecha = i.Fecha,
+                FechaEnvio = i.FechaEnvio,
+                Folio = i.Folio,
+                Guia = i.Guia,
+                IdPaqueteria = i.IdPaqueteria,
+                IdTipo = i.IdTipo,
+                MontoMXN = i.MontoMXN,
+                MontoUSD = i.MontoUSD,
+                Paqueteria = (i.IdPaqueteria != 0) ? responseTipos.Items.FirstOrDefault(pa => pa.Id == i.IdPaqueteria).Nombre : string.Empty,
+                SaldoMXN = i.SaldoMXN,
+                SaldoUSD = i.SaldoUSD,
+                Tipo = (i.IdTipo != 0) ? responseTipos.Items.FirstOrDefault(t => t.Id == i.IdTipo).Nombre : string.Empty
+            }));
+            return View(pedidos);
         }
 
         /// <summary>
@@ -45,7 +76,39 @@ namespace Jadet.Controllers {
                 Session.Clear();
                 return RedirectToAction("Index", "Home");
             }
-            return View();
+            ClienteClient servicio = new ClienteClient();
+            AdministradorClient servicioAdmin = new AdministradorClient();
+            var response = servicio.listarPedidos(new CarritoRequest {
+                IdCliente = (Session["usuario"] as loginmodel).usrguid
+            });
+            var responseTipos = servicioAdmin.listarCatalogo(new CatalogoRequest {
+                Id = 0,
+                IdTipoCatalogo = 0
+            });
+            var responseEstatus = servicioAdmin.listarEstatus(new EstatusRequest {
+                Id = 0,
+                IdTipoEstatus = 0
+            });
+
+            notacollectionModel pedidos = new notacollectionModel();
+            pedidos.Items.AddRange(response.Items.Where(i => i.IdEstatus != 6).Select(i => new notaModel {
+                IdCliente = i.IdCliente,
+                Estatus = (i.IdEstatus != 0) ? responseEstatus.Items.FirstOrDefault(e => e.Id == i.IdEstatus).Nombre : string.Empty,
+                IdEstatus = i.IdEstatus,
+                Fecha = i.Fecha,
+                FechaEnvio = i.FechaEnvio,
+                Folio = i.Folio,
+                Guia = i.Guia,
+                IdPaqueteria = i.IdPaqueteria,
+                IdTipo = i.IdTipo,
+                MontoMXN = i.MontoMXN,
+                MontoUSD = i.MontoUSD,
+                Paqueteria = (i.IdPaqueteria != 0) ? responseTipos.Items.FirstOrDefault(pa => pa.Id == i.IdPaqueteria).Nombre : string.Empty,
+                SaldoMXN = i.SaldoMXN,
+                SaldoUSD = i.SaldoUSD,
+                Tipo = (i.IdTipo != 0) ? responseTipos.Items.FirstOrDefault(t => t.Id == i.IdTipo).Nombre : string.Empty
+            }));
+            return View(pedidos);
         }
 
         /// <summary>

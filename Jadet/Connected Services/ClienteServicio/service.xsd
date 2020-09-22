@@ -102,7 +102,7 @@
   <xs:element name="listarPedidos">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="request" nillable="true" type="q15:BaseRequest" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="request" nillable="true" type="q15:CarritoRequest" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

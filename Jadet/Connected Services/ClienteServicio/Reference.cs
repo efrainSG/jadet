@@ -914,10 +914,10 @@ namespace Jadet.ClienteServicio {
         System.Threading.Tasks.Task<Jadet.ClienteServicio.CarritoResponse> verPedidoAsync(Jadet.ClienteServicio.CarritoRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICliente/listarPedidos", ReplyAction="http://tempuri.org/ICliente/listarPedidosResponse")]
-        Jadet.ClienteServicio.ColeccionCarritoResponse listarPedidos(Jadet.ClienteServicio.BaseRequest request);
+        Jadet.ClienteServicio.ColeccionCarritoResponse listarPedidos(Jadet.ClienteServicio.CarritoRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICliente/listarPedidos", ReplyAction="http://tempuri.org/ICliente/listarPedidosResponse")]
-        System.Threading.Tasks.Task<Jadet.ClienteServicio.ColeccionCarritoResponse> listarPedidosAsync(Jadet.ClienteServicio.BaseRequest request);
+        System.Threading.Tasks.Task<Jadet.ClienteServicio.ColeccionCarritoResponse> listarPedidosAsync(Jadet.ClienteServicio.CarritoRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICliente/guardarPedido", ReplyAction="http://tempuri.org/ICliente/guardarPedidoResponse")]
         Jadet.ClienteServicio.BaseResponse guardarPedido(Jadet.ClienteServicio.CarritoRequest request);
@@ -1009,11 +1009,11 @@ namespace Jadet.ClienteServicio {
             return base.Channel.verPedidoAsync(request);
         }
         
-        public Jadet.ClienteServicio.ColeccionCarritoResponse listarPedidos(Jadet.ClienteServicio.BaseRequest request) {
+        public Jadet.ClienteServicio.ColeccionCarritoResponse listarPedidos(Jadet.ClienteServicio.CarritoRequest request) {
             return base.Channel.listarPedidos(request);
         }
         
-        public System.Threading.Tasks.Task<Jadet.ClienteServicio.ColeccionCarritoResponse> listarPedidosAsync(Jadet.ClienteServicio.BaseRequest request) {
+        public System.Threading.Tasks.Task<Jadet.ClienteServicio.ColeccionCarritoResponse> listarPedidosAsync(Jadet.ClienteServicio.CarritoRequest request) {
             return base.Channel.listarPedidosAsync(request);
         }
         

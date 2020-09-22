@@ -34,6 +34,12 @@ namespace Jadet.Models {
         }
     }
 
+    public class notacollectionModel {
+        public List<notaModel> Items { get; set; }
+        public notacollectionModel() {
+            Items = new List<notaModel>();
+        }
+    }
     public class detallenotaModel {
         public int Id { get; set; }
         public int IdNota { get; set; }
