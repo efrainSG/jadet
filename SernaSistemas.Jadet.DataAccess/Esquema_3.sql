@@ -1,18 +1,21 @@
 ﻿create procedure Ventas.listarNotas
 	@Folio int = 0,
 	@Fecha date = null,
-	@IdEstatus int = 0
+	@IdEstatus int = 0,
+	@IdCliente uniqueidentifier = null
 as
 begin
 	if (@Folio = 0) set @Folio = null
 
 	if (@IdEstatus = 0) set @IdEstatus = null
 
+	if(@idCliente = '00000000-0000-0000-0000-000000000000') set @IdCliente = null
+
 	select	N.Fecha, N.FechaEnvio, N.Folio, N.Guia, N.IdCliente, N.IdEstatus, N.IdPaqueteria, N.IdTipo,
 			N.MontoMXN, N.MontoUSD, N.SaldoMXN, N.SaldoUSD
 	from	Ventas.Notas N (nolock)
 	where	N.Folio = ISNULL(@Folio, N.Folio) and N.Fecha = ISNULL(@Fecha, N.Fecha)
-			and N.IdEstatus = ISNULL(@IdEstatus, N.IdEstatus)
+			and N.IdEstatus = ISNULL(@IdEstatus, N.IdEstatus) and N.IdCliente = ISNULL(@IdCliente, N.IdCliente)
 end;
 go
 
