@@ -25,7 +25,7 @@ namespace SernaSisitemas.Jadet.WCF.Contratos {
         [OperationContract]
         CarritoResponse verPedido(CarritoRequest request);
         [OperationContract]
-        ColeccionCarritoResponse listarPedidos(BaseRequest request);
+        ColeccionCarritoResponse listarPedidos(CarritoRequest request);
         [OperationContract]
         BaseResponse guardarPedido(CarritoRequest request);
 

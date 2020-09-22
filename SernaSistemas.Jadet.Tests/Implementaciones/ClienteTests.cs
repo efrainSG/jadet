@@ -6,56 +6,54 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SernaSisitemas.Jadet.WCF.Implementaciones.Tests
-{
+namespace SernaSisitemas.Jadet.WCF.Implementaciones.Tests {
     [TestClass()]
-    public class ClienteTests
-    {
+    public class ClienteTests {
         [TestMethod()]
-        public void agregarACarritoTest()
-        {
+        public void agregarACarritoTest() {
             throw new NotImplementedException();
         }
 
         [TestMethod()]
-        public void generarPedidoTest()
-        {
+        public void generarPedidoTest() {
             throw new NotImplementedException();
         }
 
         [TestMethod()]
-        public void guardarPedidoTest()
-        {
+        public void guardarPedidoTest() {
             throw new NotImplementedException();
         }
 
         [TestMethod()]
-        public void listarPedidosTest()
-        {
+        public void listarPedidosTest() {
+            Cliente cliente = new Cliente();
+            var _respuesta = cliente.listarPedidos(new SernaSistemas.Jadet.WCF.Modelos.CarritoRequest {
+                IdCliente = new Guid("71f43393-c695-4b25-8575-6bf6faa85c95"),
+                //IdEstatus = 6,
+                //IdTipo = 0
+            });
+            foreach (var item in _respuesta.Items) {
+                Console.WriteLine("{0}\n{1}\n{2}\n{3}\n", item.Folio, item.IdCliente, item.IdEstatus, item.IdTipo);
+            }
+        }
+
+        [TestMethod()]
+        public void quitarDelCarritoTest() {
             throw new NotImplementedException();
         }
 
         [TestMethod()]
-        public void quitarDelCarritoTest()
-        {
+        public void subirFotoTest() {
             throw new NotImplementedException();
         }
 
         [TestMethod()]
-        public void subirFotoTest()
-        {
+        public void vaciarCarritoTest() {
             throw new NotImplementedException();
         }
 
         [TestMethod()]
-        public void vaciarCarritoTest()
-        {
-            throw new NotImplementedException();
-        }
-
-        [TestMethod()]
-        public void verPedidoTest()
-        {
+        public void verPedidoTest() {
             throw new NotImplementedException();
         }
     }

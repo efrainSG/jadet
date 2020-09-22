@@ -828,6 +828,12 @@ namespace SernaSistemas.Jadet.DataAccess {
                         Value = nota.IdEstatus,
                         ParameterName = "@IdEstatus"
                     });
+                    cmd.Parameters.Add(new SqlParameter {
+                        DbType = System.Data.DbType.Guid,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = nota.IdCliente,
+                        ParameterName = "@IdCliente"
+                    });
                     conn.Open();
                     var dr = cmd.ExecuteReader();
                     Nota _nota;
