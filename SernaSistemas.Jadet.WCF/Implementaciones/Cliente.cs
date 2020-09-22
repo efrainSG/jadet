@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics.Eventing.Reader;
+using System.Linq;
 
 namespace SernaSisitemas.Jadet.WCF.Implementaciones {
     public class Cliente : ICliente {
@@ -107,12 +108,37 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones {
             };
         }
 
-        public ColeccionCarritoResponse listarPedidos(BaseRequest request) {
-            return new ColeccionCarritoResponse {
-                ErrorMensaje = "No implementado",
-                ErrorNumero = 1,
-                Items = new List<CarritoResponse>()
+        public ColeccionCarritoResponse listarPedidos(CarritoRequest request) {
+            DataAccess da = new DataAccess {
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
             };
+            var _response = da.listarNota(new Nota {
+                IdCliente = request.IdCliente,
+                IdEstatus = request.IdEstatus,
+                IdTipo = request.IdTipo
+            });
+            ColeccionCarritoResponse respuesta = new ColeccionCarritoResponse {
+                ErrorMensaje = string.Empty,
+                ErrorNumero = 0
+            };
+            respuesta.Items.AddRange(_response.Select(i => new CarritoResponse {
+                Fecha = i.Fecha,
+                FechaEnvio = i.FechaEnvio,
+                Folio = i.Folio,
+                ErrorMensaje = string.Empty,
+                ErrorNumero = 0,
+                Guia = i.Guia,
+                IdCliente = i.IdCliente,
+                IdEstatus = i.IdEstatus,
+                IdPaqueteria = i.IdPaqueteria,
+                IdTipo = i.IdTipo,
+                Items = null,
+                MontoMXN = i.MontoMXN,
+                MontoUSD = i.MontoUSD,
+                SaldoMXN = i.SaldoMXN,
+                SaldoUSD = i.SaldoUSD
+            }));
+            return respuesta;
         }
 
         public CarritoResponse verPedido(CarritoRequest request) {
