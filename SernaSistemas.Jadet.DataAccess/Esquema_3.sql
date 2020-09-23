@@ -123,7 +123,9 @@ create procedure Ventas.guardarDetalle
 	@PrecioUSD decimal(10,2)
 as
 begin
-	declare @identity int
+	declare @identity int,
+			@TotalMXN decimal(10,2),
+			@TotalUSD decimal(10,2)
 
 	if exists (select 1 from Ventas.Detalle D (nolock) where Id = @Id)
 	begin
@@ -138,8 +140,56 @@ begin
 		values (@IdNota, @IdProducto, @Cantidad, @PrecioMXN, @PrecioUSD)
 		select @identity = SCOPE_IDENTITY()
 	end
+
+	select	@TotalMXN = SUM(D.Cantidad*D.PrecioMXN), @TotalUSD = SUM(D.Cantidad * D.PrecioUSD)
+	from	Ventas.Detalle D (nolock)
+	where	D.IdNota = @IdNota
+	group by	D.IdNota
+
+	update	Ventas.Notas
+	set		MontoMXN = @TotalMXN, MontoUSD = @TotalUSD
+	where	Folio = @IdNota
+
 	select	@identity Id, @IdNota IdNota, @IdProducto IdProducto, @Cantidad Cantidad, @PrecioMXN PrecioMXN,
 			@PrecioUSD PrecioUSD
+end;
+go
+
+create procedure Ventas.borrarDetalle
+	@Id int
+as
+begin
+	declare @identity int,
+			@IdNota int,
+			@IdProducto int,
+			@TotalMXN decimal(10,2),
+			@TotalUSD decimal(10,2),
+			@ErrNo int = 0,
+			@ErrMsg varchar(max) = ''
+
+	select	@IdNota = IdNota, @IdProducto = IdProducto
+	from	Ventas.Detalle D (nolock)
+	where	D.Id = @Id
+
+	begin try
+		delete from Ventas.Detalle
+		where Id = @Id
+
+		select	@TotalMXN = SUM(D.Cantidad*D.PrecioMXN), @TotalUSD = SUM(D.Cantidad * D.PrecioUSD)
+		from	Ventas.Detalle D (nolock)
+		where	D.IdNota = @IdNota
+		group by	D.IdNota
+
+		update	Ventas.Notas
+		set		MontoMXN = @TotalMXN, MontoUSD = @TotalUSD
+		where	Folio = @IdNota
+	end try
+	begin catch
+		select @ErrNo = Error_number(), @ErrMsg = Error_Message()
+	end catch
+
+	select @ErrNo ErrorNumero, @ErrMsg Mensaje
+
 end;
 go
 
@@ -175,6 +225,11 @@ as
 begin
 	delete from Ventas.Detalle
 	where IdNota = @IdCarrito
+
+	update	Ventas.Notas
+	set		MontoMXN = 0, MontoUSD = 0
+	where	Folio = @IdCarrito
+
 end;
 go
 

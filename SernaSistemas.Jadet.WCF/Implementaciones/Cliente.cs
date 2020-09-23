@@ -2,9 +2,7 @@
 using SernaSistemas.Jadet.DataAccess;
 using SernaSistemas.Jadet.WCF.Modelos;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 
 namespace SernaSisitemas.Jadet.WCF.Implementaciones {
@@ -142,10 +140,24 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones {
         }
 
         public CarritoResponse verPedido(CarritoRequest request) {
-            return new CarritoResponse {
+            DataAccess da = new DataAccess {
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
+            };
+            var _response = da.listarDetalle(0, request.Folio, 0);
+
+            CarritoResponse respuesta = new CarritoResponse {
                 ErrorMensaje = "No implementado",
                 ErrorNumero = 1
             };
+            respuesta.Items.AddRange(_response.Select(i => new ItemCarritoResponse {
+                Id = i.Id,
+                Cantidad = i.Cantidad,
+                IdNota = i.IdNota,
+                IdProducto = i.IdProducto,
+                PrecioMXN = i.PrecioMXN,
+                PrecioUSD = i.PrecioUSD
+            }));
+            return respuesta;
         }
     }
 }
