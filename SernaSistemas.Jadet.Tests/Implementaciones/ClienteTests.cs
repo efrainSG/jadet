@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SernaSisitemas.Jadet.WCF.Implementaciones;
+using SernaSistemas.Jadet.WCF.Modelos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,7 +55,11 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones.Tests {
 
         [TestMethod()]
         public void verPedidoTest() {
-            throw new NotImplementedException();
+            Cliente cliente = new Cliente();
+            var _respuesta = cliente.verPedido(new CarritoRequest { Folio = 7003});
+            foreach (var item in _respuesta.Items) {
+                Console.WriteLine("Id: {0}\nId de nota: {1}\nId de producto: {2}\nPrecio MXN: {3}\nPrecio USD: {4}", item.Id, item.IdNota, item.IdProducto, item.Cantidad, item.PrecioMXN, item.PrecioUSD);
+            }
         }
     }
 }
