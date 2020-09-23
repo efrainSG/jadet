@@ -84,14 +84,39 @@ namespace SernaSistemas.Jadet.DataAccess {
             }
             return resultado;
         }
+
         /// <summary>
         /// Retira un producto de un carrito.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         public ResultadoBorrado borrarDetalle(int id) {
-            throw new Exception("No implementado");
+            ResultadoBorrado resultado = new ResultadoBorrado();
+            using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
+                using (SqlCommand cmd = new SqlCommand() {
+                    CommandText = "Ventas.borrarDetalle",
+                    CommandType = System.Data.CommandType.StoredProcedure,
+                    Connection = conn
+                }) {
+                    cmd.Parameters.Add(new SqlParameter {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = id,
+                        ParameterName = "@Id"
+                    });
+                    conn.Open();
+                    var dr = cmd.ExecuteReader();
+                    if (dr.HasRows) {
+                        dr.Read();
+                        resultado.ErrorNumero = (int)dr["ErrorNumero"];
+                        resultado.ErrorMensaje = dr["Mensaje"].ToString();
+                    }
+                    conn.Close();
+                }
+            }
+            return resultado;
         }
+
         /// <summary>
         /// Elimina un carrito (debe estar vacío)
         /// </summary>
@@ -100,12 +125,15 @@ namespace SernaSistemas.Jadet.DataAccess {
         public ResultadoBorrado borrarNota(int id) {
             throw new Exception("No implementado");
         }
+
         public ResultadoBorrado borrarComentario(int id) {
             throw new Exception("No implementado");
         }
+
         public ResultadoBorrado borrarTicket(int id) {
             throw new Exception("No implementado");
         }
+
         public ResultadoBorrado vaciarCarrito(int id) {
             ResultadoBorrado resultado = new ResultadoBorrado();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
@@ -541,9 +569,11 @@ namespace SernaSistemas.Jadet.DataAccess {
             }
             return resultado;
         }
+
         public void guardarTicket(TicketNota ticket) {
             throw new Exception("No implementado");
         }
+
         public Producto guardarProducto(Producto producto) {
             Producto resultado = new Producto();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
