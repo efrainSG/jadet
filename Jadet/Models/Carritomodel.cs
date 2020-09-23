@@ -8,6 +8,10 @@ namespace Jadet.Models {
 
     }
 
+    public class CarritoCompletoModel: notacompletaModel {
+
+    }
+
     public class ItemCarritomodel : detallenotaModel {
         public int IdTipo { get; set; }
     }

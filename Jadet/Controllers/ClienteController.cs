@@ -4,6 +4,7 @@ using Jadet.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Web.Mvc;
 
 namespace Jadet.Controllers {
@@ -64,6 +65,44 @@ namespace Jadet.Controllers {
                 Tipo = (i.IdTipo != 0) ? responseTipos.Items.FirstOrDefault(t => t.Id == i.IdTipo).Nombre : string.Empty
             }));
             return View(pedidos);
+        }
+
+        [HttpGet]
+        public ActionResult DetalleCarrito(int idCarrito) {
+            if (Session["usuario"] == null) {
+                Session.Clear();
+                return RedirectToAction("Index", "Home");
+            }
+            ClienteClient servicio = new ClienteClient();
+            CarritoResponse response = servicio.verPedido(new CarritoRequest { Folio = idCarrito });
+            var responseCarrito = servicio.listarPedidos(new CarritoRequest {
+                IdEstatus = 6,
+                IdCliente = (Session["usuario"] as loginmodel).usrguid
+            }).Items.FirstOrDefault(i => i.Folio == idCarrito);
+
+            CarritoCompletoModel model = new CarritoCompletoModel {
+                Cliente = responseCarrito.IdCliente.ToString(),
+                Estatus = responseCarrito.IdEstatus.ToString(),
+                //Comentarios = new List<comentarioModel>(),
+                Fecha = responseCarrito.Fecha,
+                FechaEnvio = responseCarrito.FechaEnvio,
+                Folio = responseCarrito.Folio,
+                Guia = responseCarrito.Guia,
+                IdCliente = responseCarrito.IdCliente,
+                IdEstatus = responseCarrito.IdEstatus,
+                IdPaqueteria = responseCarrito.IdPaqueteria,
+                IdTipo = responseCarrito.IdTipo,
+                //Items = new List<detallenotaModel>(),
+                MontoMXN = responseCarrito.MontoMXN,
+                MontoUSD = responseCarrito.MontoUSD,
+                Paqueteria = responseCarrito.IdPaqueteria.ToString(),
+                SaldoMXN = responseCarrito.SaldoMXN,
+                SaldoUSD = responseCarrito.SaldoUSD,
+                //Tickets = new List<ticketModel>(),
+                Tipo = responseCarrito.IdTipo.ToString()
+            };
+            model.Items.AddRange(response.Items.);
+            return View(model);
         }
 
         /// <summary>
