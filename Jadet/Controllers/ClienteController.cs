@@ -83,7 +83,6 @@ namespace Jadet.Controllers {
             CarritoCompletoModel model = new CarritoCompletoModel {
                 Cliente = responseCarrito.IdCliente.ToString(),
                 Estatus = responseCarrito.IdEstatus.ToString(),
-                //Comentarios = new List<comentarioModel>(),
                 Fecha = responseCarrito.Fecha,
                 FechaEnvio = responseCarrito.FechaEnvio,
                 Folio = responseCarrito.Folio,
@@ -92,16 +91,22 @@ namespace Jadet.Controllers {
                 IdEstatus = responseCarrito.IdEstatus,
                 IdPaqueteria = responseCarrito.IdPaqueteria,
                 IdTipo = responseCarrito.IdTipo,
-                //Items = new List<detallenotaModel>(),
                 MontoMXN = responseCarrito.MontoMXN,
                 MontoUSD = responseCarrito.MontoUSD,
                 Paqueteria = responseCarrito.IdPaqueteria.ToString(),
                 SaldoMXN = responseCarrito.SaldoMXN,
                 SaldoUSD = responseCarrito.SaldoUSD,
-                //Tickets = new List<ticketModel>(),
                 Tipo = responseCarrito.IdTipo.ToString()
             };
-            model.Items.AddRange(response.Items.);
+            model.Items.AddRange(response.Items.Select(i=>new detallenotaModel { 
+                Cantidad = i.Cantidad,
+                Id = i.Id,
+                IdNota = i.IdNota,
+                IdProducto = i.IdProducto,
+                PrecioMXN = i.PrecioMXN,
+                PrecioUSD = i.PrecioUSD,
+                Producto = i.IdProducto.ToString()
+            }));
             return View(model);
         }
 

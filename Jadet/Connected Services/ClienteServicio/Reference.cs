@@ -724,6 +724,22 @@ namespace Jadet.ClienteServicio {
     [System.Runtime.Serialization.DataContractAttribute(Name="CarritoResponse", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
     [System.SerializableAttribute()]
     public partial class CarritoResponse : Jadet.ClienteServicio.NotaResponse {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Jadet.ClienteServicio.ItemCarritoResponse[] ItemsField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Jadet.ClienteServicio.ItemCarritoResponse[] Items {
+            get {
+                return this.ItemsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ItemsField, value) != true)) {
+                    this.ItemsField = value;
+                    this.RaisePropertyChanged("Items");
+                }
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
