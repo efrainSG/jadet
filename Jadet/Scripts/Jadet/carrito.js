@@ -107,7 +107,7 @@
                 .append($('<input type="hidden" name="IdTipo">')
                     .val($this.attr("data-content")))
                 .append($('<input type="hidden" name="Cantidad">')
-                    .val(1));
+                    .val($this.attr("data-content")-1));
             $.post(
                 "/Cliente/agregarProducto",
                 _frm.serialize()
@@ -119,20 +119,23 @@
     $('[id^="btnplusitem"]').off()
         .on("click", function () {
             $this = $(this);
-            //var _frm = $('<form method="post">')
-            //    .append($('<input type="hidden" name="IdProducto">')
-            //        .val($this.attr("id").substring(17)))
-            //    .append($('<input type="hidden" name="IdTipo">')
-            //        .val($this.attr("data-content")))
-            //    .append($('<input type="hidden" name="Cantidad">')
-            //        .val(1));
-            //$.post(
-            //    "/Cliente/agregarProducto",
-            //    _frm.serialize()
-            //).done(function (data) {
-            //    $this.fadeOut('slow').fadeIn('fast');
-            //    console.log(data);
-            //});
+            debugger;
+            var _frm = $('<form method="post">')
+                .append($('<input type="hidden" name="Id">')
+                    .val($this.attr("id").substring(12)))
+                .append($('<input type="hidden" name="IdProducto">')
+                    .val($this.attr("id").substring(12)))
+                .append($('<input type="hidden" name="IdTipo">')
+                    .val($this.attr("data-content")))
+                .append($('<input type="hidden" name="Cantidad">')
+                    .val($this.attr("data-content") + 1));
+            $.post(
+                "/Cliente/agregarProducto",
+                _frm.serialize()
+            ).done(function (data) {
+                $this.fadeOut('slow').fadeIn('fast');
+                console.log(data);
+            });
         });
     $('[id^="btnremoveitem"]').off()
         .on("click", function () {

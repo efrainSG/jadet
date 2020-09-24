@@ -135,9 +135,9 @@
                     <td>@item.Producto</td>
                     <td>@item.PrecioMXN</td>
                     <td>@item.PrecioUSD</td>
-                    <td style="text-align:center;"><a href="#fila@(item.Id)" id="btnminusitem@(item.Id)" class="btn btn-warning-jadet"><i class="fa fa-minus"></i></a></td>
+                    <td style="text-align:center;"><a href="#fila@(item.Id)" cantidad="@(item.Cantidad)" id="btnminusitem@(item.Id)" class="btn btn-warning-jadet"><i class="fa fa-minus"></i></a></td>
                     <td style="text-align:right;">@item.Cantidad</td>
-                    <td style="text-align:center;"><a href="#fila@(item.Id)" id="btnplusitem@(item.Id)" class="btn btn-warning-jadet"><i class="fa fa-plus"></i></a></td>
+                    <td style="text-align:center;"><a href="#fila@(item.Id)" cantidad="@(item.Cantidad)" id="btnplusitem@(item.Id)" class="btn btn-warning-jadet"><i class="fa fa-plus"></i></a></td>
                     <td>@item.MontoMXN</td>
                     <td>@item.MontoUSD</td>
                 </tr>
