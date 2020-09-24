@@ -49,7 +49,9 @@
                 Fecha de envío
             </div>
             <div class="col-sm-2">
-                @Model.FechaEnvio.Value.ToString("dd/MM/yyyy")
+                @if (Model.FechaEnvio.HasValue) {
+                    Model.FechaEnvio.Value.ToString("dd/MM/yyyy");
+                }
             </div>
             <div class="col-sm-2">
                 Paquetería
@@ -95,24 +97,12 @@
                     </span>
                 </div>
                 <div class="col-sm-2">
-                    Comentarios
                 </div>
                 <div class="col-sm-2 text-center">
-                    <a href="~/Administrador/Comentarios?folio=@(Model.Folio)">
-                        <span class="badge progress-bar-info">
-                            @Model.Comentarios.Count &nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-circle-right"></i>
-                        </span>
-                    </a>
                 </div>
                 <div class="col-sm-2">
-                    Tickets
                 </div>
                 <div class="col-sm-2 text-center">
-                    <a href="#">
-                        <span class="badge progress-bar-info">
-                            @Model.Tickets.Count &nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-circle-right"></i>
-                        </span>
-                    </a>
                 </div>
             </div>
         </div>
@@ -121,11 +111,12 @@
     <table class="table table-bordered" style="border-collapse:collapse; ">
         <thead>
             <tr>
+                <th rowspan="2"></th>
                 <th rowspan="2">Id</th>
                 <th rowspan="2">Id de producto</th>
                 <th rowspan="2">Producto</th>
                 <th colspan="2">Precio Unitario</th>
-                <th rowspan="2">Cantidad</th>
+                <th rowspan="2" colspan="3">Cantidad</th>
                 <th colspan="2">Precio</th>
             </tr>
             <tr>
@@ -137,13 +128,16 @@
         </thead>
         <tbody>
             @foreach (var item in Model.Items) {
-                <tr>
+                <tr id="fila@(item.Id)">
+                    <td><a href="#fila@(item.Id)"  id="btnremoveitem@(item.Id)" class="btn btn-danger-jadet"><i class="fa fa-times"></i></a></td>
                     <td>@item.Id </td>
                     <td>@item.IdProducto</td>
                     <td>@item.Producto</td>
                     <td>@item.PrecioMXN</td>
                     <td>@item.PrecioUSD</td>
-                    <td>@item.Cantidad</td>
+                    <td style="text-align:center;"><a href="#fila@(item.Id)" id="btnminusitem@(item.Id)" class="btn btn-warning-jadet"><i class="fa fa-minus"></i></a></td>
+                    <td style="text-align:right;">@item.Cantidad</td>
+                    <td style="text-align:center;"><a href="#fila@(item.Id)" id="btnplusitem@(item.Id)" class="btn btn-warning-jadet"><i class="fa fa-plus"></i></a></td>
                     <td>@item.MontoMXN</td>
                     <td>@item.MontoUSD</td>
                 </tr>

@@ -25,7 +25,7 @@
         @foreach (var item in Model.Items) {
             <tr>
                 <td>
-                    @Html.ActionLink(linkText: item.Folio.ToString(), actionName: "DetalleNota", controllerName: "Cliente", routeValues: new { @folio = item.Folio }, htmlAttributes: new { @class = "btn btn-lg btn-info" })
+                    @Html.ActionLink(linkText: item.Folio.ToString(), actionName: "DetalleCarrito", controllerName: "Cliente", routeValues: new { @idCarrito = item.Folio }, htmlAttributes: new { @class = "btn btn-lg btn-info" })
                 </td>
                 <td>@item.Tipo</td>
                 <td>@item.Fecha</td>
