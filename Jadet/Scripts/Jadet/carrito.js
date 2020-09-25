@@ -122,13 +122,13 @@
             debugger;
             var _frm = $('<form method="post">')
                 .append($('<input type="hidden" name="Id">')
-                    .val($this.attr("id").substring(12)))
+                    .val($this.attr("id").substring(11)))
                 .append($('<input type="hidden" name="IdProducto">')
-                    .val($this.attr("id").substring(12)))
+                    .val($this.attr("productoid")))
                 .append($('<input type="hidden" name="IdTipo">')
-                    .val($this.attr("data-content")))
+                    .val($this.attr("tipo")))
                 .append($('<input type="hidden" name="Cantidad">')
-                    .val($this.attr("data-content") + 1));
+                    .val(parseInt($this.attr("cantidad")) + 1));
             $.post(
                 "/Cliente/agregarProducto",
                 _frm.serialize()

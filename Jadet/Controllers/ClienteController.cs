@@ -338,6 +338,7 @@ namespace Jadet.Controllers {
             }
             var _agregado = servicio.agregarACarrito(new ItemCarritoRequest {
                 IdNota = (Session["carritos"] as Dictionary<int, int?>)[model.IdTipo].Value,
+                Id = model.Id,
                 IdProducto = model.IdProducto,
                 PrecioMXN = _producto.PrecioMXN,
                 PrecioUSD = _producto.PrecioUSD,
