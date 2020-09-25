@@ -47,6 +47,7 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones {
                 CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
             };
             var _respuesta = da.guardarDetalle(new DetalleNota {
+                Id = request.Id,
                 Cantidad = request.Cantidad,
                 IdNota = request.IdNota,
                 IdProducto = request.IdProducto,
