@@ -22,6 +22,7 @@ namespace SernaSistemas.Jadet.WCF.Modelos {
 
     [DataContract]
     public class CarritoResponse : NotaResponse {
+        [DataMember]
         public List<ItemCarritoResponse> Items { get; set; }
         public CarritoResponse() {
             Items = new List<ItemCarritoResponse>();
