@@ -99,27 +99,32 @@
     $('[id^="btnminusitem"]').off()
         .on("click", function () {
             $this = $(this);
-            var _frm = $('<form method="post">')
-                .append($('<input type="hidden" name="Id">')
-                    .val($this.attr("id").substring(12)))
-                .append($('<input type="hidden" name="IdProducto">')
-                    .val($this.attr("id").substring(12)))
-                .append($('<input type="hidden" name="IdTipo">')
-                    .val($this.attr("data-content")))
-                .append($('<input type="hidden" name="Cantidad">')
-                    .val($this.attr("data-content")-1));
-            $.post(
-                "/Cliente/agregarProducto",
-                _frm.serialize()
-            ).done(function (data) {
-                $this.fadeOut('slow').fadeIn('fast');
-                console.log(data);
-            });
+            debugger;
+            if ($this.prop('disabled') === undefined) {
+                var _frm = $('<form method="post">')
+                    .append($('<input type="hidden" name="Id">')
+                        .val($this.attr("id").substring(12)))
+                    .append($('<input type="hidden" name="IdProducto">')
+                        .val($this.attr("productoid")))
+                    .append($('<input type="hidden" name="IdTipo">')
+                        .val($this.attr("tipo")))
+                    .append($('<input type="hidden" name="Cantidad">')
+                        .val(parseInt($this.attr("cantidad")) - 1));
+                $.post(
+                    "/Cliente/agregarProducto",
+                    _frm.serialize()
+                ).done(function (data) {
+                    $this.fadeOut('slow').fadeIn('fast');
+                    console.log(data);
+                    $("#Cantidad" + $this.attr("id").substring(12)).text(data.data.Cantidad);
+                    $this.attr("cantidad", data.data.Cantidad);
+                    $("#btnminusitem" + $this.attr("id").substring(12)).attr("cantidad", data.data.Cantidad);
+                });
+            }
         });
     $('[id^="btnplusitem"]').off()
         .on("click", function () {
             $this = $(this);
-            debugger;
             var _frm = $('<form method="post">')
                 .append($('<input type="hidden" name="Id">')
                     .val($this.attr("id").substring(11)))
@@ -135,6 +140,9 @@
             ).done(function (data) {
                 $this.fadeOut('slow').fadeIn('fast');
                 console.log(data);
+                $("#Cantidad" + $this.attr("id").substring(11)).text(data.data.Cantidad);
+                $this.attr("cantidad", data.data.Cantidad);
+                $("#btnminusitem" + $this.attr("id").substring(11)).attr("cantidad", data.data.Cantidad);
             });
         });
     $('[id^="btnremoveitem"]').off()

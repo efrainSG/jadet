@@ -129,15 +129,29 @@
         <tbody>
             @foreach (var item in Model.Items) {
                 <tr id="fila@(item.Id)">
-                    <td><a href="#fila@(item.Id)"  id="btnremoveitem@(item.Id)" class="btn btn-danger-jadet"><i class="fa fa-times"></i></a></td>
+                    <td><a href="#fila@(item.Id)" id="btnremoveitem@(item.Id)" class="btn btn-danger-jadet"><i class="fa fa-times"></i></a></td>
                     <td>@item.Id </td>
                     <td>@item.IdProducto</td>
                     <td>@item.Producto</td>
                     <td>@item.PrecioMXN</td>
                     <td>@item.PrecioUSD</td>
-                    <td style="text-align:center;"><a href="#fila@(item.Id)" cantidad="@(item.Cantidad)" tipo="@(Model.IdTipo)" productoid="@(item.IdProducto)" id="btnminusitem@(item.Id)" class="btn btn-warning-jadet"><i class="fa fa-minus"></i></a></td>
-                    <td style="text-align:right;">@item.Cantidad</td>
-                    <td style="text-align:center;"><a href="#fila@(item.Id)" cantidad="@(item.Cantidad)" tipo="@(Model.IdTipo)" productoid="@(item.IdProducto)" id="btnplusitem@(item.Id)" class="btn btn-warning-jadet"><i class="fa fa-plus"></i></a></td>
+                    <td style="text-align:center;">
+                        @if (item.Cantidad > 1) {
+                            <a href="#fila@(item.Id)" cantidad="@(item.Cantidad)" tipo="@(Model.IdTipo)" productoid="@(item.IdProducto)" id="btnminusitem@(item.Id)" class="btn btn-warning-jadet">
+                                <i class="fa fa-minus"></i>
+                            </a>
+                        } else {
+                            <a href="#fila@(item.Id)" cantidad="@(item.Cantidad)" tipo="@(Model.IdTipo)" productoid="@(item.IdProducto)" id="btnminusitem@(item.Id)" class="btn btn-secondary" disabled>
+                                <i class="fa fa-minus"></i>
+                            </a>
+                        }
+                    </td>
+                    <td style="text-align:right;" id="Cantidad@(item.Id)">@item.Cantidad</td>
+                    <td style="text-align:center;">
+                        <a href="#fila@(item.Id)" cantidad="@(item.Cantidad)" tipo="@(Model.IdTipo)" productoid="@(item.IdProducto)" id="btnplusitem@(item.Id)" class="btn btn-warning-jadet">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </td>
                     <td>@item.MontoMXN</td>
                     <td>@item.MontoUSD</td>
                 </tr>
