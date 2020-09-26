@@ -137,11 +137,11 @@
                     <td>@item.PrecioUSD</td>
                     <td style="text-align:center;">
                         @if (item.Cantidad > 1) {
-                            <a href="#fila@(item.Id)" cantidad="@(item.Cantidad)" tipo="@(Model.IdTipo)" productoid="@(item.IdProducto)" id="btnminusitem@(item.Id)" class="btn btn-warning-jadet">
+                            <a href="#fila@(item.Id)" cantidad="@(item.Cantidad)" tipo="@(Model.IdTipo)" productoid="@(item.IdProducto)" id="btnminusitem@(item.Id)" class="btn btn-warning-jadet" habilitado="si">
                                 <i class="fa fa-minus"></i>
                             </a>
                         } else {
-                            <a href="#fila@(item.Id)" cantidad="@(item.Cantidad)" tipo="@(Model.IdTipo)" productoid="@(item.IdProducto)" id="btnminusitem@(item.Id)" class="btn btn-secondary" disabled>
+                            <a href="#fila@(item.Id)" cantidad="@(item.Cantidad)" tipo="@(Model.IdTipo)" productoid="@(item.IdProducto)" id="btnminusitem@(item.Id)" class="btn btn-secondary" habilitado="no">
                                 <i class="fa fa-minus"></i>
                             </a>
                         }
@@ -152,8 +152,8 @@
                             <i class="fa fa-plus"></i>
                         </a>
                     </td>
-                    <td>@item.MontoMXN</td>
-                    <td>@item.MontoUSD</td>
+                    <td id="MontoMXN@(item.Id)">@item.MontoMXN</td>
+                    <td id="MontoUSD@(item.Id)">@item.MontoUSD</td>
                 </tr>
             }
         </tbody>
