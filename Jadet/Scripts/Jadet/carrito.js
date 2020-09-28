@@ -1,4 +1,12 @@
-﻿$(document).ready(function () {
+﻿const modalgeneraPedido =
+    '<form action="/Administrador/eliminarCatalogo" method="post" id="frmCatalogo">' +
+    '  <input type="hidden" id="txtId" value="" name="Id" />' +
+    '  <div class= "row" > ' +
+    '    <div class="col-sm-12" id="txtContenido"></div>' +
+    '  </div>' +
+    '</form>';
+
+$(document).ready(function () {
     jQuery.noConflict();
 
     var actualizaFila = function (boton, corte, data) {
@@ -135,6 +143,7 @@
                 });
             }
         });
+
     $('[id^="btnplusitem"]').off()
         .on("click", function () {
             $this = $(this);
@@ -154,16 +163,17 @@
                 actualizaFila($this, 11, data.data);
             });
         });
+
     $('[id^="btnremoveitem"]').off()
         .on("click", function () {
             $this = $(this);
             var _frm = $('<form method="post">')
                 .append($('<input type="hidden" name="Id">')
-                    .val($this.attr("id").substring(12)))
+                    .val($this.attr("id").substring(13)))
                 .append($('<input type="hidden" name="IdProducto">')
-                    .val($this.attr("productoid")))
+                    .val(0))
                 .append($('<input type="hidden" name="IdTipo">')
-                    .val($this.attr("tipo")))
+                    .val(0))
                 .append($('<input type="hidden" name="Cantidad">')
                     .val(0));
             $.post(
@@ -175,6 +185,44 @@
             });
         });
 
+    $('[id^="btnhacerPedido"]').off()
+        .on("click", function () {
+            $this = $(this);
+            var $bodyModal = $("#divModalBody");
+            $("#modalHdr").text("Generar pedido");
+            $bodyModal.empty();
+            $bodyModal.append(modalgeneraPedido);
+            $.get(
+                "/Cliente/JsonDetalleCarrito"
+                , { idCarrito: $this.attr("id").substring(14) }
+                , function (data) {
+                    $("#txtContenido").append(
+                        $('<dl>').append('<dt class="dt-jadet">Folio:</dt><dd class="jadet">' + data.Folio + '</dd>')
+                            .append('<dt class="dt-jadet">Tipo:</dt><dd class="jadet">' + data.Tipo + '</dd>')
+                            .append('<dt class="dt-jadet">Estatus:</dt><dd class="jadet">' + data.Estatus + '</dd>')
+                            .append('<dt class="dt-jadet">Paquetería:</dt><dd class="jadet">' + data.IdPaqueteria + '</dd>')
+                            .append('<dt class="dt-jadet">Total:</dt><dd class="jadet">$' + data.MontoMXN.toFixed(2) + ' (' + data.MontoUSD.toFixed(2) + ' USD)</dd>')
+                    );
+                    var tabla = $('<table class="table table-bordered table-active">');
+                    tabla.append('<tr><th rowspan="2">Producto</th><th rowspan="2">Cantidad</th><th colspan="2">Precio</th><th colspan="2">Monto</th></tr>');
+                    tabla.append('<tr><th>MXN</th><th>USD</th><th>MXN</th><th>USD</th></tr>');
+                    for (i = 0; i < data.Items.length; i++) {
+                        tabla
+                            .append($('<tr>')
+                                .append('<td>' + data.Items[i].Producto + '</td>')
+                                .append('<td>' + data.Items[i].Cantidad + '</td>')
+                                .append('<td>$ ' + data.Items[i].PrecioMXN.toFixed(2) + '</td>')
+                                .append('<td>' + data.Items[i].PrecioUSD.toFixed(2) + '</td>')
+                                .append('<td>$ ' + data.Items[i].MontoMXN.toFixed(2) + '</td>')
+                                .append('<td>' + data.Items[i].MontoUSD.toFixed(2) + '</td>')
+                            );
+                    }
+                    $("#txtContenido").append(tabla);
+                    console.log(data);
+                }
+            );
+            $("#myModal").modal("show");
+        });
     //---------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------

@@ -68,53 +68,17 @@ namespace Jadet.Controllers {
         }
 
         [HttpGet]
+        public JsonResult JsonDetalleCarrito(int idCarrito) {
+            return Json(detalleCarrito(idCarrito), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
         public ActionResult DetalleCarrito(int idCarrito) {
             if (Session["usuario"] == null) {
                 Session.Clear();
                 return RedirectToAction("Index", "Home");
             }
-            ClienteClient servicio = new ClienteClient();
-            AdministradorClient servicioAdmin = new AdministradorClient();
-
-            CarritoResponse response = servicio.verPedido(new CarritoRequest { Folio = idCarrito });
-            var responseCarrito = servicio.listarPedidos(new CarritoRequest {
-                IdEstatus = 6,
-                IdCliente = (Session["usuario"] as loginmodel).usrguid
-            }).Items.FirstOrDefault(i => i.Folio == idCarrito);
-
-            var responseTipos = servicioAdmin.listarCatalogo(new CatalogoRequest { Id = 0, IdTipoCatalogo = 0 });
-            var responseEstatus = servicioAdmin.listarEstatus(new EstatusRequest { Id = 0, IdTipoEstatus = 0 });
-            var productos = servicioAdmin.listarProductos(new ProductoRequest { Id = 0 });
-
-            CarritoCompletoModel model = new CarritoCompletoModel {
-                Cliente = responseCarrito.IdCliente.ToString(),
-                Estatus = (responseCarrito.IdEstatus != 0) ? responseEstatus.Items.FirstOrDefault(e => e.Id == responseCarrito.IdEstatus).Nombre : string.Empty,
-                Fecha = responseCarrito.Fecha,
-                FechaEnvio = responseCarrito.FechaEnvio,
-                Folio = responseCarrito.Folio,
-                Guia = string.Empty,
-                IdCliente = responseCarrito.IdCliente,
-                IdEstatus = responseCarrito.IdEstatus,
-                IdPaqueteria = responseCarrito.IdPaqueteria,
-                IdTipo = responseCarrito.IdTipo,
-                MontoMXN = responseCarrito.MontoMXN,
-                MontoUSD = responseCarrito.MontoUSD,
-                Paqueteria = string.Empty,
-                SaldoMXN = responseCarrito.SaldoMXN,
-                SaldoUSD = responseCarrito.SaldoUSD,
-                Tipo = (responseCarrito.IdTipo != 0) ? responseTipos.Items.FirstOrDefault(t => t.Id == responseCarrito.IdTipo).Nombre : string.Empty
-            };
-            model.Items.AddRange(response.Items.Select(i => new detallenotaModel {
-                Cantidad = i.Cantidad,
-                Id = i.Id,
-                IdNota = i.IdNota,
-                IdProducto = i.IdProducto,
-                PrecioMXN = i.PrecioMXN,
-                PrecioUSD = i.PrecioUSD,
-                Producto = productos.Items.FirstOrDefault(p => p.Id == i.IdProducto).Nombre
-//                Producto = i.IdProducto.ToString()
-            }));
-            return View(model);
+            return View(detalleCarrito(idCarrito));
         }
 
         /// <summary>
@@ -348,12 +312,17 @@ namespace Jadet.Controllers {
         }
 
         [HttpPost]
-        public ActionResult quitarProducto(ItemCarritomodel modelo) {
-            if (Session["usuario"] == null) {
-                Session.Clear();
-                return RedirectToAction("Index", "Home");
-            }
-            return View();
+        public JsonResult quitarProducto(ItemCarritomodel modelo) {
+            ClienteClient servicio = new ClienteClient();
+            var _quitado = servicio.quitarDelCarrito(new ItemCarritoRequest {
+                Id = modelo.Id,
+                Cantidad = modelo.Cantidad,
+                IdNota = modelo.IdNota,
+                IdProducto = modelo.IdProducto,
+                PrecioMXN = modelo.PrecioMXN,
+                PrecioUSD = modelo.PrecioUSD
+            });
+            return Json(new { data = _quitado }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -372,6 +341,50 @@ namespace Jadet.Controllers {
                 return RedirectToAction("Index", "Home");
             }
             return View();
+        }
+
+        private CarritoCompletoModel detalleCarrito(int id) {
+            ClienteClient servicio = new ClienteClient();
+            AdministradorClient servicioAdmin = new AdministradorClient();
+
+            CarritoResponse response = servicio.verPedido(new CarritoRequest { Folio = id });
+            var responseCarrito = servicio.listarPedidos(new CarritoRequest {
+                IdEstatus = 6,
+                IdCliente = (Session["usuario"] as loginmodel).usrguid
+            }).Items.FirstOrDefault(i => i.Folio == id);
+
+            var responseTipos = servicioAdmin.listarCatalogo(new CatalogoRequest { Id = 0, IdTipoCatalogo = 0 });
+            var responseEstatus = servicioAdmin.listarEstatus(new EstatusRequest { Id = 0, IdTipoEstatus = 0 });
+            var productos = servicioAdmin.listarProductos(new ProductoRequest { Id = 0 });
+
+            CarritoCompletoModel model = new CarritoCompletoModel {
+                Cliente = responseCarrito.IdCliente.ToString(),
+                Estatus = (responseCarrito.IdEstatus != 0) ? responseEstatus.Items.FirstOrDefault(e => e.Id == responseCarrito.IdEstatus).Nombre : string.Empty,
+                Fecha = responseCarrito.Fecha,
+                FechaEnvio = responseCarrito.FechaEnvio,
+                Folio = responseCarrito.Folio,
+                Guia = string.Empty,
+                IdCliente = responseCarrito.IdCliente,
+                IdEstatus = responseCarrito.IdEstatus,
+                IdPaqueteria = responseCarrito.IdPaqueteria,
+                IdTipo = responseCarrito.IdTipo,
+                MontoMXN = responseCarrito.MontoMXN,
+                MontoUSD = responseCarrito.MontoUSD,
+                Paqueteria = string.Empty,
+                SaldoMXN = responseCarrito.SaldoMXN,
+                SaldoUSD = responseCarrito.SaldoUSD,
+                Tipo = (responseCarrito.IdTipo != 0) ? responseTipos.Items.FirstOrDefault(t => t.Id == responseCarrito.IdTipo).Nombre : string.Empty
+            };
+            model.Items.AddRange(response.Items.Select(i => new detallenotaModel {
+                Cantidad = i.Cantidad,
+                Id = i.Id,
+                IdNota = i.IdNota,
+                IdProducto = i.IdProducto,
+                PrecioMXN = i.PrecioMXN,
+                PrecioUSD = i.PrecioUSD,
+                Producto = productos.Items.FirstOrDefault(p => p.Id == i.IdProducto).Nombre
+            }));
+            return model;
         }
     }
 }

@@ -78,5 +78,32 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <h3 class="modal-title" id="modalHdr">Modal Header</h3>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-sm btn-warning-jadet" data-dismiss="modal"><i class="fa fa-lg fa-times"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body" id="divModalBody">
+                </div>
+                <div class="modal-footer" id="divModalFooter">
+                    <button type="button" class="btn btn-sm btn-info" data-dismiss="modal" id="btnGuardar"><i class="fa fa-lg fa-check"></i></button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 </body>
 </html>
