@@ -326,6 +326,17 @@ namespace Jadet.Controllers {
         }
 
         [HttpPost]
+        public JsonResult generarPedido(Carritomodel modelo) {
+            ClienteClient servicio = new ClienteClient();
+            var resultado = servicio.generarPedido(new CarritoRequest { 
+                Folio = modelo.Folio,
+                IdPaqueteria = modelo.IdPaqueteria,
+                IdEstatus = modelo.IdEstatus
+            });
+            return Json(resultado, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
         public ActionResult subirTicket(Ticketmodel modelo) {
             if (Session["usuario"] == null) {
                 Session.Clear();

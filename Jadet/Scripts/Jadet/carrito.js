@@ -1,6 +1,6 @@
 ﻿const modalgeneraPedido =
-    '<form action="/Administrador/eliminarCatalogo" method="post" id="frmCatalogo">' +
-    '  <input type="hidden" id="txtId" value="" name="Id" />' +
+    '<form action="/Administrador/generarPedido" method="post" id="frmCatalogo">' +
+    '  <input type="hidden" id="txtId" value="" name="Folio" />' +
     '  <div class= "row" > ' +
     '    <div class="col-sm-12" id="txtContenido"></div>' +
     '  </div>' +
@@ -200,9 +200,14 @@ $(document).ready(function () {
                         $('<dl>').append('<dt class="dt-jadet">Folio:</dt><dd class="jadet">' + data.Folio + '</dd>')
                             .append('<dt class="dt-jadet">Tipo:</dt><dd class="jadet">' + data.Tipo + '</dd>')
                             .append('<dt class="dt-jadet">Estatus:</dt><dd class="jadet">' + data.Estatus + '</dd>')
-                            .append('<dt class="dt-jadet">Paquetería:</dt><dd class="jadet">' + data.IdPaqueteria + '</dd>')
+                            .append('<dt class="dt-jadet">Paquetería:</dt><dd class="jadet"><select id="IdPaqueteria" class="form-control" name="IdPaqueteria"></select></dd>')
                             .append('<dt class="dt-jadet">Total:</dt><dd class="jadet">$' + data.MontoMXN.toFixed(2) + ' (' + data.MontoUSD.toFixed(2) + ' USD)</dd>')
                     );
+                    for (i = 0; i < zonas.length; i++) {
+                        $("#IdPaqueteria").append('<option value="' + zonas[i].id + '">' + zonas[i].nombre + '</option>')
+                    }
+                    $("#IdPaqueteria").val(data.IdPaqueteria);
+                    $("#txtId").val(data.Folio);
                     var tabla = $('<table class="table table-bordered table-active">');
                     tabla.append('<tr><th rowspan="2">Producto</th><th rowspan="2">Cantidad</th><th colspan="2">Precio</th><th colspan="2">Monto</th></tr>');
                     tabla.append('<tr><th>MXN</th><th>USD</th><th>MXN</th><th>USD</th></tr>');
@@ -222,6 +227,12 @@ $(document).ready(function () {
                 }
             );
             $("#myModal").modal("show");
+        });
+
+    $("#btnGuardar").off()
+        .on("click", function () {
+            console.log($("#frmCatalogo").serialize());
+            alert("Ok");
         });
     //---------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------
