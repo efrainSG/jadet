@@ -44,14 +44,17 @@ insert	into Administracion.Estatus(Id, Nombre, IdTipoEstatus)
 values	(1,  'Usuario Activo', 1),
 		(2,  'Usuario Inactivo', 1),
 		(3,  'Usuario Bloqueado', 1),
+
 		(4,  'Producto descontinuado', 2),
 		(5,  'Producto vigente', 2),
+
 		(6,  'Nota sin procesar', 3),
-		(7,  'Nota pagada', 3),
-		(8,  'Nota empaquetada', 3),
-		(9,  'Nota enviada', 3),
-		(10, 'Nota entregada', 3),
-		(11, 'Nota cancelada', 3);
+		(7,  'Pedido generado', 3),
+		(8,  'Nota pagada', 3),
+		(9,  'Nota empaquetada', 3),
+		(10, 'Nota enviada', 3),
+		(11, 'Nota entregada', 3),
+		(12, 'Nota cancelada', 3);
 set identity_insert Administracion.Estatus off
 
 set identity_insert Seguridad.Rol on
