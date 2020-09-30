@@ -326,14 +326,14 @@ namespace Jadet.Controllers {
         }
 
         [HttpPost]
-        public JsonResult generarPedido(Carritomodel modelo) {
+        public ActionResult generarPedido(Carritomodel modelo) {
             ClienteClient servicio = new ClienteClient();
             var resultado = servicio.generarPedido(new CarritoRequest { 
                 Folio = modelo.Folio,
                 IdPaqueteria = modelo.IdPaqueteria,
                 IdEstatus = modelo.IdEstatus
             });
-            return Json(resultado, JsonRequestBehavior.AllowGet);
+            return RedirectToAction("Pedidos");
         }
 
         [HttpPost]

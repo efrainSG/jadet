@@ -1,5 +1,5 @@
 ﻿const modalgeneraPedido =
-    '<form action="/Administrador/generarPedido" method="post" id="frmCatalogo">' +
+    '<form action="/Cliente/generarPedido" method="post" id="frmCatalogo">' +
     '  <input type="hidden" id="txtId" value="" name="Folio" />' +
     '  <div class= "row" > ' +
     '    <div class="col-sm-12" id="txtContenido"></div>' +
@@ -31,6 +31,7 @@ $(document).ready(function () {
             "/Administrador/obtenerDiccionario"
             , { IdTipo: 3 }
             , function (data) {
+                categorias = new Array();
                 for (i = 0; i < data.length; i++) {
                     categorias.push(data[i]);
                 }
@@ -40,6 +41,7 @@ $(document).ready(function () {
             "/Administrador/obtenerDiccionario"
             , { IdTipo: 2 }
             , function (data) {
+                zonas = new Array();
                 for (i = 0; i < data.length; i++) {
                     zonas.push(data[i]);
                 }
@@ -49,6 +51,7 @@ $(document).ready(function () {
             "/Administrador/obtenerTiposCatalogos"
             , { IdTipo: 0 }
             , function (data) {
+                tiposcatalogos = new Array();
                 for (i = 0; i < data.length; i++) {
                     tiposcatalogos.push(data[i]);
                 }
@@ -58,6 +61,7 @@ $(document).ready(function () {
             "/Administrador/obtenerEstatus"
             , { IdTipo: 0 }
             , function (data) {
+                estatus = new Array();
                 for (i = 0; i < data.length; i++) {
                     estatus.push(data[i]);
                 }
@@ -67,6 +71,7 @@ $(document).ready(function () {
             "/Administrador/obtenerTipoEstatus"
             , { IdTipo: 0 }
             , function (data) {
+                tipoestatus = new Array();
                 for (i = 0; i < data.length; i++) {
                     tipoestatus.push(data[i]);
                 }
@@ -76,6 +81,7 @@ $(document).ready(function () {
             "/Administrador/obtenerDiccionario"
             , { IdTipo: 1 }
             , function (data) {
+                tiposnotas = new Array();
                 for (i = 0; i < data.length; i++) {
                     tiposnotas.push(data[i]);
                 }
@@ -223,7 +229,6 @@ $(document).ready(function () {
                             );
                     }
                     $("#txtContenido").append(tabla);
-                    console.log(data);
                 }
             );
             $("#myModal").modal("show");
@@ -231,6 +236,7 @@ $(document).ready(function () {
 
     $("#btnGuardar").off()
         .on("click", function () {
+            $("#frmCatalogo").submit();
             console.log($("#frmCatalogo").serialize());
             alert("Ok");
         });
