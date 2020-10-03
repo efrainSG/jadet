@@ -13,6 +13,12 @@
   <wsdl:message name="ICliente_subirFoto_OutputMessage">
     <wsdl:part name="parameters" element="tns:subirFotoResponse" />
   </wsdl:message>
+  <wsdl:message name="ICliente_nuevoCarrito_InputMessage">
+    <wsdl:part name="parameters" element="tns:nuevoCarrito" />
+  </wsdl:message>
+  <wsdl:message name="ICliente_nuevoCarrito_OutputMessage">
+    <wsdl:part name="parameters" element="tns:nuevoCarritoResponse" />
+  </wsdl:message>
   <wsdl:message name="ICliente_agregarACarrito_InputMessage">
     <wsdl:part name="parameters" element="tns:agregarACarrito" />
   </wsdl:message>
@@ -60,6 +66,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ICliente/subirFoto" message="tns:ICliente_subirFoto_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICliente/subirFotoResponse" message="tns:ICliente_subirFoto_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="nuevoCarrito">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICliente/nuevoCarrito" message="tns:ICliente_nuevoCarrito_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICliente/nuevoCarritoResponse" message="tns:ICliente_nuevoCarrito_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="agregarACarrito">
       <wsdl:input wsaw:Action="http://tempuri.org/ICliente/agregarACarrito" message="tns:ICliente_agregarACarrito_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICliente/agregarACarritoResponse" message="tns:ICliente_agregarACarrito_OutputMessage" />
@@ -93,6 +103,15 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="subirFoto">
       <soap:operation soapAction="http://tempuri.org/ICliente/subirFoto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="nuevoCarrito">
+      <soap:operation soapAction="http://tempuri.org/ICliente/nuevoCarrito" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

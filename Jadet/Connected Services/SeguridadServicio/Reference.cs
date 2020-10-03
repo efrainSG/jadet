@@ -17,6 +17,7 @@ namespace Jadet.SeguridadServicio {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="BaseRequest", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.SeguridadServicio.UsuarioRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.SeguridadServicio.LoginRequest))]
     public partial class BaseRequest : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -39,6 +40,173 @@ namespace Jadet.SeguridadServicio {
             System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
             if ((propertyChanged != null)) {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UsuarioRequest", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
+    [System.SerializableAttribute()]
+    public partial class UsuarioRequest : Jadet.SeguridadServicio.BaseRequest {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DireccionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] FotoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdEstatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdRolField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] PasswordField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TelefonoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UsuarioField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ZonaPaqueteriaField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Direccion {
+            get {
+                return this.DireccionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DireccionField, value) != true)) {
+                    this.DireccionField = value;
+                    this.RaisePropertyChanged("Direccion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Foto {
+            get {
+                return this.FotoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FotoField, value) != true)) {
+                    this.FotoField = value;
+                    this.RaisePropertyChanged("Foto");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdEstatus {
+            get {
+                return this.IdEstatusField;
+            }
+            set {
+                if ((this.IdEstatusField.Equals(value) != true)) {
+                    this.IdEstatusField = value;
+                    this.RaisePropertyChanged("IdEstatus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdRol {
+            get {
+                return this.IdRolField;
+            }
+            set {
+                if ((this.IdRolField.Equals(value) != true)) {
+                    this.IdRolField = value;
+                    this.RaisePropertyChanged("IdRol");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Nombre {
+            get {
+                return this.NombreField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreField, value) != true)) {
+                    this.NombreField = value;
+                    this.RaisePropertyChanged("Nombre");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Password {
+            get {
+                return this.PasswordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
+                    this.PasswordField = value;
+                    this.RaisePropertyChanged("Password");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Telefono {
+            get {
+                return this.TelefonoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TelefonoField, value) != true)) {
+                    this.TelefonoField = value;
+                    this.RaisePropertyChanged("Telefono");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Usuario {
+            get {
+                return this.UsuarioField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UsuarioField, value) != true)) {
+                    this.UsuarioField = value;
+                    this.RaisePropertyChanged("Usuario");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ZonaPaqueteria {
+            get {
+                return this.ZonaPaqueteriaField;
+            }
+            set {
+                if ((this.ZonaPaqueteriaField.Equals(value) != true)) {
+                    this.ZonaPaqueteriaField = value;
+                    this.RaisePropertyChanged("ZonaPaqueteria");
+                }
             }
         }
     }
@@ -86,6 +254,7 @@ namespace Jadet.SeguridadServicio {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="BaseResponse", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.SeguridadServicio.UsuarioResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.SeguridadServicio.LoginResponse))]
     public partial class BaseResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -146,6 +315,173 @@ namespace Jadet.SeguridadServicio {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UsuarioResponse", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
+    [System.SerializableAttribute()]
+    public partial class UsuarioResponse : Jadet.SeguridadServicio.BaseResponse {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DireccionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] FotoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdEstatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdRolField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NombreField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] PasswordField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TelefonoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UsuarioField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ZonaPaqueteriaField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Direccion {
+            get {
+                return this.DireccionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DireccionField, value) != true)) {
+                    this.DireccionField = value;
+                    this.RaisePropertyChanged("Direccion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Foto {
+            get {
+                return this.FotoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FotoField, value) != true)) {
+                    this.FotoField = value;
+                    this.RaisePropertyChanged("Foto");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdEstatus {
+            get {
+                return this.IdEstatusField;
+            }
+            set {
+                if ((this.IdEstatusField.Equals(value) != true)) {
+                    this.IdEstatusField = value;
+                    this.RaisePropertyChanged("IdEstatus");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdRol {
+            get {
+                return this.IdRolField;
+            }
+            set {
+                if ((this.IdRolField.Equals(value) != true)) {
+                    this.IdRolField = value;
+                    this.RaisePropertyChanged("IdRol");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Nombre {
+            get {
+                return this.NombreField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombreField, value) != true)) {
+                    this.NombreField = value;
+                    this.RaisePropertyChanged("Nombre");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Password {
+            get {
+                return this.PasswordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
+                    this.PasswordField = value;
+                    this.RaisePropertyChanged("Password");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Telefono {
+            get {
+                return this.TelefonoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TelefonoField, value) != true)) {
+                    this.TelefonoField = value;
+                    this.RaisePropertyChanged("Telefono");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Usuario {
+            get {
+                return this.UsuarioField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UsuarioField, value) != true)) {
+                    this.UsuarioField = value;
+                    this.RaisePropertyChanged("Usuario");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ZonaPaqueteria {
+            get {
+                return this.ZonaPaqueteriaField;
+            }
+            set {
+                if ((this.ZonaPaqueteriaField.Equals(value) != true)) {
+                    this.ZonaPaqueteriaField = value;
+                    this.RaisePropertyChanged("ZonaPaqueteria");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="LoginResponse", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
     [System.SerializableAttribute()]
     public partial class LoginResponse : Jadet.SeguridadServicio.BaseResponse {
@@ -154,7 +490,7 @@ namespace Jadet.SeguridadServicio {
         private System.Guid IdUsuarioField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Jadet.SeguridadServicio.Nombre NombreUsuarioField;
+        private string NombreUsuarioField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private Jadet.SeguridadServicio.Rol RolUsuarioField;
@@ -179,7 +515,7 @@ namespace Jadet.SeguridadServicio {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Jadet.SeguridadServicio.Nombre NombreUsuario {
+        public string NombreUsuario {
             get {
                 return this.NombreUsuarioField;
             }
@@ -233,83 +569,6 @@ namespace Jadet.SeguridadServicio {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Nombre", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
-    [System.SerializableAttribute()]
-    public partial class Nombre : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ApellidoMaternoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ApellidoPaternoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NombresField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ApellidoMaterno {
-            get {
-                return this.ApellidoMaternoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ApellidoMaternoField, value) != true)) {
-                    this.ApellidoMaternoField = value;
-                    this.RaisePropertyChanged("ApellidoMaterno");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ApellidoPaterno {
-            get {
-                return this.ApellidoPaternoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ApellidoPaternoField, value) != true)) {
-                    this.ApellidoPaternoField = value;
-                    this.RaisePropertyChanged("ApellidoPaterno");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Nombres {
-            get {
-                return this.NombresField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NombresField, value) != true)) {
-                    this.NombresField = value;
-                    this.RaisePropertyChanged("Nombres");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Rol", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
     [System.SerializableAttribute()]
     public partial class Rol : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -321,7 +580,7 @@ namespace Jadet.SeguridadServicio {
         private int IdRolField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NombreRolField;
+        private string NombreField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -347,14 +606,14 @@ namespace Jadet.SeguridadServicio {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string NombreRol {
+        public string Nombre {
             get {
-                return this.NombreRolField;
+                return this.NombreField;
             }
             set {
-                if ((object.ReferenceEquals(this.NombreRolField, value) != true)) {
-                    this.NombreRolField = value;
-                    this.RaisePropertyChanged("NombreRol");
+                if ((object.ReferenceEquals(this.NombreField, value) != true)) {
+                    this.NombreField = value;
+                    this.RaisePropertyChanged("Nombre");
                 }
             }
         }
@@ -378,6 +637,18 @@ namespace Jadet.SeguridadServicio {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISeguridad/IniciarSesion", ReplyAction="http://tempuri.org/ISeguridad/IniciarSesionResponse")]
         System.Threading.Tasks.Task<Jadet.SeguridadServicio.LoginResponse> IniciarSesionAsync(Jadet.SeguridadServicio.LoginRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISeguridad/CerrarSesion", ReplyAction="http://tempuri.org/ISeguridad/CerrarSesionResponse")]
+        Jadet.SeguridadServicio.LoginResponse CerrarSesion(Jadet.SeguridadServicio.LoginRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISeguridad/CerrarSesion", ReplyAction="http://tempuri.org/ISeguridad/CerrarSesionResponse")]
+        System.Threading.Tasks.Task<Jadet.SeguridadServicio.LoginResponse> CerrarSesionAsync(Jadet.SeguridadServicio.LoginRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISeguridad/cambiarPerfil", ReplyAction="http://tempuri.org/ISeguridad/cambiarPerfilResponse")]
+        Jadet.SeguridadServicio.UsuarioResponse cambiarPerfil(Jadet.SeguridadServicio.UsuarioRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISeguridad/cambiarPerfil", ReplyAction="http://tempuri.org/ISeguridad/cambiarPerfilResponse")]
+        System.Threading.Tasks.Task<Jadet.SeguridadServicio.UsuarioResponse> cambiarPerfilAsync(Jadet.SeguridadServicio.UsuarioRequest request);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -413,6 +684,22 @@ namespace Jadet.SeguridadServicio {
         
         public System.Threading.Tasks.Task<Jadet.SeguridadServicio.LoginResponse> IniciarSesionAsync(Jadet.SeguridadServicio.LoginRequest request) {
             return base.Channel.IniciarSesionAsync(request);
+        }
+        
+        public Jadet.SeguridadServicio.LoginResponse CerrarSesion(Jadet.SeguridadServicio.LoginRequest request) {
+            return base.Channel.CerrarSesion(request);
+        }
+        
+        public System.Threading.Tasks.Task<Jadet.SeguridadServicio.LoginResponse> CerrarSesionAsync(Jadet.SeguridadServicio.LoginRequest request) {
+            return base.Channel.CerrarSesionAsync(request);
+        }
+        
+        public Jadet.SeguridadServicio.UsuarioResponse cambiarPerfil(Jadet.SeguridadServicio.UsuarioRequest request) {
+            return base.Channel.cambiarPerfil(request);
+        }
+        
+        public System.Threading.Tasks.Task<Jadet.SeguridadServicio.UsuarioResponse> cambiarPerfilAsync(Jadet.SeguridadServicio.UsuarioRequest request) {
+            return base.Channel.cambiarPerfilAsync(request);
         }
     }
 }
