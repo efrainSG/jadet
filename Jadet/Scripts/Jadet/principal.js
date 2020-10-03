@@ -6,6 +6,7 @@
             "/Administrador/obtenerDiccionario"
             , { IdTipo: 3 }
             , function (data) {
+                categorias = new Array();
                 for (i = 0; i < data.length; i++) {
                     categorias.push(data[i]);
                 }
@@ -15,6 +16,7 @@
             "/Administrador/obtenerDiccionario"
             , { IdTipo: 2 }
             , function (data) {
+                zonas = new Array();
                 for (i = 0; i < data.length; i++) {
                     zonas.push(data[i]);
                 }
@@ -24,6 +26,7 @@
             "/Administrador/obtenerTiposCatalogos"
             , { IdTipo: 0 }
             , function (data) {
+                tiposcatalogos = new Array();
                 for (i = 0; i < data.length; i++) {
                     tiposcatalogos.push(data[i]);
                 }
@@ -33,6 +36,7 @@
             "/Administrador/obtenerEstatus"
             , { IdTipo: 0 }
             , function (data) {
+                estatus = new Array();
                 for (i = 0; i < data.length; i++) {
                     estatus.push(data[i]);
                 }
@@ -42,6 +46,7 @@
             "/Administrador/obtenerTipoEstatus"
             , { IdTipo: 0 }
             , function (data) {
+                tipoestatus = new Array();
                 for (i = 0; i < data.length; i++) {
                     tipoestatus.push(data[i]);
                 }
@@ -51,6 +56,7 @@
             "/Administrador/obtenerDiccionario"
             , { IdTipo: 1 }
             , function (data) {
+                tiposnotas = new Array();
                 for (i = 0; i < data.length; i++) {
                     tiposnotas.push(data[i]);
                 }
@@ -544,7 +550,22 @@
                     alert(data.respuesta.ErrorMensaje);
             });
         });
-    //---------------------------------------------------------------------------------------
+
+    //-- CARRITO ----------------------------------------------------------------------------
+    $('[id^="btnagregarCarrito"]').off()
+        .on("click", function () {
+            $this = $(this);
+            var _frm = $('<form method="post">')
+                .append($('<input type="hidden" name="Id">')
+                    .val($this.id.substring(17)));
+
+            $.post(
+                "/Cliente/agregarProducto",
+                _frm.serialize()
+            ).done(function (data) {
+                console.log(data);
+            });
+        });
     //---------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------

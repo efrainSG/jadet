@@ -1,0 +1,160 @@
+﻿@model Jadet.Models.CarritoCompletoModel
+
+@{
+    ViewBag.Title = "Detalle del carrito";
+    Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+<div class="card">
+    <div class="card card-header">
+        <div class="row">
+            <div class="col-sm-2">
+                Folio
+            </div>
+            <div class="col-sm-1 badge progress-bar-success">
+                @Model.Folio
+            </div>
+            <div class="col-sm-1">
+                Tipo
+            </div>
+            <div class="col-sm-2">
+                @Model.Tipo
+            </div>
+            <div class="col-sm-1">
+                Fecha
+            </div>
+            <div class="col-sm-2">
+                @Model.Fecha.Value.ToString("dd/MM/yyyy")
+            </div>
+            <div class="col-sm-1">
+                Estátus
+            </div>
+            <div class="col-sm-2">
+                @Model.Estatus
+            </div>
+        </div>
+    </div>
+    <div class="card card-body">
+        <div class="row">
+            <div class="col-sm-2">
+                Cliente
+            </div>
+            <div class="col-sm-10">
+                @Model.Cliente
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">
+                Fecha de envío
+            </div>
+            <div class="col-sm-2">
+                @if (Model.FechaEnvio.HasValue) {
+                    Model.FechaEnvio.Value.ToString("dd/MM/yyyy");
+                }
+            </div>
+            <div class="col-sm-2">
+                Paquetería
+            </div>
+            <div class="col-sm-2">
+                @Model.Paqueteria
+            </div>
+            <div class="col-sm-2">
+                Guía
+            </div>
+            <div class="col-sm-2">
+                @Model.Guia
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">
+                Monto
+            </div>
+            <div class="col-sm-2">
+                $ @Model.MontoMXN M. N.
+            </div>
+            <div class="col-sm-2">
+                ( USD @Model.MontoUSD )
+            </div>
+            <div class="col-sm-2">
+                Saldo
+            </div>
+            <div class="col-sm-2">
+                $ @Model.SaldoMXN M. N.
+            </div>
+            <div class="col-sm-2">
+                ( USD @Model.SaldoUSD )
+            </div>
+        </div>
+        <div class="card card-footer">
+            <div class="row">
+                <div class="col-sm-2">
+                    Cantidad
+                </div>
+                <div class="col-sm-2 text-center">
+                    <span class="badge progress-bar-info">
+                        @Model.Items.Count
+                    </span>
+                </div>
+                <div class="col-sm-2">
+                </div>
+                <div class="col-sm-2 text-center">
+                </div>
+                <div class="col-sm-2">
+                </div>
+                <div class="col-sm-2 text-center">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-bordered" style="border-collapse:collapse; ">
+        <thead>
+            <tr>
+                <th rowspan="2"></th>
+                <th rowspan="2">Id</th>
+                <th rowspan="2">Id de producto</th>
+                <th rowspan="2">Producto</th>
+                <th colspan="2">Precio Unitario</th>
+                <th rowspan="2" colspan="3">Cantidad</th>
+                <th colspan="2">Precio</th>
+            </tr>
+            <tr>
+                <th>MXN</th>
+                <th>USD</th>
+                <th>MXN</th>
+                <th>USD</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items) {
+                <tr id="fila@(item.Id)">
+                    <td><a href="#fila@(item.Id)" id="btnremoveitem@(item.Id)" class="btn btn-danger-jadet"><i class="fa fa-times"></i></a></td>
+                    <td>@item.Id </td>
+                    <td>@item.IdProducto</td>
+                    <td>@item.Producto</td>
+                    <td>@item.PrecioMXN</td>
+                    <td>@item.PrecioUSD</td>
+                    <td style="text-align:center;">
+                        @if (item.Cantidad > 1) {
+                            <a href="#fila@(item.Id)" cantidad="@(item.Cantidad)" tipo="@(Model.IdTipo)" productoid="@(item.IdProducto)" id="btnminusitem@(item.Id)" class="btn btn-warning-jadet" habilitado="si">
+                                <i class="fa fa-minus"></i>
+                            </a>
+                        } else {
+                            <a href="#fila@(item.Id)" cantidad="@(item.Cantidad)" tipo="@(Model.IdTipo)" productoid="@(item.IdProducto)" id="btnminusitem@(item.Id)" class="btn btn-secondary" habilitado="no">
+                                <i class="fa fa-minus"></i>
+                            </a>
+                        }
+                    </td>
+                    <td style="text-align:right;" id="Cantidad@(item.Id)">@item.Cantidad</td>
+                    <td style="text-align:center;">
+                        <a href="#fila@(item.Id)" cantidad="@(item.Cantidad)" tipo="@(Model.IdTipo)" productoid="@(item.IdProducto)" id="btnplusitem@(item.Id)" class="btn btn-warning-jadet">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </td>
+                    <td id="MontoMXN@(item.Id)">@item.MontoMXN</td>
+                    <td id="MontoUSD@(item.Id)">@item.MontoUSD</td>
+                </tr>
+            }
+        </tbody>
+    </table>

@@ -1,4 +1,5 @@
-﻿
+﻿@model Jadet.Models.notacollectionModel
+
 @{
     ViewBag.Title = "Pedidos";
     Layout = "~/Views/Shared/_LayoutCliente.cshtml";
@@ -6,3 +7,48 @@
 
 <h2>@ViewBag.Title</h2>
 
+<table class="table table-active table-bordered">
+    <thead>
+        <tr>
+            <th rowspan="2">Folio</th>
+            <th rowspan="2">Tipo</th>
+            <th rowspan="2">Fecha</th>
+            <th rowspan="2">Estatus</th>
+            <th rowspan="2">Guia</th>
+            <th rowspan="2">Paqueteria</th>
+            <th rowspan="2">FechaEnvio</th>
+            <th colspan="2">Monto</th>
+            <th colspan="2">Saldo</th>
+            <th rowspan="2"></th>
+        </tr>
+        <tr>
+            <th>MXN</th>
+            <th>USD</th>
+            <th>MXN</th>
+            <th>USD</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items) {
+            <tr>
+                <td>
+                    @Html.ActionLink(linkText: item.Folio.ToString(), actionName: "DetalleNota", controllerName: "Cliente", routeValues: new { @folio = item.Folio }, htmlAttributes: new { @class = "btn btn-lg btn-info" })
+                </td>
+                <td>@item.Tipo</td>
+                <td>@item.Fecha</td>
+                <td>@item.Estatus</td>
+                <td>@item.Guia</td>
+                <td>@item.Paqueteria</td>
+                <td>@item.FechaEnvio</td>
+                <td>@item.MontoMXN</td>
+                <td>@item.MontoUSD</td>
+                <td>@item.SaldoMXN</td>
+                <td>@item.SaldoUSD</td>
+                <td>
+                    <a href="@Url.Action("Comentarios","Cliente", new { folio = item.Folio})" class="btn btn-lg btn-info"><i class="fa fa-comments"></i></a>
+                    <a href="@Url.Action("Tickets","Cliente", new { folio = item.Folio})" class="btn btn-lg btn-warning"><i class="fa fa-file"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
