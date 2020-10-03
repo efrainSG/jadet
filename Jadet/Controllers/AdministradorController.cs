@@ -14,7 +14,7 @@ namespace Jadet.Controllers {
     public class AdministradorController : Controller {
         // GET: Administrador
         public ActionResult Index() {
-            if (Session["usuario"] != null && (Session["usuario"] as loginmodel).usuario == "Root")
+            if (Session["usuario"] != null)
                 return View();
             else {
                 Session.Clear();
@@ -23,7 +23,7 @@ namespace Jadet.Controllers {
         }
         #region Carga de listas
         public ActionResult Productos() {
-            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+            if (Session["usuario"] == null) {
                 Session.Clear();
                 return RedirectToAction("Index", "Home");
             }
@@ -57,7 +57,7 @@ namespace Jadet.Controllers {
         }
 
         public ActionResult Clientes() {
-            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+            if (Session["usuario"] == null) {
                 Session.Clear();
                 return RedirectToAction("Index", "Home");
             }
@@ -84,7 +84,7 @@ namespace Jadet.Controllers {
         }
 
         public ActionResult Notas() {
-            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+            if (Session["usuario"] == null) {
                 Session.Clear();
                 return RedirectToAction("Index", "Home");
             }
@@ -132,7 +132,7 @@ namespace Jadet.Controllers {
         }
 
         public ActionResult Configuracion() {
-            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+            if (Session["usuario"] == null) {
                 Session.Clear();
                 return RedirectToAction("Index", "Home");
             }
@@ -160,7 +160,7 @@ namespace Jadet.Controllers {
 
         [HttpGet]
         public ActionResult DetalleNota(int folio) {
-            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+            if (Session["usuario"] == null) {
                 Session.Clear();
                 return RedirectToAction("Index", "Home");
             }
@@ -192,7 +192,12 @@ namespace Jadet.Controllers {
                 MontoUSD = response.MontoUSD,
                 SaldoMXN = response.SaldoMXN,
                 SaldoUSD = response.SaldoUSD,
-                Comentarios = comentarios.Select(i => new comentarioModel { Id = i.Id, Fecha = i.Fecha, IdNota = i.IdNota, Comentario = i.Comentario }).ToList(),
+                Comentarios = comentarios.Select(i => new Comentariomodel {
+                    Id = i.Id,
+                    Fecha = i.Fecha,
+                    FolioNota = i.IdNota,
+                    Mensaje = i.Comentario
+                }).ToList(),
                 //Tickets = tickets.Select(i => new ticketModel { Id = i.Id, Fecha = i.Fecha, IdNota = i.IdNota, Ticket = i.Ticket}).ToList()
             };
             model.Items.AddRange(responseItems.Items.Select(i => new detallenotaModel {
@@ -210,14 +215,14 @@ namespace Jadet.Controllers {
 
         [HttpGet]
         public ActionResult Tickets(int folio) {
-            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+            if (Session["usuario"] == null) {
                 Session.Clear();
                 return RedirectToAction("Index", "Home");
             }
             var servicio = new AdministradorClient();
-            var listatickets = new Models.listaticketsmodel();
+            var listatickets = new Models.listaTicketsmodel();
             var response = servicio.listarTicketNota(new NotaTicketRequest { IdNota = folio });
-            listatickets.Items.AddRange(response.Items.Select(i => new ticketModel {
+            listatickets.Items.AddRange(response.Items.Select(i => new Ticketmodel {
                 Id = i.Id,
                 Fecha = i.Fecha,
                 IdNota = i.IdNota,
@@ -228,18 +233,18 @@ namespace Jadet.Controllers {
 
         [HttpGet]
         public ActionResult Comentarios(int folio) {
-            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+            if (Session["usuario"] == null) {
                 Session.Clear();
                 return RedirectToAction("Index", "Home");
             }
             var servicio = new AdministradorClient();
-            var listacomentarios = new Models.listacomentariosModel();
+            var listacomentarios = new Models.listaComentariosmodel();
             var response = servicio.listarComentarioNota(new NotaComentarioRequest { IdNota = folio });
-            listacomentarios.Items.AddRange(response.Items.Select(i => new comentarioModel {
+            listacomentarios.Items.AddRange(response.Items.Select(i => new Comentariomodel {
                 Id = i.Id,
                 Fecha = i.Fecha,
-                IdNota = i.IdNota,
-                Comentario = i.Comentario
+                FolioNota = i.IdNota,
+                Mensaje = i.Comentario
             }));
             return View(listacomentarios);
         }
@@ -248,7 +253,7 @@ namespace Jadet.Controllers {
 
         [HttpPost]
         public JsonResult guardarProducto(productomodel model, HttpPostedFileBase imgArch) {
-            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+            if (Session["usuario"] == null) {
                 Session.Clear();
                 return Json(new { respuesta = new ProductoResponse() }, JsonRequestBehavior.AllowGet);
             } else {
@@ -278,7 +283,7 @@ namespace Jadet.Controllers {
 
         [HttpPost]
         public JsonResult eliminarProducto(productomodel model) {
-            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+            if (Session["usuario"] == null) {
                 Session.Clear();
                 return Json(new ProductoResponse(), JsonRequestBehavior.AllowGet);
             } else {
@@ -301,7 +306,7 @@ namespace Jadet.Controllers {
 
         [HttpPost]
         public JsonResult guardarCatalogo(catalogoModel model) {
-            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+            if (Session["usuario"] == null) {
                 Session.Clear();
                 return Json(new { respuesta = new CatalogoResponse() }, JsonRequestBehavior.AllowGet);
             } else {
@@ -317,7 +322,7 @@ namespace Jadet.Controllers {
 
         [HttpPost]
         public JsonResult eliminarCatalogo(catalogoModel model) {
-            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+            if (Session["usuario"] == null) {
                 Session.Clear();
                 return Json(new { respuesta = new ProductoResponse() }, JsonRequestBehavior.AllowGet);
             } else {
@@ -333,7 +338,7 @@ namespace Jadet.Controllers {
 
         [HttpPost]
         public JsonResult guardarEstatus(catalogoModel model) {
-            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+            if (Session["usuario"] == null) {
                 Session.Clear();
                 return Json(new { respuesta = new ProductoResponse() }, JsonRequestBehavior.AllowGet);
             } else {
@@ -349,7 +354,7 @@ namespace Jadet.Controllers {
 
         [HttpPost]
         public JsonResult eliminarEstatus(catalogoModel model) {
-            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+            if (Session["usuario"] == null) {
                 Session.Clear();
                 return Json(new ProductoResponse(), JsonRequestBehavior.AllowGet);
             } else {
@@ -364,7 +369,7 @@ namespace Jadet.Controllers {
 
         [HttpPost]
         public JsonResult guardarCliente(clientemodel model) {
-            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+            if (Session["usuario"] == null) {
                 Session.Clear();
                 return Json(new { respuesta = new ClienteResponse() }, JsonRequestBehavior.AllowGet);
             } else {
@@ -387,7 +392,7 @@ namespace Jadet.Controllers {
 
         [HttpPost]
         public JsonResult eliminarCliente(clientemodel model) {
-            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+            if (Session["usuario"] == null) {
                 Session.Clear();
                 return Json(new { respuesta = new ClienteResponse() }, JsonRequestBehavior.AllowGet);
             } else {
@@ -409,8 +414,12 @@ namespace Jadet.Controllers {
         }
 
         public JsonResult ObtenerNota(int folio) {
+            if (Session["usuario"] == null) {
+                Session.Clear();
+                return Json(new { respuesta = new ClienteResponse() }, JsonRequestBehavior.AllowGet);
+            }
             var servicio = new AdministradorClient();
-            var preresponse = servicio.cargarNota(new NotaRequest { 
+            var preresponse = servicio.cargarNota(new NotaRequest {
                 Folio = folio
             });
             var responseClientes = servicio.listarClientes(new ClienteRequest {
@@ -448,7 +457,7 @@ namespace Jadet.Controllers {
         }
         [HttpPost]
         public JsonResult guardarNota(notaModel model) {
-            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+            if (Session["usuario"] == null) {
                 Session.Clear();
                 return Json(new { respuesta = new ClienteResponse() }, JsonRequestBehavior.AllowGet);
             } else {
@@ -473,7 +482,7 @@ namespace Jadet.Controllers {
 
         [HttpPost]
         public JsonResult eliminarNota(notaModel model) {
-            if (Session["usuario"] == null || (Session["usuario"] as loginmodel).usuario != "Root") {
+            if (Session["usuario"] == null) {
                 Session.Clear();
                 return Json(new { respuesta = new ClienteResponse() }, JsonRequestBehavior.AllowGet);
             } else {
@@ -497,6 +506,10 @@ namespace Jadet.Controllers {
         }
 
         public JsonResult obtenerDiccionario(int IdTipo) {
+            if (Session["usuario"] == null) {
+                Session.Clear();
+                return Json(new { respuesta = new ClienteResponse() }, JsonRequestBehavior.AllowGet);
+            }
             var servicio = new AdministradorClient();
             var response = servicio.listarCatalogo(new CatalogoRequest {
                 IdTipoCatalogo = IdTipo
@@ -506,6 +519,10 @@ namespace Jadet.Controllers {
         }
 
         public JsonResult obtenerTiposCatalogos(int IdTipo) {
+            if (Session["usuario"] == null) {
+                Session.Clear();
+                return Json(new { respuesta = new ClienteResponse() }, JsonRequestBehavior.AllowGet);
+            }
             var servicio = new AdministradorClient();
             var response = servicio.listarTipoCatalogo(new TipoCatalogoRequest {
                 Id = IdTipo
@@ -514,6 +531,10 @@ namespace Jadet.Controllers {
         }
 
         public JsonResult obtenerEstatus(int IdTipo) {
+            if (Session["usuario"] == null) {
+                Session.Clear();
+                return Json(new { respuesta = new ClienteResponse() }, JsonRequestBehavior.AllowGet);
+            }
             var servicio = new AdministradorClient();
             var response = servicio.listarEstatus(new EstatusRequest {
                 Id = IdTipo
@@ -522,6 +543,10 @@ namespace Jadet.Controllers {
         }
 
         public JsonResult obtenerTipoEstatus(int IdTipo) {
+            if (Session["usuario"] == null) {
+                Session.Clear();
+                return Json(new { respuesta = new ClienteResponse() }, JsonRequestBehavior.AllowGet);
+            }
             var servicio = new AdministradorClient();
             var response = servicio.listarTipoEstatus(new TipoEstatusRequest {
                 Id = IdTipo
