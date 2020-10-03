@@ -94,9 +94,27 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones {
         }
 
         public BaseResponse generarPedido(CarritoRequest request) {
+            DataAccess da = new DataAccess {
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
+            };
+            var _nota = da.listarNota(new Nota { 
+                Folio = request.Folio
+            }).FirstOrDefault();
+            var _respuesta = da.guardarNota(new Nota { 
+                Fecha = _nota.Fecha,
+                Folio = _nota.Folio,
+                IdCliente = _nota.IdCliente,
+                IdEstatus = 7,
+                IdPaqueteria = request.IdPaqueteria,
+                IdTipo = _nota.IdTipo,
+                MontoMXN = _nota.MontoMXN,
+                MontoUSD = _nota.MontoUSD,
+                SaldoMXN = _nota.SaldoMXN,
+                SaldoUSD = _nota.SaldoUSD
+            });
             return new BaseResponse {
-                ErrorMensaje = "No implementado",
-                ErrorNumero = 1
+                ErrorMensaje = string.Empty,
+                ErrorNumero = 0
             };
         }
 
