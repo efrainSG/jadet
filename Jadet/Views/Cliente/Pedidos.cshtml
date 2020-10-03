@@ -45,7 +45,8 @@
                 <td>@item.SaldoMXN</td>
                 <td>@item.SaldoUSD</td>
                 <td>
-                    <a href="#@("btneditarNota"+@item.Folio)" class="btn btn-warning-jadet" id="@("btneditarNota"+@item.Folio)"><i class="fa fa-lg fa-edit"></i></a>
+                    <a href="@Url.Action("Comentarios","Cliente", new { folio = item.Folio})" class="btn btn-lg btn-info"><i class="fa fa-comments"></i></a>
+                    <a href="@Url.Action("Tickets","Cliente", new { folio = item.Folio})" class="btn btn-lg btn-warning"><i class="fa fa-file"></i></a>
                 </td>
             </tr>
         }

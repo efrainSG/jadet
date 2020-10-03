@@ -3,6 +3,7 @@ using Jadet.ClienteServicio;
 using Jadet.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Web.Mvc;
@@ -253,11 +254,14 @@ namespace Jadet.Controllers {
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult Comentarios(listaproductosmodel modelo) {
+        public ActionResult Comentarios(int folio) {
             if (Session["usuario"] == null) {
                 Session.Clear();
                 return RedirectToAction("Index", "Home");
             }
+            ClienteClient cliente = new ClienteClient();
+            listaComentariosmodel lista;
+            listaComentariosmodel listacomentarios;
             return View();
         }
 
@@ -266,12 +270,27 @@ namespace Jadet.Controllers {
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult Tickets(listaproductosmodel modelo) {
+        public ActionResult Tickets(int folio) {
             if (Session["usuario"] == null) {
                 Session.Clear();
                 return RedirectToAction("Index", "Home");
             }
-            return View();
+            ClienteClient cliente = new ClienteClient();
+            AdministradorClient admin = new AdministradorClient();
+            var tipos = admin.listarTipoCatalogo(new TipoCatalogoRequest { Id = 0 });
+            var carrito = cliente.verPedido(new CarritoRequest { Folio = folio });
+            listaTicketsmodel listaTicketsmodel = new listaTicketsmodel {
+                Folio = folio,
+                IdTipo = carrito.IdTipo,
+                MontoMXN = carrito.MontoMXN,
+                MontoUSD = carrito.MontoUSD,
+                //Items = new List<Ticketmodel>(),
+                SaldoMXN = carrito.SaldoMXN,
+                SaldoUSD = carrito.SaldoUSD,
+                Tipo = tipos.Items.FirstOrDefault(i => i.Id == carrito.IdTipo).Nombre
+            };
+
+            return View(listaTicketsmodel);
         }
 
         [HttpGet]
@@ -328,7 +347,7 @@ namespace Jadet.Controllers {
         [HttpPost]
         public ActionResult generarPedido(Carritomodel modelo) {
             ClienteClient servicio = new ClienteClient();
-            var resultado = servicio.generarPedido(new CarritoRequest { 
+            var resultado = servicio.generarPedido(new CarritoRequest {
                 Folio = modelo.Folio,
                 IdPaqueteria = modelo.IdPaqueteria,
                 IdEstatus = modelo.IdEstatus
