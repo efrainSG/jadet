@@ -25,12 +25,12 @@ namespace Jadet.Models {
     }
     public class notacompletaModel : notaModel {
         public List<detallenotaModel> Items { get; set; }
-        public List<comentarioModel> Comentarios { get; set; }
-        public List<ticketModel> Tickets { get; set; }
+        public List<Comentariomodel> Comentarios { get; set; }
+        public List<Ticketmodel> Tickets { get; set; }
         public notacompletaModel() {
             Items = new List<detallenotaModel>();
-            Comentarios = new List<comentarioModel>();
-            Tickets = new List<ticketModel>();
+            Comentarios = new List<Comentariomodel>();
+            Tickets = new List<Ticketmodel>();
         }
     }
 
@@ -52,38 +52,10 @@ namespace Jadet.Models {
         public decimal MontoUSD { get { return Cantidad * PrecioUSD; } }
     }
 
-    public class comentarioModel {
-        public int Id { get; set; }
-        public int IdNota { get; set; }
-        public string Comentario { get; set; }
-        public DateTime Fecha { get; set; }
-    }
-
-    public class ticketModel {
-        public int Id { get; set; }
-        public int IdNota { get; set; }
-        public byte[] Ticket { get; set; }
-        public DateTime Fecha { get; set; }
-    }
-
     public class listaNotaModel {
         public List<notaModel> Items { get; set; }
         public listaNotaModel() {
             Items = new List<notaModel>();
-        }
-    }
-
-    public class listacomentariosModel {
-        public List<comentarioModel> Items { get; set; }
-        public listacomentariosModel() {
-            Items = new List<comentarioModel>();
-        }
-    }
-
-    public class listaticketsmodel {
-        public List<ticketModel> Items { get; set; }
-        public listaticketsmodel() {
-            Items = new List<ticketModel>();
         }
     }
 

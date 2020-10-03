@@ -19,4 +19,5 @@ namespace Jadet.Models {
         }
 
     }
+
 }
