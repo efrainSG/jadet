@@ -192,7 +192,12 @@ namespace Jadet.Controllers {
                 MontoUSD = response.MontoUSD,
                 SaldoMXN = response.SaldoMXN,
                 SaldoUSD = response.SaldoUSD,
-                Comentarios = comentarios.Select(i => new comentarioModel { Id = i.Id, Fecha = i.Fecha, IdNota = i.IdNota, Comentario = i.Comentario }).ToList(),
+                Comentarios = comentarios.Select(i => new Comentariomodel {
+                    Id = i.Id,
+                    Fecha = i.Fecha,
+                    FolioNota = i.IdNota,
+                    Mensaje = i.Comentario
+                }).ToList(),
                 //Tickets = tickets.Select(i => new ticketModel { Id = i.Id, Fecha = i.Fecha, IdNota = i.IdNota, Ticket = i.Ticket}).ToList()
             };
             model.Items.AddRange(responseItems.Items.Select(i => new detallenotaModel {
@@ -215,9 +220,9 @@ namespace Jadet.Controllers {
                 return RedirectToAction("Index", "Home");
             }
             var servicio = new AdministradorClient();
-            var listatickets = new Models.listaticketsmodel();
+            var listatickets = new Models.listaTicketsmodel();
             var response = servicio.listarTicketNota(new NotaTicketRequest { IdNota = folio });
-            listatickets.Items.AddRange(response.Items.Select(i => new ticketModel {
+            listatickets.Items.AddRange(response.Items.Select(i => new Ticketmodel {
                 Id = i.Id,
                 Fecha = i.Fecha,
                 IdNota = i.IdNota,
@@ -233,13 +238,13 @@ namespace Jadet.Controllers {
                 return RedirectToAction("Index", "Home");
             }
             var servicio = new AdministradorClient();
-            var listacomentarios = new Models.listacomentariosModel();
+            var listacomentarios = new Models.listaComentariosmodel();
             var response = servicio.listarComentarioNota(new NotaComentarioRequest { IdNota = folio });
-            listacomentarios.Items.AddRange(response.Items.Select(i => new comentarioModel {
+            listacomentarios.Items.AddRange(response.Items.Select(i => new Comentariomodel {
                 Id = i.Id,
                 Fecha = i.Fecha,
-                IdNota = i.IdNota,
-                Comentario = i.Comentario
+                FolioNota = i.IdNota,
+                Mensaje = i.Comentario
             }));
             return View(listacomentarios);
         }
@@ -414,7 +419,7 @@ namespace Jadet.Controllers {
                 return Json(new { respuesta = new ClienteResponse() }, JsonRequestBehavior.AllowGet);
             }
             var servicio = new AdministradorClient();
-            var preresponse = servicio.cargarNota(new NotaRequest { 
+            var preresponse = servicio.cargarNota(new NotaRequest {
                 Folio = folio
             });
             var responseClientes = servicio.listarClientes(new ClienteRequest {

@@ -49,7 +49,9 @@
                 Fecha de envío
             </div>
             <div class="col-sm-2">
-                @Model.FechaEnvio.Value.ToString("dd/MM/yyyy")
+                @if (Model.FechaEnvio.HasValue) {
+                    @Model.FechaEnvio.Value.ToString("dd/MM/yyyy")
+                }
             </div>
             <div class="col-sm-2">
                 Paquetería
