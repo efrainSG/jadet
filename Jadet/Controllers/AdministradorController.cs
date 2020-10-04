@@ -1,14 +1,11 @@
 ﻿using Jadet.AdministradorServicio;
 using Jadet.Models;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.ServiceModel.Configuration;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
-using WebGrease.Configuration;
 
 namespace Jadet.Controllers {
     public class AdministradorController : Controller {
@@ -47,6 +44,8 @@ namespace Jadet.Controllers {
                     AplicaExistencias = p.AplicaExistencias,
                     Id = p.Id,
                     IdCategoria = p.IdCategoria,
+                    IdEstatus = p.IdEstatus,
+                    
                     Categoria = responseCategorias.Items.First(c => c.Id.Equals(p.IdCategoria)).Nombre
                 }));
             return View(productos);
@@ -174,7 +173,7 @@ namespace Jadet.Controllers {
             var responseItems = servicio.listarDetalleNota(new DetalleNotaRequest { IdNota = folio });
             var productos = servicio.listarProductos(new ProductoRequest { Id = 0 });
             var comentarios = servicio.listarComentarioNota(new NotaComentarioRequest { IdNota = folio }).Items;
-            //var tickets = servicio.listarTicketNota(new NotaTicketRequest { IdNota = folio }).Items;
+            var tickets = servicio.listarTicketNota(new NotaTicketRequest { IdNota = folio }).Items;
             model = new notacompletaModel {
                 Fecha = response.Fecha,
                 FechaEnvio = response.FechaEnvio,
@@ -198,7 +197,14 @@ namespace Jadet.Controllers {
                     FolioNota = i.IdNota,
                     Mensaje = i.Comentario
                 }).ToList(),
-                //Tickets = tickets.Select(i => new ticketModel { Id = i.Id, Fecha = i.Fecha, IdNota = i.IdNota, Ticket = i.Ticket}).ToList()
+                Tickets = tickets.Select(i => new Ticketmodel {
+                    Id = i.Id,
+                    Fecha = i.Fecha,
+                    IdNota = i.IdNota,
+                    Ticket = i.Ticket,
+                    MontoUSD = i.MontoUSD,
+                    MontoMXN = i.MontoMXN
+                }).ToList()
             };
             model.Items.AddRange(responseItems.Items.Select(i => new detallenotaModel {
                 Cantidad = i.Cantidad,
@@ -220,13 +226,15 @@ namespace Jadet.Controllers {
                 return RedirectToAction("Index", "Home");
             }
             var servicio = new AdministradorClient();
-            var listatickets = new Models.listaTicketsmodel();
+            var listatickets = new listaTicketsmodel();
             var response = servicio.listarTicketNota(new NotaTicketRequest { IdNota = folio });
             listatickets.Items.AddRange(response.Items.Select(i => new Ticketmodel {
                 Id = i.Id,
                 Fecha = i.Fecha,
                 IdNota = i.IdNota,
-                Ticket = i.Ticket
+                Ticket = i.Ticket,
+                MontoMXN = i.MontoMXN,
+                MontoUSD = i.MontoUSD
             }));
             return View(listatickets);
         }
@@ -244,7 +252,8 @@ namespace Jadet.Controllers {
                 Id = i.Id,
                 Fecha = i.Fecha,
                 FolioNota = i.IdNota,
-                Mensaje = i.Comentario
+                Mensaje = i.Comentario,
+                IdPadre = i.IdComentarioAnterior
             }));
             return View(listacomentarios);
         }
@@ -289,16 +298,7 @@ namespace Jadet.Controllers {
             } else {
                 var servicio = new AdministradorClient();
                 var response = servicio.bajaProducto(new ProductoRequest {
-                    //AplicaExistencias = model.AplicaExistencias,
-                    //Descripcion = model.Descripcion,
-                    //Existencias = model.Existencias,
                     Id = model.Id,
-                    //IdCategoria = model.IdCategoria,
-                    //Nombre = model.Nombre,
-                    //PrecioMXN = model.PrecioMXN,
-                    //PrecioUSD = model.PrecioUSD,
-                    //Foto = Encoding.UTF8.GetBytes(model.Nombre),
-                    //SKU = model.Sku
                 });
                 return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
             }
@@ -398,16 +398,7 @@ namespace Jadet.Controllers {
             } else {
                 var servicio = new AdministradorClient();
                 var response = servicio.bajaCliente(new ClienteRequest {
-                    //Direccion = model.Direccion,
                     IdCliente = model.IdCliente,
-                    //IdEstatus = model.IdEstatus,
-                    //IdRol = model.IdRol,
-                    //Nombre = model.Nombre,
-                    //Foto = Encoding.UTF8.GetBytes(model.Nombre),
-                    //Password = Encoding.UTF8.GetBytes(model.password),
-                    //Telefono = model.Telefono,
-                    //UserName = model.usuario,
-                    //ZonaPaqueteria = model.ZonaPaqueteria
                 });
                 return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
             }

@@ -123,6 +123,8 @@ namespace SernaSistemas.Jadet.WCF.Modelos {
         public string Comentario { get; set; }
         [DataMember]
         public DateTime Fecha { get; set; }
+        [DataMember]
+        public int IdComentarioAnterior { get; set; }
     }
 
     [DataContract]
@@ -135,6 +137,8 @@ namespace SernaSistemas.Jadet.WCF.Modelos {
         public string Comentario { get; set; }
         [DataMember]
         public DateTime Fecha { get; set; }
+        [DataMember]
+        public int IdComentarioAnterior { get; set; }
     }
 
     [DataContract]
@@ -156,6 +160,10 @@ namespace SernaSistemas.Jadet.WCF.Modelos {
         public byte[] Ticket { get; set; }
         [DataMember]
         public DateTime Fecha { get; set; }
+        [DataMember]
+        public decimal MontoMXN { get; set; }
+        [DataMember]
+        public decimal MontoUSD { get; set; }
     }
 
     [DataContract]
@@ -168,6 +176,10 @@ namespace SernaSistemas.Jadet.WCF.Modelos {
         public byte[] Ticket { get; set; }
         [DataMember]
         public DateTime Fecha { get; set; }
+        [DataMember]
+        public decimal MontoMXN { get; set; }
+        [DataMember]
+        public decimal MontoUSD { get; set; }
     }
 
     [DataContract]

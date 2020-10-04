@@ -15,19 +15,26 @@ namespace SernaSisitemas.Jadet.WCF.Contratos {
 
         [OperationContract]
         ItemCarritoResponse agregarACarrito(ItemCarritoRequest request);
+
         [OperationContract]
         BaseResponse quitarDelCarrito(ItemCarritoRequest request);
+
         [OperationContract]
         CarritoResponse vaciarCarrito(CarritoRequest request);
 
         [OperationContract]
         BaseResponse generarPedido(CarritoRequest request);
+
         [OperationContract]
         CarritoResponse verPedido(CarritoRequest request);
+
         [OperationContract]
         ColeccionCarritoResponse listarPedidos(CarritoRequest request);
-        [OperationContract]
-        BaseResponse guardarPedido(CarritoRequest request);
 
+        [OperationContract]
+        NotaTicketResponse guardarTicket(NotaTicketRequest request);
+
+        [OperationContract]
+        NotaComentarioResponse guardarComentario(NotaComentarioRequest request);
     }
 }

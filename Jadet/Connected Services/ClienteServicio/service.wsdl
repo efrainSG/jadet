@@ -55,11 +55,17 @@
   <wsdl:message name="ICliente_listarPedidos_OutputMessage">
     <wsdl:part name="parameters" element="tns:listarPedidosResponse" />
   </wsdl:message>
-  <wsdl:message name="ICliente_guardarPedido_InputMessage">
-    <wsdl:part name="parameters" element="tns:guardarPedido" />
+  <wsdl:message name="ICliente_guardarTicket_InputMessage">
+    <wsdl:part name="parameters" element="tns:guardarTicket" />
   </wsdl:message>
-  <wsdl:message name="ICliente_guardarPedido_OutputMessage">
-    <wsdl:part name="parameters" element="tns:guardarPedidoResponse" />
+  <wsdl:message name="ICliente_guardarTicket_OutputMessage">
+    <wsdl:part name="parameters" element="tns:guardarTicketResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICliente_guardarComentario_InputMessage">
+    <wsdl:part name="parameters" element="tns:guardarComentario" />
+  </wsdl:message>
+  <wsdl:message name="ICliente_guardarComentario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:guardarComentarioResponse" />
   </wsdl:message>
   <wsdl:portType name="ICliente">
     <wsdl:operation name="subirFoto">
@@ -94,9 +100,13 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ICliente/listarPedidos" message="tns:ICliente_listarPedidos_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICliente/listarPedidosResponse" message="tns:ICliente_listarPedidos_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="guardarPedido">
-      <wsdl:input wsaw:Action="http://tempuri.org/ICliente/guardarPedido" message="tns:ICliente_guardarPedido_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ICliente/guardarPedidoResponse" message="tns:ICliente_guardarPedido_OutputMessage" />
+    <wsdl:operation name="guardarTicket">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICliente/guardarTicket" message="tns:ICliente_guardarTicket_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICliente/guardarTicketResponse" message="tns:ICliente_guardarTicket_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="guardarComentario">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICliente/guardarComentario" message="tns:ICliente_guardarComentario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICliente/guardarComentarioResponse" message="tns:ICliente_guardarComentario_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ICliente" type="tns:ICliente">
@@ -173,8 +183,17 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="guardarPedido">
-      <soap:operation soapAction="http://tempuri.org/ICliente/guardarPedido" style="document" />
+    <wsdl:operation name="guardarTicket">
+      <soap:operation soapAction="http://tempuri.org/ICliente/guardarTicket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="guardarComentario">
+      <soap:operation soapAction="http://tempuri.org/ICliente/guardarComentario" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

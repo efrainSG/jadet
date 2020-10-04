@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SernaSistemas.Jadet.DataAccess {
     public class ResultadoBorrado {
         public int ErrorNumero { get; set; }
         public string ErrorMensaje { get; set; }
     }
-
     public class Catalogo {
         public int Id { get; set; }
         public string Nombre { get; set; }
@@ -21,7 +15,6 @@ namespace SernaSistemas.Jadet.DataAccess {
         public string Nombre { get; set; }
         public int IdTipoEstatus { get; set; }
     }
-
     public class Usuario {
         public Guid Id { get; set; }
         public string Nombre { get; set; }
@@ -36,12 +29,10 @@ namespace SernaSistemas.Jadet.DataAccess {
         public int ErrorNumero { get; set; }
         public string ErrorMensaje { get; set; }
     }
-
     public class TipoCatalogo {
         public int Id { get; set; }
         public string Nombre { get; set; }
     }
-
     public class TipoEstatus {
         public int Id { get; set; }
         public string Nombre { get; set; }
@@ -50,7 +41,6 @@ namespace SernaSistemas.Jadet.DataAccess {
         public int Id { get; set; }
         public string Nombre { get; set; }
     }
-
     public class Producto {
         public int Id { get; set; }
         public string SKU { get; set; }
@@ -63,8 +53,8 @@ namespace SernaSistemas.Jadet.DataAccess {
         public byte[] Foto { get; set; }
         public int IdCatalogo { get; set; }
         public int IdEstatus { get; set; }
+        public int IdTipoNota { get; set; }
     }
-
     public class Nota {
         public int Folio { get; set; }
         public DateTime? Fecha { get; set; }
@@ -92,10 +82,13 @@ namespace SernaSistemas.Jadet.DataAccess {
         public int IdNota { get; set; }
         public byte[] Ticket { get; set; }
         public DateTime Fecha { get; set; }
+        public decimal MontoMXN { get; set; }
+        public decimal MontoUSD { get; set; }
     }
     public class ComentarioNota {
         public int Id { get; set; }
         public int IdNota { get; set; }
+        public int IdComentarioAnterior { get; set; }
         public string Comentario { get; set; }
         public DateTime Fecha { get; set; }
     }

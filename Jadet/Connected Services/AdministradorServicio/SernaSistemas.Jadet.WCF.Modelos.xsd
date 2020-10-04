@@ -419,6 +419,7 @@
           <xs:element minOccurs="0" name="Comentario" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="Fecha" type="xs:dateTime" />
           <xs:element minOccurs="0" name="Id" type="xs:int" />
+          <xs:element minOccurs="0" name="IdComentarioAnterior" type="xs:int" />
           <xs:element minOccurs="0" name="IdNota" type="xs:int" />
         </xs:sequence>
       </xs:extension>
@@ -432,6 +433,7 @@
           <xs:element minOccurs="0" name="Comentario" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="Fecha" type="xs:dateTime" />
           <xs:element minOccurs="0" name="Id" type="xs:int" />
+          <xs:element minOccurs="0" name="IdComentarioAnterior" type="xs:int" />
           <xs:element minOccurs="0" name="IdNota" type="xs:int" />
         </xs:sequence>
       </xs:extension>
@@ -461,6 +463,8 @@
           <xs:element minOccurs="0" name="Fecha" type="xs:dateTime" />
           <xs:element minOccurs="0" name="Id" type="xs:int" />
           <xs:element minOccurs="0" name="IdNota" type="xs:int" />
+          <xs:element minOccurs="0" name="MontoMXN" type="xs:decimal" />
+          <xs:element minOccurs="0" name="MontoUSD" type="xs:decimal" />
           <xs:element minOccurs="0" name="Ticket" nillable="true" type="xs:base64Binary" />
         </xs:sequence>
       </xs:extension>
@@ -474,6 +478,8 @@
           <xs:element minOccurs="0" name="Fecha" type="xs:dateTime" />
           <xs:element minOccurs="0" name="Id" type="xs:int" />
           <xs:element minOccurs="0" name="IdNota" type="xs:int" />
+          <xs:element minOccurs="0" name="MontoMXN" type="xs:decimal" />
+          <xs:element minOccurs="0" name="MontoUSD" type="xs:decimal" />
           <xs:element minOccurs="0" name="Ticket" nillable="true" type="xs:base64Binary" />
         </xs:sequence>
       </xs:extension>

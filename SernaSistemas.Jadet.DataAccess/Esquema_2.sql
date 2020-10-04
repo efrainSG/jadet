@@ -263,7 +263,8 @@ create procedure Ventas.guardarProducto
 	@AplicaExistencias bit,
 	@Foto varbinary(max),
 	@IdCatalogo int,
-	@IdEstatus int
+	@IdEstatus int,
+	@IdTipo int
 as
 begin
 	declare @identity int
@@ -274,7 +275,7 @@ begin
 		set sku = @sku, Nombre = @Nombre, Descripcion = @Descripcion,
 			PrecioMXN = @PrecioMXN, PrecioUSD = @PrecioUSD, Existencias = @Existencias,
 			AplicaExistencias = @AplicaExistencias, Foto = @Foto,
-			IdCatalogo = @IdCatalogo, IdEstatus = @IdEstatus
+			IdCatalogo = @IdCatalogo, IdEstatus = @IdEstatus, IdTipoNota = @IdTipo
 		where Id = @Id
 		set @identity = @id
 	end
@@ -282,15 +283,15 @@ begin
 	begin
 		insert into Ventas.Producto (	sku, Nombre, Descripcion, PrecioMXN, PrecioUSD,
 										Existencias, AplicaExistencias, Foto,
-										IdCatalogo, IdEstatus)
+										IdCatalogo, IdEstatus, IdTipoNota)
 		values (@sku, @Nombre, @Descripcion, @PrecioMXN, @PrecioUSD, @Existencias,
-				@AplicaExistencias, @Foto, @IdCatalogo, @IdEstatus)
+				@AplicaExistencias, @Foto, @IdCatalogo, @IdEstatus, @IdTipo)
 		select @identity = SCOPE_IDENTITY()
 	end
-	select	@identity Id, @sku Sku, @Nombre Nombre, @Descripcion Descripcion,
-			@PrecioMXN PrecioMXN, @PrecioUSD PrecioUSD, @Existencias Existencias,
-			@AplicaExistencias AplicaExistencias, @Foto Foto,
-			@IdCatalogo IdCatalogo, @IdEstatus IdEstatus
+	select	Id, Sku, Nombre, Descripcion, PrecioMXN, PrecioUSD, Existencias,
+			AplicaExistencias, Foto, IdCatalogo, IdEstatus, IdTipoNota
+	from	Ventas.Producto P (nolock)
+	where	Id = @identity
 end;
 go
 
@@ -304,7 +305,7 @@ begin
 	end
 	select	P.Id, P.sku, P.Nombre, P.Descripcion, P.PrecioMXN, P.PrecioUSD,
 			P.Existencias, P.APlicaExistencias, P.Foto, P.IdCatalogo, P.IdEstatus,
-			C.Nombre Categoria, E.Nombre Estatus
+			C.Nombre Categoria, E.Nombre Estatus, IdTipoNota
 	from	Ventas.Producto P (nolock)
 	join	Administracion.Catalogo C (nolock) on P.IdCatalogo = C.Id
 	join	Administracion.Estatus E (nolock) on P.IdEstatus = E.Id
@@ -343,7 +344,8 @@ begin
 	end
 	else
 	begin
-		select	cast('00000000-0000-0000-0000-000000000000' as uniqueidentifier) Id, '' Nombre, '' Usuario, 0 IdRol, 1 ErrorNumero, 'Credenciales inválidas' Mensaje
+		select	cast('00000000-0000-0000-0000-000000000000' as uniqueidentifier) Id,
+				'' Nombre, '' Usuario, 0 IdRol, 1 ErrorNumero, 'Credenciales inválidas' Mensaje
 	end
 end;
 go

@@ -54,7 +54,7 @@ begin
 
 	if (@IdNota = 0) set @IdNota = null
 
-	select	NC.Id, NC.IdNota, NC.Comentario, NC.Fecha
+	select	NC.Id, NC.IdNota, NC.Comentario, NC.Fecha, NC.IdComentarioAnterior
 	from	Ventas.NotasComentarios NC (nolock)
 	where	NC.Id = isnull(@Id, NC.Id) and NC.IdNota = ISNULL(@IdNota, NC.IdNota)
 end;
@@ -69,7 +69,7 @@ begin
 
 	if (@IdNota = 0) set @IdNota = null
 
-	select	NT.Id, NT.IdNota,  NT.Fecha
+	select	NT.Id, NT.IdNota,  NT.Fecha, NT.MontoMXN, NT.MontoUSD
 	from	Ventas.NotasTickets NT (nolock)
 	where	NT.Id = isnull(@Id, NT.Id) and NT.IdNota = ISNULL(@IdNota, NT.IdNota)
 end;
@@ -109,8 +109,10 @@ begin
 				@MontoUSD, @SaldoMXN, @SaldoUSD)
 		select @identity = SCOPE_IDENTITY()
 	end
-	select	@identity Folio, @Fecha Fecha, @IdTipo IdTipo, @IdEstatus IdEstatus, @IdPaqueteria IdPaqueteria, @IdCliente IdCliente,
-			@Guia Guia, @FechaEnvio FechaEnvio, @MontoMXN MontoMXN, @MontoUSD MontoUSD, @SaldoMXN SaldoMXN, @SaldoUSD SaldoUSD
+	select	Folio, Fecha, IdTipo, IdEstatus, IdPaqueteria, IdCliente, Guia, FechaEnvio, MontoMXN,
+			MontoUSD, SaldoMXN, SaldoUSD
+	from	Ventas.Notas
+	where	Folio = @identity
 end;
 go
 
@@ -197,7 +199,8 @@ create procedure Ventas.guardarComentario
 	@Id int,
 	@IdNota int,
 	@Comentario text,
-	@Fecha date
+	@Fecha date,
+	@IdAnterior int
 as
 begin
 	declare @identity int
@@ -205,17 +208,19 @@ begin
 	if exists (select 1 from Ventas.NotasComentarios NC (nolock) where Id = @Id)
 	begin
 		update Ventas.NotasComentarios
-		set IdNota = @IdNota, Comentario = @Comentario, Fecha = @Fecha
+		set IdNota = @IdNota, Comentario = @Comentario, Fecha = @Fecha, IdComentarioAnterior  = @IdAnterior
 		where Id = @Id
 		set @identity = @Id
 	end
 	else
 	begin
-		insert into Ventas.NotasComentarios(IdNota, Comentario, Fecha)
-		values (@IdNota, @Comentario, @Fecha)
+		insert into Ventas.NotasComentarios(IdNota, Comentario, Fecha, IdComentarioAnterior)
+		values (@IdNota, @Comentario, @Fecha, @IdAnterior)
 		select @identity = SCOPE_IDENTITY()
 	end
-	select	@identity Id, @IdNota IdNota, @Comentario Comentario, @Fecha Fecha
+	select	Id, IdNota, Comentario, Fecha, IdComentarioAnterior
+	from	Ventas.NotasComentarios NC (nolock)
+	where	NC.Id = @identity
 end;
 go
 
@@ -233,36 +238,49 @@ begin
 end;
 go
 
---create procedure Ventas.guardarTicket
---as
---begin
---	declare @identity int
+create procedure Ventas.guardarTicket
+	@Id int,
+	@IdNota int,
+	@Ticket varbinary(max),
+	@MontoMXN decimal(10,2),
+	@MontoUSD decimal(10,2),
+	@Fecha date
+as
+begin
+	declare @identity int
 
---	if exists (select 1 from Ventas.Detalle D (nolock) where Id = @Id)
---	begin
---		update Ventas.Detalle
---		set IdNota = @IdNota, IdProducto = @IdProducto, Cantidad = @Cantidad, PrecioMXN = @PrecioMXN, PrecioUSD = @PrecioUSD
---		where Id = @Id
---		set @identity = @Id
---	end
---	else
---	begin
---		insert into Ventas.Detalle(IdNota, IdProducto, Cantidad, PrecioMXN, PrecioUSD)
---		values (@IdNota, @IdProducto, @Cantidad, @PrecioMXN, @PrecioUSD)
---		select @identity = SCOPE_IDENTITY()
---	end
---	select	@identity Id, @IdNota IdNota, @IdProducto IdProducto, @Cantidad Cantidad, @PrecioMXN PrecioMXN,
---			@PrecioUSD PrecioUSD
---end;
---go
+	if exists (select 1 from Ventas.NotasTickets NT (nolock) where NT.Id = @Id)
+	begin
+		update Ventas.NotasTickets
+		set IdNota = @IdNota, Ticket = @Ticket, MontoMXN = @MontoMXN, MontoUSD = @MontoUSD
+		where Id = @Id
+		set @identity = @Id
+	end
+	else
+	begin
+		insert into Ventas.NotasTickets(IdNota, Ticket, MontoMXN, MontoUSD)
+		values (@IdNota, @Ticket, @MontoMXN, @MontoUSD)
+		select @identity = SCOPE_IDENTITY()
+	end
+
+	declare	@TotalMXN decimal(10,2),
+			@TotalUSD decimal(10,2)
+
+	select	@TotalMXN = SUM(MontoMXN), @TotalUSD = SUM(MontoUSD)
+	from	Ventas.NotasTickets
+	where	IdNota = @IdNota
+
+	update	Ventas.Notas
+	set		SaldoMXN = SaldoMXN - @TotalMXN, SaldoUSD = SaldoUSD - @TotalUSD
+	where	Folio = @IdNota
+
+	select	Id, IdNota, Ticket, MontoMXN, MontoUSD, Fecha
+	from	Ventas.NotasTickets
+	where	Id = @identity
+end;
+go
 
 --create procedure Ventas.borrarNota
---as
---begin
---end;
---go
-
---create procedure Ventas.borrarDetalle
 --as
 --begin
 --end;
@@ -274,9 +292,16 @@ go
 --end;
 --go
 
---create procedure Ventas.borrarComentario
---as
---begin
---end;
---go
+create procedure Ventas.borrarComentario
+	@Id int
+as
+begin
+	delete
+	from	Ventas.NotasComentarios
+	where	IdComentarioAnterior = @Id
 
+	delete
+	from	Ventas.NotasComentarios
+	where	Id = @Id
+end;
+go

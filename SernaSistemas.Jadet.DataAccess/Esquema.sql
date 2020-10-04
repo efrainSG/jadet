@@ -125,6 +125,7 @@ create table Ventas.Detalle(
 create table Ventas.NotasComentarios(
 	Id int identity primary key,
 	IdNota int not null,
+	IdComentarioAnterior int,
 	Comentario text,
 	Fecha date,
 	Constraint fk_Nota_Comentario foreign key(IdNota)
@@ -136,6 +137,8 @@ create table Ventas.NotasTickets(
 	Id int identity primary key,
 	IdNota int not null,
 	Ticket varbinary(max),
+	MontoMXN decimal(10,2),
+	MontoUSD decimal(10,2),
 	Fecha date,
 	Constraint fk_Nota_Ticket foreign key(IdNota)
 		references Ventas.Notas(Folio)

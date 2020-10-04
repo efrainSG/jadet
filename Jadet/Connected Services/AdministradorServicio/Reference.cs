@@ -942,6 +942,9 @@ namespace Jadet.AdministradorServicio {
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdComentarioAnteriorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdNotaField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
@@ -984,6 +987,19 @@ namespace Jadet.AdministradorServicio {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdComentarioAnterior {
+            get {
+                return this.IdComentarioAnteriorField;
+            }
+            set {
+                if ((this.IdComentarioAnteriorField.Equals(value) != true)) {
+                    this.IdComentarioAnteriorField = value;
+                    this.RaisePropertyChanged("IdComentarioAnterior");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public int IdNota {
             get {
                 return this.IdNotaField;
@@ -1011,6 +1027,12 @@ namespace Jadet.AdministradorServicio {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdNotaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal MontoMXNField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal MontoUSDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private byte[] TicketField;
@@ -1050,6 +1072,32 @@ namespace Jadet.AdministradorServicio {
                 if ((this.IdNotaField.Equals(value) != true)) {
                     this.IdNotaField = value;
                     this.RaisePropertyChanged("IdNota");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal MontoMXN {
+            get {
+                return this.MontoMXNField;
+            }
+            set {
+                if ((this.MontoMXNField.Equals(value) != true)) {
+                    this.MontoMXNField = value;
+                    this.RaisePropertyChanged("MontoMXN");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal MontoUSD {
+            get {
+                return this.MontoUSDField;
+            }
+            set {
+                if ((this.MontoUSDField.Equals(value) != true)) {
+                    this.MontoUSDField = value;
+                    this.RaisePropertyChanged("MontoUSD");
                 }
             }
         }
@@ -2229,6 +2277,9 @@ namespace Jadet.AdministradorServicio {
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdComentarioAnteriorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdNotaField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
@@ -2266,6 +2317,19 @@ namespace Jadet.AdministradorServicio {
                 if ((this.IdField.Equals(value) != true)) {
                     this.IdField = value;
                     this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdComentarioAnterior {
+            get {
+                return this.IdComentarioAnteriorField;
+            }
+            set {
+                if ((this.IdComentarioAnteriorField.Equals(value) != true)) {
+                    this.IdComentarioAnteriorField = value;
+                    this.RaisePropertyChanged("IdComentarioAnterior");
                 }
             }
         }
@@ -2323,6 +2387,12 @@ namespace Jadet.AdministradorServicio {
         private int IdNotaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal MontoMXNField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal MontoUSDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private byte[] TicketField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
@@ -2360,6 +2430,32 @@ namespace Jadet.AdministradorServicio {
                 if ((this.IdNotaField.Equals(value) != true)) {
                     this.IdNotaField = value;
                     this.RaisePropertyChanged("IdNota");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal MontoMXN {
+            get {
+                return this.MontoMXNField;
+            }
+            set {
+                if ((this.MontoMXNField.Equals(value) != true)) {
+                    this.MontoMXNField = value;
+                    this.RaisePropertyChanged("MontoMXN");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal MontoUSD {
+            get {
+                return this.MontoUSDField;
+            }
+            set {
+                if ((this.MontoUSDField.Equals(value) != true)) {
+                    this.MontoUSDField = value;
+                    this.RaisePropertyChanged("MontoUSD");
                 }
             }
         }

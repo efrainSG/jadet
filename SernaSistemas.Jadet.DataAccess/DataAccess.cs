@@ -127,7 +127,30 @@ namespace SernaSistemas.Jadet.DataAccess {
         }
 
         public ResultadoBorrado borrarComentario(int id) {
-            throw new Exception("No implementado");
+            ResultadoBorrado resultado = new ResultadoBorrado();
+            using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
+                using (SqlCommand cmd = new SqlCommand() {
+                    CommandText = "Ventas.borrarComentario",
+                    CommandType = System.Data.CommandType.StoredProcedure,
+                    Connection = conn
+                }) {
+                    cmd.Parameters.Add(new SqlParameter {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = id,
+                        ParameterName = "@Id"
+                    });
+                    conn.Open();
+                    var dr = cmd.ExecuteReader();
+                    if (dr.HasRows) {
+                        dr.Read();
+                        resultado.ErrorNumero = (int)dr["ErrorNumero"];
+                        resultado.ErrorMensaje = dr["Mensaje"].ToString();
+                    }
+                    conn.Close();
+                }
+            }
+            return resultado;
         }
 
         public ResultadoBorrado borrarTicket(int id) {
@@ -544,6 +567,12 @@ namespace SernaSistemas.Jadet.DataAccess {
                         ParameterName = "@IdNota"
                     });
                     cmd.Parameters.Add(new SqlParameter {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = comentario.IdComentarioAnterior,
+                        ParameterName = "@IdAnterior"
+                    });
+                    cmd.Parameters.Add(new SqlParameter {
                         DbType = System.Data.DbType.String,
                         Direction = System.Data.ParameterDirection.Input,
                         Value = comentario.Comentario,
@@ -559,10 +588,13 @@ namespace SernaSistemas.Jadet.DataAccess {
                     var dr = cmd.ExecuteReader();
                     if (dr.HasRows) {
                         dr.Read();
-                        resultado.Id = (int)dr["Id"];
-                        resultado.IdNota = (int)dr["IdNota"];
-                        resultado.Comentario = dr["Comentario"].ToString();
-                        resultado.Fecha = (DateTime)dr["Fecha"];
+                        resultado = new ComentarioNota {
+                            Id = (int)dr["Id"],
+                            IdNota = (int)dr["IdNota"],
+                            Comentario = dr["Comentario"].ToString(),
+                            Fecha = (DateTime)dr["Fecha"],
+                            IdComentarioAnterior = (int)dr["IdComentarioAnterior"]
+                        };
                     }
                     conn.Close();
                 }
@@ -570,8 +602,67 @@ namespace SernaSistemas.Jadet.DataAccess {
             return resultado;
         }
 
-        public void guardarTicket(TicketNota ticket) {
-            throw new Exception("No implementado");
+        public TicketNota guardarTicket(TicketNota ticket) {
+            TicketNota resultado = new TicketNota();
+            using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
+                using (SqlCommand cmd = new SqlCommand() {
+                    CommandText = "Ventas.guardarTicket",
+                    CommandType = System.Data.CommandType.StoredProcedure,
+                    Connection = conn
+                }) {
+                    cmd.Parameters.Add(new SqlParameter {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = ticket.Id,
+                        ParameterName = "@Id"
+                    });
+                    cmd.Parameters.Add(new SqlParameter {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = ticket.IdNota,
+                        ParameterName = "@IdNota"
+                    });
+                    cmd.Parameters.Add(new SqlParameter {
+                        DbType = System.Data.DbType.Binary,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = ticket.Ticket,
+                        ParameterName = "@Ticket"
+                    });
+                    cmd.Parameters.Add(new SqlParameter {
+                        DbType = System.Data.DbType.Date,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = ticket.Fecha,
+                        ParameterName = "@Fecha"
+                    });
+                    cmd.Parameters.Add(new SqlParameter {
+                        DbType = System.Data.DbType.Decimal,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = ticket.MontoMXN,
+                        ParameterName = "@MontoMXN"
+                    });
+                    cmd.Parameters.Add(new SqlParameter {
+                        DbType = System.Data.DbType.Decimal,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = ticket.MontoUSD,
+                        ParameterName = "@MontoUSD"
+                    });
+                    conn.Open();
+                    var dr = cmd.ExecuteReader();
+                    if (dr.HasRows) {
+                        dr.Read();
+                        resultado = new TicketNota {
+                            Id = (int)dr["Id"],
+                            IdNota = (int)dr["IdNota"],
+                            Fecha = (DateTime)dr["Ticket"],
+                            Ticket = (byte[])dr["Fecha"],
+                            MontoMXN = (decimal)dr["MontoMXN"],
+                            MontoUSD = (decimal)dr["MintoUSD"]
+                        };
+                    }
+                    conn.Close();
+                }
+            }
+            return resultado;
         }
 
         public Producto guardarProducto(Producto producto) {

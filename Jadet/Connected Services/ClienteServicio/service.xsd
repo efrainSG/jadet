@@ -113,17 +113,31 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="guardarPedido">
+  <xs:element name="guardarTicket">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="request" nillable="true" type="q17:CarritoRequest" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="request" nillable="true" type="q17:NotaTicketRequest" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="guardarPedidoResponse">
+  <xs:element name="guardarTicketResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="guardarPedidoResult" nillable="true" type="q18:BaseResponse" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="guardarTicketResult" nillable="true" type="q18:NotaTicketResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="guardarComentario">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="request" nillable="true" type="q19:NotaComentarioRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="guardarComentarioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos" minOccurs="0" name="guardarComentarioResult" nillable="true" type="q20:NotaComentarioResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

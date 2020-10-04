@@ -245,6 +245,12 @@
     <Content Include="Connected Services\ClienteServicio\Jadet.ClienteServicio.ItemCarritoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\ClienteServicio\Jadet.ClienteServicio.NotaComentarioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ClienteServicio\Jadet.ClienteServicio.NotaTicketResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\ClienteServicio\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

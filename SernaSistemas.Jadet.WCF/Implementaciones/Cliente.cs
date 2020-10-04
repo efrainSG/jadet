@@ -118,13 +118,6 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones {
             };
         }
 
-        public BaseResponse guardarPedido(CarritoRequest request) {
-            return new BaseResponse {
-                ErrorMensaje = "No implementado",
-                ErrorNumero = 1
-            };
-        }
-
         public ColeccionCarritoResponse listarPedidos(CarritoRequest request) {
             DataAccess da = new DataAccess {
                 CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
@@ -176,6 +169,56 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones {
                 PrecioMXN = i.PrecioMXN,
                 PrecioUSD = i.PrecioUSD
             }));
+            return respuesta;
+        }
+
+        public NotaTicketResponse guardarTicket(NotaTicketRequest request) {
+            DataAccess da = new DataAccess {
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
+            };
+            var _response = da.guardarTicket(new TicketNota {
+                Fecha = request.Fecha,
+                Id = request.Id,
+                IdNota = request.IdNota,
+                MontoMXN = request.MontoMXN,
+                MontoUSD = request.MontoUSD,
+                Ticket = request.Ticket
+            });
+
+            NotaTicketResponse respuesta = new NotaTicketResponse {
+                ErrorMensaje = "",
+                ErrorNumero = 0,
+                Fecha = _response.Fecha,
+                Ticket = _response.Ticket,
+                Id= _response.Id,
+                IdNota = _response.IdNota,
+                MontoUSD = _response.MontoUSD,
+                MontoMXN = _response.MontoMXN
+            };
+            return respuesta;
+        }
+
+        public NotaComentarioResponse guardarComentario(NotaComentarioRequest request) {
+            DataAccess da = new DataAccess {
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
+            };
+            var _response = da.guardarComentario(new ComentarioNota {
+                Fecha = request.Fecha,
+                Id = request.Id,
+                IdNota = request.IdNota,
+                Comentario = request.Comentario,
+                IdComentarioAnterior = request.IdComentarioAnterior
+            });
+
+            NotaComentarioResponse respuesta = new NotaComentarioResponse {
+                ErrorMensaje = "",
+                ErrorNumero = 0,
+                Fecha = _response.Fecha,
+                Id = _response.Id,
+                IdNota = _response.IdNota,
+                Comentario = _response.Comentario,
+                IdComentarioAnterior = _response.IdComentarioAnterior
+            };
             return respuesta;
         }
     }
