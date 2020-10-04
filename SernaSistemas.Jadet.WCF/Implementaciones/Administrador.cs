@@ -2,12 +2,8 @@
 using SernaSistemas.Jadet.DataAccess;
 using SernaSistemas.Jadet.WCF.Modelos;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Reflection;
-using System.ServiceModel;
-using System.Text;
 
 namespace SernaSisitemas.Jadet.WCF.Implementaciones {
     public class Administrador : IAdministrador {

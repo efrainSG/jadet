@@ -192,6 +192,22 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="NotaTicketResponse" nillable="true" type="tns:NotaTicketResponse" />
+  <xs:complexType name="coleccionNotaTicketResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfNotaTicketResponse" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="coleccionNotaTicketResponse" nillable="true" type="tns:coleccionNotaTicketResponse" />
+  <xs:complexType name="ArrayOfNotaTicketResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="NotaTicketResponse" nillable="true" type="tns:NotaTicketResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfNotaTicketResponse" nillable="true" type="tns:ArrayOfNotaTicketResponse" />
   <xs:complexType name="NotaComentarioRequest">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:BaseRequest">
@@ -220,4 +236,20 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="NotaComentarioResponse" nillable="true" type="tns:NotaComentarioResponse" />
+  <xs:complexType name="coleccionNotaComentarioResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfNotaComentarioResponse" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="coleccionNotaComentarioResponse" nillable="true" type="tns:coleccionNotaComentarioResponse" />
+  <xs:complexType name="ArrayOfNotaComentarioResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="NotaComentarioResponse" nillable="true" type="tns:NotaComentarioResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfNotaComentarioResponse" nillable="true" type="tns:ArrayOfNotaComentarioResponse" />
 </xs:schema>

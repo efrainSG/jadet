@@ -1,4 +1,4 @@
-﻿
+﻿@model Jadet.Models.listaComentariosmodel
 @{
     ViewBag.Title = "Comentarios";
     Layout = "~/Views/Shared/_LayoutCliente.cshtml";
@@ -6,3 +6,8 @@
 
 <h2>@ViewBag.Title</h2>
 
+@foreach (var item in Model.Items.OrderBy(m => m.Fecha).ThenBy(m => m.IdPadre)) {
+    @item.Fecha
+    @item.Id
+    @item.Mensaje
+}

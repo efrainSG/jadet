@@ -1,8 +1,5 @@
 ﻿using SernaSistemas.Jadet.WCF.Modelos;
-using System;
-using System.Collections.Generic;
 using System.ServiceModel;
-using System.Text;
 
 namespace SernaSisitemas.Jadet.WCF.Contratos {
     [ServiceContract]
@@ -12,29 +9,28 @@ namespace SernaSisitemas.Jadet.WCF.Contratos {
 
         [OperationContract]
         CarritoResponse nuevoCarrito(CarritoRequest request);
-
         [OperationContract]
         ItemCarritoResponse agregarACarrito(ItemCarritoRequest request);
-
         [OperationContract]
         BaseResponse quitarDelCarrito(ItemCarritoRequest request);
-
         [OperationContract]
         CarritoResponse vaciarCarrito(CarritoRequest request);
 
         [OperationContract]
         BaseResponse generarPedido(CarritoRequest request);
-
         [OperationContract]
         CarritoResponse verPedido(CarritoRequest request);
-
         [OperationContract]
         ColeccionCarritoResponse listarPedidos(CarritoRequest request);
 
         [OperationContract]
         NotaTicketResponse guardarTicket(NotaTicketRequest request);
+        [OperationContract]
+        coleccionNotaTicketResponse listarTickets(NotaTicketRequest request);
 
         [OperationContract]
         NotaComentarioResponse guardarComentario(NotaComentarioRequest request);
+        [OperationContract]
+        coleccionNotaComentarioResponse listarComentarios(NotaComentarioRequest request);
     }
 }

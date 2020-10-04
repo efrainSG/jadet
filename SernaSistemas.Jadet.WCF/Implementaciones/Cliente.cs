@@ -97,10 +97,10 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones {
             DataAccess da = new DataAccess {
                 CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
             };
-            var _nota = da.listarNota(new Nota { 
+            var _nota = da.listarNota(new Nota {
                 Folio = request.Folio
             }).FirstOrDefault();
-            var _respuesta = da.guardarNota(new Nota { 
+            var _respuesta = da.guardarNota(new Nota {
                 Fecha = _nota.Fecha,
                 Folio = _nota.Folio,
                 IdCliente = _nota.IdCliente,
@@ -190,7 +190,7 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones {
                 ErrorNumero = 0,
                 Fecha = _response.Fecha,
                 Ticket = _response.Ticket,
-                Id= _response.Id,
+                Id = _response.Id,
                 IdNota = _response.IdNota,
                 MontoUSD = _response.MontoUSD,
                 MontoMXN = _response.MontoMXN
@@ -219,6 +219,49 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones {
                 Comentario = _response.Comentario,
                 IdComentarioAnterior = _response.IdComentarioAnterior
             };
+            return respuesta;
+        }
+
+        public coleccionNotaTicketResponse listarTickets(NotaTicketRequest request) {
+            DataAccess da = new DataAccess {
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
+            };
+            var _response = da.listarTicket(new TicketNota {
+                IdNota = request.IdNota
+            });
+
+            coleccionNotaTicketResponse respuesta = new coleccionNotaTicketResponse();
+            respuesta.Items.AddRange(_response.Select(r => new NotaTicketResponse {
+                Fecha = r.Fecha,
+                ErrorMensaje = string.Empty,
+                ErrorNumero = 0,
+                Id = r.Id,
+                IdNota = r.IdNota,
+                MontoMXN = r.MontoMXN,
+                MontoUSD = r.MontoUSD,
+                Ticket = r.Ticket
+            }));
+            return respuesta;
+        }
+
+        public coleccionNotaComentarioResponse listarComentarios(NotaComentarioRequest request) {
+            DataAccess da = new DataAccess {
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
+            };
+            var _response = da.listarComentario(new ComentarioNota {
+                IdNota = request.IdNota
+            });
+
+            coleccionNotaComentarioResponse respuesta = new coleccionNotaComentarioResponse();
+            respuesta.Items.AddRange(_response.Select(r => new NotaComentarioResponse {
+                Fecha = r.Fecha,
+                ErrorMensaje = string.Empty,
+                ErrorNumero = 0,
+                Id = r.Id,
+                IdNota = r.IdNota,
+                Comentario = r.Comentario,
+                IdComentarioAnterior = r.IdComentarioAnterior
+            }));
             return respuesta;
         }
     }

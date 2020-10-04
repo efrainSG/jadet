@@ -654,7 +654,9 @@ namespace Jadet.ClienteServicio {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.ClienteServicio.ItemCarritoResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.ClienteServicio.ColeccionCarritoResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.ClienteServicio.NotaTicketResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.ClienteServicio.coleccionNotaTicketResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.ClienteServicio.NotaComentarioResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.ClienteServicio.coleccionNotaComentarioResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Jadet.ClienteServicio.ArchivoResponse))]
     public partial class BaseResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -1175,6 +1177,29 @@ namespace Jadet.ClienteServicio {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="coleccionNotaTicketResponse", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
+    [System.SerializableAttribute()]
+    public partial class coleccionNotaTicketResponse : Jadet.ClienteServicio.BaseResponse {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Jadet.ClienteServicio.NotaTicketResponse[] ItemsField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Jadet.ClienteServicio.NotaTicketResponse[] Items {
+            get {
+                return this.ItemsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ItemsField, value) != true)) {
+                    this.ItemsField = value;
+                    this.RaisePropertyChanged("Items");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="NotaComentarioResponse", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
     [System.SerializableAttribute()]
     public partial class NotaComentarioResponse : Jadet.ClienteServicio.BaseResponse {
@@ -1262,6 +1287,29 @@ namespace Jadet.ClienteServicio {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="coleccionNotaComentarioResponse", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
+    [System.SerializableAttribute()]
+    public partial class coleccionNotaComentarioResponse : Jadet.ClienteServicio.BaseResponse {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Jadet.ClienteServicio.NotaComentarioResponse[] ItemsField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Jadet.ClienteServicio.NotaComentarioResponse[] Items {
+            get {
+                return this.ItemsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ItemsField, value) != true)) {
+                    this.ItemsField = value;
+                    this.RaisePropertyChanged("Items");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ArchivoResponse", Namespace="http://schemas.datacontract.org/2004/07/SernaSistemas.Jadet.WCF.Modelos")]
     [System.SerializableAttribute()]
     public partial class ArchivoResponse : Jadet.ClienteServicio.BaseResponse {
@@ -1325,11 +1373,23 @@ namespace Jadet.ClienteServicio {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICliente/guardarTicket", ReplyAction="http://tempuri.org/ICliente/guardarTicketResponse")]
         System.Threading.Tasks.Task<Jadet.ClienteServicio.NotaTicketResponse> guardarTicketAsync(Jadet.ClienteServicio.NotaTicketRequest request);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICliente/listarTickets", ReplyAction="http://tempuri.org/ICliente/listarTicketsResponse")]
+        Jadet.ClienteServicio.coleccionNotaTicketResponse listarTickets(Jadet.ClienteServicio.NotaTicketRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICliente/listarTickets", ReplyAction="http://tempuri.org/ICliente/listarTicketsResponse")]
+        System.Threading.Tasks.Task<Jadet.ClienteServicio.coleccionNotaTicketResponse> listarTicketsAsync(Jadet.ClienteServicio.NotaTicketRequest request);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICliente/guardarComentario", ReplyAction="http://tempuri.org/ICliente/guardarComentarioResponse")]
         Jadet.ClienteServicio.NotaComentarioResponse guardarComentario(Jadet.ClienteServicio.NotaComentarioRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICliente/guardarComentario", ReplyAction="http://tempuri.org/ICliente/guardarComentarioResponse")]
         System.Threading.Tasks.Task<Jadet.ClienteServicio.NotaComentarioResponse> guardarComentarioAsync(Jadet.ClienteServicio.NotaComentarioRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICliente/listarComentarios", ReplyAction="http://tempuri.org/ICliente/listarComentariosResponse")]
+        Jadet.ClienteServicio.coleccionNotaComentarioResponse listarComentarios(Jadet.ClienteServicio.NotaComentarioRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICliente/listarComentarios", ReplyAction="http://tempuri.org/ICliente/listarComentariosResponse")]
+        System.Threading.Tasks.Task<Jadet.ClienteServicio.coleccionNotaComentarioResponse> listarComentariosAsync(Jadet.ClienteServicio.NotaComentarioRequest request);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1431,12 +1491,28 @@ namespace Jadet.ClienteServicio {
             return base.Channel.guardarTicketAsync(request);
         }
         
+        public Jadet.ClienteServicio.coleccionNotaTicketResponse listarTickets(Jadet.ClienteServicio.NotaTicketRequest request) {
+            return base.Channel.listarTickets(request);
+        }
+        
+        public System.Threading.Tasks.Task<Jadet.ClienteServicio.coleccionNotaTicketResponse> listarTicketsAsync(Jadet.ClienteServicio.NotaTicketRequest request) {
+            return base.Channel.listarTicketsAsync(request);
+        }
+        
         public Jadet.ClienteServicio.NotaComentarioResponse guardarComentario(Jadet.ClienteServicio.NotaComentarioRequest request) {
             return base.Channel.guardarComentario(request);
         }
         
         public System.Threading.Tasks.Task<Jadet.ClienteServicio.NotaComentarioResponse> guardarComentarioAsync(Jadet.ClienteServicio.NotaComentarioRequest request) {
             return base.Channel.guardarComentarioAsync(request);
+        }
+        
+        public Jadet.ClienteServicio.coleccionNotaComentarioResponse listarComentarios(Jadet.ClienteServicio.NotaComentarioRequest request) {
+            return base.Channel.listarComentarios(request);
+        }
+        
+        public System.Threading.Tasks.Task<Jadet.ClienteServicio.coleccionNotaComentarioResponse> listarComentariosAsync(Jadet.ClienteServicio.NotaComentarioRequest request) {
+            return base.Channel.listarComentariosAsync(request);
         }
     }
 }

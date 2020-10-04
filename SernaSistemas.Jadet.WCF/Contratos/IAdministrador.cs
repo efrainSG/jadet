@@ -1,8 +1,5 @@
 ﻿using SernaSistemas.Jadet.WCF.Modelos;
-using System;
-using System.Collections.Generic;
 using System.ServiceModel;
-using System.Text;
 
 namespace SernaSisitemas.Jadet.WCF.Contratos {
     [ServiceContract]

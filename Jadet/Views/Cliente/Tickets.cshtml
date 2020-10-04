@@ -13,3 +13,11 @@
 @Model.MontoUSD
 @Model.SaldoMXN
 @Model.SaldoUSD
+@foreach (var item in Model.Items) {
+    @item.Fecha
+    @item.Id
+    @item.IdNota
+    @item.MontoMXN
+    @item.MontoUSD
+    @item.Ticket
+}

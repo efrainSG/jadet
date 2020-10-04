@@ -3,9 +3,7 @@ using Jadet.ClienteServicio;
 using Jadet.Models;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Web.Mvc;
 
 namespace Jadet.Controllers {
@@ -260,9 +258,19 @@ namespace Jadet.Controllers {
                 return RedirectToAction("Index", "Home");
             }
             ClienteClient cliente = new ClienteClient();
-            listaComentariosmodel lista;
-            listaComentariosmodel listacomentarios;
-            return View();
+            var response = cliente.listarComentarios(new ClienteServicio.NotaComentarioRequest {
+                IdNota = folio
+            });
+            listaComentariosmodel lista = new listaComentariosmodel();
+
+            lista.Items.AddRange(response.Items.Select(i => new Comentariomodel {
+                Fecha = i.Fecha,
+                FolioNota = i.IdNota,
+                Id = i.Id,
+                IdPadre = i.IdComentarioAnterior,
+                Mensaje = i.Comentario
+            }));
+            return View(lista);
         }
 
         /// <summary>
@@ -277,17 +285,31 @@ namespace Jadet.Controllers {
             }
             ClienteClient cliente = new ClienteClient();
             AdministradorClient admin = new AdministradorClient();
-            var tipos = admin.listarTipoCatalogo(new TipoCatalogoRequest { Id = 0 });
-            var carrito = cliente.verPedido(new CarritoRequest { Folio = folio });
+            var tipos = admin.listarTipoCatalogo(new TipoCatalogoRequest {
+                Id = 0
+            });
+            var carrito = cliente.verPedido(new CarritoRequest {
+                Folio = folio
+            });
+            var response = cliente.listarTickets(new ClienteServicio.NotaTicketRequest {
+                IdNota = folio
+            });
             listaTicketsmodel listaTicketsmodel = new listaTicketsmodel {
                 Folio = folio,
                 IdTipo = carrito.IdTipo,
                 MontoMXN = carrito.MontoMXN,
                 MontoUSD = carrito.MontoUSD,
-                //Items = new List<Ticketmodel>(),
+                Items = response.Items.Select(i=>new Ticketmodel { 
+                    Fecha = i.Fecha,
+                    Id = i.Id,
+                    IdNota = i.IdNota,
+                    MontoMXN = i.MontoMXN,
+                    MontoUSD = i.MontoUSD,
+                    Ticket = i.Ticket
+                }).ToList(),
                 SaldoMXN = carrito.SaldoMXN,
                 SaldoUSD = carrito.SaldoUSD,
-                Tipo = tipos.Items.FirstOrDefault(i => i.Id == carrito.IdTipo).Nombre
+                Tipo = string.Empty // tipos.Items.FirstOrDefault(i => i.Id == carrito.IdTipo).Nombre
             };
 
             return View(listaTicketsmodel);
