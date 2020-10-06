@@ -13,6 +13,7 @@ namespace Jadet.Models {
     }
 
     public class listaComentariosmodel {
+        public notaModel Datos { get; set; }
         public List<Comentariomodel> Items { get; set; }
         public listaComentariosmodel() {
             Items = new List<Comentariomodel>();

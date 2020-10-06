@@ -5,9 +5,43 @@
 }
 
 <h2>@ViewBag.Title</h2>
+<div class="row">
+    <div class="col-sm-3">Folio</div>
+    <div class="col-sm-3">@Model.Datos.Folio</div>
+    <div class="col-sm-3">Fecha</div>
+    <div class="col-sm-3">@Model.Datos.Fecha</div>
+</div>
+<div class="row">
+    <div class="col-sm-3">Monto</div>
+    <div class="col-sm-3">$ @Model.Datos.MontoMXN M. N. (@Model.Datos.MontoUSD USD)</div>
+    <div class="col-sm-3">Saldo</div>
+    <div class="col-sm-3">$ @Model.Datos.SaldoMXN M. N. (@Model.Datos.SaldoUSD USD)</div>
+</div>
 
-@foreach (var item in Model.Items.OrderBy(m => m.Fecha).ThenBy(m => m.IdPadre)) {
-    @item.Fecha
-    @item.Id
-    @item.Mensaje
-}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Fecha
+            </th>
+            <th>
+                Mensaje
+            </th>
+            <th>
+                <a href="#" class="btn btn-warning-jadet" id="btnnuevoComentario" Folio="@Model.Datos.Folio"><i class="fa fa-comment"></i></a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items.OrderBy(m => m.Fecha).ThenBy(m => m.IdPadre)) {
+            <tr>
+                <td>@item.Fecha</td>
+                <td>@item.Id</td>
+                <td colspan="2">@item.Mensaje</td>
+            </tr>
+        }
+    </tbody>
+</table>

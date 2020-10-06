@@ -261,7 +261,24 @@ namespace Jadet.Controllers {
             var response = cliente.listarComentarios(new ClienteServicio.NotaComentarioRequest {
                 IdNota = folio
             });
-            listaComentariosmodel lista = new listaComentariosmodel();
+            var responseNota = cliente.listarPedidos(new CarritoRequest { Folio = 0 }).Items
+                .FirstOrDefault(i => i.Folio == folio);
+            listaComentariosmodel lista = new listaComentariosmodel {
+                Datos = new notaModel {
+                    Fecha = responseNota.Fecha,
+                    FechaEnvio = responseNota.FechaEnvio,
+                    Folio = responseNota.Folio,
+                    Guia = responseNota.Guia,
+                    IdCliente = responseNota.IdCliente,
+                    IdEstatus = responseNota.IdEstatus,
+                    IdPaqueteria = responseNota.IdPaqueteria,
+                    IdTipo = responseNota.IdTipo,
+                    MontoMXN = responseNota.MontoMXN,
+                    MontoUSD = responseNota.MontoUSD,
+                    SaldoMXN = responseNota.SaldoMXN,
+                    SaldoUSD = responseNota.SaldoUSD
+                }
+            };
 
             lista.Items.AddRange(response.Items.Select(i => new Comentariomodel {
                 Fecha = i.Fecha,
@@ -299,7 +316,7 @@ namespace Jadet.Controllers {
                 IdTipo = carrito.IdTipo,
                 MontoMXN = carrito.MontoMXN,
                 MontoUSD = carrito.MontoUSD,
-                Items = response.Items.Select(i=>new Ticketmodel { 
+                Items = response.Items.Select(i => new Ticketmodel {
                     Fecha = i.Fecha,
                     Id = i.Id,
                     IdNota = i.IdNota,
@@ -390,9 +407,15 @@ namespace Jadet.Controllers {
         public ActionResult agregarComentario(Comentariomodel modelo) {
             if (Session["usuario"] == null) {
                 Session.Clear();
-                return RedirectToAction("Index", "Home");
             }
-            return View();
+            ClienteClient servicio = new ClienteClient();
+            var _resultado = servicio.guardarComentario(new ClienteServicio.NotaComentarioRequest {
+                Comentario = modelo.Mensaje,
+                Fecha = DateTime.Now,
+                IdComentarioAnterior = 0,
+                IdNota = modelo.FolioNota
+            });
+            return RedirectToAction("Comentarios", new { folio = modelo.FolioNota });
         }
 
         private CarritoCompletoModel detalleCarrito(int id) {

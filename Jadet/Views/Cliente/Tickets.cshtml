@@ -6,13 +6,33 @@
 }
 
 <h2>@ViewBag.Title</h2>
-@Model.Folio
-@Model.IdTipo
-@Model.Tipo
-@Model.MontoMXN
-@Model.MontoUSD
-@Model.SaldoMXN
-@Model.SaldoUSD
+<div class="row">
+    <div class="col-sm-3">Folio</div>
+    <div class="col-sm-3">@Model.Folio</div>
+    <div class="col-sm-3">Fecha</div>
+@*    <div class="col-sm-3">@Model.Fecha</div>*@
+</div>
+<div class="row">
+    <div class="col-sm-3">Monto</div>
+    <div class="col-sm-3">$ @Model.MontoMXN M. N. (@Model.MontoUSD USD)</div>
+    <div class="col-sm-3">Saldo</div>
+    <div class="col-sm-3">$ @Model.SaldoMXN M. N. (@Model.SaldoUSD USD)</div>
+</div>
+
+@*@Model.IdTipo
+@Model.Tipo*@
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+</table>
 @foreach (var item in Model.Items) {
     @item.Fecha
     @item.Id

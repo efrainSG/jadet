@@ -173,7 +173,7 @@ namespace Jadet.Controllers {
             var responseItems = servicio.listarDetalleNota(new DetalleNotaRequest { IdNota = folio });
             var productos = servicio.listarProductos(new ProductoRequest { Id = 0 });
             var comentarios = servicio.listarComentarioNota(new NotaComentarioRequest { IdNota = folio }).Items;
-            var tickets = servicio.listarTicketNota(new NotaTicketRequest { IdNota = folio }).Items;
+            //var tickets = servicio.listarTicketNota(new NotaTicketRequest { IdNota = folio }).Items;
             model = new notacompletaModel {
                 Fecha = response.Fecha,
                 FechaEnvio = response.FechaEnvio,
@@ -197,14 +197,14 @@ namespace Jadet.Controllers {
                     FolioNota = i.IdNota,
                     Mensaje = i.Comentario
                 }).ToList(),
-                Tickets = tickets.Select(i => new Ticketmodel {
-                    Id = i.Id,
-                    Fecha = i.Fecha,
-                    IdNota = i.IdNota,
-                    Ticket = i.Ticket,
-                    MontoUSD = i.MontoUSD,
-                    MontoMXN = i.MontoMXN
-                }).ToList()
+                //Tickets = tickets.Select(i => new Ticketmodel {
+                //    Id = i.Id,
+                //    Fecha = i.Fecha,
+                //    IdNota = i.IdNota,
+                //    Ticket = i.Ticket,
+                //    MontoUSD = i.MontoUSD,
+                //    MontoMXN = i.MontoMXN
+                //}).ToList()
             };
             model.Items.AddRange(responseItems.Items.Select(i => new detallenotaModel {
                 Cantidad = i.Cantidad,
