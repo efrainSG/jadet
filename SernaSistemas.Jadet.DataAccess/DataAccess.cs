@@ -653,10 +653,10 @@ namespace SernaSistemas.Jadet.DataAccess {
                         resultado = new TicketNota {
                             Id = (int)dr["Id"],
                             IdNota = (int)dr["IdNota"],
-                            Fecha = (DateTime)dr["Ticket"],
-                            Ticket = (byte[])dr["Fecha"],
+                            Fecha = (DateTime)dr["Fecha"],
+                            Ticket = (byte[])dr["Ticket"],
                             MontoMXN = (decimal)dr["MontoMXN"],
-                            MontoUSD = (decimal)dr["MintoUSD"]
+                            MontoUSD = (decimal)dr["MontoUSD"]
                         };
                     }
                     conn.Close();
@@ -1049,7 +1049,9 @@ namespace SernaSistemas.Jadet.DataAccess {
                                 Id = (int)dr["Id"],
                                 IdNota = (int)dr["IdNota"],
                                 Fecha = (DateTime)dr["Fecha"],
-                                Ticket = (dr["Ticket"] == DBNull.Value) ? new byte[0] : (byte[])dr["Ticket"]
+                                Ticket = (byte[])dr["Ticket"],
+                                MontoMXN = (decimal)dr["MontoMXN"],
+                                MontoUSD = (decimal)dr["MontoUSD"]
                             });
                         }
                     }

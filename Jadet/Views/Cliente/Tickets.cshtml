@@ -10,7 +10,6 @@
     <div class="col-sm-3">Folio</div>
     <div class="col-sm-3">@Model.Folio</div>
     <div class="col-sm-3">Fecha</div>
-@*    <div class="col-sm-3">@Model.Fecha</div>*@
 </div>
 <div class="row">
     <div class="col-sm-3">Monto</div>
@@ -19,25 +18,25 @@
     <div class="col-sm-3">$ @Model.SaldoMXN M. N. (@Model.SaldoUSD USD)</div>
 </div>
 
-@*@Model.IdTipo
-@Model.Tipo*@
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
+            <th>Id</th>
+            <th>Fecha</th>
+            <th>MontoMXN</th>
+            <th>MontoUSD</th>
+            <th><a href="#" class="btn btn-warning-jadet" id="btnnuevoTicket" Folio="@Model.Folio"><i class="fa fa-file"></i></a></th>
         </tr>
     </thead>
+    <tbody>
+        @foreach (var item in Model.Items) {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Fecha</td>
+                <td>@item.MontoMXN</td>
+                <td>@item.MontoUSD</td>
+                <td><img src="~/Content/tickets/@item.Ruta" width="100"/></td>
+            </tr>
+        }
+    </tbody>
 </table>
-@foreach (var item in Model.Items) {
-    @item.Fecha
-    @item.Id
-    @item.IdNota
-    @item.MontoMXN
-    @item.MontoUSD
-    @item.Ticket
-}

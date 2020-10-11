@@ -69,7 +69,7 @@ begin
 
 	if (@IdNota = 0) set @IdNota = null
 
-	select	NT.Id, NT.IdNota,  NT.Fecha, NT.MontoMXN, NT.MontoUSD
+	select	NT.Id, NT.IdNota,  NT.Fecha, NT.MontoMXN, NT.MontoUSD, NT.Ticket
 	from	Ventas.NotasTickets NT (nolock)
 	where	NT.Id = isnull(@Id, NT.Id) and NT.IdNota = ISNULL(@IdNota, NT.IdNota)
 end;
@@ -149,7 +149,7 @@ begin
 	group by	D.IdNota
 
 	update	Ventas.Notas
-	set		MontoMXN = @TotalMXN, MontoUSD = @TotalUSD
+	set		MontoMXN = @TotalMXN, MontoUSD = @TotalUSD, SaldoMXN = @TotalMXN, SaldoUSD = @TotalUSD
 	where	Folio = @IdNota
 
 	select	@identity Id, @IdNota IdNota, @IdProducto IdProducto, @Cantidad Cantidad, @PrecioMXN PrecioMXN,
@@ -183,7 +183,7 @@ begin
 		group by	D.IdNota
 
 		update	Ventas.Notas
-		set		MontoMXN = @TotalMXN, MontoUSD = @TotalUSD
+		set		MontoMXN = @TotalMXN, MontoUSD = @TotalUSD, SaldoMXN = @TotalMXN, SaldoUSD = @TotalUSD
 		where	Folio = @IdNota
 	end try
 	begin catch
@@ -258,8 +258,8 @@ begin
 	end
 	else
 	begin
-		insert into Ventas.NotasTickets(IdNota, Ticket, MontoMXN, MontoUSD)
-		values (@IdNota, @Ticket, @MontoMXN, @MontoUSD)
+		insert into Ventas.NotasTickets(IdNota, Ticket, MontoMXN, MontoUSD, Fecha)
+		values (@IdNota, @Ticket, @MontoMXN, @MontoUSD, @Fecha)
 		select @identity = SCOPE_IDENTITY()
 	end
 

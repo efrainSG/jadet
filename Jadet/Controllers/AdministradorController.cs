@@ -109,7 +109,7 @@ namespace Jadet.Controllers {
             });
 
             notas.Items.AddRange(
-                response.Items.Select(p => new notaModel {
+                response.Items.Where(p=>p.IdEstatus!=6).Select(p => new notaModel {
                     Fecha = p.Fecha,
                     FechaEnvio = p.FechaEnvio,
                     Folio = p.Folio,

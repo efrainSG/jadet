@@ -3,7 +3,10 @@ using Jadet.ClienteServicio;
 using Jadet.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Jadet.Controllers {
@@ -395,12 +398,33 @@ namespace Jadet.Controllers {
         }
 
         [HttpPost]
-        public ActionResult subirTicket(Ticketmodel modelo) {
+        public ActionResult subirTicket(Ticketmodel modelo, HttpPostedFileBase imgArch) {
             if (Session["usuario"] == null) {
                 Session.Clear();
-                return RedirectToAction("Index", "Home");
+                return Json(new { respuesta = new ProductoResponse() }, JsonRequestBehavior.AllowGet);
+            } else {
+                string _ruta;
+                var servicio = new ClienteClient();
+                var archivo = Request.Files[0];
+                if (archivo != null && archivo.ContentLength > 0) {
+                    string _nomArch = string.Format("{0}-{1}-{2}{3}",
+                        (Session["usuario"] as loginmodel).usuario, modelo.IdNota.ToString(),
+                        DateTime.Now.ToString("yyyyMMddhhmmss"), archivo.FileName.Substring(archivo.FileName.IndexOf("."))
+                        );
+                    _ruta = Path.Combine(Server.MapPath("~/Content/tickets/"), _nomArch);
+                    archivo.SaveAs(_ruta);
+                    var response = servicio.guardarTicket(new ClienteServicio.NotaTicketRequest {
+                        Fecha = DateTime.Now,
+                        IdNota = modelo.IdNota,
+                        MontoMXN = modelo.MontoMXN,
+                        Id = modelo.Id,
+                        MontoUSD = modelo.MontoUSD,
+                        Ticket = Encoding.UTF8.GetBytes(_nomArch)
+                    });
+                    return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new { respuesta = new ProductoResponse() }, JsonRequestBehavior.AllowGet);
             }
-            return View();
         }
 
         [HttpPost]

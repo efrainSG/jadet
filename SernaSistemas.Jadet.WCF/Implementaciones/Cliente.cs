@@ -156,10 +156,24 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones {
                 CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
             };
             var _response = da.listarDetalle(0, request.Folio, 0);
-
+            var _pedido = da.listarNota(new Nota { 
+                Folio = request.Folio
+            }).FirstOrDefault();
             CarritoResponse respuesta = new CarritoResponse {
                 ErrorMensaje = "No implementado",
-                ErrorNumero = 1
+                ErrorNumero = 1,
+                Fecha = _pedido.Fecha,
+                FechaEnvio = _pedido.FechaEnvio,
+                Folio = _pedido.Folio,
+                Guia = _pedido.Guia,
+                IdCliente = _pedido.IdCliente,
+                IdEstatus = _pedido.IdEstatus,
+                IdPaqueteria = _pedido.IdPaqueteria,
+                IdTipo = _pedido.IdTipo,
+                MontoMXN = _pedido.MontoMXN,
+                MontoUSD = _pedido.MontoUSD,
+                SaldoMXN = _pedido.SaldoMXN,
+                SaldoUSD = _pedido.SaldoUSD
             };
             respuesta.Items.AddRange(_response.Select(i => new ItemCarritoResponse {
                 Id = i.Id,

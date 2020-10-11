@@ -7,7 +7,11 @@ namespace Jadet.Models {
     public class Ticketmodel {
         public int Id { get; set; }
         public int IdNota { get; set; }
-        public string Ruta { get; set; }
+        public string Ruta {
+            get {
+                return System.Text.Encoding.UTF8.GetString(Ticket);
+            }
+        }
         public byte[] Ticket { get; set; }
         public DateTime Fecha { get; set; }
         public decimal MontoMXN { get; set; }

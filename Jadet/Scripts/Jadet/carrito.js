@@ -19,7 +19,7 @@ const modalComentario =
 
 const modalTicket =
     '<form action="/Cliente/guardarTicket" method="post" id="frmTicket" enctype="multipart/form-data">' +
-    '  <input type="hidden" id="txtId" value="" name="Id" />' +
+    '  <input type="hidden" id="txtId" value="" name="IdNota" />' +
     '  <div class="row">' +
     '    <div class="col-sm-2">Monto MXN.</div>' +
     '    <div class="col-sm-4">' +
@@ -280,7 +280,6 @@ $(document).ready(function () {
     $("#btnnuevoComentario").off()
         .on("click", function () {
             $this = $(this);
-            debugger;
             var $bodyModal = $("#divModalBody");
             $("#modalHdr").text("Generar pedido");
             $bodyModal.empty();
@@ -298,14 +297,37 @@ $(document).ready(function () {
     $("#btnnuevoTicket").off()
         .on("click", function () {
             $this = $(this);
+            debugger;
             var $bodyModal = $("#divModalBody");
-            $("#modalHdr").text("Hacer comentario");
+            $("#modalHdr").text("Agregar foto de ticket");
             $bodyModal.empty();
-            $bodyModal.append(modalComentario);
+            $bodyModal.append(modalTicket);
             $(botones).hide();
+            $("#txtId").val($this.attr("folio"));
             $("#btnGuardarTicket").show();
             $("#myModal").modal("show");
         });
+    $("#btnGuardarTicket").off()
+        .on("click", function () {
+            var formData = new FormData($("#frmTicket")[0]);
+            var archivoLoad = $("#ImgArchivo").get(0);
+            var archivo = archivoLoad.files;
+            formData.append("imgArch", archivo);
+            $.post({
+                url: '/Cliente/subirTicket',
+                data: formData,
+                dataType: 'json',
+                contentType: false,
+                processData: false
+            })
+                .done(function (data) {
+                    console.log(data);
+                    if (data.respuesta.ErrorNumero == 0)
+                        location.reload();
+                    else
+                        alert(data.respuesta.ErrorMensaje);
+                });
+});
     //---------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------

@@ -480,6 +480,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\productos\" />
+    <Folder Include="Content\tickets\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
