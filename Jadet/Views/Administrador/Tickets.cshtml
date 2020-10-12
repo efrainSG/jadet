@@ -1,4 +1,4 @@
-﻿@model Jadet.Models.listaticketsmodel
+﻿@model Jadet.Models.listaTicketsmodel
 
 @{
     ViewBag.Title = "Clientes";
@@ -23,10 +23,10 @@
         <tr>
             <td>@item.Id</td>
             <td>@item.IdNota</td>
-            <td>@item.Ticket</td>
+            <td><img src="~/Content/tickets/@item.Ruta" width="100"/></td>
             <td>@item.Fecha</td>
             <td>
-                <!-->a href="#" class="btn btn-warning-jadet" data-content="@item.IdCliente" id="btneditarCliente"><i class="fa fa-lg fa-edit"></i></a-->
+                
             </td>
         </tr>
         }

@@ -520,7 +520,7 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones {
             DataAccess da = new DataAccess {
                 CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
             };
-            var resultado = da.listarComentario(new ComentarioNota { 
+            var resultado = da.listarComentario(new ComentarioNota {
                 Id = request.Id,
                 IdNota = request.IdNota
             });
@@ -628,7 +628,23 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones {
         }
 
         public coleccionNotaTicketResponse listarTicketNota(NotaTicketRequest request) {
-            throw new NotImplementedException();
+            coleccionNotaTicketResponse response = new coleccionNotaTicketResponse();
+            DataAccess da = new DataAccess {
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
+            };
+            var resultado = da.listarTicket(new TicketNota { IdNota = request.IdNota });
+            response.Items.AddRange(
+                resultado.Select(r => new NotaTicketResponse {
+                    ErrorMensaje = string.Empty,
+                    ErrorNumero = 0,
+                    Fecha = r.Fecha,
+                    Id = r.Id,
+                    IdNota = r.IdNota,
+                    MontoMXN = r.MontoMXN,
+                    MontoUSD = r.MontoUSD,
+                    Ticket = r.Ticket
+                }));
+            return response;
         }
 
         public ColeccionTipoCatalogoResponse listarTipoCatalogo(TipoCatalogoRequest request) {
