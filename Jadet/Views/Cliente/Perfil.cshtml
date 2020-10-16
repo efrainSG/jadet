@@ -1,8 +1,43 @@
-﻿
+﻿@model Jadet.Models.clientemodel
+
 @{
     ViewBag.Title = "Perfil";
     Layout = "~/Views/Shared/_LayoutCliente.cshtml";
 }
 
 <h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm(actionName:"guardarPerfil", controllerName:"Cliente", method:FormMethod.Post)) {
+    <input type="hidden" name="IdCliente" value="@Model.IdCliente" />
+    <div class="row">
+        <div class="col-sm-3">
+            Nombre:
+        </div>
+        <div class="col-sm-9">
+            <span class="text-primary">@Model.Nombre</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            Mensajería preferida:
+        </div>
+        <div class="col-sm-9">
+            <select class="form-control" name="ZonaPaqueteria">
+                @foreach (var item in ViewBag.mensajerias) {
+                    if ((item as Jadet.Models.catalogoModel).Id.Equals(Model.ZonaPaqueteria)) {
+                        <option value="@((item as Jadet.Models.catalogoModel).Id)" selected>@((item as Jadet.Models.catalogoModel).Nombre)</option>
+                    } else {
+                        <option value="@((item as Jadet.Models.catalogoModel).Id)">@((item as Jadet.Models.catalogoModel).Nombre)</option>
+                    }
+
+                }
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <a href="#" class="btn btn-lg btn-primary" id="btnGuardarPerfil"><i class="fa fa-save"></i></a>
+        </div>
+    </div>
+}
 

@@ -1,4 +1,15 @@
-﻿.btn-warning-jadet {
+﻿/*h2 {
+    color: #CB0077;
+    border-bottom-color:#982669;
+    border-bottom-width:0.075em;
+    border-bottom-style:solid;
+}
+
+h3 {
+    color: #E5399E;
+}
+*/
+.btn-warning-jadet {
     background-color: #ffb3f3;
     border-color: #ffb3f3;
     color: #fff;
@@ -44,5 +55,5 @@ dd.dd-jadet {
 }
 
 .producto-jadet {
-    color:#fc95ec;
+    color: #fc95ec;
 }

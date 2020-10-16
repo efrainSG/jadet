@@ -341,6 +341,20 @@ namespace Jadet.Controllers {
                 Session.Clear();
                 return RedirectToAction("Index", "Home");
             }
+            ClienteClient cliente = new ClienteClient();
+            AdministradorClient admin = new AdministradorClient();
+            var mensajerias = admin.listarCatalogo(new CatalogoRequest { IdTipoCatalogo = 2 });
+            var response = admin.cargarCliente(new ClienteRequest { IdCliente = (Session["usuario"] as loginmodel).usrguid });
+            modelo = new clientemodel {
+                IdCliente = response.IdCliente,
+                Nombre = response.Nombre,
+                ZonaPaqueteria = response.ZonaPaqueteria
+            };
+            ViewData.Add("mensajerias", mensajerias.Items.Select(i => new catalogoModel {
+                Id = i.Id,
+                IdTipoCatalogo = i.IdTipoCatalogo,
+                Nombre = i.Nombre
+            }));
             return View(modelo);
         }
 
@@ -440,6 +454,31 @@ namespace Jadet.Controllers {
                 IdNota = modelo.FolioNota
             });
             return RedirectToAction("Comentarios", new { folio = modelo.FolioNota });
+        }
+
+        [HttpPost]
+        public ActionResult guardarPerfil(clientemodel modelo) {
+            if (Session["usuario"] == null) {
+                Session.Clear();
+            }
+            AdministradorClient admin = new AdministradorClient();
+            var resultado = admin.cargarCliente(new ClienteRequest {
+                IdCliente = (Session["usuario"] as loginmodel).usrguid
+            });
+            var response = admin.guardarCliente(new ClienteRequest {
+                Direccion = resultado.Direccion,
+                ExtensionData =null,
+                Foto =resultado.Foto,
+                IdCliente = resultado.IdCliente,
+                IdEstatus = resultado.IdEstatus,
+                IdRol = resultado.IdRol,
+                Nombre = resultado.Nombre,
+                Password = resultado.Password,
+                Telefono = resultado.Telefono,
+                UserName = resultado.UserName,
+                ZonaPaqueteria = modelo.ZonaPaqueteria
+            });
+            return RedirectToAction("Perfil");
         }
 
         private CarritoCompletoModel detalleCarrito(int id) {
