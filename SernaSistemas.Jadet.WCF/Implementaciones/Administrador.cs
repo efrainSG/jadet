@@ -238,7 +238,8 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones {
                 IdCategoria = resultado.IdCatalogo,
                 PrecioMXN = resultado.PrecioMXN,
                 PrecioUSD = resultado.PrecioUSD,
-                SKU = resultado.SKU
+                SKU = resultado.SKU,
+                IdTipo = resultado.IdTipoNota
             };
             return response;
         }
@@ -446,7 +447,8 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones {
                 Nombre = request.Nombre,
                 PrecioMXN = request.PrecioMXN,
                 PrecioUSD = request.PrecioUSD,
-                SKU = request.SKU
+                SKU = request.SKU,
+                IdTipoNota = request.IdTipo
             });
             return new ProductoResponse {
                 Id = resultado.Id,
@@ -459,9 +461,9 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones {
                 Nombre = resultado.Nombre,
                 PrecioMXN = resultado.PrecioMXN,
                 PrecioUSD = resultado.PrecioUSD,
-                SKU = resultado.SKU
+                SKU = resultado.SKU,
+                IdTipo = resultado.IdTipoNota
             };
-
         }
 
         public NotaTicketResponse guardarTicketNota(NotaTicketRequest request) {
@@ -621,7 +623,8 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones {
                     IdCategoria = i.IdCatalogo,
                     PrecioMXN = i.PrecioMXN,
                     PrecioUSD = i.PrecioUSD,
-                    SKU = i.SKU
+                    SKU = i.SKU,
+                    IdTipo = i.IdTipoNota
                 }
                 ));
             return response;

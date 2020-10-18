@@ -12,7 +12,7 @@
             <div class="col-sm-2">
                 Folio
             </div>
-            <div class="col-sm-1 badge progress-bar-success">
+            <div class="col-sm-1 badge progress-bar-success" style="background-color: #E5399E;">
                 @Model.Folio
             </div>
             <div class="col-sm-1">
@@ -92,7 +92,7 @@
                     Cantidad
                 </div>
                 <div class="col-sm-2 text-center">
-                    <span class="badge progress-bar-info">
+                    <span class="badge progress-bar-info" style="background-color: #E5399E;">
                         @Model.Items.Count
                     </span>
                 </div>
@@ -129,7 +129,7 @@
         <tbody>
             @foreach (var item in Model.Items) {
                 <tr id="fila@(item.Id)">
-                    <td><a href="#fila@(item.Id)" id="btnremoveitem@(item.Id)" class="btn btn-danger-jadet"><i class="fa fa-times"></i></a></td>
+                    <td><a href="#fila@(item.Id)" id="btnremoveitem@(item.Id)" class="btn btn-F80012-b"><i class="fa fa-times"></i></a></td>
                     <td>@item.Id </td>
                     <td>@item.IdProducto</td>
                     <td>@item.Producto</td>
@@ -137,18 +137,18 @@
                     <td>@item.PrecioUSD</td>
                     <td style="text-align:center;">
                         @if (item.Cantidad > 1) {
-                            <a href="#fila@(item.Id)" cantidad="@(item.Cantidad)" tipo="@(Model.IdTipo)" productoid="@(item.IdProducto)" id="btnminusitem@(item.Id)" class="btn btn-warning-jadet" habilitado="si">
+                            <a href="#fila@(item.Id)" cantidad="@(item.Cantidad)" tipo="@(Model.IdTipo)" productoid="@(item.IdProducto)" id="btnminusitem@(item.Id)" class="btn btn-CB0077-a" habilitado="si">
                                 <i class="fa fa-minus"></i>
                             </a>
                         } else {
-                            <a href="#fila@(item.Id)" cantidad="@(item.Cantidad)" tipo="@(Model.IdTipo)" productoid="@(item.IdProducto)" id="btnminusitem@(item.Id)" class="btn btn-secondary" habilitado="no">
+                            <a href="#fila@(item.Id)" cantidad="@(item.Cantidad)" tipo="@(Model.IdTipo)" productoid="@(item.IdProducto)" id="btnminusitem@(item.Id)" class="btn btn-CB0077-a" disabled habilitado="no">
                                 <i class="fa fa-minus"></i>
                             </a>
                         }
                     </td>
                     <td style="text-align:right;" id="Cantidad@(item.Id)">@item.Cantidad</td>
                     <td style="text-align:center;">
-                        <a href="#fila@(item.Id)" cantidad="@(item.Cantidad)" tipo="@(Model.IdTipo)" productoid="@(item.IdProducto)" id="btnplusitem@(item.Id)" class="btn btn-warning-jadet">
+                        <a href="#fila@(item.Id)" cantidad="@(item.Cantidad)" tipo="@(Model.IdTipo)" productoid="@(item.IdProducto)" id="btnplusitem@(item.Id)" class="btn btn-CB0077-a">
                             <i class="fa fa-plus"></i>
                         </a>
                     </td>

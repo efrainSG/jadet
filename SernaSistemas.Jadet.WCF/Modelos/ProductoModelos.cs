@@ -26,6 +26,10 @@ namespace SernaSistemas.Jadet.WCF.Modelos {
         public int IdCategoria { get; set; }
         [DataMember]
         public int IdEstatus { get; set; }
+        [DataMember]
+        public int IdTipo { get; set; }
+        [DataMember]
+        public string Tipo { get; set; }
     }
 
     [DataContract]
@@ -52,6 +56,10 @@ namespace SernaSistemas.Jadet.WCF.Modelos {
         public int IdCategoria { get; set; }
         [DataMember]
         public int IdEstatus { get; set; }
+        [DataMember]
+        public int IdTipo { get; set; }
+        [DataMember]
+        public string Tipo { get; set; }
     }
 
     [DataContract]

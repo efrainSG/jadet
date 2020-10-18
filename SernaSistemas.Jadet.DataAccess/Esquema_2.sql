@@ -261,7 +261,7 @@ create procedure Ventas.guardarProducto
 	@PrecioUSD decimal(10,2),
 	@Existencias int,
 	@AplicaExistencias bit,
-	@Foto varbinary(max),
+	@Foto varbinary(max) = null,
 	@IdCatalogo int,
 	@IdEstatus int,
 	@IdTipo int
@@ -274,7 +274,7 @@ begin
 		update Ventas.Producto
 		set sku = @sku, Nombre = @Nombre, Descripcion = @Descripcion,
 			PrecioMXN = @PrecioMXN, PrecioUSD = @PrecioUSD, Existencias = @Existencias,
-			AplicaExistencias = @AplicaExistencias, Foto = @Foto,
+			AplicaExistencias = @AplicaExistencias, Foto = isnull(@Foto, Foto),
 			IdCatalogo = @IdCatalogo, IdEstatus = @IdEstatus, IdTipoNota = @IdTipo
 		where Id = @Id
 		set @identity = @id
@@ -305,9 +305,10 @@ begin
 	end
 	select	P.Id, P.sku, P.Nombre, P.Descripcion, P.PrecioMXN, P.PrecioUSD,
 			P.Existencias, P.APlicaExistencias, P.Foto, P.IdCatalogo, P.IdEstatus,
-			C.Nombre Categoria, E.Nombre Estatus, IdTipoNota
+			C.Nombre Categoria, E.Nombre Estatus, IdTipoNota, C1.Nombre TipoNota
 	from	Ventas.Producto P (nolock)
 	join	Administracion.Catalogo C (nolock) on P.IdCatalogo = C.Id
+	join	Administracion.Catalogo C1 (nolock) on P.IdTipoNota = C1.Id
 	join	Administracion.Estatus E (nolock) on P.IdEstatus = E.Id
 	where	P.Id = isnull(@Id, P.Id)
 end;

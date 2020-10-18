@@ -42,6 +42,10 @@ const modalProducto =
     '    </div>' +
     '  </div>' +
     '  <div class="row">' +
+    '    <div class="col-sm-2">Tipo de producto</div>' +
+    '    <div class="col-sm-10"><select id="selTipoProducto" class="form-control" name="IdTipo"></select></div>' +
+    '  </div>' +
+    '  <div class="row">' +
     '    <div class="col-sm-2">Aplica existencias</div>' +
     '    <div class="col-sm-4">' +
     '      <input type="radio" id="rdoexistencias1" name="AplicaExistencias" class="form-check-input" value="1">' +

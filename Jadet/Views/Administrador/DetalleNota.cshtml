@@ -12,7 +12,7 @@
             <div class="col-sm-2">
                 Folio
             </div>
-            <div class="col-sm-1 badge progress-bar-success">
+            <div class="col-sm-1 badge progress-bar-success" style="background-color: #E5399E;">
                 @Model.Folio
             </div>
             <div class="col-sm-1">
@@ -92,7 +92,7 @@
                     Cantidad
                 </div>
                 <div class="col-sm-2 text-center">
-                    <span class="badge progress-bar-info">
+                    <span class="badge progress-bar-info" style="background-color: #E5399E;">
                         @Model.Items.Count
                     </span>
                 </div>
@@ -101,7 +101,7 @@
                 </div>
                 <div class="col-sm-2 text-center">
                     <a href="~/Administrador/Comentarios?folio=@(Model.Folio)">
-                        <span class="badge progress-bar-info">
+                        <span class="badge progress-bar-info" style="background-color: #E5399E;">
                             @Model.Comentarios.Count &nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-circle-right"></i>
                         </span>
                     </a>
@@ -111,7 +111,7 @@
                 </div>
                 <div class="col-sm-2 text-center">
                     <a href="~/Administrador/Tickets?folio=@(Model.Folio)">
-                        <span class="badge progress-bar-info">
+                        <span class="badge progress-bar-info" style="background-color: #E5399E;">
                             @Model.Tickets.Count &nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-circle-right"></i>
                         </span>
                     </a>

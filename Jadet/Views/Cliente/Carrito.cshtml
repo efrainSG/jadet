@@ -25,14 +25,14 @@
         @foreach (var item in Model.Items) {
             <tr>
                 <td>
-                    @Html.ActionLink(linkText: item.Folio.ToString(), actionName: "DetalleCarrito", controllerName: "Cliente", routeValues: new { @idCarrito = item.Folio }, htmlAttributes: new { @class = "btn btn-lg btn-info" })
+                    @Html.ActionLink(linkText: item.Folio.ToString(), actionName: "DetalleCarrito", controllerName: "Cliente", routeValues: new { @idCarrito = item.Folio }, htmlAttributes: new { @class = "btn btn-lg btn-7309AA-a" })
                 </td>
                 <td>@item.Tipo</td>
                 <td>@item.Fecha</td>
                 <td>@item.MontoMXN</td>
                 <td>@item.MontoUSD</td>
                 <td>
-                    <a href="#@("btnhacerPedido"+@item.Folio)" class="btn btn-success" id="@("btnhacerPedido"+@item.Folio)"><i class="fa fa-lg fa-fax"></i></a>
+                    <a href="#@("btnhacerPedido"+@item.Folio)" class="btn btn-7309AA-a" id="@("btnhacerPedido"+@item.Folio)"><i class="fa fa-lg fa-fax"></i></a>
                 </td>
             </tr>
         }

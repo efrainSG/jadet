@@ -32,7 +32,7 @@
         @foreach (var item in Model.Items) {
             <tr>
                 <td>
-                    @Html.ActionLink(linkText: item.Folio.ToString(), actionName: "DetalleNota", controllerName: "Cliente", routeValues: new { @folio = item.Folio }, htmlAttributes: new { @class = "btn btn-lg btn-info" })
+                    @Html.ActionLink(linkText: item.Folio.ToString(), actionName: "DetalleNota", controllerName: "Cliente", routeValues: new { @folio = item.Folio }, htmlAttributes: new { @class = "btn btn-lg btn-7309AA-a" })
                 </td>
                 <td>@item.Tipo</td>
                 <td>@item.Fecha</td>
@@ -45,8 +45,8 @@
                 <td>@item.SaldoMXN</td>
                 <td>@item.SaldoUSD</td>
                 <td>
-                    <a href="@Url.Action("Comentarios","Cliente", new { folio = item.Folio})" class="btn btn-lg btn-info"><i class="fa fa-comments"></i></a>
-                    <a href="@Url.Action("Tickets","Cliente", new { folio = item.Folio})" class="btn btn-lg btn-warning"><i class="fa fa-file"></i></a>
+                    <a href="@Url.Action("Comentarios","Cliente", new { folio = item.Folio})" class="btn btn-lg btn-612580"><i class="fa fa-comments"></i></a>
+                    <a href="@Url.Action("Tickets","Cliente", new { folio = item.Folio})" class="btn btn-lg btn-84004D"><i class="fa fa-file"></i></a>
                 </td>
             </tr>
         }

@@ -6,6 +6,7 @@ using System.Text;
 namespace SernaSistemas.Jadet.DataAccess {
     public class DataAccess {
         public string CadenaConexion { get; set; }
+
         public ResultadoBorrado borrarCatalogo(int id) {
             ResultadoBorrado resultado = new ResultadoBorrado();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
@@ -32,6 +33,7 @@ namespace SernaSistemas.Jadet.DataAccess {
             }
             return resultado;
         }
+
         public ResultadoBorrado borrarEstatus(int id) {
             ResultadoBorrado resultado = new ResultadoBorrado();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
@@ -58,6 +60,7 @@ namespace SernaSistemas.Jadet.DataAccess {
             }
             return resultado;
         }
+
         public ResultadoBorrado borrarUsuario(Guid id) {
             ResultadoBorrado resultado = new ResultadoBorrado();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
@@ -183,6 +186,7 @@ namespace SernaSistemas.Jadet.DataAccess {
             }
             return resultado;
         }
+
         public ResultadoBorrado borrarProducto(int id) {
             ResultadoBorrado resultado = new ResultadoBorrado();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
@@ -209,6 +213,7 @@ namespace SernaSistemas.Jadet.DataAccess {
             }
             return resultado;
         }
+
         public Catalogo guardarCatalogo(Catalogo catalogo) {
             Catalogo resultado = new Catalogo();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
@@ -248,6 +253,7 @@ namespace SernaSistemas.Jadet.DataAccess {
             }
             return resultado;
         }
+
         public Estatus guardarEstatus(Estatus estatus) {
             Estatus resultado = new Estatus();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
@@ -287,6 +293,7 @@ namespace SernaSistemas.Jadet.DataAccess {
             }
             return resultado;
         }
+
         public Usuario guardarUsuario(Usuario usuario) {
             Usuario resultado = new Usuario();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
@@ -377,6 +384,7 @@ namespace SernaSistemas.Jadet.DataAccess {
             }
             return resultado;
         }
+
         public DetalleNota guardarDetalle(DetalleNota detalle) {
             DetalleNota resultado = new DetalleNota();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
@@ -438,6 +446,7 @@ namespace SernaSistemas.Jadet.DataAccess {
             return resultado;
 
         }
+
         public Nota guardarNota(Nota nota) {
             Nota resultado = new Nota();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
@@ -546,6 +555,7 @@ namespace SernaSistemas.Jadet.DataAccess {
             }
             return resultado;
         }
+
         public ComentarioNota guardarComentario(ComentarioNota comentario) {
             ComentarioNota resultado = new ComentarioNota();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
@@ -739,6 +749,12 @@ namespace SernaSistemas.Jadet.DataAccess {
                         Value = producto.IdEstatus,
                         ParameterName = "@IdEstatus"
                     });
+                    cmd.Parameters.Add(new SqlParameter {
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Input,
+                        Value = producto.IdTipoNota,
+                        ParameterName = "@IdTipo"
+                    });
 
                     conn.Open();
                     var dr = cmd.ExecuteReader();
@@ -754,12 +770,14 @@ namespace SernaSistemas.Jadet.DataAccess {
                         resultado.PrecioMXN = (decimal)dr["PrecioMXN"];
                         resultado.PrecioUSD = (decimal)dr["PrecioUSD"];
                         resultado.SKU = dr["Sku"].ToString();
+                        resultado.IdTipoNota = (int)dr["IdTipoNota"];
                     }
                     conn.Close();
                 }
             }
             return resultado;
         }
+
         public List<Catalogo> listarCatalogo(Catalogo catalogo) {
             List<Catalogo> resultado = new List<Catalogo>();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
@@ -796,6 +814,7 @@ namespace SernaSistemas.Jadet.DataAccess {
             }
             return resultado;
         }
+
         public List<Estatus> listarEstatus(Estatus estatus) {
             List<Estatus> resultado = new List<Estatus>();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
@@ -832,6 +851,7 @@ namespace SernaSistemas.Jadet.DataAccess {
             }
             return resultado;
         }
+
         public List<Usuario> listarUsuario(Usuario usuario) {
             List<Usuario> resultado = new List<Usuario>();
             Usuario usuario1 = new Usuario();
@@ -876,6 +896,7 @@ namespace SernaSistemas.Jadet.DataAccess {
             }
             return resultado;
         }
+
         public List<DetalleNota> listarDetalle(int id, int idNota, int IdProducto) {
             List<DetalleNota> resultado = new List<DetalleNota>();
 
@@ -922,6 +943,7 @@ namespace SernaSistemas.Jadet.DataAccess {
             }
             return resultado;
         }
+
         public List<Nota> listarNota(Nota nota) {
             List<Nota> resultado = new List<Nota>();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
@@ -983,6 +1005,7 @@ namespace SernaSistemas.Jadet.DataAccess {
             }
             return resultado;
         }
+
         public List<ComentarioNota> listarComentario(ComentarioNota comentario) {
             List<ComentarioNota> resultado = new List<ComentarioNota>();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
@@ -1020,6 +1043,7 @@ namespace SernaSistemas.Jadet.DataAccess {
             }
             return resultado;
         }
+
         public List<TicketNota> listarTicket(TicketNota ticket) {
             List<TicketNota> resultado = new List<TicketNota>();
 
@@ -1060,6 +1084,7 @@ namespace SernaSistemas.Jadet.DataAccess {
             }
             return resultado;
         }
+
         public List<Producto> listarProductos(int id) {
             List<Producto> resultado = new List<Producto>();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
@@ -1088,7 +1113,9 @@ namespace SernaSistemas.Jadet.DataAccess {
                                 SKU = dr["Sku"].ToString(),
                                 PrecioMXN = (decimal)dr["PrecioMXN"],
                                 IdCatalogo = (int)dr["IdCatalogo"],
-                                PrecioUSD = (decimal)dr["PrecioUSD"]
+                                PrecioUSD = (decimal)dr["PrecioUSD"],
+                                IdEstatus = (int)dr["IdEstatus"],
+                                IdTipoNota = (int)dr["IdTipoNota"]
                             });
                         }
                     }
@@ -1097,6 +1124,7 @@ namespace SernaSistemas.Jadet.DataAccess {
             }
             return resultado;
         }
+
         public List<TipoCatalogo> listarTipoCatalogo(int id) {
             List<TipoCatalogo> resultado = new List<TipoCatalogo>();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
@@ -1126,6 +1154,7 @@ namespace SernaSistemas.Jadet.DataAccess {
             }
             return resultado;
         }
+
         public List<TipoEstatus> listarTipoEstatus(int id) {
             List<TipoEstatus> resultado = new List<TipoEstatus>();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
@@ -1155,6 +1184,7 @@ namespace SernaSistemas.Jadet.DataAccess {
             }
             return resultado;
         }
+
         public List<Rol> listarRol(int id) {
             List<Rol> resultado = new List<Rol>();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
@@ -1184,6 +1214,7 @@ namespace SernaSistemas.Jadet.DataAccess {
             }
             return resultado;
         }
+
         public Usuario iniciarSesion(Usuario usuario) {
             Usuario resultado = new Usuario();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {

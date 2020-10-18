@@ -263,10 +263,12 @@
           <xs:element minOccurs="0" name="Id" type="xs:int" />
           <xs:element minOccurs="0" name="IdCategoria" type="xs:int" />
           <xs:element minOccurs="0" name="IdEstatus" type="xs:int" />
+          <xs:element minOccurs="0" name="IdTipo" type="xs:int" />
           <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="PrecioMXN" type="xs:decimal" />
           <xs:element minOccurs="0" name="PrecioUSD" type="xs:decimal" />
           <xs:element minOccurs="0" name="SKU" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Tipo" nillable="true" type="xs:string" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -283,10 +285,12 @@
           <xs:element minOccurs="0" name="Id" type="xs:int" />
           <xs:element minOccurs="0" name="IdCategoria" type="xs:int" />
           <xs:element minOccurs="0" name="IdEstatus" type="xs:int" />
+          <xs:element minOccurs="0" name="IdTipo" type="xs:int" />
           <xs:element minOccurs="0" name="Nombre" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="PrecioMXN" type="xs:decimal" />
           <xs:element minOccurs="0" name="PrecioUSD" type="xs:decimal" />
           <xs:element minOccurs="0" name="SKU" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Tipo" nillable="true" type="xs:string" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>

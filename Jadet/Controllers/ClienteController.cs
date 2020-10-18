@@ -147,105 +147,37 @@ namespace Jadet.Controllers {
             switch (idTipo) {
                 case 1:
                     ViewBag.Title = "Preventa";
-                    model.Items.AddRange(
-                        response.Items.Where(p => !p.AplicaExistencias).Select(p => new productomodel {
-                            Descripcion = p.Descripcion,
-                            ErrorMensaje = p.ErrorMensaje,
-                            ErrorNumero = p.ErrorNumero,
-                            Existencias = p.Existencias,
-                            Nombre = p.Nombre,
-                            PrecioMXN = p.PrecioMXN,
-                            PrecioUSD = p.PrecioUSD,
-                            Imagen = p.Foto,
-                            Sku = p.SKU,
-                            AplicaExistencias = p.AplicaExistencias,
-                            Id = p.Id,
-                            IdCategoria = p.IdCategoria,
-                            IdTipo = idTipo,
-                            Categoria = string.Empty //responseCategorias.Items.First(c => c.Id.Equals(p.IdCategoria)).Nombre
-                        }));
                     break;
                 case 2:
                     ViewBag.Title = "VIP";
-                    model.Items.AddRange(
-                        response.Items.Where(p => p.AplicaExistencias).Select(p => new productomodel {
-                            Descripcion = p.Descripcion,
-                            ErrorMensaje = p.ErrorMensaje,
-                            ErrorNumero = p.ErrorNumero,
-                            Existencias = p.Existencias,
-                            Nombre = p.Nombre,
-                            PrecioMXN = p.PrecioMXN,
-                            PrecioUSD = p.PrecioUSD,
-                            Imagen = p.Foto,
-                            Sku = p.SKU,
-                            AplicaExistencias = p.AplicaExistencias,
-                            Id = p.Id,
-                            IdTipo = idTipo,
-                            IdCategoria = p.IdCategoria,
-                            Categoria = string.Empty //responseCategorias.Items.First(c => c.Id.Equals(p.IdCategoria)).Nombre
-                        }));
                     break;
                 case 3:
                     ViewBag.Title = "En vivo (live)";
-                    model.Items.AddRange(
-                        response.Items.Where(p => p.AplicaExistencias).Select(p => new productomodel {
-                            Descripcion = p.Descripcion,
-                            ErrorMensaje = p.ErrorMensaje,
-                            ErrorNumero = p.ErrorNumero,
-                            Existencias = p.Existencias,
-                            Nombre = p.Nombre,
-                            PrecioMXN = p.PrecioMXN,
-                            PrecioUSD = p.PrecioUSD,
-                            Imagen = p.Foto,
-                            Sku = p.SKU,
-                            AplicaExistencias = p.AplicaExistencias,
-                            Id = p.Id,
-                            IdTipo = idTipo,
-                            IdCategoria = p.IdCategoria,
-                            Categoria = string.Empty //responseCategorias.Items.First(c => c.Id.Equals(p.IdCategoria)).Nombre
-                        }));
                     break;
                 case 4:
                     ViewBag.Title = "Existencias";
-                    model.Items.AddRange(
-                        response.Items.Where(p => p.AplicaExistencias).Select(p => new productomodel {
-                            Descripcion = p.Descripcion,
-                            ErrorMensaje = p.ErrorMensaje,
-                            ErrorNumero = p.ErrorNumero,
-                            Existencias = p.Existencias,
-                            Nombre = p.Nombre,
-                            PrecioMXN = p.PrecioMXN,
-                            PrecioUSD = p.PrecioUSD,
-                            Imagen = p.Foto,
-                            Sku = p.SKU,
-                            AplicaExistencias = p.AplicaExistencias,
-                            Id = p.Id,
-                            IdTipo = idTipo,
-                            IdCategoria = p.IdCategoria,
-                            Categoria = string.Empty //responseCategorias.Items.First(c => c.Id.Equals(p.IdCategoria)).Nombre
-                        }));
                     break;
                 case 5:
                     ViewBag.Title = "Venta exprés";
-                    model.Items.AddRange(
-                        response.Items.Where(p => p.AplicaExistencias).Select(p => new productomodel {
-                            Descripcion = p.Descripcion,
-                            ErrorMensaje = p.ErrorMensaje,
-                            ErrorNumero = p.ErrorNumero,
-                            Existencias = p.Existencias,
-                            Nombre = p.Nombre,
-                            PrecioMXN = p.PrecioMXN,
-                            PrecioUSD = p.PrecioUSD,
-                            Imagen = p.Foto,
-                            Sku = p.SKU,
-                            AplicaExistencias = p.AplicaExistencias,
-                            Id = p.Id,
-                            IdTipo = idTipo,
-                            IdCategoria = p.IdCategoria,
-                            Categoria = string.Empty //responseCategorias.Items.First(c => c.Id.Equals(p.IdCategoria)).Nombre
-                        }));
                     break;
             }
+            model.Items.AddRange(
+                response.Items.Where(p => p.IdTipo.Equals(idTipo)).Select(p => new productomodel {
+                    Descripcion = p.Descripcion,
+                    ErrorMensaje = p.ErrorMensaje,
+                    ErrorNumero = p.ErrorNumero,
+                    Existencias = p.Existencias,
+                    Nombre = p.Nombre,
+                    PrecioMXN = p.PrecioMXN,
+                    PrecioUSD = p.PrecioUSD,
+                    Imagen = p.Foto,
+                    Sku = p.SKU,
+                    AplicaExistencias = p.AplicaExistencias,
+                    Id = p.Id,
+                    IdCategoria = p.IdCategoria,
+                    IdTipo = idTipo,
+                    Categoria = string.Empty //responseCategorias.Items.First(c => c.Id.Equals(p.IdCategoria)).Nombre
+                }));
 
             return View(model);
         }
@@ -467,8 +399,8 @@ namespace Jadet.Controllers {
             });
             var response = admin.guardarCliente(new ClienteRequest {
                 Direccion = resultado.Direccion,
-                ExtensionData =null,
-                Foto =resultado.Foto,
+                ExtensionData = null,
+                Foto = resultado.Foto,
                 IdCliente = resultado.IdCliente,
                 IdEstatus = resultado.IdEstatus,
                 IdRol = resultado.IdRol,

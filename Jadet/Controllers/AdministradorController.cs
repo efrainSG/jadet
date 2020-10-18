@@ -29,6 +29,7 @@ namespace Jadet.Controllers {
             var response = servicio.listarProductos(new ProductoRequest {
                 Id = 0
             });
+            var tipos = servicio.listarCatalogo(new CatalogoRequest { Id = 0 });
             var responseCategorias = servicio.listarCatalogo(new CatalogoRequest { IdTipoCatalogo = 0 });
             productos.Items.AddRange(
                 response.Items.Select(p => new productomodel {
@@ -45,7 +46,8 @@ namespace Jadet.Controllers {
                     Id = p.Id,
                     IdCategoria = p.IdCategoria,
                     IdEstatus = p.IdEstatus,
-
+                    IdTipo = p.IdTipo,
+                    Tipo = tipos.Items.First(i => i.Id.Equals(p.IdTipo)).Nombre,
                     Categoria = responseCategorias.Items.First(c => c.Id.Equals(p.IdCategoria)).Nombre
                 }));
             return View(productos);
@@ -283,8 +285,9 @@ namespace Jadet.Controllers {
                     PrecioMXN = model.PrecioMXN,
                     IdEstatus = model.IdEstatus,
                     PrecioUSD = model.PrecioUSD,
-                    Foto = Encoding.UTF8.GetBytes(archivo.FileName),
-                    SKU = model.Sku
+                    Foto = !string.IsNullOrEmpty(archivo.FileName) ? Encoding.UTF8.GetBytes(archivo.FileName) : null,
+                    SKU = model.Sku,
+                    IdTipo = model.IdTipo
                 });
                 return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
             }

@@ -98,10 +98,12 @@
 
             var $categoria = $("#selIdCategoria");
             var $estatus = $("#selIdEstatus");
-            var $estatusProd = $.grep(estatus, function (o) { return o.Tipo == 2; });
+            var $tipoProducto = $("#selTipoProducto");
+            var $estatusProd = $.grep(estatus, function (o) { return o.Tipo === 2; });
 
             llenarSelect($categoria, categorias);
             llenarSelect($estatus, $estatusProd, K_ESTATUSPRODUCTO);
+            llenarSelect($tipoProducto, tiposnotas);
 
             $(botones).hide();
             $("#btnGuardar").show();
@@ -124,9 +126,11 @@
             var $categoria = $("#selIdCategoria");
             var $estatus = $("#selIdEstatus");
             var $estatusProd = $.grep(estatus, function (o) { return o.Tipo == 2; });
+            var $tipoProducto = $("#selTipoProducto");
 
             llenarSelect($categoria, categorias);
             llenarSelect($estatus, $estatusProd, K_ESTATUSPRODUCTO);
+            llenarSelect($tipoProducto, tiposnotas);
 
             $("#txtId").val($($componentes[0]).text());
             $("#txtsku").val($($componentes[1]).text());
@@ -135,7 +139,7 @@
             $("#txtPrecioMXN").val($($componentes[5]).text());
             $("#txtprecioUSD").val($($componentes[6]).text());
             $("#txtExistencias").val($($componentes[7]).text());
-            if ($($componentes[8]).text().trim() == "Sí") {
+            if ($($componentes[8]).text().trim() === "Sí") {
                 $("#rdoexistencias1").prop("checked", true);
             } else {
                 $("#rdoexistencias2").prop("checked", true);
@@ -144,6 +148,12 @@
             $("#btnGuardar").show();
 
             $("#myModal").modal("show");
+            debugger;
+            var datos = $this.attr("data-content").split("|");
+            var valIdTipo = datos[0].split(":")[1];
+            var valIdCategoria = datos[1].split(":")[1];
+            $("#selIdTipoProducto").val(valIdTipo);
+            $("#selIdCategoria").val(valIdCategoria);
         });
 
     //construye el modal, carga datos y despliega botón de eliminación de producto.

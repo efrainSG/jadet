@@ -469,6 +469,9 @@ namespace Jadet.AdministradorServicio {
         private int IdEstatusField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdTipoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NombreField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -479,6 +482,9 @@ namespace Jadet.AdministradorServicio {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string SKUField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TipoField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public bool AplicaExistencias {
@@ -572,6 +578,19 @@ namespace Jadet.AdministradorServicio {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdTipo {
+            get {
+                return this.IdTipoField;
+            }
+            set {
+                if ((this.IdTipoField.Equals(value) != true)) {
+                    this.IdTipoField = value;
+                    this.RaisePropertyChanged("IdTipo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Nombre {
             get {
                 return this.NombreField;
@@ -619,6 +638,19 @@ namespace Jadet.AdministradorServicio {
                 if ((object.ReferenceEquals(this.SKUField, value) != true)) {
                     this.SKUField = value;
                     this.RaisePropertyChanged("SKU");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Tipo {
+            get {
+                return this.TipoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TipoField, value) != true)) {
+                    this.TipoField = value;
+                    this.RaisePropertyChanged("Tipo");
                 }
             }
         }
@@ -1735,6 +1767,9 @@ namespace Jadet.AdministradorServicio {
         private int IdEstatusField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdTipoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NombreField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1745,6 +1780,9 @@ namespace Jadet.AdministradorServicio {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string SKUField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TipoField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public bool AplicaExistencias {
@@ -1838,6 +1876,19 @@ namespace Jadet.AdministradorServicio {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdTipo {
+            get {
+                return this.IdTipoField;
+            }
+            set {
+                if ((this.IdTipoField.Equals(value) != true)) {
+                    this.IdTipoField = value;
+                    this.RaisePropertyChanged("IdTipo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Nombre {
             get {
                 return this.NombreField;
@@ -1885,6 +1936,19 @@ namespace Jadet.AdministradorServicio {
                 if ((object.ReferenceEquals(this.SKUField, value) != true)) {
                     this.SKUField = value;
                     this.RaisePropertyChanged("SKU");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Tipo {
+            get {
+                return this.TipoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TipoField, value) != true)) {
+                    this.TipoField = value;
+                    this.RaisePropertyChanged("Tipo");
                 }
             }
         }
