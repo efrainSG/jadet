@@ -476,6 +476,7 @@
     <Content Include="Views\Cliente\Perfil.cshtml" />
     <Content Include="Views\Cliente\DetalleCarrito.cshtml" />
     <Content Include="Views\Cliente\Tickets.cshtml" />
+    <Content Include="Views\Cliente\DetalleNota.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -251,12 +251,12 @@ namespace Jadet.Controllers {
             var listacomentarios = new Models.listaComentariosmodel();
             var response = servicio.listarComentarioNota(new NotaComentarioRequest { IdNota = folio });
             listacomentarios.Items.AddRange(response.Items.Select(i => new Comentariomodel {
-                Id = i.Id,
+                Id = (i.IdComentarioAnterior == 0) ? i.Id : i.IdComentarioAnterior,
                 Fecha = i.Fecha,
                 FolioNota = i.IdNota,
                 Mensaje = i.Comentario,
-                IdPadre = i.IdComentarioAnterior
-            }));
+                IdPadre = (i.IdComentarioAnterior == 0) ? i.IdComentarioAnterior : i.Id
+            }).OrderBy(i=>i.Id).ThenBy(i=>i.IdPadre));
             return View(listacomentarios);
         }
         #endregion Carga de listas
@@ -496,6 +496,24 @@ namespace Jadet.Controllers {
                     SaldoUSD = model.SaldoUSD
                 });
                 return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult guardarComentario(Comentariomodel model) {
+            if (Session["usuario"] == null) {
+                Session.Clear();
+                return RedirectToAction("Index", "Home");
+            } else {
+                var servicio = new AdministradorClient();
+                var response = servicio.guardarComentarioNota(new NotaComentarioRequest {
+                    Fecha = DateTime.Now,
+                    Id = model.Id,
+                    Comentario = model.Mensaje,
+                    IdNota = model.FolioNota,
+                    IdComentarioAnterior = model.IdPadre
+                });
+                return RedirectToAction("Comentarios", new { folio = model.FolioNota });
             }
         }
 

@@ -7,7 +7,7 @@
 
 <h2>@ViewBag.Title</h2>
 
-@using (Html.BeginForm(actionName:"guardarPerfil", controllerName:"Cliente", method:FormMethod.Post)) {
+@using (Html.BeginForm(actionName: "guardarPerfil", controllerName: "Cliente", method: FormMethod.Post)) {
     <input type="hidden" name="IdCliente" value="@Model.IdCliente" />
     <div class="row">
         <div class="col-sm-3">
@@ -15,6 +15,41 @@
         </div>
         <div class="col-sm-9">
             <span class="text-primary">@Model.Nombre</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            Dirección:
+        </div>
+        <div class="col-sm-9">
+            <span class="text-primary">
+                @Model.Direccion
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            Teléfono:
+        </div>
+        <div class="col-sm-9">
+            <span class="text-primary">
+                @Model.Telefono
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            Estátus:
+        </div>
+        <div class="col-sm-9">
+            <span class="text-primary">
+                @foreach (var item in ViewBag.status) {
+                    if (item.Id == Model.IdEstatus) {
+                        @item.Nombre
+                        break;
+                    }
+                }
+            </span>
         </div>
     </div>
     <div class="row">

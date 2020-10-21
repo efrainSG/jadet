@@ -576,7 +576,24 @@
                 console.log(data);
             });
         });
-    //---------------------------------------------------------------------------------------
+    //-- COMENTARIOS ------------------------------------------------------------------------
+    $('[id^="btnresponder"]').off()
+        .on("click", function () {
+            $this = $(this);
+            var $bodyModal = $("#divModalBody");
+            $("#modalHdr").text("Generar pedido");
+            $bodyModal.empty();
+            $bodyModal.append(modalComentario);
+            $("#txtId").val($this.attr("folio"));
+            $("#txtIdPadre").val($this.attr("data-content"));
+            $(botones).hide();
+            $("#btnGuardarComentario").show();
+            $("#myModal").modal("show");
+        });
+    $("#btnGuardarComentario").off()
+        .on("click", function () {
+            $("#frmComentario").submit();
+        });
     //---------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------

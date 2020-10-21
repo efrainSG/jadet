@@ -32,7 +32,7 @@
         @foreach (var item in Model.Items) {
             <tr>
                 <td>
-                    @Html.ActionLink(linkText: item.Folio.ToString(), actionName: "DetalleNota", controllerName: "Cliente", routeValues: new { @folio = item.Folio }, htmlAttributes: new { @class = "btn btn-lg btn-7309AA-a" })
+                    @Html.ActionLink(linkText: item.Folio.ToString(), actionName: "DetalleNota", controllerName: "Cliente", routeValues: new { @idCarrito = item.Folio }, htmlAttributes: new { @class = "btn btn-lg btn-7309AA-a" })
                 </td>
                 <td>@item.Tipo</td>
                 <td>@item.Fecha</td>

@@ -263,12 +263,23 @@ const modalNota =
     '        <input type="text" class="form-control" name="Guia" id="hidGuia" value="" />' +
     '    </div>' +
     '</div>' +
-    '<div class="row" >' + 
+    '<div class="row" >' +
     '<div class="col-sm-12" id="txtContenido"></div>' +
     '</div>' +
     '</form>';
 
-    //---------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------
+const modalComentario =
+    '<form action="/Administrador/guardarComentario" method="post" id="frmComentario">' +
+    '  <input type="hidden" id="txtId" value="" name="FolioNota" />' +
+    '  <input type="hidden" id="txtIdPadre" value="" name="IdPadre" />' +
+    '  <div class= "row" > ' +
+    '    <div class="col-sm-3">Comentario</div>' +
+    '    <div class="col-sm-9">' +
+    '      <textarea id="txtComentario" name="Mensaje" cols="50" rows="5" class="form-control"></textarea>' +
+    '    </div> ' +
+    '  </div>' +
+    '</form>';
 
     //---------------------------------------------------------------------------------------
     //---------------------------------------------------------------------------------------
