@@ -1,45 +1,4 @@
-﻿const modalgeneraPedido =
-    '<form action="/Cliente/generarPedido" method="post" id="frmCatalogo">' +
-    '  <input type="hidden" id="txtId" value="" name="Folio" />' +
-    '  <div class= "row" > ' +
-    '    <div class="col-sm-12" id="txtContenido"></div>' +
-    '  </div>' +
-    '</form>';
-
-const modalComentario =
-    '<form action="/Cliente/agregarComentario" method="post" id="frmComentario">' +
-    '  <input type="hidden" id="txtId" value="" name="FolioNota" />' +
-    '  <div class= "row" > ' +
-    '    <div class="col-sm-3">Comentario</div>' +
-    '    <div class="col-sm-9">' +
-    '      <textarea id="txtComentario" name="Mensaje" cols="50" rows="5" class="form-control"></textarea>' +
-    '    </div> ' +
-    '  </div>' +
-    '</form>';
-
-const modalTicket =
-    '<form action="/Cliente/guardarTicket" method="post" id="frmTicket" enctype="multipart/form-data">' +
-    '  <input type="hidden" id="txtId" value="" name="IdNota" />' +
-    '  <div class="row">' +
-    '    <div class="col-sm-2">Monto MXN.</div>' +
-    '    <div class="col-sm-4">' +
-    '      <input type="text" id="txtMontoMXN" name="MontoMXN" class="form-control" />' +
-    '    </div>' +
-    '    <div class="col-sm-3">Precio USD.</div>' +
-    '    <div class="col-sm-3">' +
-    '      <input type="text" id="txtMontoUSD" name="MontoUSD" class="form-control" />' +
-    '    </div>' +
-    '  </div>' +
-    '  </div>' +
-    '  <div class="row">' +
-    '    <div class="col-sm-2">Foto</div>' +
-    '      <div class="col-sm-10">' +
-    '        <input type="file" id="ImgArchivo" name="ImgArchivo" class="form-control" />' +
-    '      </div>' +
-    '    </div>' +
-    '  </div>' +
-    '</form>';
-
+﻿
 $(document).ready(function () {
     jQuery.noConflict();
 
@@ -283,7 +242,7 @@ $(document).ready(function () {
             var $bodyModal = $("#divModalBody");
             $("#modalHdr").text("Generar pedido");
             $bodyModal.empty();
-            $bodyModal.append(modalComentario);
+            $bodyModal.append(modalComentarioCliente);
             $("#txtId").val($this.attr("folio"));
             $(botones).hide();
             $("#btnGuardarComentario").show();

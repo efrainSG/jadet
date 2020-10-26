@@ -32,7 +32,7 @@ namespace Jadet.Controllers {
             var tipos = servicio.listarCatalogo(new CatalogoRequest { Id = 0 });
             var responseCategorias = servicio.listarCatalogo(new CatalogoRequest { IdTipoCatalogo = 0 });
             productos.Items.AddRange(
-                response.Items.Select(p => new productomodel {
+                response.Items.OrderBy(p=>p.IdTipo).Select(p => new productomodel {
                     Descripcion = p.Descripcion,
                     ErrorMensaje = p.ErrorMensaje,
                     ErrorNumero = p.ErrorNumero,
@@ -250,13 +250,25 @@ namespace Jadet.Controllers {
             var servicio = new AdministradorClient();
             var listacomentarios = new Models.listaComentariosmodel();
             var response = servicio.listarComentarioNota(new NotaComentarioRequest { IdNota = folio });
-            listacomentarios.Items.AddRange(response.Items.Select(i => new Comentariomodel {
+
+
+            listacomentarios.Items.AddRange(response.Items.Where(i=>i.IdComentarioAnterior==0).Select(i => new Comentariomodel {
                 Id = (i.IdComentarioAnterior == 0) ? i.Id : i.IdComentarioAnterior,
                 Fecha = i.Fecha,
                 FolioNota = i.IdNota,
                 Mensaje = i.Comentario,
-                IdPadre = (i.IdComentarioAnterior == 0) ? i.IdComentarioAnterior : i.Id
-            }).OrderBy(i=>i.Id).ThenBy(i=>i.IdPadre));
+                IdPadre = i.IdComentarioAnterior
+            }).OrderBy(i=>i.Id));
+            foreach (var item in listacomentarios.Items) {
+                item.Items = new System.Collections.Generic.List<Comentariomodel>();
+                item.Items.AddRange(response.Items.Where(i => i.IdComentarioAnterior == item.Id).Select(i => new Comentariomodel {
+                    Id = (i.IdComentarioAnterior == 0) ? i.Id : i.IdComentarioAnterior,
+                    Fecha = i.Fecha,
+                    FolioNota = i.IdNota,
+                    Mensaje = i.Comentario,
+                    IdPadre = (i.IdComentarioAnterior == 0) ? i.IdComentarioAnterior : i.Id
+                }).OrderBy(i => i.Id));
+            }
             return View(listacomentarios);
         }
         #endregion Carga de listas

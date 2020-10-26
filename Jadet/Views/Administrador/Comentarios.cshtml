@@ -1,7 +1,7 @@
 ﻿@model Jadet.Models.listaComentariosmodel
 
 @{
-    ViewBag.Title = "Clientes";
+    ViewBag.Title = "Comentarios";
     Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
 }
 
@@ -17,16 +17,25 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(var item in Model.Items)
-        {
-        <tr>
-            <td>@item.Id</td>
-            <td>@item.Mensaje</td>
-            <td>@item.Fecha</td>
-            <td>
-                <a href="#" class="btn btn-612580" data-content="@item.Id" id="btnresponder@(item.Id)" folio="@(item.FolioNota)"><i class="fa fa-lg fa-comment"></i></a>
-            </td>
-        </tr>
+        @foreach (var item in Model.Items) {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Fecha.ToString("dd/MM/yyyy")</td>
+                <td>@item.Mensaje</td>
+                <td>
+                    <a href="#" class="btn btn-612580" data-content="@item.Id" id="btnresponder@(item.Id)" folio="@(item.FolioNota)"><i class="fa fa-lg fa-comment"></i></a>
+                </td>
+            </tr>
+            foreach (var subitem in item.Items.OrderBy(i => i.Fecha).ThenBy(i => i.IdPadre)) {
+                <tr>
+                    <td>@subitem.Id</td>
+                    <td>@subitem.Fecha.ToString("dd/MM/yyyy")</td>
+                    <td>@subitem.Mensaje</td>
+                    <td>
+                        <a href="#" class="btn btn-612580" data-content="@item.Id" id="btnresponder@(item.Id)" folio="@(item.FolioNota)"><i class="fa fa-lg fa-comment"></i></a>
+                    </td>
+                </tr>
+            }
         }
     </tbody>
 </table>

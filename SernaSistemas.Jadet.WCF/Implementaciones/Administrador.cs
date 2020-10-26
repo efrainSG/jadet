@@ -163,16 +163,19 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones {
                 CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
             };
             var resultado = da.listarDetalle(request.Id, request.IdNota, request.IdProducto).FirstOrDefault();
-            response = new DetalleNotaResponse {
-                ErrorMensaje = string.Empty,
-                ErrorNumero = 0,
-                Cantidad = resultado.Cantidad,
-                IdProducto = resultado.IdProducto,
-                IdNota = resultado.IdNota,
-                Id = resultado.Id,
-                PrecioMXN = resultado.PrecioMXN,
-                PrecioUSD = resultado.PrecioUSD
-            };
+            if (resultado != null)
+                response = new DetalleNotaResponse {
+                    ErrorMensaje = string.Empty,
+                    ErrorNumero = 0,
+                    Cantidad = resultado.Cantidad,
+                    IdProducto = resultado.IdProducto,
+                    IdNota = resultado.IdNota,
+                    Id = resultado.Id,
+                    PrecioMXN = resultado.PrecioMXN,
+                    PrecioUSD = resultado.PrecioUSD
+                };
+            else
+                response = new DetalleNotaResponse();
             return response;
         }
 
@@ -533,7 +536,8 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones {
                     ErrorMensaje = string.Empty,
                     ErrorNumero = 0,
                     Comentario = i.Comentario,
-                    Fecha = i.Fecha
+                    Fecha = i.Fecha,
+                    IdComentarioAnterior = i.IdComentarioAnterior
                 }));
             return response;
         }

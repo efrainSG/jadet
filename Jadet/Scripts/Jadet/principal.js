@@ -560,7 +560,18 @@
                     alert(data.respuesta.ErrorMensaje);
             });
         });
+    $('[id^="ticket"]').off()
+        .on("click", function () {
+            $this = $(this);
+            var $bodyModal = $("#divModalBody");
+            $("#modalHdr").text("Ticket");
+            $bodyModal.empty();
+            $bodyModal.append('<img src="' + $this.attr("src") + '">');
 
+            $(botones).hide();
+            $("#myModal").modal("show");
+
+        });
     //-- CARRITO ----------------------------------------------------------------------------
     $('[id^="btnagregarCarrito"]').off()
         .on("click", function () {

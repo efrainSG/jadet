@@ -10,6 +10,10 @@ namespace Jadet.Models {
         public int FolioNota { get; set; }
         public DateTime Fecha { get; set; }
         public string Mensaje { get; set; }
+        public List<Comentariomodel> Items { get; set; }
+        public Comentariomodel() {
+            Items = new List<Comentariomodel>();
+        }
     }
 
     public class listaComentariosmodel {

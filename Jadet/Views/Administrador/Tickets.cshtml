@@ -9,12 +9,16 @@
 <table class="table table-active table-bordered">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Nota</th>
-            <th>Ticket</th>
-            <th>Fecha</th>
-            <th>
-            </th>
+            <th rowspan="2">Id</th>
+            <th rowspan="2">Nota</th>
+            <th rowspan="2">Ticket</th>
+            <th rowspan="2">Fecha</th>
+            <th colspan="2">Monto</th>
+            <th rowspan="2"></th>
+        </tr>
+        <tr>
+            <th>MXN</th>
+            <th>USD</th>
         </tr>
     </thead>
     <tbody>
@@ -23,11 +27,10 @@
         <tr>
             <td>@item.Id</td>
             <td>@item.IdNota</td>
-            <td><img src="~/Content/tickets/@item.Ruta" width="100"/></td>
-            <td>@item.Fecha</td>
-            <td>
-                
-            </td>
+            <td><a href="#" id="ticket@(item.Id)" src="~/Content/tickets/@item.Ruta"><img src="~/Content/tickets/@item.Ruta" width="100" /></a></td>
+            <td>@item.Fecha.ToString("dd/MM/yyyy")</td>
+            <td>@item.MontoMXN</td>
+            <td>@item.MontoUSD</td>
         </tr>
         }
     </tbody>

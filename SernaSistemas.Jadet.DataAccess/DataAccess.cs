@@ -1034,7 +1034,8 @@ namespace SernaSistemas.Jadet.DataAccess {
                                 Id = (int)dr["Id"],
                                 IdNota = (int)dr["IdNota"],
                                 Comentario = dr["Comentario"].ToString(),
-                                Fecha = (DateTime)dr["Fecha"]
+                                Fecha = (DateTime)dr["Fecha"],
+                                IdComentarioAnterior = (dr["IdComentarioAnterior"] == DBNull.Value) ? 0 : (int)dr["IdComentarioAnterior"]
                             });
                         }
                     }
