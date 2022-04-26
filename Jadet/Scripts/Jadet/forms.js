@@ -4,9 +4,9 @@ const modalProducto =
     '<form action="/Administrador/guardarProducto" method="post" id="frmProducto" enctype="multipart/form-data">' +
     '  <input type="hidden" id="txtId" value="" name="Id" />' +
     '  <div class= "row" > ' +
-    '    <div class="col-sm-2">SKU</div >' +
+    '    <div class="col-sm-2">SKU<span style="color:#f00; font-weight:bold;">*</span></div >' +
     '    <div class= "col-sm-4">' +
-    '      <input type = "text" id = "txtsku" class= "form-control" name="Sku" />' +
+    '      <input type = "text" id = "txtsku" class= "form-control" name="Sku" required />' +
     '    </div>' +
     '    <div class= "col-sm-2">Categoría</div>' +
     '    <div class= "col-sm-4">' +

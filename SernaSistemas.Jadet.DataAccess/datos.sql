@@ -101,3 +101,6 @@ select * from Administracion.Catalogo;
 select * from Administracion.Estatus;
 select * from Seguridad.Rol;
 select * from Seguridad.Usuario;
+
+delete from Ventas.Producto where id = 1
+select * from Ventas.Producto

@@ -763,7 +763,7 @@ namespace SernaSistemas.Jadet.DataAccess {
                         resultado.Id = (int)dr["Id"];
                         resultado.Nombre = dr["Nombre"].ToString();
                         resultado.Descripcion = dr["Descripcion"].ToString();
-                        resultado.Foto = (byte[])dr["Foto"];
+                        resultado.Foto = dr["Foto"] == System.DBNull.Value ? new byte[0]: (byte[])dr["Foto"];
                         resultado.AplicaExistencias = (bool)dr["AplicaExistencias"];
                         resultado.Existencias = (int)dr["Existencias"];
                         resultado.IdCatalogo = (int)dr["IdCatalogo"];
@@ -1110,7 +1110,7 @@ namespace SernaSistemas.Jadet.DataAccess {
                                 AplicaExistencias = (bool)dr["AplicaExistencias"],
                                 Descripcion = dr["Descripcion"].ToString(),
                                 Existencias = (int)dr["Existencias"],
-                                Foto = (byte[])dr["Foto"],
+                                Foto = dr["Foto"] == System.DBNull.Value ? new byte[0] : (byte[])dr["Foto"],
                                 SKU = dr["Sku"].ToString(),
                                 PrecioMXN = (decimal)dr["PrecioMXN"],
                                 IdCatalogo = (int)dr["IdCatalogo"],
