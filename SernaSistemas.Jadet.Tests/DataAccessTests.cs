@@ -11,7 +11,7 @@ using System.Web.UI;
 namespace SernaSistemas.Jadet.DataAccess.Tests {
     [TestClass()]
     public class DataAccessTests {
-        DataAccess da;
+        SernaSistemas.Jadet.DataAccess.DataAccess da;
         [TestInitialize]
         public void init() {
             da = new DataAccess {
