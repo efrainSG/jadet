@@ -17,7 +17,7 @@ jobs:
         dotnet-version: 5.0.x
     - name: Restore dependencies
       run: dotnet restore ./SernaSistemas.Jadet.Data/SernaSistemas.Jadet.Data.csproj
-    - name: Build
+    - name: Build Data project
       run: dotnet build --no-restore ./SernaSistemas.Jadet.Data/SernaSistemas.Jadet.Data.csproj
-    - name: Test
+    - name: Test Data project
       run: dotnet test --no-build --verbosity normal  ./SernaSistemas.Jadet.Data/SernaSistemas.Jadet.Data.csproj
