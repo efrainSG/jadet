@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30011.22
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SernaSistemas.Jadet.Tests", "SernaSistemas.Jadet.Tests\SernaSistemas.Jadet.Tests.csproj", "{1D958918-5ACB-4AFC-95BD-1962B6A5F9ED}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jadet", "Jadet\Jadet.csproj", "{CF847217-6F98-4855-A349-FC457FF00043}"
 	ProjectSection(ProjectDependencies) = postProject
 		{00D3A9FB-837B-40EF-BC14-7FB6C9541A85} = {00D3A9FB-837B-40EF-BC14-7FB6C9541A85}
@@ -14,16 +12,26 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SernaSistemas.Jadet.WCF", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SernaSistemas.Jadet.DataAccess", "SernaSistemas.Jadet.DataAccess\SernaSistemas.Jadet.DataAccess.csproj", "{6DEEB81F-932D-465B-BB44-9265731248B4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Legacy", "Legacy", "{04A6B2E6-D199-41E7-9036-0691F6F3E094}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0. Data", "0. Data", "{5DB4E0C8-6129-4AE6-A751-B8237CB22F9F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. BusinessLogic", "1. BusinessLogic", "{579EA8FA-A015-4589-99B6-AA3EDE1E33BD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Testing", "3. Testing", "{CAAEA5CC-A5CD-4C45-8F20-4A04ADFC8F20}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Front", "4. Front", "{C7BEC393-D035-4C49-B75E-BD59DC00F4B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SernaSistemas.Jadet.Data", "SernaSistemas.Jadet.Data\SernaSistemas.Jadet.Data.csproj", "{05F8DF02-C49C-4082-9123-99572333C723}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SernaSistemas.Jadet.BL", "SernaSistemas.Jadet.BL\SernaSistemas.Jadet.BL.csproj", "{54FC6EF0-D596-420E-A45C-A9A9526235F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1D958918-5ACB-4AFC-95BD-1962B6A5F9ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1D958918-5ACB-4AFC-95BD-1962B6A5F9ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1D958918-5ACB-4AFC-95BD-1962B6A5F9ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1D958918-5ACB-4AFC-95BD-1962B6A5F9ED}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CF847217-6F98-4855-A349-FC457FF00043}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CF847217-6F98-4855-A349-FC457FF00043}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF847217-6F98-4855-A349-FC457FF00043}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -36,9 +44,24 @@ Global
 		{6DEEB81F-932D-465B-BB44-9265731248B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DEEB81F-932D-465B-BB44-9265731248B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DEEB81F-932D-465B-BB44-9265731248B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05F8DF02-C49C-4082-9123-99572333C723}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05F8DF02-C49C-4082-9123-99572333C723}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05F8DF02-C49C-4082-9123-99572333C723}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05F8DF02-C49C-4082-9123-99572333C723}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54FC6EF0-D596-420E-A45C-A9A9526235F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54FC6EF0-D596-420E-A45C-A9A9526235F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54FC6EF0-D596-420E-A45C-A9A9526235F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54FC6EF0-D596-420E-A45C-A9A9526235F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CF847217-6F98-4855-A349-FC457FF00043} = {04A6B2E6-D199-41E7-9036-0691F6F3E094}
+		{00D3A9FB-837B-40EF-BC14-7FB6C9541A85} = {04A6B2E6-D199-41E7-9036-0691F6F3E094}
+		{6DEEB81F-932D-465B-BB44-9265731248B4} = {04A6B2E6-D199-41E7-9036-0691F6F3E094}
+		{05F8DF02-C49C-4082-9123-99572333C723} = {5DB4E0C8-6129-4AE6-A751-B8237CB22F9F}
+		{54FC6EF0-D596-420E-A45C-A9A9526235F8} = {579EA8FA-A015-4589-99B6-AA3EDE1E33BD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EF6A381B-AD82-401E-A5E1-BB9D7B467A03}
