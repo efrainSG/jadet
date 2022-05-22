@@ -26,11 +26,11 @@ namespace SernaSisitemas.Jadet.WCF.Contratos {
         [OperationContract]
         NotaTicketResponse guardarTicket(NotaTicketRequest request);
         [OperationContract]
-        coleccionNotaTicketResponse listarTickets(NotaTicketRequest request);
+        ColeccionNotaTicketResponse listarTickets(NotaTicketRequest request);
 
         [OperationContract]
         NotaComentarioResponse guardarComentario(NotaComentarioRequest request);
         [OperationContract]
-        coleccionNotaComentarioResponse listarComentarios(NotaComentarioRequest request);
+        ColeccionNotaComentarioResponse listarComentarios(NotaComentarioRequest request);
     }
 }

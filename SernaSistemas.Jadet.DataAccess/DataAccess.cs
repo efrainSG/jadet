@@ -897,7 +897,7 @@ namespace SernaSistemas.Jadet.DataAccess {
             return resultado;
         }
 
-        public List<DetalleNota> listarDetalle(int id, int idNota, int IdProducto) {
+        public List<DetalleNota> listarDetalle(DetalleNota detalle) {
             List<DetalleNota> resultado = new List<DetalleNota>();
 
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
@@ -909,19 +909,19 @@ namespace SernaSistemas.Jadet.DataAccess {
                     cmd.Parameters.Add(new SqlParameter {
                         DbType = System.Data.DbType.Int32,
                         Direction = System.Data.ParameterDirection.Input,
-                        Value = id,
+                        Value = detalle.Id,
                         ParameterName = "@Id"
                     });
                     cmd.Parameters.Add(new SqlParameter {
                         DbType = System.Data.DbType.Int32,
                         Direction = System.Data.ParameterDirection.Input,
-                        Value = idNota,
+                        Value = detalle.IdNota,
                         ParameterName = "@IdNota"
                     });
                     cmd.Parameters.Add(new SqlParameter {
                         DbType = System.Data.DbType.Int32,
                         Direction = System.Data.ParameterDirection.Input,
-                        Value = IdProducto,
+                        Value = detalle.IdProducto,
                         ParameterName = "@IdProducto"
                     });
                     conn.Open();

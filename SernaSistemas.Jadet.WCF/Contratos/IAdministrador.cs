@@ -36,7 +36,7 @@ namespace SernaSisitemas.Jadet.WCF.Contratos {
         [OperationContract]
         ClienteResponse cargarCliente(ClienteRequest request);
         [OperationContract]
-        coleccionClientesResponse listarClientes(ClienteRequest request);
+        ColeccionClientesResponse listarClientes(ClienteRequest request);
         [OperationContract]
         HistorialClienteResponse cargarHistorialCliente(ClienteRequest request);
 
@@ -50,12 +50,12 @@ namespace SernaSisitemas.Jadet.WCF.Contratos {
         [OperationContract]
         ProductoResponse cargarProducto(ProductoRequest request);
         [OperationContract]
-        coleccionProductoResponse listarProductos(ProductoRequest request);
+        ColeccionProductoResponse listarProductos(ProductoRequest request);
 
         [OperationContract]
         NotaResponse guardarNota(NotaRequest request);
         [OperationContract]
-        coleccionNotasResponse listarNotas(NotaRequest request);
+        ColeccionNotasResponse listarNotas(NotaRequest request);
         [OperationContract]
         NotaResponse cargarNota(NotaRequest request);
         [OperationContract]
@@ -64,7 +64,7 @@ namespace SernaSisitemas.Jadet.WCF.Contratos {
         [OperationContract]
         DetalleNotaResponse guardarDetalleNota(DetalleNotaRequest request);
         [OperationContract]
-        coleccionDetalleNotaResponse listarDetalleNota(DetalleNotaRequest request);
+        ColeccionDetalleNotaResponse listarDetalleNota(DetalleNotaRequest request);
         [OperationContract]
         DetalleNotaResponse cargarDetalleNota(DetalleNotaRequest request);
         [OperationContract]
@@ -73,7 +73,7 @@ namespace SernaSisitemas.Jadet.WCF.Contratos {
         [OperationContract]
         NotaComentarioResponse guardarComentarioNota(NotaComentarioRequest request);
         [OperationContract]
-        coleccionNotaComentarioResponse listarComentarioNota(NotaComentarioRequest request);
+        ColeccionNotaComentarioResponse listarComentarioNota(NotaComentarioRequest request);
         [OperationContract]
         NotaComentarioResponse cargarComentarioNota(NotaComentarioRequest request);
         [OperationContract]
@@ -82,7 +82,7 @@ namespace SernaSisitemas.Jadet.WCF.Contratos {
         [OperationContract]
         NotaTicketResponse guardarTicketNota(NotaTicketRequest request);
         [OperationContract]
-        coleccionNotaTicketResponse listarTicketNota(NotaTicketRequest request);
+        ColeccionNotaTicketResponse listarTicketNota(NotaTicketRequest request);
         [OperationContract]
         NotaTicketResponse cargarTicketNota(NotaTicketRequest request);
         [OperationContract]

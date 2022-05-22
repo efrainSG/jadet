@@ -30,6 +30,34 @@ namespace SernaSistemas.Jadet.WCF.Modelos {
         public int IdTipo { get; set; }
         [DataMember]
         public string Tipo { get; set; }
+
+        public static ProductoRequest ToRequest(dynamic producto)
+        {
+            if (producto != null)
+            {
+                return new ProductoRequest
+                {
+                    AplicaExistencias = producto.AplicaExistencias,
+                    Descripcion = producto.Descripcion,
+                    Foto = producto.Foto,
+                    IdCategoria = producto.IdCategoria,
+                    Existencias = producto.Existencias,
+                    IdEstatus = producto.IdEstatus,
+                    Id = producto.Id,
+                    IdTipo = producto.IdTipo,
+                    Nombre = producto.Nombre,
+                    PrecioMXN = producto.PrecioMXN,
+                    PrecioUSD = producto.PrecioUSD,
+                    SKU = producto.SKU,
+                    Tipo = producto.Tipo,
+                };
+            }
+            else
+            {
+                return new ProductoRequest();
+            }
+        }
+
     }
 
     [DataContract]
@@ -60,31 +88,78 @@ namespace SernaSistemas.Jadet.WCF.Modelos {
         public int IdTipo { get; set; }
         [DataMember]
         public string Tipo { get; set; }
+
+        public static ProductoResponse ToResponse(dynamic producto)
+        {
+            if (producto != null)
+            {
+                return new ProductoResponse
+                {
+                    AplicaExistencias = producto.AplicaExistencias,
+                    Descripcion = producto.Descripcion,
+                    ErrorMensaje = string.Empty,
+                    ErrorNumero = 0,
+                    Foto = producto.Foto,
+                    IdCategoria = producto.IdCategoria,
+                    Existencias = producto.Existencias,
+                    IdEstatus = producto.IdEstatus,
+                    Id = producto.Id,
+                    IdTipo = producto.IdTipo,
+                    Nombre = producto.Nombre,
+                    PrecioMXN = producto.PrecioMXN,
+                    PrecioUSD = producto.PrecioUSD,
+                    SKU = producto.SKU,
+                    Tipo = producto.Tipo,
+                };
+            }
+            else
+            {
+                return new ProductoResponse();
+            }
+        }
     }
 
     [DataContract]
-    public class coleccionProductoResponse : BaseResponse {
+    public class ColeccionProductoResponse : BaseResponse {
         [DataMember]
         public List<ProductoResponse> Items { get; set; }
-        public coleccionProductoResponse() {
+        public ColeccionProductoResponse() {
             Items = new List<ProductoResponse>();
         }
     }
 
     [DataContract]
-    public class categoriaResponse {
+    public class CategoriaResponse: BaseResponse {
         [DataMember]
         public int Id { get; set; }
         [DataMember]
         public string Nombre { get; set; }
+
+        public static CategoriaResponse ToResponse(dynamic categoria)
+        {
+            if (categoria != null)
+            {
+                return new CategoriaResponse
+                {
+                    ErrorMensaje = string.Empty,
+                    ErrorNumero = 0,
+                    Id = categoria.Id,
+                    Nombre = categoria.Nombre
+                };
+            }
+            else
+            {
+                return new CategoriaResponse();
+            }
+        }
     }
 
     [DataContract]
-    public class coleccionCategoriasResponse : BaseResponse {
+    public class ColeccionCategoriasResponse : BaseResponse {
         [DataMember]
-        public List<categoriaResponse> Items { get; set; }
-        public coleccionCategoriasResponse() {
-            Items = new List<categoriaResponse>();
+        public List<CategoriaResponse> Items { get; set; }
+        public ColeccionCategoriasResponse() {
+            Items = new List<CategoriaResponse>();
         }
     }
 }

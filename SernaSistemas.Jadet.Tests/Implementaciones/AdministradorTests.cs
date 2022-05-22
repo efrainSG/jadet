@@ -14,7 +14,7 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones.Tests {
 
         [TestInitialize]
         public void init() {
-            servicio = new Administrador();
+            servicio = new Administrador(string.Empty);
         }
 
         [TestMethod()]
