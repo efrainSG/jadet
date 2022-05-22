@@ -5,43 +5,52 @@
 }
 
 <div class="container">
-    <div class="col-sm-2">
-        <img src="https://scontent.fpbc2-1.fna.fbcdn.net/v/t1.15752-9/102330860_2645200832468537_2988515394495635548_n.jpg?_nc_cat=110&_nc_sid=b96e70&_nc_eui2=AeFA4fBNKbOXyCjErnVOHU-jkvkSYo9N-_-S-RJij037_1E-Dl0h9KYS0cpaieekaPY&_nc_ohc=IFljswWXq8MAX_JaAhL&_nc_ht=scontent.fpbc2-1.fna&oh=bec1cced478132cd76c5558198c43e4e&oe=5F2C7578"
-             style="width:100%" />
+    <div class="row">
+        <div class="col-sm-2">
+            <img src="@Model.Home.UrlLogo"
+                 style="width:100%" />
+        </div>
+        <div class="col-sm-10">
+            <h1>@Model.Home.Nombre</h1>
+            <p class="lead">@Model.Home.Slogan</p>
+            <p></p>
+        </div>
     </div>
-    <div class="col-sm-7">
-        <h1>JADET</h1>
-        <p class="lead">Bienvenidos a donde encontrarán todo el material para hacer sus sueños realidad.</p>
-        <p></p>
-    </div>
-    <div class="col-sm-3 card">
-        @using (Html.BeginForm("hazLogin", "Home"))
-        {
-            <div class="row">
-                <div class="col-sm-12 input-group">
-                    <span class="input-group-addon" style="background-color: #E567B1;"><i class="fa fa-user"></i></span>
-                    @Html.TextBoxFor(m => m.usuario, new { @class = "form-control", placeholder = "Usuario" })
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12 input-group">
-                    <span class="input-group-addon" style="background-color: #E567B1;"><i class="fa fa-key"></i></span>
-                    @Html.PasswordFor(m => m.password, new { @class = "form-control", placeholder = "Contraseña" })
-                </div>
-            </div>
-            <div class="row card-footer">
-                <div class="col-sm-12 text-center">
-                    <div class="row col-sm-12">
-                        <input type="submit" class="btn btn-CB0077-a btn-block" value="Iniciar sesión" />
-                    </div>
-                    <div class="row">
-                        <span class="col-sm-12 text-danger">
-                            @Html.DisplayFor(m=>m.ErrorMensaje)
-                        </span>
+
+    <div class="row">
+        <div class="col-sm-4 card col-sm-offset-4">
+            @using (Html.BeginForm("hazLogin", "Home"))
+            {
+                <div class="row">
+                    <div class="col-sm-12 input-group">
+                        <span class="input-group-addon" style="background-color: #E567B1;"><i class="fa fa-user"></i></span>
+                        @Html.TextBoxFor(m => m.usuario, new { @class = "form-control", placeholder = "Usuario" })
                     </div>
                 </div>
-            </div>
-        }
+                <div class="row">
+                    <div class="col-sm-12 input-group">
+                        <span class="input-group-addon" style="background-color: #E567B1;"><i class="fa fa-key"></i></span>
+                        @Html.PasswordFor(m => m.password, new { @class = "form-control", placeholder = "Contraseña" })
+                    </div>
+                </div>
+                <div class="row card-footer">
+                    <div class="col-sm-12 text-center">
+                        <div class="row col-sm-12">
+                            <input type="submit" class="btn btn-CB0077-a btn-block" value="Iniciar sesión" />
+                        </div>
+                        <div class="row">
+                            <span class="col-sm-12 text-danger">
+                                @Html.DisplayFor(m => m.ErrorMensaje)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-sm-4 card">
+            <img width="100%"
+                 src="@Model.Home.UrlImgDer" />
+        </div>
     </div>
 </div>
 
