@@ -9,77 +9,28 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
 {
     public class Cliente : ICliente
     {
-
+        private readonly DataAccess da;
+        public Cliente(string connStr)
+        {
+            da = new DataAccess
+            {
+                CadenaConexion = string.IsNullOrEmpty(connStr) ? ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString : connStr
+            };
+        }
         public CarritoResponse nuevoCarrito(CarritoRequest request)
         {
-            DataAccess da = new DataAccess
-            {
-                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
-            };
-            var _nota = da.guardarNota(new Nota
-            {
-                Fecha = DateTime.Today,
-                FechaEnvio = null,
-                Folio = 0,
-                Guia = string.Empty,
-                IdCliente = request.IdCliente,
-                IdEstatus = request.IdEstatus,
-                IdPaqueteria = request.IdPaqueteria,
-                IdTipo = request.IdTipo,
-                MontoMXN = request.MontoMXN,
-                MontoUSD = request.MontoUSD,
-                SaldoMXN = request.SaldoMXN,
-                SaldoUSD = request.SaldoUSD
-            });
-            return new CarritoResponse
-            {
-                Fecha = _nota.Fecha,
-                FechaEnvio = _nota.FechaEnvio,
-                SaldoUSD = _nota.SaldoUSD,
-                SaldoMXN = _nota.SaldoMXN,
-                MontoUSD = _nota.MontoUSD,
-                MontoMXN = _nota.MontoMXN,
-                Folio = _nota.Folio,
-                Guia = _nota.Guia,
-                IdCliente = _nota.IdCliente,
-                IdEstatus = _nota.IdEstatus,
-                IdPaqueteria = _nota.IdPaqueteria,
-                IdTipo = _nota.IdTipo
-            };
+            Nota _nota = da.guardarNota(Nota.ToModel(request));
+            return NotaResponse.ToResponse(_nota) as CarritoResponse;
         }
 
         public ItemCarritoResponse agregarACarrito(ItemCarritoRequest request)
         {
-            DataAccess da = new DataAccess
-            {
-                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
-            };
-            var _respuesta = da.guardarDetalle(new DetalleNota
-            {
-                Id = request.Id,
-                Cantidad = request.Cantidad,
-                IdNota = request.IdNota,
-                IdProducto = request.IdProducto,
-                PrecioMXN = request.PrecioMXN,
-                PrecioUSD = request.PrecioUSD
-            });
-            return new ItemCarritoResponse
-            {
-                Cantidad = _respuesta.Cantidad,
-                Id = _respuesta.Id,
-                PrecioUSD = _respuesta.PrecioUSD,
-                PrecioMXN = _respuesta.PrecioMXN,
-                IdProducto = _respuesta.IdProducto,
-                IdNota = _respuesta.IdNota
-            };
+            var _respuesta = da.guardarDetalle(DetalleNota.ToModel(request));
+            return DetalleNotaResponse.ToResponse(_respuesta) as ItemCarritoResponse;
         }
 
         public BaseResponse quitarDelCarrito(ItemCarritoRequest request)
         {
-            DataAccess da = new DataAccess
-            {
-                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
-            };
             var _respuesta = da.borrarDetalle(request.Id);
             return new BaseResponse
             {
@@ -90,10 +41,6 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
 
         public CarritoResponse vaciarCarrito(CarritoRequest request)
         {
-            DataAccess da = new DataAccess
-            {
-                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
-            };
             var _respuesta = da.vaciarCarrito(request.Folio);
             return new CarritoResponse
             {
@@ -113,27 +60,9 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
 
         public BaseResponse generarPedido(CarritoRequest request)
         {
-            DataAccess da = new DataAccess
-            {
-                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
-            };
-            var _nota = da.listarNota(new Nota
-            {
-                Folio = request.Folio
-            }).FirstOrDefault();
-            var _respuesta = da.guardarNota(new Nota
-            {
-                Fecha = _nota.Fecha,
-                Folio = _nota.Folio,
-                IdCliente = _nota.IdCliente,
-                IdEstatus = 7,
-                IdPaqueteria = request.IdPaqueteria,
-                IdTipo = _nota.IdTipo,
-                MontoMXN = _nota.MontoMXN,
-                MontoUSD = _nota.MontoUSD,
-                SaldoMXN = _nota.SaldoMXN,
-                SaldoUSD = _nota.SaldoUSD
-            });
+            var _nota = da.listarNota(Nota.ToModel(request)).FirstOrDefault();
+            _nota.IdEstatus = 7;
+            da.guardarNota(Nota.ToModel(_nota));
             return new BaseResponse
             {
                 ErrorMensaje = string.Empty,
@@ -143,53 +72,20 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
 
         public ColeccionCarritoResponse listarPedidos(CarritoRequest request)
         {
-            DataAccess da = new DataAccess
-            {
-                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
-            };
-            var _response = da.listarNota(new Nota
-            {
-                IdCliente = request.IdCliente,
-                IdEstatus = request.IdEstatus,
-                IdTipo = request.IdTipo
-            });
+            var _response = da.listarNota(Nota.ToModel(request));
             ColeccionCarritoResponse respuesta = new ColeccionCarritoResponse
             {
                 ErrorMensaje = string.Empty,
                 ErrorNumero = 0
             };
-            respuesta.Items.AddRange(_response.Select(i => new CarritoResponse
-            {
-                Fecha = i.Fecha,
-                FechaEnvio = i.FechaEnvio,
-                Folio = i.Folio,
-                ErrorMensaje = string.Empty,
-                ErrorNumero = 0,
-                Guia = i.Guia,
-                IdCliente = i.IdCliente,
-                IdEstatus = i.IdEstatus,
-                IdPaqueteria = i.IdPaqueteria,
-                IdTipo = i.IdTipo,
-                Items = null,
-                MontoMXN = i.MontoMXN,
-                MontoUSD = i.MontoUSD,
-                SaldoMXN = i.SaldoMXN,
-                SaldoUSD = i.SaldoUSD
-            }));
+            respuesta.Items.AddRange(_response.Select(i => NotaResponse.ToResponse(i) as CarritoResponse));
             return respuesta;
         }
 
         public CarritoResponse verPedido(CarritoRequest request)
         {
-            DataAccess da = new DataAccess
-            {
-                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
-            };
-            var _response = da.listarDetalle(new DetalleNota { Id = 0, IdNota = request.Folio, IdProducto = 0 });
-            var _pedido = da.listarNota(new Nota
-            {
-                Folio = request.Folio
-            }).FirstOrDefault();
+            var _response = da.listarDetalle(DetalleNota.ToModel(request));
+            var _pedido = da.listarNota(new Nota { Folio = request.Folio }).FirstOrDefault();
             CarritoResponse respuesta = new CarritoResponse
             {
                 ErrorMensaje = "No implementado",
@@ -221,110 +117,29 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
 
         public NotaTicketResponse guardarTicket(NotaTicketRequest request)
         {
-            DataAccess da = new DataAccess
-            {
-                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
-            };
-            var _response = da.guardarTicket(new TicketNota
-            {
-                Fecha = request.Fecha,
-                Id = request.Id,
-                IdNota = request.IdNota,
-                MontoMXN = request.MontoMXN,
-                MontoUSD = request.MontoUSD,
-                Ticket = request.Ticket
-            });
-
-            NotaTicketResponse respuesta = new NotaTicketResponse
-            {
-                ErrorMensaje = "",
-                ErrorNumero = 0,
-                Fecha = _response.Fecha,
-                Ticket = _response.Ticket,
-                Id = _response.Id,
-                IdNota = _response.IdNota,
-                MontoUSD = _response.MontoUSD,
-                MontoMXN = _response.MontoMXN
-            };
-            return respuesta;
+            var _response = da.guardarTicket(TicketNota.ToModel(request));
+            return NotaTicketResponse.ToResponse(_response);
         }
 
         public NotaComentarioResponse guardarComentario(NotaComentarioRequest request)
         {
-            DataAccess da = new DataAccess
-            {
-                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
-            };
-            var _response = da.guardarComentario(new ComentarioNota
-            {
-                Fecha = request.Fecha,
-                Id = request.Id,
-                IdNota = request.IdNota,
-                Comentario = request.Comentario,
-                IdComentarioAnterior = request.IdComentarioAnterior
-            });
-
-            NotaComentarioResponse respuesta = new NotaComentarioResponse
-            {
-                ErrorMensaje = "",
-                ErrorNumero = 0,
-                Fecha = _response.Fecha,
-                Id = _response.Id,
-                IdNota = _response.IdNota,
-                Comentario = _response.Comentario,
-                IdComentarioAnterior = _response.IdComentarioAnterior
-            };
-            return respuesta;
+            var _response = da.guardarComentario(ComentarioNota.ToModel(request));
+            return NotaComentarioResponse.ToResponse(_response);
         }
 
         public ColeccionNotaTicketResponse listarTickets(NotaTicketRequest request)
         {
-            DataAccess da = new DataAccess
-            {
-                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
-            };
-            var _response = da.listarTicket(new TicketNota
-            {
-                IdNota = request.IdNota
-            });
-
+            var _response = da.listarTicket(TicketNota.ToModel(request));
             ColeccionNotaTicketResponse respuesta = new ColeccionNotaTicketResponse();
-            respuesta.Items.AddRange(_response.Select(r => new NotaTicketResponse
-            {
-                Fecha = r.Fecha,
-                ErrorMensaje = string.Empty,
-                ErrorNumero = 0,
-                Id = r.Id,
-                IdNota = r.IdNota,
-                MontoMXN = r.MontoMXN,
-                MontoUSD = r.MontoUSD,
-                Ticket = r.Ticket
-            }));
+            respuesta.Items.AddRange(_response.Select(r => NotaTicketResponse.ToResponse(r)));
             return respuesta;
         }
 
         public ColeccionNotaComentarioResponse listarComentarios(NotaComentarioRequest request)
         {
-            DataAccess da = new DataAccess
-            {
-                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
-            };
-            var _response = da.listarComentario(new ComentarioNota
-            {
-                IdNota = request.IdNota
-            });
-
+            var _response = da.listarComentario(ComentarioNota.ToModel(request));
             ColeccionNotaComentarioResponse respuesta = new ColeccionNotaComentarioResponse();
-            respuesta.Items.AddRange(_response.Select(r => new NotaComentarioResponse
-            {
-                Fecha = r.Fecha,
-                ErrorMensaje = string.Empty,
-                ErrorNumero = 0,
-                Id = r.Id,
-                IdNota = r.IdNota,
-                Comentario = r.Comentario,
-                IdComentarioAnterior = r.IdComentarioAnterior
-            }));
+            respuesta.Items.AddRange(_response.Select(r => NotaComentarioResponse.ToResponse(_response)));
             return respuesta;
         }
     }

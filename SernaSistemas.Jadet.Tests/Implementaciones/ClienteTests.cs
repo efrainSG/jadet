@@ -27,7 +27,7 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones.Tests {
 
         [TestMethod()]
         public void listarPedidosTest() {
-            Cliente cliente = new Cliente();
+            Cliente cliente = new Cliente(string.Empty);
             var _respuesta = cliente.listarPedidos(new SernaSistemas.Jadet.WCF.Modelos.CarritoRequest {
                 IdCliente = new Guid("71f43393-c695-4b25-8575-6bf6faa85c95"),
                 //IdEstatus = 6,
@@ -55,7 +55,7 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones.Tests {
 
         [TestMethod()]
         public void verPedidoTest() {
-            Cliente cliente = new Cliente();
+            Cliente cliente = new Cliente(string.Empty);
             var _respuesta = cliente.verPedido(new CarritoRequest { Folio = 7003});
             foreach (var item in _respuesta.Items) {
                 Console.WriteLine("Id: {0}\nId de nota: {1}\nId de producto: {2}\nPrecio MXN: {3}\nPrecio USD: {4}", item.Id, item.IdNota, item.IdProducto, item.Cantidad, item.PrecioMXN, item.PrecioUSD);
