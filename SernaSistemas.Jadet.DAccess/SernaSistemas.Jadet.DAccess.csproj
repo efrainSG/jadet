@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BE7DF5BE-8B0E-458A-8375-9A2BFA7511A7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SernaSistemas.Jadet.DAccess</RootNamespace>
+    <AssemblyName>SernaSistemas.Jadet.DAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="borrarCatalogo_Result.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="borrarDetalle_Result.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="borrarEstatus_Result.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="borrarProducto_Result.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="borrarUsuario_Result.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogo.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Detalle.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DTO\NotaComentarioDTO.cs" />
+    <Compile Include="DTO\NotaTicketDTO.cs" />
+    <Compile Include="DTO\DetalleDTO.cs" />
+    <Compile Include="DTO\NotaDTO.cs" />
+    <Compile Include="DTO\ProductoDTO.cs" />
+    <Compile Include="DTO\UsuarioDTO.cs" />
+    <Compile Include="DTO\RolDTO.cs" />
+    <Compile Include="DTO\EstatusDTO.cs" />
+    <Compile Include="DTO\TipoCatalogoDTO.cs" />
+    <Compile Include="DTO\CatalogoDTO.cs" />
+    <Compile Include="DTO\TipoEstatusDTO.cs" />
+    <Compile Include="Estatus.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="guardarCatalogo_Result.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="guardarComentario_Result.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="guardarDetalle_Result.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="guardarEstatus_Result.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="guardarNota_Result.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="guardarProducto_Result.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="guardarTicket_Result.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="guardarUsuario_Result.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="iniciarSesion_Result.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="listarCatalogo_Result.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="listarComentarios_Result.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="listarDetalle_Result.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="listarEstatus_Result.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="listarNotas_Result.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="listarProductos_Result.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="listarRol_Result.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="listarTickets_Result.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="listarTipoCatalogo_Result.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="listarTipoEstatus_Result.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="listarUsuario_Result.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Nota.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NotaComentario.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NotaTicket.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Producto.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\IDbVentaContext.cs" />
+    <Compile Include="Repository\IDbConfiguracionContext.cs" />
+    <Compile Include="Repository\IDbSeguridadContext.cs" />
+    <Compile Include="Rol.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TiendaDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TiendaDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TiendaDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TiendaDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TiendaDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="TipoCatalogo.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoEstatus.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario.cs">
+      <DependentUpon>TiendaDataModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="TiendaDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TiendaDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
+    <None Include="TiendaDataModel.edmx.diagram">
+      <DependentUpon>TiendaDataModel.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TiendaDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TiendaDataModel.Context.cs</LastGenOutput>
+      <DependentUpon>TiendaDataModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="TiendaDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TiendaDataModel.edmx</DependentUpon>
+      <LastGenOutput>TiendaDataModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SQL\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

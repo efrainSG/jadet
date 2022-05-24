@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30011.22
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SernaSistemas.Jadet.Tests", "SernaSistemas.Jadet.Tests\SernaSistemas.Jadet.Tests.csproj", "{1D958918-5ACB-4AFC-95BD-1962B6A5F9ED}"
 EndProject
@@ -13,6 +13,18 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SernaSistemas.Jadet.WCF", "SernaSistemas.Jadet.WCF\SernaSistemas.Jadet.WCF.csproj", "{00D3A9FB-837B-40EF-BC14-7FB6C9541A85}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SernaSistemas.Jadet.DataAccess", "SernaSistemas.Jadet.DataAccess\SernaSistemas.Jadet.DataAccess.csproj", "{6DEEB81F-932D-465B-BB44-9265731248B4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0. Data", "0. Data", "{C170510F-BBD1-4129-8ADB-EFDD03BE7FCF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Servicios", "2. Servicios", "{0A985CF2-B294-4090-A50B-5B03D72AFE1F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. BusinessLogic", "1. BusinessLogic", "{CBED82E6-C8F3-4CE9-A3B6-01321DE55D08}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. UI", "3. UI", "{7117169D-1B7F-4577-80EF-DCB958AD3D55}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Tests", "4. Tests", "{491A9586-00BD-4191-83F7-12B4C07D18CB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SernaSistemas.Jadet.DAccess", "SernaSistemas.Jadet.DAccess\SernaSistemas.Jadet.DAccess.csproj", "{BE7DF5BE-8B0E-458A-8375-9A2BFA7511A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,9 +48,20 @@ Global
 		{6DEEB81F-932D-465B-BB44-9265731248B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DEEB81F-932D-465B-BB44-9265731248B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DEEB81F-932D-465B-BB44-9265731248B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE7DF5BE-8B0E-458A-8375-9A2BFA7511A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE7DF5BE-8B0E-458A-8375-9A2BFA7511A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE7DF5BE-8B0E-458A-8375-9A2BFA7511A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE7DF5BE-8B0E-458A-8375-9A2BFA7511A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1D958918-5ACB-4AFC-95BD-1962B6A5F9ED} = {491A9586-00BD-4191-83F7-12B4C07D18CB}
+		{CF847217-6F98-4855-A349-FC457FF00043} = {7117169D-1B7F-4577-80EF-DCB958AD3D55}
+		{00D3A9FB-837B-40EF-BC14-7FB6C9541A85} = {0A985CF2-B294-4090-A50B-5B03D72AFE1F}
+		{6DEEB81F-932D-465B-BB44-9265731248B4} = {C170510F-BBD1-4129-8ADB-EFDD03BE7FCF}
+		{BE7DF5BE-8B0E-458A-8375-9A2BFA7511A7} = {C170510F-BBD1-4129-8ADB-EFDD03BE7FCF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EF6A381B-AD82-401E-A5E1-BB9D7B467A03}

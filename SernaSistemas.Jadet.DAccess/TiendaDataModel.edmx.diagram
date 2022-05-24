@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0deabc8ea58c4ca9b53b17dec3326466" Name="Diagram1">
+        <EntityTypeShape EntityType="BDJadetModel.Catalogo" Width="1.5" PointX="5.25" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDJadetModel.Estatus" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDJadetModel.TipoCatalogo" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDJadetModel.TipoEstatus" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDJadetModel.Rol" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDJadetModel.Usuario" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDJadetModel.Detalle" Width="1.5" PointX="9.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDJadetModel.Nota" Width="1.5" PointX="7.5" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDJadetModel.NotaComentario" Width="1.5" PointX="9.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDJadetModel.NotaTicket" Width="1.5" PointX="9.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDJadetModel.Producto" Width="1.5" PointX="7.5" PointY="9.5" IsExpanded="true" />
+        <AssociationConnector Association="BDJadetModel.fk_Catalogo_Notas_Estatus" ManuallyRouted="false" />
+        <AssociationConnector Association="BDJadetModel.fk_Catalogo_Notas_Paqueteria" ManuallyRouted="false" />
+        <AssociationConnector Association="BDJadetModel.fk_Catalogo_Notas_Tipo" ManuallyRouted="false" />
+        <AssociationConnector Association="BDJadetModel.fk_Catalogo_Producto" ManuallyRouted="false" />
+        <AssociationConnector Association="BDJadetModel.fk_Estatus_Producto" ManuallyRouted="false" />
+        <AssociationConnector Association="BDJadetModel.fk_TipoCatalogo_Catalogo" ManuallyRouted="false" />
+        <AssociationConnector Association="BDJadetModel.fk_TipoNota_Producto" ManuallyRouted="false" />
+        <AssociationConnector Association="BDJadetModel.fk_Estatus_usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="BDJadetModel.fk_tipoEstatus_Estatus" ManuallyRouted="false" />
+        <AssociationConnector Association="BDJadetModel.fk_rol_usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="BDJadetModel.fk_Usuario_Notas" ManuallyRouted="false" />
+        <AssociationConnector Association="BDJadetModel.fk_Nota_Detalle" ManuallyRouted="false" />
+        <AssociationConnector Association="BDJadetModel.fk_Producto_Detalle" ManuallyRouted="false" />
+        <AssociationConnector Association="BDJadetModel.fk_Nota_Comentario" ManuallyRouted="false" />
+        <AssociationConnector Association="BDJadetModel.fk_Nota_Ticket" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
