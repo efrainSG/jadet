@@ -10,6 +10,15 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
     public class Administrador : IAdministrador
     {
         private readonly DataAccess da;
+
+        public Administrador()
+        {
+            da = new DataAccess
+            {
+                CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
+            };
+        }
+
         public Administrador(string connStr)
         {
             da = new DataAccess

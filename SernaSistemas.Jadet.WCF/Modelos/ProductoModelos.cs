@@ -100,16 +100,16 @@ namespace SernaSistemas.Jadet.WCF.Modelos {
                     ErrorMensaje = string.Empty,
                     ErrorNumero = 0,
                     Foto = producto.Foto,
-                    IdCategoria = producto.IdCategoria,
+                    IdCategoria = producto.IdCatalogo,
                     Existencias = producto.Existencias,
                     IdEstatus = producto.IdEstatus,
                     Id = producto.Id,
-                    IdTipo = producto.IdTipo,
+                    IdTipo = producto.IdTipoNota,
                     Nombre = producto.Nombre,
                     PrecioMXN = producto.PrecioMXN,
                     PrecioUSD = producto.PrecioUSD,
                     SKU = producto.SKU,
-                    Tipo = producto.Tipo,
+                    //Tipo = producto.Tipo,
                 };
             }
             else
