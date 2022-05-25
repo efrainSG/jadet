@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SernaSistemas.Jadet.DAccess.DTO
@@ -22,7 +23,7 @@ namespace SernaSistemas.Jadet.DAccess.DTO
 
     public class EstatusesDTO: List<EstatusDTO>
     {
-        public static List<EstatusDTO> ToDTO(List<dynamic> estatuses) =>
+        internal static IEnumerable<EstatusDTO> ToDTO(List<Estatus> estatuses) =>
             (List<EstatusDTO>)estatuses.Select(e => EstatusDTO.ToDTO(e));
     }
 }

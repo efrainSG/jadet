@@ -20,7 +20,7 @@ namespace SernaSistemas.Jadet.DAccess.DTO
 
     public class RolesDTO:List<RolDTO>
     {
-        public static List<RolDTO> ToDTO(List<dynamic> roles) =>
+        public static List<RolDTO> ToDTO(List<Rol> roles) =>
             (List<RolDTO>)roles.Select(r => RolDTO.ToDTO(r));
     }
 }

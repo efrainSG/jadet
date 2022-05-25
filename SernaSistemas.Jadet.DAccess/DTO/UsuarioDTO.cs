@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SernaSistemas.Jadet.DAccess.DTO
 {
     public class UsuarioDTO
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public int IdRol { get; set; }
         public int IdEstatus { get; set; }
         public int ZonaPaqueteria { get; set; }
@@ -36,7 +37,7 @@ namespace SernaSistemas.Jadet.DAccess.DTO
 
     public class UsuariosDTO : List<UsuarioDTO>
     {
-        public static List<UsuarioDTO> ToDTO(List<dynamic> usuarios) =>
+        public static List<UsuarioDTO> ToDTO(List<Usuario> usuarios) =>
             (List<UsuarioDTO>)usuarios.Select(u => UsuarioDTO.ToDTO(u));
     }
 }

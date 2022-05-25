@@ -19,7 +19,7 @@ namespace SernaSistemas.Jadet.DAccess.DTO
 
     public class TiposEstatusDTO : List<TipoEstatusDTO>
     {
-        public static List<TipoEstatusDTO> ToDTO(List<dynamic> tipos) =>
+        public static List<TipoEstatusDTO> ToDTO(List<TipoEstatus> tipos) =>
             (List<TipoEstatusDTO>)tipos.Select(t => TipoEstatusDTO.ToDTO(t));
     }
 }

@@ -158,6 +158,11 @@
       <DependentUpon>TiendaDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BDJadetEntities.cs" />
+    <Compile Include="Repository\DbVentaContext.cs" />
+    <Compile Include="Repository\DbConfiguracionContext.cs" />
+    <Compile Include="Repository\DbAdministracionContext.cs" />
+    <Compile Include="Repository\DbSeguridadContext.cs" />
     <Compile Include="Repository\IDbAdministracionContext.cs" />
     <Compile Include="Repository\IDbVentaContext.cs" />
     <Compile Include="Repository\IDbConfiguracionContext.cs" />
