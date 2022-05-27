@@ -29,7 +29,7 @@ namespace SernaSistemas.Jadet.DAccess.DTO
 
     public class NotasTicketsDTO : List<NotaTicketDTO>
     {
-        public static List<NotaTicketDTO> ToDTO(List<dynamic> notasTickets) =>
+        public static List<NotaTicketDTO> ToDTO(List<NotaTicket> notasTickets) =>
             (List<NotaTicketDTO>)notasTickets.Select(n => NotaTicketDTO.ToDTO(n));
     }
 }

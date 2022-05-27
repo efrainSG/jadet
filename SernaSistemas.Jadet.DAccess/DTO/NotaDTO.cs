@@ -10,7 +10,7 @@ namespace SernaSistemas.Jadet.DAccess.DTO
         public int IdTipo { get; set; }
         public int IdEstatus { get; set; }
         public int IdPaqueteria { get; set; }
-        public int IdCliente { get; set; }
+        public Guid IdCliente { get; set; }
         public string Guia { get; set; }
         public DateTime Fecha { get; set; }
         public DateTime FechaEnvio { get; set; }
@@ -41,7 +41,7 @@ namespace SernaSistemas.Jadet.DAccess.DTO
 
     public class NotasDTO: List<NotaDTO>
     {
-        public static List<NotaDTO> ToDTO(List<dynamic> notas)
+        public static List<NotaDTO> ToDTO(List<Nota> notas)
         {
             var _notas = new List<NotaDTO>();
             _notas.AddRange((List<NotaDTO>)notas.Select(n => NotaDTO.ToDTO(n)));

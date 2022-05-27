@@ -1,4 +1,5 @@
 ﻿using SernaSistemas.Jadet.DAccess.DTO;
+using System;
 using System.Linq;
 
 namespace SernaSistemas.Jadet.DAccess.Repository
@@ -152,7 +153,7 @@ namespace SernaSistemas.Jadet.DAccess.Repository
             int idTipo = catalogo.IdTipoCatalogo;
             Catalogo _catalogo = contexto.Catalogoes.FirstOrDefault(c => c.Id == id);
             TipoCatalogo _tipo = contexto.TipoCatalogoes.FirstOrDefault(t => t.Id == idTipo);
-            if(_catalogo == null)
+            if (_catalogo == null)
             {
                 _catalogo = new Catalogo();
                 contexto.Catalogoes.Add(_catalogo);
@@ -178,7 +179,7 @@ namespace SernaSistemas.Jadet.DAccess.Repository
             Nota _nota = contexto.Notas.FirstOrDefault(n => n.Folio == idNota);
             Producto _producto = contexto.Productoes.FirstOrDefault(p => p.Id == idProducto);
 
-            if(_detalle == null)
+            if (_detalle == null)
             {
                 _detalle = new Detalle();
                 contexto.Detalles.Add(_detalle);
@@ -193,7 +194,7 @@ namespace SernaSistemas.Jadet.DAccess.Repository
             int resultado = contexto.SaveChanges();
 
             detalle = DetalleDTO.ToDTO(_detalle);
-            
+
             return resultado != 0;
         }
 
@@ -215,7 +216,7 @@ namespace SernaSistemas.Jadet.DAccess.Repository
             int resultado = contexto.SaveChanges();
 
             estatus = EstatusDTO.ToDTO(_estatus);
-            
+
             return resultado != 0;
         }
 
@@ -228,9 +229,9 @@ namespace SernaSistemas.Jadet.DAccess.Repository
 
             Nota _nota = contexto.Notas.FirstOrDefault(n => n.Folio == folio);
             Catalogo catPaqueteria = contexto.Catalogoes.FirstOrDefault(c => c.Id == idPaqueteria);
-            Catalogo catTipo= contexto.Catalogoes.FirstOrDefault(c => c.Id == idTipo);
+            Catalogo catTipo = contexto.Catalogoes.FirstOrDefault(c => c.Id == idTipo);
             Catalogo catEstatus = contexto.Catalogoes.FirstOrDefault(e => e.Id == idEstatus);
-            
+
             if (_nota == null)
             {
                 _nota = new Nota();
@@ -292,7 +293,7 @@ namespace SernaSistemas.Jadet.DAccess.Repository
             int idEstatus = producto.IdEstatus;
             int idTipoNota = producto.IdTipoNota;
             Producto _producto = contexto.Productoes.FirstOrDefault(p => p.Id == id);
-            if(_producto == null)
+            if (_producto == null)
             {
                 _producto = new Producto();
                 contexto.Productoes.Add(_producto);
@@ -300,7 +301,7 @@ namespace SernaSistemas.Jadet.DAccess.Repository
 
             Catalogo _catalogo = contexto.Catalogoes.FirstOrDefault(c => c.Id == idCatalogo);
             Catalogo _estatus = contexto.Catalogoes.FirstOrDefault(e => e.Id == idEstatus);
-            Catalogo _tipoNota = contexto.Catalogoes.FirstOrDefault(t=> t.Id == idTipoNota);
+            Catalogo _tipoNota = contexto.Catalogoes.FirstOrDefault(t => t.Id == idTipoNota);
 
             _catalogo.CatProductos.Add(_producto);
             _estatus.EstProductos.Add(_producto);
@@ -314,57 +315,241 @@ namespace SernaSistemas.Jadet.DAccess.Repository
 
         public bool GuardarTipoCatalogo(ref EstatusDTO estatus)
         {
-            throw new System.NotImplementedException();
+            int id = estatus.Id;
+            int idTipo = estatus.IdTipoEstatus;
+            Estatus _estatus = contexto.Estatus1.FirstOrDefault(e => e.Id == id);
+            if (_estatus == null)
+            {
+                _estatus = new Estatus();
+                contexto.Estatus1.Add(_estatus);
+            }
+            TipoEstatus _tipo = contexto.TipoEstatus1.FirstOrDefault(t => t.Id == idTipo);
+
+            _estatus.Nombre = estatus.Nombre;
+            _tipo.Estatuses.Add(_estatus);
+
+            int resultado = contexto.SaveChanges();
+            estatus = EstatusDTO.ToDTO(_estatus);
+            return resultado != 0;
         }
 
         public bool GuardarTipoEstatus(ref TipoEstatusDTO tipo)
         {
-            throw new System.NotImplementedException();
+            int id = tipo.Id;
+
+            TipoEstatus _tipo = contexto.TipoEstatus1.FirstOrDefault(t => t.Id == id);
+            if (_tipo == null)
+            {
+                _tipo = new TipoEstatus();
+                contexto.TipoEstatus1.Add(_tipo);
+            }
+            _tipo.Nombre = tipo.Nombre;
+            int resultado = contexto.SaveChanges();
+            tipo = TipoEstatusDTO.ToDTO(_tipo);
+            return resultado != 0;
         }
 
         public CatalogosDTO ObtenerCatalogos(CatalogoDTO catalogo)
         {
-            throw new System.NotImplementedException();
+            CatalogosDTO resultado = new CatalogosDTO();
+            if (catalogo.Id != 0)
+            {
+                resultado.AddRange(CatalogosDTO.ToDTO(contexto.Catalogoes.Where(c => c.Id == catalogo.Id).ToList()));
+            }
+            else if (catalogo.IdTipoCatalogo != 0)
+            {
+                resultado.AddRange(CatalogosDTO.ToDTO(
+                    contexto.Catalogoes.Where(c => c.IdTipoCatalogo == catalogo.IdTipoCatalogo).ToList()
+                    ));
+            }
+            else if (!string.IsNullOrEmpty(catalogo.Nombre))
+            {
+                resultado.AddRange(CatalogosDTO.ToDTO(
+                    contexto.Catalogoes.Where(c => c.Nombre.ToUpper().Contains(catalogo.Nombre.ToUpper())).ToList()
+                    ));
+            }
+            else
+            {
+                resultado.AddRange(CatalogosDTO.ToDTO(contexto.Catalogoes.ToList()));
+            }
+            return resultado;
         }
 
         public DetallesDTO ObtenerDetalles(DetalleDTO detalle)
         {
-            throw new System.NotImplementedException();
+            DetallesDTO resultado = new DetallesDTO();
+            if (detalle.Id != 0)
+            {
+                resultado.AddRange(DetallesDTO.ToDTO(contexto.Detalles.Where(d => d.Id == detalle.Id).ToList()));
+            }
+            else if (detalle.IdNota != 0)
+            {
+                resultado.AddRange(DetallesDTO.ToDTO(contexto.Detalles.Where(d => d.IdNota == detalle.IdNota).ToList()));
+            }
+            else if (detalle.IdProducto != 0)
+            {
+                resultado.AddRange(DetallesDTO.ToDTO(contexto.Detalles.Where(d => d.IdProducto == detalle.IdProducto).ToList()));
+            }
+            else
+            {
+                resultado.AddRange(DetallesDTO.ToDTO(contexto.Detalles.ToList()));
+            }
+            return resultado;
         }
 
-        public EstatusDTO ObtenerEstatuses(EstatusDTO estatus)
+        public EstatusesDTO ObtenerEstatuses(EstatusDTO estatus)
         {
-            throw new System.NotImplementedException();
+            EstatusesDTO resultado = new EstatusesDTO();
+            if (estatus.Id != 0)
+            {
+                resultado.AddRange(EstatusesDTO.ToDTO(contexto.Estatus1.Where(e => e.Id == estatus.Id).ToList()));
+            }
+            else if (estatus.IdTipoEstatus != 0)
+            {
+                resultado.AddRange(EstatusesDTO.ToDTO(contexto.Estatus1.Where(e => e.IdTipoEstatus == estatus.IdTipoEstatus).ToList()));
+            }
+            else if (!string.IsNullOrEmpty(estatus.Nombre))
+            {
+                resultado.AddRange(EstatusesDTO.ToDTO(
+                    contexto.Estatus1.Where(e => e.Nombre.ToUpper().Contains(estatus.Nombre.ToUpper())).ToList()));
+            }
+            return resultado;
         }
 
         public NotasDTO ObtenerNotas(NotaDTO nota)
         {
-            throw new System.NotImplementedException();
+            NotasDTO resultado = new NotasDTO();
+            if (nota.Folio != 0)
+            {
+                resultado.AddRange(NotasDTO.ToDTO(contexto.Notas.Where(n => n.Folio == nota.Folio).ToList()));
+            }
+            else if (nota.IdEstatus != 0)
+            {
+                resultado.AddRange(NotasDTO.ToDTO(contexto.Notas.Where(n => n.IdEstatus == nota.IdEstatus).ToList()));
+            }
+            else if (nota.IdPaqueteria != 0)
+            {
+                resultado.AddRange(NotasDTO.ToDTO(contexto.Notas.Where(n => n.IdPaqueteria == nota.IdPaqueteria).ToList()));
+            }
+            else if (nota.IdTipo != 0)
+            {
+                resultado.AddRange(NotasDTO.ToDTO(contexto.Notas.Where(n => n.IdTipo == nota.IdTipo).ToList()));
+            }
+            else if (nota.IdCliente != Guid.Empty)
+            {
+                resultado.AddRange(NotasDTO.ToDTO(contexto.Notas.Where(n => n.IdCliente == nota.IdCliente).ToList()));
+            }
+            else
+            {
+                resultado.AddRange(NotasDTO.ToDTO(contexto.Notas.ToList()));
+            }
+            return resultado;
         }
 
         public NotasComentariosDTO ObtenerNotasComentarios(NotaComentarioDTO notaComentario)
         {
-            throw new System.NotImplementedException();
+            NotasComentariosDTO resultado = new NotasComentariosDTO();
+            if (notaComentario.Id != 0)
+            {
+                resultado.AddRange(NotasComentariosDTO.ToDTO(contexto.NotaComentarios.Where(n => n.Id == notaComentario.Id).ToList()));
+            }
+            else if (notaComentario.IdNota != 0)
+            {
+                resultado.AddRange(NotasComentariosDTO.ToDTO(contexto.NotaComentarios.Where(n => n.IdNota == notaComentario.IdNota).ToList()));
+            }
+            else
+            {
+                resultado.AddRange(NotasComentariosDTO.ToDTO(contexto.NotaComentarios.ToList()));
+            }
+            return resultado;
         }
 
         public NotasTicketsDTO ObtenerNotasTickets(NotaTicketDTO notaTicket)
         {
-            throw new System.NotImplementedException();
+            NotasTicketsDTO resultado = new NotasTicketsDTO();
+            if (notaTicket.Id != 0)
+            {
+                resultado.AddRange(NotasTicketsDTO.ToDTO(contexto.NotaTickets.Where(n => n.Id == notaTicket.Id).ToList()));
+            }
+            else if (notaTicket.IdNota != 0)
+            {
+                resultado.AddRange(NotasTicketsDTO.ToDTO(contexto.NotaTickets.Where(n => n.IdNota == notaTicket.IdNota).ToList()));
+            }
+            else
+            {
+                resultado.AddRange(NotasTicketsDTO.ToDTO(contexto.NotaTickets.ToList()));
+            }
+            return resultado;
         }
 
         public ProductosDTO ObtenerProductos(ProductoDTO producto)
         {
-            throw new System.NotImplementedException();
+            ProductosDTO resultado = new ProductosDTO();
+            if (producto.Id != 0)
+            {
+                resultado.AddRange(ProductosDTO.ToDTO(contexto.Productoes.Where(p => p.Id == producto.Id).ToList()));
+            }
+            else if (producto.IdCatalogo != 0)
+            {
+                resultado.AddRange(ProductosDTO.ToDTO(contexto.Productoes.Where(p => p.IdCatalogo == producto.IdCatalogo).ToList()));
+            }
+            else if (producto.IdEstatus != 0)
+            {
+                resultado.AddRange(ProductosDTO.ToDTO(contexto.Productoes.Where(p => p.IdEstatus == producto.IdEstatus).ToList()));
+            }
+            else if (producto.IdTipoNota != 0)
+            {
+                resultado.AddRange(ProductosDTO.ToDTO(contexto.Productoes.Where(p => p.IdTipoNota == producto.IdTipoNota).ToList()));
+            }
+            else if (!string.IsNullOrEmpty(producto.Sku))
+            {
+                resultado.AddRange(ProductosDTO.ToDTO(contexto.Productoes.Where(p => p.sku.ToUpper().Contains(producto.Sku.ToUpper())).ToList()));
+            }
+            else if (!string.IsNullOrEmpty(producto.Nombre))
+            {
+                resultado.AddRange(ProductosDTO.ToDTO(contexto.Productoes.Where(p => p.Nombre.ToUpper().Contains(producto.Nombre.ToUpper())).ToList()));
+            }
+            else
+            {
+                resultado.AddRange(ProductosDTO.ToDTO(contexto.Productoes.ToList()));
+            }
+            return resultado;
         }
 
         public TiposCatalogosDTO ObtenerTiposCatalogos(TipoCatalogoDTO tipoCatalogo)
         {
-            throw new System.NotImplementedException();
+            TiposCatalogosDTO resultado = new TiposCatalogosDTO();
+            if (tipoCatalogo.Id != 0)
+            {
+                resultado.AddRange(TiposCatalogosDTO.ToDTO(contexto.TipoCatalogoes.Where(t => t.Id == tipoCatalogo.Id).ToList()));
+            }
+            else if (!string.IsNullOrEmpty(tipoCatalogo.Nombre))
+            {
+                resultado.AddRange(TiposCatalogosDTO.ToDTO(contexto.TipoCatalogoes.Where(t => t.Nombre.ToUpper().Contains(tipoCatalogo.Nombre.ToUpper())).ToList()));
+            }
+            else
+            {
+                resultado.AddRange(TiposCatalogosDTO.ToDTO(contexto.TipoCatalogoes.ToList()));
+            }
+            return resultado;
         }
 
         public TiposEstatusDTO ObtenerTiposEstatus(TipoEstatusDTO tipo)
         {
-            throw new System.NotImplementedException();
+            TiposEstatusDTO resultado = new TiposEstatusDTO();
+            if (tipo.Id != 0)
+            {
+                resultado.AddRange(TiposEstatusDTO.ToDTO(contexto.TipoEstatus1.Where(t => t.Id == tipo.Id).ToList()));
+            }
+            else if (!string.IsNullOrEmpty(tipo.Nombre))
+            {
+                resultado.AddRange(TiposEstatusDTO.ToDTO(contexto.TipoEstatus1.Where(t => t.Id == tipo.Id).ToList()));
+            }
+            else
+            {
+                resultado.AddRange(TiposEstatusDTO.ToDTO(contexto.TipoEstatus1.ToList()));
+            }
+            return resultado;
         }
     }
 }

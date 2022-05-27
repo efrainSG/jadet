@@ -40,7 +40,7 @@ namespace SernaSistemas.Jadet.DAccess.DTO
 
     public class ProductosDTO : List<ProductoDTO>
     {
-        public static List<ProductoDTO> ToDTO(List<dynamic> productos) =>
+        public static List<ProductoDTO> ToDTO(List<Producto> productos) =>
             (List<ProductoDTO>)productos.Select(p => ProductoDTO.ToDTO(p));
     }
 }

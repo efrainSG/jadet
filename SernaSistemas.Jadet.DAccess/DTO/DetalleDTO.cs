@@ -27,7 +27,7 @@ namespace SernaSistemas.Jadet.DAccess.DTO
 
     public class DetallesDTO : List<DetalleDTO>
     {
-        public static List<DetalleDTO> ToDTO(List<dynamic> detalles) =>
+        public static List<DetalleDTO> ToDTO(List<Detalle> detalles) =>
             (List<DetalleDTO>)detalles.Select(d => DetalleDTO.ToDTO(d));
     }
 }

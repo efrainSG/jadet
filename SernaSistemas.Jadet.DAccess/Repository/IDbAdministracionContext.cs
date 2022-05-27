@@ -31,7 +31,7 @@ namespace SernaSistemas.Jadet.DAccess.Repository
         /// </summary>
         /// <param name="estatus"></param>
         /// <returns></returns>
-        EstatusDTO ObtenerEstatuses(EstatusDTO estatus);
+        EstatusesDTO ObtenerEstatuses(EstatusDTO estatus);
         /// <summary>
         /// Para Borrar un estatus.
         /// </summary>

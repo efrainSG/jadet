@@ -27,7 +27,7 @@ namespace SernaSistemas.Jadet.DAccess.DTO
 
     public class NotasComentariosDTO: List<NotaComentarioDTO>
     {
-        public static List<NotaComentarioDTO> ToDTO(List<dynamic> comentarios) =>
+        public static List<NotaComentarioDTO> ToDTO(List<NotaComentario> comentarios) =>
             (List<NotaComentarioDTO>)comentarios.Select(c => NotaComentarioDTO.ToDTO(c));
     }
 }

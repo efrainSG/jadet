@@ -10,7 +10,7 @@ namespace SernaSistemas.Jadet.DAccess.Repository
         /// </summary>
         /// <param name="estatus"></param>
         /// <returns></returns>
-        EstatusDTO ObtenerEstatuses(EstatusDTO estatus);
+        EstatusesDTO ObtenerEstatuses(EstatusDTO estatus);
         #endregion
 
         #region Catalogo
@@ -28,7 +28,7 @@ namespace SernaSistemas.Jadet.DAccess.Repository
         /// </summary>
         /// <param name="rol"></param>
         /// <returns></returns>
-        RolesDTO ObtenerUsuarios(UsuarioDTO usuario);
+        UsuariosDTO ObtenerUsuarios(UsuarioDTO usuario);
         #endregion
 
         #region Producto
