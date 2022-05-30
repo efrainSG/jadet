@@ -19,15 +19,13 @@ namespace SernaSistemas.Jadet.BLogic
         IEnumerable<NotaTicket> ObtenerNotasTickets(NotaTicket notaTicket);
         IEnumerable<NotaComentario> ObtenerComentarios(NotaComentario notaComentario);
 
-        bool GuardarTipoEstatus(TipoEstatus tipoEstatus);
-        bool GuardarEstatus(Estatus estatus);
-        bool GuardarTipoCatalogo(TipoCatalogo tipoCatalogo);
-        bool GuardarCatalogo(Catalogo catalogo);
-        bool GuardarProducto(Producto producto);
-        bool GuardarNota(Nota nota);
-        bool GuardarDetalle(Detalle detalle);
-        bool GuardarNotaTicket(NotaTicket notaTicket);
-        bool GuardarNotaComentario(NotaComentario notaComentario);
+        bool GuardarTipoEstatus(ref TipoEstatus tipoEstatus);
+        bool GuardarEstatus(ref Estatus estatus);
+        bool GuardarTipoCatalogo(ref TipoCatalogo tipoCatalogo);
+        bool GuardarCatalogo(ref Catalogo catalogo);
+        bool GuardarProducto(ref Producto producto);
+        bool GuardarNota(ref Nota nota);
+        bool GuardarDetalle(ref Detalle detalle);
 
         bool BorrarTipoEstatus(TipoEstatus tipoEstatus);
         bool BorrarEstatus(Estatus estatus);
@@ -36,7 +34,6 @@ namespace SernaSistemas.Jadet.BLogic
         bool BorrarProducto(Producto producto);
         bool BorrarNota(Nota nota);
         bool BorrarDetalle(Detalle detalle);
-        bool BorrarNotaTicket(NotaTicket notaTicket);
         bool BorrarNotaComentario(NotaComentario notaComentario);
 
     }

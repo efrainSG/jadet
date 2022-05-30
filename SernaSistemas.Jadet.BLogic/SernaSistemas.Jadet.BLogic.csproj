@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SernaSistemas.Jadet.Comun\SernaSistemas.Jadet.Comun.csproj" />
+    <ProjectReference Include="..\SernaSistemas.Jadet.DAccess\SernaSistemas.Jadet.DAccess.csproj" />
   </ItemGroup>
 
 </Project>

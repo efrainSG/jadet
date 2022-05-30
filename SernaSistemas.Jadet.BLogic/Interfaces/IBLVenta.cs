@@ -13,6 +13,7 @@ namespace SernaSistemas.Jadet.BLogic
         IEnumerable<Detalle> ObtenerDetalles(Detalle detalle);
         IEnumerable<NotaTicket> ObtenerNotasTickets(NotaTicket notaTicket);
         IEnumerable<NotaComentario> ObtenerComentarios(NotaComentario notaComentario);
+        IEnumerable<Nota> ObtenerCarritos(Usuario usuario);
 
         bool GuardarProducto(ref Producto producto);
         bool GuardarNota(ref Producto producto);
@@ -20,5 +21,11 @@ namespace SernaSistemas.Jadet.BLogic
         bool GuardarNotaTicket(ref Producto producto);
         bool GuardarNotaComentario(ref Producto producto);
 
+        bool BorrarProducto(ref Producto producto);
+        bool BorrarNota(ref Producto producto);
+        bool BorrarDetalle(ref Producto producto);
+        bool BorrarNotaTicket(ref Producto producto);
+        bool BorrarNotaComentario(ref Producto producto);
+        bool VaciarCarrito(ref Nota carrito);
     }
 }
