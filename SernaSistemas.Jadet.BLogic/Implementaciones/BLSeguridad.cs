@@ -37,13 +37,17 @@ namespace SernaSistemas.Jadet.BLogic
         public bool GuardarRol(ref Rol rol)
         {
             RolDTO rolDTO = RolDTO.ToDTO(rol);
-            return dbSeguridadContext.GuardarRol(ref rolDTO);
+            var resultado = dbSeguridadContext.GuardarRol(ref rolDTO);
+            rol = Rol.ToModel(rolDTO);
+            return resultado;
         }
 
         public bool GuardarUsuario(ref Usuario usuario)
         {
             UsuarioDTO usuarioDTO = UsuarioDTO.ToDTO(usuario);
-            return dbSeguridadContext.GuardarUsuario(ref usuarioDTO);
+            var resultado = dbSeguridadContext.GuardarUsuario(ref usuarioDTO);
+            usuario = Usuario.ToModel(usuarioDTO);
+            return resultado;
         }
 
         public Sesion IniciarSesion(Usuario usuario)

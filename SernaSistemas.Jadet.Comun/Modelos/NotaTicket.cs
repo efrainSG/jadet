@@ -13,7 +13,7 @@ namespace SernaSistemas.Jadet.Comun.Modelos
         public decimal MontoMXN { get; set; }
         public decimal MontoUSD { get; set; }
 
-        public static NotaTicket ToDTO(dynamic notaTicket)
+        public static NotaTicket ToModel(dynamic notaTicket)
         {
             return new NotaTicket
             {

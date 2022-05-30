@@ -1,4 +1,6 @@
 ﻿using SernaSistemas.Jadet.Comun.Modelos;
+using SernaSistemas.Jadet.DAccess.DTO;
+using SernaSistemas.Jadet.DAccess.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,79 +11,111 @@ namespace SernaSistemas.Jadet.BLogic
 {
     public class BLConfiguracion : IBLConfiguracion
     {
+        private readonly IDbConfiguracionContext dbConfiguracion;
+
+        public BLConfiguracion(IDbConfiguracionContext dbConfiguracion)
+        {
+            this.dbConfiguracion = dbConfiguracion;
+        }
+
         public bool BorrarCatalogo(Catalogo catalogo)
         {
-            throw new NotImplementedException();
+            CatalogoDTO catalogoDTO = CatalogoDTO.ToDTO(catalogo);
+            return dbConfiguracion.BorrarCatalogo(ref catalogoDTO);
         }
 
         public bool BorrarEstatus(Estatus estatus)
         {
-            throw new NotImplementedException();
+            EstatusDTO estatusDTO = EstatusDTO.ToDTO(estatus);
+            return dbConfiguracion.BorrarEstatus(ref estatusDTO);
         }
 
         public bool BorrarProducto(Producto producto)
         {
-            throw new NotImplementedException();
+            ProductoDTO productoDTO = ProductoDTO.ToDTO(producto);
+            return dbConfiguracion.BorrarProducto(ref productoDTO);
         }
 
         public bool BorrarTipoCatalogo(TipoCatalogo tipoCatalogo)
         {
-            throw new NotImplementedException();
+            TipoCatalogoDTO tipoCatalogoDTO = TipoCatalogoDTO.ToDTO(tipoCatalogo);
+            return dbConfiguracion.BorrarTipoCatalogo(ref tipoCatalogoDTO);
         }
 
         public bool BorrarTipoEstatus(TipoEstatus tipoEstatus)
         {
-            throw new NotImplementedException();
+            TipoEstatusDTO tipoEstatusDTO = TipoEstatusDTO.ToDTO(tipoEstatus);
+            return dbConfiguracion.BorrarTipoEstatus(ref tipoEstatusDTO);
         }
 
-        public bool GuardarCatalogo(Catalogo catalogo)
+        public bool GuardarCatalogo(ref Catalogo catalogo)
         {
-            throw new NotImplementedException();
+            CatalogoDTO catalogoDTO = CatalogoDTO.ToDTO(catalogo);
+            var resultado = dbConfiguracion.GuardarCatalogo(ref catalogoDTO);
+            catalogo = Catalogo.ToModel(catalogoDTO);
+            return resultado;
         }
 
-        public bool GuardarEstatus(Estatus estatus)
+        public bool GuardarEstatus(ref Estatus estatus)
         {
-            throw new NotImplementedException();
+            EstatusDTO estatusDTO = EstatusDTO.ToDTO(estatus);
+            var resultado = dbConfiguracion.GuardarEstatus(ref estatusDTO);
+            estatus = Estatus.ToModel(estatusDTO);
+            return resultado;
         }
 
-        public bool GuardarProducto(Producto producto)
+        public bool GuardarProducto(ref Producto producto)
         {
-            throw new NotImplementedException();
+            ProductoDTO productoDTO = ProductoDTO.ToDTO(producto);
+            var resultado = dbConfiguracion.GuardarProducto(ref productoDTO);
+            producto = Producto.ToModel(productoDTO);
+            return resultado;
         }
 
-        public bool GuardarTipoCatalogo(TipoCatalogo tipoCatalogo)
+        public bool GuardarTipoCatalogo(ref TipoCatalogo tipoCatalogo)
         {
-            throw new NotImplementedException();
+            TipoCatalogoDTO tipoCatalogoDTO = TipoCatalogoDTO.ToDTO(tipoCatalogo);
+            var resultado = dbConfiguracion.GuardarTipoCatalogo(ref tipoCatalogoDTO);
+            tipoCatalogo = TipoCatalogo.ToModel(tipoCatalogoDTO);
+            return resultado;
         }
 
-        public bool GuardarTipoEstatus(TipoEstatus tipoEstatus)
+        public bool GuardarTipoEstatus(ref TipoEstatus tipoEstatus)
         {
-            throw new NotImplementedException();
+            TipoEstatusDTO tipoEstatusDTO = TipoEstatusDTO.ToDTO(tipoEstatus);
+            var resultado = dbConfiguracion.GuardarTipoEstatus(ref tipoEstatusDTO);
+            tipoEstatus = TipoEstatus.ToModel(tipoEstatusDTO);
+            return resultado;
         }
 
         public IEnumerable<Catalogo> ObtenerCatalogos(Catalogo catalogo)
         {
-            throw new NotImplementedException();
+            return dbConfiguracion.ObtenerCatalogos(CatalogoDTO.ToDTO(catalogo))
+                .Select(c => Catalogo.ToModel(c));
         }
 
         public IEnumerable<Estatus> ObtenerEstatuses(Estatus estatus)
         {
-            throw new NotImplementedException();
+            return dbConfiguracion.ObtenerEstatuses(EstatusDTO.ToDTO(estatus))
+                .Select(e => Estatus.ToModel(e));
         }
 
         public IEnumerable<Producto> ObtenerProductos(Producto producto)
         {
-            throw new NotImplementedException();
+            return dbConfiguracion.ObtenerProductos(ProductoDTO.ToDTO(producto))
+                .Select(p => Producto.ToModel(p));
         }
 
         public IEnumerable<TipoCatalogo> ObtenerTiposCatalogo(TipoCatalogo tipoCatalogo)
         {
-            throw new NotImplementedException();
+            return dbConfiguracion.ObtenerTiposCatalogos(TipoCatalogoDTO.ToDTO(tipoCatalogo))
+                .Select(t => TipoCatalogo.ToModel(t));
         }
 
         public IEnumerable<TipoEstatus> ObtenerTiposEstatus(TipoEstatus tipoEstatus)
         {
-            throw new NotImplementedException();
+            return dbConfiguracion.ObtenerTiposEstatus(TipoEstatusDTO.ToDTO(tipoEstatus))
+                .Select(t => TipoEstatus.ToModel(t));
         }
     }
 }

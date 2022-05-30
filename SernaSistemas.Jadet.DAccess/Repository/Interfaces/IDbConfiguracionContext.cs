@@ -64,7 +64,7 @@ namespace SernaSistemas.Jadet.DAccess.Repository
         /// </summary>
         /// <param name="tipoCatalogo"></param>
         /// <returns></returns>
-        bool GuardarTipoCatalogo(ref EstatusDTO estatus);
+        bool GuardarTipoCatalogo(ref TipoCatalogoDTO tipoCatalogo);
         #endregion
 
         #region Catalogo

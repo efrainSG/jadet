@@ -15,11 +15,11 @@ namespace SernaSistemas.Jadet.BLogic
         IEnumerable<Catalogo> ObtenerCatalogos(Catalogo catalogo);
         IEnumerable<Producto> ObtenerProductos(Producto producto);
 
-        bool GuardarTipoEstatus(TipoEstatus tipoEstatus);
-        bool GuardarEstatus(Estatus estatus);
-        bool GuardarTipoCatalogo(TipoCatalogo tipoCatalogo);
-        bool GuardarCatalogo(Catalogo catalogo);
-        bool GuardarProducto(Producto producto);
+        bool GuardarTipoEstatus(ref TipoEstatus tipoEstatus);
+        bool GuardarEstatus(ref Estatus estatus);
+        bool GuardarTipoCatalogo(ref TipoCatalogo tipoCatalogo);
+        bool GuardarCatalogo(ref Catalogo catalogo);
+        bool GuardarProducto(ref Producto producto);
 
         bool BorrarTipoEstatus(TipoEstatus tipoEstatus);
         bool BorrarEstatus(Estatus estatus);

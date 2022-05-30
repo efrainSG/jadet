@@ -313,23 +313,20 @@ namespace SernaSistemas.Jadet.DAccess.Repository
             return resultado != 0;
         }
 
-        public bool GuardarTipoCatalogo(ref EstatusDTO estatus)
+        public bool GuardarTipoCatalogo(ref TipoCatalogoDTO tipoCatalogo)
         {
-            int id = estatus.Id;
-            int idTipo = estatus.IdTipoEstatus;
-            Estatus _estatus = contexto.Estatus1.FirstOrDefault(e => e.Id == id);
-            if (_estatus == null)
+            int id = tipoCatalogo.Id;
+            TipoCatalogo _tipoCatalogo = contexto.TipoCatalogoes.FirstOrDefault(e => e.Id == id);
+            if (_tipoCatalogo == null)
             {
-                _estatus = new Estatus();
-                contexto.Estatus1.Add(_estatus);
+                _tipoCatalogo = new TipoCatalogo();
+                contexto.TipoCatalogoes.Add(_tipoCatalogo);
             }
-            TipoEstatus _tipo = contexto.TipoEstatus1.FirstOrDefault(t => t.Id == idTipo);
 
-            _estatus.Nombre = estatus.Nombre;
-            _tipo.Estatuses.Add(_estatus);
+            _tipoCatalogo.Nombre = tipoCatalogo.Nombre;
 
             int resultado = contexto.SaveChanges();
-            estatus = EstatusDTO.ToDTO(_estatus);
+            tipoCatalogo = TipoCatalogoDTO.ToDTO(_tipoCatalogo);
             return resultado != 0;
         }
 
