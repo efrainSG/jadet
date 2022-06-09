@@ -1,23 +1,19 @@
 ﻿using SernaSistemas.Jadet.Comun.Modelos;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SernaSistemas.Jadet.BLogic
 {
     public interface IBLAdministracion
     {
         IEnumerable<TipoEstatus> ObtenerTiposEstatus(TipoEstatus tipoEstatus);
-        IEnumerable<Estatus> ObtenerEstatuses(Estatus estatus);
+        IEnumerable<Estatus> ObtenerEstatuses(bool esId, Estatus estatus);
         IEnumerable<TipoCatalogo> ObtenerTiposCatalogo(TipoCatalogo tipoCatalogo);
-        IEnumerable<Catalogo> ObtenerCatalogos(Catalogo catalogo);
-        IEnumerable<Producto> ObtenerProductos(Producto producto);
-        IEnumerable<Nota> ObtenerNotas(Nota nota);
-        IEnumerable<Detalle> ObtenerDetalles(Detalle detalle);
-        IEnumerable<NotaTicket> ObtenerNotasTickets(NotaTicket notaTicket);
-        IEnumerable<NotaComentario> ObtenerComentarios(NotaComentario notaComentario);
+        IEnumerable<Catalogo> ObtenerCatalogos(bool esId, Catalogo catalogo);
+        IEnumerable<Producto> ObtenerProductos(byte idTipo, bool esSku, Producto producto);
+        IEnumerable<Nota> ObtenerNotas(byte tipoId, Nota nota);
+        IEnumerable<Detalle> ObtenerDetalles(byte idTipo, Detalle detalle);
+        IEnumerable<NotaTicket> ObtenerNotasTickets(bool esId, NotaTicket notaTicket);
+        IEnumerable<NotaComentario> ObtenerComentarios(bool esId, NotaComentario notaComentario);
 
         bool GuardarTipoEstatus(ref TipoEstatus tipoEstatus);
         bool GuardarEstatus(ref Estatus estatus);

@@ -5,8 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SernaSistemas.Jadet.Comun\SernaSistemas.Jadet.Comun.csproj" />
     <ProjectReference Include="..\SernaSistemas.Jadet.DAccess\SernaSistemas.Jadet.DAccess.csproj" />
+    <ProjectReference Include="..\SernaSistemas.Jadet.Data\SernaSistemas.Jadet.Data.csproj" />
   </ItemGroup>
 
 </Project>

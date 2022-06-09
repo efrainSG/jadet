@@ -1,6 +1,6 @@
 ﻿using SernaSistemas.Jadet.Comun.Modelos;
-using SernaSistemas.Jadet.DAccess.DTO;
-using SernaSistemas.Jadet.DAccess.Repository;
+using SernaSistemas.Jadet.Data.DTO;
+using SernaSistemas.Jadet.Data.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -122,45 +122,142 @@ namespace SernaSistemas.Jadet.BLogic
             return resultado;
         }
 
-        public IEnumerable<Catalogo> ObtenerCatalogos(Catalogo catalogo)
+        #region Obtenciones
+        public IEnumerable<Catalogo> ObtenerCatalogos(bool esId, Catalogo catalogo)
         {
-            return dBAdministracion.ObtenerCatalogos(CatalogoDTO.ToDTO(catalogo))
-                .Select(c => Catalogo.ToModel(c));
+            CatalogoDTO catalogoDTO = new CatalogoDTO { Nombre = catalogo.Nombre };
+            if (esId)
+            {
+                catalogoDTO.Id = catalogo.Id;
+            }
+            else
+            {
+                catalogoDTO.IdTipoCatalogo = catalogo.Id;
+            }
+            return dBAdministracion.ObtenerCatalogos(catalogoDTO)
+            .Select(c => Catalogo.ToModel(c));
+
         }
 
-        public IEnumerable<NotaComentario> ObtenerComentarios(NotaComentario notaComentario)
+        public IEnumerable<NotaComentario> ObtenerComentarios(bool esId, NotaComentario notaComentario)
         {
-            return dBAdministracion.ObtenerNotasComentarios(NotaComentarioDTO.ToDTO(notaComentario))
+            NotaComentarioDTO notaComentarioDTO = new NotaComentarioDTO();
+            if (esId)
+            {
+                notaComentarioDTO.Id = notaComentario.Id;
+            }
+            else
+            {
+                notaComentarioDTO.IdNota = notaComentario.Id;
+            }
+            return dBAdministracion.ObtenerNotasComentarios(notaComentarioDTO)
                 .Select(n => NotaComentario.ToModel(n));
         }
 
-        public IEnumerable<Detalle> ObtenerDetalles(Detalle detalle)
+        public IEnumerable<Detalle> ObtenerDetalles(byte idTipo, Detalle detalle)
         {
-            return dBAdministracion.ObtenerDetalles(DetalleDTO.ToDTO(detalle))
+            DetalleDTO detalleDTO = new DetalleDTO();
+            switch (idTipo)
+            {
+                case 0:
+                    detalleDTO.Id = detalle.Id;
+                    break;
+                case 1:
+                    detalleDTO.IdNota = detalle.Id;
+                    break;
+                case 2:
+                    detalleDTO.IdProducto = detalle.Id;
+                    break;
+                default:
+                    break;
+            }
+            return dBAdministracion.ObtenerDetalles(detalleDTO)
                 .Select(d => Detalle.ToModel(d));
         }
 
-        public IEnumerable<Estatus> ObtenerEstatuses(Estatus estatus)
+        public IEnumerable<Estatus> ObtenerEstatuses(bool esId, Estatus estatus)
         {
+            EstatusDTO estatusDTO = new EstatusDTO { Nombre = estatus.Nombre };
+            if (esId)
+            {
+                estatusDTO.Id = estatus.Id;
+            }
+            else
+            {
+                estatusDTO.IdTipoEstatus = estatus.Id;
+            }
             return dBAdministracion.ObtenerEstatuses(EstatusDTO.ToDTO(estatus))
                 .Select(e => Estatus.ToModel(e));
         }
 
-        public IEnumerable<Nota> ObtenerNotas(Nota nota)
+        public IEnumerable<Nota> ObtenerNotas(byte tipoId, Nota nota)
         {
+            NotaDTO notaDTO = new NotaDTO { IdCliente = nota.IdCliente };
+            switch (tipoId)
+            {
+                case 0:
+                    notaDTO.Folio = nota.Folio;
+                    break;
+                case 1:
+                    notaDTO.IdEstatus = nota.Folio;
+                    break;
+                case 2:
+                    notaDTO.IdPaqueteria = nota.Folio;
+                    break;
+                case 3:
+                    notaDTO.IdTipo = nota.Folio;
+                    break;
+                default:
+                    break;
+            }
             return dBAdministracion.ObtenerNotas(NotaDTO.ToDTO(nota))
                 .Select(n => Nota.ToModel(n));
         }
 
-        public IEnumerable<NotaTicket> ObtenerNotasTickets(NotaTicket notaTicket)
+        public IEnumerable<NotaTicket> ObtenerNotasTickets(bool esId, NotaTicket notaTicket)
         {
-            return dBAdministracion.ObtenerNotasTickets(NotaTicketDTO.ToDTO(notaTicket))
+            NotaTicketDTO notaTicketDTO = new NotaTicketDTO();
+            if (esId)
+            {
+                notaTicketDTO.Id = notaTicket.Id;
+            }
+            else
+            {
+                notaTicketDTO.IdNota = notaTicket.Id;
+            }
+            return dBAdministracion.ObtenerNotasTickets(notaTicketDTO)
                 .Select(n => NotaTicket.ToModel(n));
         }
 
-        public IEnumerable<Producto> ObtenerProductos(Producto producto)
+        public IEnumerable<Producto> ObtenerProductos(byte idTipo, bool esSku, Producto producto)
         {
-            return dBAdministracion.ObtenerProductos(ProductoDTO.ToDTO(producto))
+            ProductoDTO productoDTO = new ProductoDTO();
+            switch (idTipo)
+            {
+                case 0:
+                    productoDTO.Id = producto.Id;
+                    break;
+                case 1:
+                    productoDTO.IdCatalogo = producto.Id;
+                    break;
+                case 2:
+                    productoDTO.IdEstatus = producto.Id;
+                    break;
+                case 3:
+                    productoDTO.IdTipoNota = producto.Id;
+                    break;
+                default:
+                    if (esSku)
+                    {
+                        productoDTO.Sku = producto.Sku;
+                    }
+                    else
+                    {
+                        producto.Nombre = producto.Sku;
+                    }
+                    break;
+            }
+            return dBAdministracion.ObtenerProductos(productoDTO)
                 .Select(p => Producto.ToModel(p));
         }
 
@@ -175,5 +272,6 @@ namespace SernaSistemas.Jadet.BLogic
             return dBAdministracion.ObtenerTiposEstatus(TipoEstatusDTO.ToDTO(tipoEstatus))
             .Select(t => TipoEstatus.ToModel(t));
         }
+        #endregion
     }
 }

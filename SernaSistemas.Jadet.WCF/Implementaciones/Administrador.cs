@@ -10,7 +10,6 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
     public class Administrador : IAdministrador
     {
         private readonly DataAccess da;
-
         public Administrador()
         {
             da = new DataAccess
