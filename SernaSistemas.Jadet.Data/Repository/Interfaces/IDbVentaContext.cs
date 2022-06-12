@@ -11,7 +11,7 @@ namespace SernaSistemas.Jadet.Data.Repository
         /// </summary>
         /// <param name="estatus"></param>
         /// <returns></returns>
-        EstatusesDTO ObtenerEstatuses(EstatusDTO estatus);
+        EstatusesDto ObtenerEstatuses(EstatusDto estatus);
         #endregion
 
         #region Catalogo
@@ -20,7 +20,7 @@ namespace SernaSistemas.Jadet.Data.Repository
         /// </summary>
         /// <param name="tipo"></param>
         /// <returns></returns>
-        CatalogosDTO ObtenerCatalogos(CatalogoDTO catalogo);
+        CatalogosDto ObtenerCatalogos(CatalogoDto catalogo);
         #endregion
 
         #region Usuario
@@ -29,7 +29,7 @@ namespace SernaSistemas.Jadet.Data.Repository
         /// </summary>
         /// <param name="rol"></param>
         /// <returns></returns>
-        UsuariosDTO ObtenerUsuarios(UsuarioDTO usuario);
+        UsuariosDto ObtenerUsuarios(UsuarioDto usuario);
         #endregion
 
         #region Producto
@@ -38,13 +38,13 @@ namespace SernaSistemas.Jadet.Data.Repository
         /// </summary>
         /// <param name="tipo"></param>
         /// <returns></returns>
-        ProductosDTO ObtenerProductos(ProductoDTO producto);
+        ProductosDto ObtenerProductos(ProductoDto producto);
         /// <summary>
         /// Para guardar un nuevo producto o su actualización.
         /// </summary>
         /// <param name="producto"></param>
         /// <returns></returns>
-        bool GuardarProducto(ref ProductoDTO producto);
+        bool GuardarProducto(ref ProductoDto producto);
         #endregion
 
         #region Nota
@@ -53,19 +53,19 @@ namespace SernaSistemas.Jadet.Data.Repository
         /// </summary>
         /// <param name="nota"></param>
         /// <returns></returns>
-        NotasDTO ObtenerNotas(NotaDTO nota);
+        NotasDto ObtenerNotas(NotaDto nota);
         /// <summary>
         /// Para guardar una nueva nota o su actualización.
         /// </summary>
         /// <param name="nota"></param>
         /// <returns></returns>
-        bool GuardarNota(ref NotaDTO nota);
+        bool GuardarNota(ref NotaDto nota);
         /// <summary>
         /// Para borrar una nota.
         /// </summary>
         /// <param name="nota"></param>
         /// <returns></returns>
-        bool BorrarNota(ref NotaDTO nota);
+        bool BorrarNota(ref NotaDto nota);
         #endregion
 
         #region Detalle
@@ -74,19 +74,19 @@ namespace SernaSistemas.Jadet.Data.Repository
         /// </summary>
         /// <param name="detalle"></param>
         /// <returns></returns>
-        DetallesDTO ObtenerDetalles(DetalleDTO detalle);
+        DetallesDto ObtenerDetalles(DetalleDto detalle);
         /// <summary>
         /// Para guardar un nuevo detalle de nota o su actualización.
         /// </summary>
         /// <param name="detalle"></param>
         /// <returns></returns>
-        bool GuardarDetalle(ref DetalleDTO detalle);
+        bool GuardarDetalle(ref DetalleDto detalle);
         /// <summary>
         /// Para borrar un detalle de nota
         /// </summary>
         /// <param name="detalle"></param>
         /// <returns></returns>
-        bool BorrarDetalle(ref DetalleDTO detalle);
+        bool BorrarDetalle(ref DetalleDto detalle);
         #endregion
 
         #region NotaTicket
@@ -95,19 +95,19 @@ namespace SernaSistemas.Jadet.Data.Repository
         /// </summary>
         /// <param name="notaTicket"></param>
         /// <returns></returns>
-        NotasTicketsDTO ObtenerNotasTickets(NotaTicketDTO notaTicket);
+        NotasTicketsDto ObtenerNotasTickets(NotaTicketDto notaTicket);
         /// <summary>
         /// Para guardar un nuevo ticket de nota o su actualización.
         /// </summary>
         /// <param name="notaTicket"></param>
         /// <returns></returns>
-        bool GuardarNotaTicket(ref NotaTicketDTO notaTicket);
+        bool GuardarNotaTicket(ref NotaTicketDto notaTicket);
         /// <summary>
         /// Para borrar un ticket de nota.
         /// </summary>
         /// <param name="notaTicket"></param>
         /// <returns></returns>
-        bool BorrarNotaTicket(ref NotaTicketDTO notaTicket);
+        bool BorrarNotaTicket(ref NotaTicketDto notaTicket);
         #endregion
 
         #region NotaComentario
@@ -116,19 +116,19 @@ namespace SernaSistemas.Jadet.Data.Repository
         /// </summary>
         /// <param name="notaComentario"></param>
         /// <returns></returns>
-        NotasComentariosDTO ObtenerNotasComentarios(NotaComentarioDTO notaComentario);
+        NotasComentariosDto ObtenerNotasComentarios(NotaComentarioDto notaComentario);
         /// <summary>
         /// Para guardar un nuevo Comentario de nota o su actualización.
         /// </summary>
         /// <param name="notaComentario"></param>
         /// <returns></returns>
-        bool GuardarNotaComentario(ref NotaComentarioDTO notaComentario);
+        bool GuardarNotaComentario(ref NotaComentarioDto notaComentario);
         /// <summary>
         /// Para borrar un comentario de nota.
         /// </summary>
         /// <param name="notaComentario"></param>
         /// <returns></returns>
-        bool BorrarNotaComentario(ref NotaComentarioDTO notaComentario);
+        bool BorrarNotaComentario(ref NotaComentarioDto notaComentario);
         #endregion
     }
 }

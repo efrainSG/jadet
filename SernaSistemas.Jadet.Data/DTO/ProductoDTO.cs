@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace SernaSistemas.Jadet.Data.DTO
 {
-    public class ProductoDTO
+    public class ProductoDto
     {
         public int Id { get; set; }
         public int IdCatalogo { get; set; }
@@ -19,9 +19,9 @@ namespace SernaSistemas.Jadet.Data.DTO
         public bool AplicaExistencias { get; set; }
         public byte[] Foto { get; set; }
 
-        public static ProductoDTO ToDTO(dynamic producto)
+        public static ProductoDto ToDTO(dynamic producto)
         {
-            return new ProductoDTO
+            return new ProductoDto
             {
                 Id = producto.Id,
                 IdCatalogo = producto.IdCatalogo,
@@ -39,9 +39,9 @@ namespace SernaSistemas.Jadet.Data.DTO
         }
     }
 
-    public class ProductosDTO : List<ProductoDTO>
+    public class ProductosDto : List<ProductoDto>
     {
-        public static List<ProductoDTO> ToDTO(List<Producto> productos) =>
-            productos.Select(p => ProductoDTO.ToDTO(p)).ToList();
+        public static List<ProductoDto> ToDTO(List<Producto> productos) =>
+            productos.Select(p => ProductoDto.ToDTO(p)).ToList();
     }
 }

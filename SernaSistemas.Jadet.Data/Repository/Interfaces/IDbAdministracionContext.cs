@@ -11,19 +11,19 @@ namespace SernaSistemas.Jadet.Data.Repository
         /// </summary>
         /// <param name="tipo"></param>
         /// <returns></returns>
-        TiposEstatusDTO ObtenerTiposEstatus(TipoEstatusDTO tipo);
+        TiposEstatusDto ObtenerTiposEstatus(TipoEstatusDto tipo);
         /// <summary>
         /// Para Borrar un tipo de estatus.
         /// </summary>
         /// <param name="tipo"></param>
         /// <returns></returns>
-        bool BorrarTipoEstatus(ref TipoEstatusDTO tipo);
+        bool BorrarTipoEstatus(ref TipoEstatusDto tipo);
         /// <summary>
         /// Para guardar un nuevo tipo de estatus o su actualización.
         /// </summary>
         /// <param name="tipo"></param>
         /// <returns></returns>
-        bool GuardarTipoEstatus(ref TipoEstatusDTO tipo);
+        bool GuardarTipoEstatus(ref TipoEstatusDto tipo);
         #endregion
 
         #region Estatus
@@ -32,19 +32,19 @@ namespace SernaSistemas.Jadet.Data.Repository
         /// </summary>
         /// <param name="estatus"></param>
         /// <returns></returns>
-        EstatusesDTO ObtenerEstatuses(EstatusDTO estatus);
+        EstatusesDto ObtenerEstatuses(EstatusDto estatus);
         /// <summary>
         /// Para Borrar un estatus.
         /// </summary>
         /// <param name="estatus"></param>
         /// <returns></returns>
-        bool BorrarEstatus(ref EstatusDTO estatus);
+        bool BorrarEstatus(ref EstatusDto estatus);
         /// <summary>
         /// Para guardar un nuevo estatus o su actualización.
         /// </summary>
         /// <param name="estatus"></param>
         /// <returns></returns>
-        bool GuardarEstatus(ref EstatusDTO estatus);
+        bool GuardarEstatus(ref EstatusDto estatus);
         #endregion
 
         #region TipoCatalogo
@@ -53,19 +53,19 @@ namespace SernaSistemas.Jadet.Data.Repository
         /// </summary>
         /// <param name="tipo"></param>
         /// <returns></returns>
-        TiposCatalogosDTO ObtenerTiposCatalogos(TipoCatalogoDTO tipoCatalogo);
+        TiposCatalogosDto ObtenerTiposCatalogos(TipoCatalogoDto tipoCatalogo);
         /// <summary>
         /// Para Borrar un tipo de catálogo.
         /// </summary>
         /// <param name="tipoCatalogo"></param>
         /// <returns></returns>
-        bool BorrarTipoCatalogo(ref TipoCatalogoDTO tipoCatalogo);
+        bool BorrarTipoCatalogo(ref TipoCatalogoDto tipoCatalogo);
         /// <summary>
         /// Para guardar un nuevo tipo de catálogo o su actualización.
         /// </summary>
         /// <param name="tipoCatalogo"></param>
         /// <returns></returns>
-        bool GuardarTipoCatalogo(ref TipoCatalogoDTO tipoCatalogo);
+        bool GuardarTipoCatalogo(ref TipoCatalogoDto tipoCatalogo);
         #endregion
 
         #region Catalogo
@@ -74,19 +74,19 @@ namespace SernaSistemas.Jadet.Data.Repository
         /// </summary>
         /// <param name="tipo"></param>
         /// <returns></returns>
-        CatalogosDTO ObtenerCatalogos(CatalogoDTO catalogo);
+        CatalogosDto ObtenerCatalogos(CatalogoDto catalogo);
         /// <summary>
         /// Para Borrar un catalogo.
         /// </summary>
         /// <param name="catalogo"></param>
         /// <returns></returns>
-        bool BorrarCatalogo(ref CatalogoDTO catalogo);
+        bool BorrarCatalogo(ref CatalogoDto catalogo);
         /// <summary>
         /// Para guardar un nuevo catálogo o su actualización.
         /// </summary>
         /// <param name="catalogo"></param>
         /// <returns></returns>
-        bool GuardarCatalogo(ref CatalogoDTO catalogo);
+        bool GuardarCatalogo(ref CatalogoDto catalogo);
         #endregion
 
         #region Producto
@@ -95,19 +95,19 @@ namespace SernaSistemas.Jadet.Data.Repository
         /// </summary>
         /// <param name="tipo"></param>
         /// <returns></returns>
-        ProductosDTO ObtenerProductos(ProductoDTO producto);
+        ProductosDto ObtenerProductos(ProductoDto producto);
         /// <summary>
         /// Para Borrar un producto.
         /// </summary>
         /// <param name="producto"></param>
         /// <returns></returns>
-        bool BorrarProducto(ref ProductoDTO producto);
+        bool BorrarProducto(ref ProductoDto producto);
         /// <summary>
         /// Para guardar un nuevo producto o su actualización.
         /// </summary>
         /// <param name="producto"></param>
         /// <returns></returns>
-        bool GuardarProducto(ref ProductoDTO producto);
+        bool GuardarProducto(ref ProductoDto producto);
         #endregion
 
         #region Nota
@@ -116,19 +116,19 @@ namespace SernaSistemas.Jadet.Data.Repository
         /// </summary>
         /// <param name="nota"></param>
         /// <returns></returns>
-        NotasDTO ObtenerNotas(NotaDTO nota);
+        NotasDto ObtenerNotas(NotaDto nota);
         /// <summary>
         /// Para guardar una actualización de nota.
         /// </summary>
         /// <param name="nota"></param>
         /// <returns></returns>
-        bool GuardarNota(ref NotaDTO nota);
+        bool GuardarNota(ref NotaDto nota);
         /// <summary>
         /// Para borrar una nota.
         /// </summary>
         /// <param name="nota"></param>
         /// <returns></returns>
-        bool BorrarNota(ref NotaDTO nota);
+        bool BorrarNota(ref NotaDto nota);
         #endregion
 
         #region Detalle
@@ -137,19 +137,19 @@ namespace SernaSistemas.Jadet.Data.Repository
         /// </summary>
         /// <param name="detalle"></param>
         /// <returns></returns>
-        DetallesDTO ObtenerDetalles(DetalleDTO detalle);
+        DetallesDto ObtenerDetalles(DetalleDto detalle);
         /// <summary>
         /// Para guardar una actualización de detalle de nota.
         /// </summary>
         /// <param name="detalle"></param>
         /// <returns></returns>
-        bool GuardarDetalle(ref DetalleDTO detalle);
+        bool GuardarDetalle(ref DetalleDto detalle);
         /// <summary>
         /// Para borrar un detalle de nota
         /// </summary>
         /// <param name="detalle"></param>
         /// <returns></returns>
-        bool BorrarDetalle(ref DetalleDTO detalle);
+        bool BorrarDetalle(ref DetalleDto detalle);
         #endregion
 
         #region NotaTicket
@@ -158,7 +158,7 @@ namespace SernaSistemas.Jadet.Data.Repository
         /// </summary>
         /// <param name="notaTicket"></param>
         /// <returns></returns>
-        NotasTicketsDTO ObtenerNotasTickets(NotaTicketDTO notaTicket);
+        NotasTicketsDto ObtenerNotasTickets(NotaTicketDto notaTicket);
         #endregion
 
         #region NotaComentario
@@ -167,19 +167,19 @@ namespace SernaSistemas.Jadet.Data.Repository
         /// </summary>
         /// <param name="notaComentario"></param>
         /// <returns></returns>
-        NotasComentariosDTO ObtenerNotasComentarios(NotaComentarioDTO notaComentario);
+        NotasComentariosDto ObtenerNotasComentarios(NotaComentarioDto notaComentario);
         /// <summary>
         /// Para guardar un nuevo Comentario de nota o su actualización.
         /// </summary>
         /// <param name="notaComentario"></param>
         /// <returns></returns>
-        bool GuardarNotaComentario(ref NotaComentarioDTO notaComentario);
+        bool GuardarNotaComentario(ref NotaComentarioDto notaComentario);
         /// <summary>
         /// Para borrar un comentario de nota.
         /// </summary>
         /// <param name="notaComentario"></param>
         /// <returns></returns>
-        bool BorrarNotaComentario(ref NotaComentarioDTO notaComentario);
+        bool BorrarNotaComentario(ref NotaComentarioDto notaComentario);
         #endregion
     }
 }

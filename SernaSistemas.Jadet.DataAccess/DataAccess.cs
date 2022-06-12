@@ -7,7 +7,7 @@ namespace SernaSistemas.Jadet.DataAccess {
     public class DataAccess {
         public string CadenaConexion { get; set; }
 
-        public ResultadoBorrado borrarCatalogo(int id) {
+        public ResultadoBorrado BorrarCatalogo(int id) {
             ResultadoBorrado resultado = new ResultadoBorrado();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
                 using (SqlCommand cmd = new SqlCommand() {
@@ -34,7 +34,7 @@ namespace SernaSistemas.Jadet.DataAccess {
             return resultado;
         }
 
-        public ResultadoBorrado borrarEstatus(int id) {
+        public ResultadoBorrado BorrarEstatus(int id) {
             ResultadoBorrado resultado = new ResultadoBorrado();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
                 using (SqlCommand cmd = new SqlCommand() {
@@ -61,7 +61,7 @@ namespace SernaSistemas.Jadet.DataAccess {
             return resultado;
         }
 
-        public ResultadoBorrado borrarUsuario(Guid id) {
+        public ResultadoBorrado BorrarUsuario(Guid id) {
             ResultadoBorrado resultado = new ResultadoBorrado();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
                 using (SqlCommand cmd = new SqlCommand() {
@@ -93,7 +93,7 @@ namespace SernaSistemas.Jadet.DataAccess {
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ResultadoBorrado borrarDetalle(int id) {
+        public ResultadoBorrado BorrarDetalle(int id) {
             ResultadoBorrado resultado = new ResultadoBorrado();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
                 using (SqlCommand cmd = new SqlCommand() {
@@ -125,11 +125,11 @@ namespace SernaSistemas.Jadet.DataAccess {
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ResultadoBorrado borrarNota(int id) {
+        public ResultadoBorrado BorrarNota(int id) {
             throw new Exception("No implementado");
         }
 
-        public ResultadoBorrado borrarComentario(int id) {
+        public ResultadoBorrado BorrarComentario(int id) {
             ResultadoBorrado resultado = new ResultadoBorrado();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
                 using (SqlCommand cmd = new SqlCommand() {
@@ -156,11 +156,11 @@ namespace SernaSistemas.Jadet.DataAccess {
             return resultado;
         }
 
-        public ResultadoBorrado borrarTicket(int id) {
+        public ResultadoBorrado BorrarTicket(int id) {
             throw new Exception("No implementado");
         }
 
-        public ResultadoBorrado vaciarCarrito(int id) {
+        public ResultadoBorrado VaciarCarrito(int id) {
             ResultadoBorrado resultado = new ResultadoBorrado();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
                 using (SqlCommand cmd = new SqlCommand() {
@@ -187,7 +187,7 @@ namespace SernaSistemas.Jadet.DataAccess {
             return resultado;
         }
 
-        public ResultadoBorrado borrarProducto(int id) {
+        public ResultadoBorrado BorrarProducto(int id) {
             ResultadoBorrado resultado = new ResultadoBorrado();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
                 using (SqlCommand cmd = new SqlCommand() {
@@ -214,7 +214,7 @@ namespace SernaSistemas.Jadet.DataAccess {
             return resultado;
         }
 
-        public Catalogo guardarCatalogo(Catalogo catalogo) {
+        public Catalogo GuardarCatalogo(Catalogo catalogo) {
             Catalogo resultado = new Catalogo();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
                 using (SqlCommand cmd = new SqlCommand() {
@@ -254,7 +254,7 @@ namespace SernaSistemas.Jadet.DataAccess {
             return resultado;
         }
 
-        public Estatus guardarEstatus(Estatus estatus) {
+        public Estatus GuardarEstatus(Estatus estatus) {
             Estatus resultado = new Estatus();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
                 using (SqlCommand cmd = new SqlCommand() {
@@ -294,7 +294,7 @@ namespace SernaSistemas.Jadet.DataAccess {
             return resultado;
         }
 
-        public Usuario guardarUsuario(Usuario usuario) {
+        public Usuario GuardarUsuario(Usuario usuario) {
             Usuario resultado = new Usuario();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
                 using (SqlCommand cmd = new SqlCommand() {
@@ -385,7 +385,7 @@ namespace SernaSistemas.Jadet.DataAccess {
             return resultado;
         }
 
-        public DetalleNota guardarDetalle(DetalleNota detalle) {
+        public DetalleNota GuardarDetalle(DetalleNota detalle) {
             DetalleNota resultado = new DetalleNota();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
                 using (SqlCommand cmd = new SqlCommand() {
@@ -447,7 +447,7 @@ namespace SernaSistemas.Jadet.DataAccess {
 
         }
 
-        public Nota guardarNota(Nota nota) {
+        public Nota GuardarNota(Nota nota) {
             Nota resultado = new Nota();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
                 using (SqlCommand cmd = new SqlCommand() {
@@ -556,7 +556,7 @@ namespace SernaSistemas.Jadet.DataAccess {
             return resultado;
         }
 
-        public ComentarioNota guardarComentario(ComentarioNota comentario) {
+        public ComentarioNota GuardarComentario(ComentarioNota comentario) {
             ComentarioNota resultado = new ComentarioNota();
             using (SqlConnection conn = new SqlConnection(CadenaConexion)) {
                 using (SqlCommand cmd = new SqlCommand() {

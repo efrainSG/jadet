@@ -5,18 +5,17 @@ using SernaSistemas.Jadet.Comun.Modelos;
 using SernaSistemas.Jadet.BLogic;
 using System.Linq;
 using System;
-using SernaSistemas.Jadet.API.Interfaces;
 
 namespace SernaSistemas.Jadet.API.Controllers.V1
 {
     [ApiController]
     [Route("v1/[controller]")]
-    public class AdministradorController : ControllerBase, IAdministradorController
+    public class VentasController : ControllerBase
     {
 
         private readonly IBLAdministracion bLAdministracion;
 
-        public AdministradorController(IBLAdministracion bLAdministracion)
+        public VentasController(IBLAdministracion bLAdministracion)
         {
             this.bLAdministracion = bLAdministracion;
         }

@@ -11,41 +11,41 @@ namespace SernaSistemas.Jadet.API.Controllers.V1
 {
     [ApiController]
     [Route("v1/[controller]")]
-    public class AdministradorController : ControllerBase, IAdministradorController
+    public class ConfiguracionController : ControllerBase, IConfiguracionController
     {
 
         private readonly IBLAdministracion bLAdministracion;
 
-        public AdministradorController(IBLAdministracion bLAdministracion)
+        public ConfiguracionController(IBLAdministracion bLAdministracion)
         {
             this.bLAdministracion = bLAdministracion;
         }
 
         #region Tipos de Catálogo
         [HttpGet("tipoCatalogo")]
-        public IEnumerable<TipoCatalogo> GetTiposCatalogo() =>
+        public IEnumerable<TipoCatalogo> GetTiposCatalogos() =>
             bLAdministracion.ObtenerTiposCatalogo(new TipoCatalogo { Id = 0 }).ToArray();
 
         [HttpGet("tipoCatalogoPorId")]
-        public IEnumerable<TipoCatalogo> GetTiposCatalogo([FromQuery] int id) =>
+        public IEnumerable<TipoCatalogo> GetTiposCatalogos(int id) =>
             bLAdministracion.ObtenerTiposCatalogo(new TipoCatalogo { Id = id, Nombre = string.Empty }).ToArray();
 
         [HttpGet("tipoCatalogoPorNombre")]
-        public IEnumerable<TipoCatalogo> GetTiposCatalogo([FromQuery] string nombre) =>
+        public IEnumerable<TipoCatalogo> GetTiposCatalogos(string nombre) =>
             bLAdministracion.ObtenerTiposCatalogo(new TipoCatalogo { Id = 0, Nombre = nombre }).ToArray();
 
         [HttpDelete("tipoCatalogo/{id}")]
-        public ActionResult DelTiposCatalogo(int id) =>
+        public ActionResult DelTiposCatalogos(int id) =>
             bLAdministracion.BorrarTipoCatalogo(new TipoCatalogo { Id = id }) ? Ok() : BadRequest();
         [HttpPost("tipoCatalogo")]
-        public ActionResult<TipoCatalogo> PostTipoCatalogo([FromBody] TipoCatalogo tipo) =>
-            bLAdministracion.GuardarTipoCatalogo(ref tipo) ? new ActionResult<TipoCatalogo>(tipo) : BadRequest();
+        public ActionResult<TipoCatalogo> PostTiposCatalogos(TipoCatalogo tipoCatalogo) =>
+            bLAdministracion.GuardarTipoCatalogo(ref tipoCatalogo) ? new ActionResult<TipoCatalogo>(tipoCatalogo) : BadRequest();
         [HttpPut("tipoCatalogo/{id}")]
-        public ActionResult<TipoCatalogo> PutTipoCatalogo(int id, [FromBody] TipoCatalogo tipo)
+        public ActionResult<TipoCatalogo> PutTiposCatalogos(int id, TipoCatalogo tipoCatalogo)
         {
-            if (id == tipo.Id)
+            if (id == tipoCatalogo.Id)
             {
-                return bLAdministracion.GuardarTipoCatalogo(ref tipo) ? new ActionResult<TipoCatalogo>(tipo) : BadRequest();
+                return bLAdministracion.GuardarTipoCatalogo(ref tipoCatalogo) ? new ActionResult<TipoCatalogo>(tipoCatalogo) : BadRequest();
             }
             else
             {
@@ -56,22 +56,22 @@ namespace SernaSistemas.Jadet.API.Controllers.V1
 
         #region Catálogo
         [HttpGet("catalogo")]
-        public IEnumerable<Catalogo> GetCatalogo() =>
+        public IEnumerable<Catalogo> GetCatalogos() =>
             bLAdministracion.ObtenerCatalogos(true, new Catalogo { Id = 0, Nombre = string.Empty }).ToArray();
         [HttpGet("catalogoPorId/{esId}/{id}")]
-        public IEnumerable<Catalogo> GetCatalogo(bool esId, int id) =>
+        public IEnumerable<Catalogo> GetCatalogos(bool esId, int id) =>
             bLAdministracion.ObtenerCatalogos(esId, new Catalogo { Id = id, Nombre = string.Empty }).ToArray();
         [HttpGet("catalogoPorNombre/{nombre}")]
-        public IEnumerable<Catalogo> GetCatalogo(string nombre) =>
+        public IEnumerable<Catalogo> GetCatalogos(string nombre) =>
             bLAdministracion.ObtenerCatalogos(false, new Catalogo { Id = 0, Nombre = nombre }).ToArray();
         [HttpDelete("catalogo/{id}")]
-        public ActionResult DelCatalogo(int id) =>
+        public ActionResult DelCatalogos(int id) =>
             bLAdministracion.BorrarCatalogo(new Catalogo { Id = id }) ? Ok() : BadRequest();
         [HttpPost("catalogo")]
-        public ActionResult<Catalogo> PostCatalogo([FromBody] Catalogo catalogo) =>
+        public ActionResult<Catalogo> PostCatalogos(Catalogo catalogo) =>
             bLAdministracion.GuardarCatalogo(ref catalogo) ? new ActionResult<Catalogo>(catalogo) : BadRequest();
         [HttpPut("catalogo/{id}")]
-        public ActionResult<Catalogo> PutCatalogo(int id, [FromBody] Catalogo catalogo)
+        public ActionResult<Catalogo> PutCatalogos(int id, Catalogo catalogo)
         {
             if (id == catalogo.Id)
             {
@@ -86,26 +86,26 @@ namespace SernaSistemas.Jadet.API.Controllers.V1
 
         #region Tipos de estatus
         [HttpGet("tipoEstatus")]
-        public IEnumerable<TipoEstatus> GetTipoEstatus() =>
+        public IEnumerable<TipoEstatus> GetTiposEstatus() =>
             bLAdministracion.ObtenerTiposEstatus(new TipoEstatus { Id = 0, Nombre = string.Empty }).ToArray();
         [HttpGet("tipoEstatusPorId/{id}")]
-        public IEnumerable<TipoEstatus> GetTipoEstatus(int id) =>
+        public IEnumerable<TipoEstatus> GetTiposEstatus(int id) =>
             bLAdministracion.ObtenerTiposEstatus(new TipoEstatus { Id = id, Nombre = string.Empty }).ToArray();
         [HttpGet("tipoEstatusPorNombre/{nombre}")]
-        public IEnumerable<TipoEstatus> GetTipoEstatus(string nombre) =>
+        public IEnumerable<TipoEstatus> GetTiposEstatus(string nombre) =>
             bLAdministracion.ObtenerTiposEstatus(new TipoEstatus { Id = 0, Nombre = nombre }).ToArray();
         [HttpDelete("tipoEstatus/{id}")]
-        public ActionResult DelTipoEstatus(int id) =>
+        public ActionResult DelTiposEstatus(int id) =>
             bLAdministracion.BorrarTipoEstatus(new TipoEstatus { Id = id }) ? Ok() : BadRequest();
         [HttpPost("tipoEstatus")]
-        public ActionResult<TipoEstatus> PostTipoEstatus([FromBody] TipoEstatus tipo) =>
-            bLAdministracion.GuardarTipoEstatus(ref tipo) ? new ActionResult<TipoEstatus>(tipo) : BadRequest();
+        public ActionResult<TipoEstatus> PostTiposEstatus(TipoEstatus tipoEstatus) =>
+            bLAdministracion.GuardarTipoEstatus(ref tipoEstatus) ? new ActionResult<TipoEstatus>(tipoEstatus) : BadRequest();
         [HttpPut("tipoEstatus/{id}")]
-        public ActionResult<TipoEstatus> PutTipoEstatus(int id, [FromBody] TipoEstatus tipo)
+        public ActionResult<TipoEstatus> PutTiposEstatus(int id,TipoEstatus tipoEstatus)
         {
-            if (id == tipo.Id)
+            if (id == tipoEstatus.Id)
             {
-                return bLAdministracion.GuardarTipoEstatus(ref tipo) ? new ActionResult<TipoEstatus>(tipo) : BadRequest();
+                return bLAdministracion.GuardarTipoEstatus(ref tipoEstatus) ? new ActionResult<TipoEstatus>(tipoEstatus) : BadRequest();
             }
             else
             {
@@ -128,10 +128,10 @@ namespace SernaSistemas.Jadet.API.Controllers.V1
         public ActionResult DelEstatus(int id) =>
             bLAdministracion.BorrarEstatus(new Estatus { Id = id }) ? Ok() : BadRequest();
         [HttpPost("estatus")]
-        public ActionResult<Estatus> PostEstatus([FromBody] Estatus estatus) =>
+        public ActionResult<Estatus> PostEstatus(Estatus estatus) =>
             bLAdministracion.GuardarEstatus(ref estatus) ? new ActionResult<Estatus>(estatus) : BadRequest();
         [HttpPut("estatus/{id}")]
-        public ActionResult<Estatus> PutEstatus(int id, [FromBody] Estatus estatus)
+        public ActionResult<Estatus> PutEstatus(int id, Estatus estatus)
         {
             if (id == estatus.Id)
             {
@@ -146,16 +146,16 @@ namespace SernaSistemas.Jadet.API.Controllers.V1
 
         #region Producto
         [HttpGet("producto")]
-        public IEnumerable<Producto> GetProducto(byte tipoId, int id, bool esSku, string datoTexto) =>
-            bLAdministracion.ObtenerProductos(tipoId, esSku, new Producto { Id = id, Sku = datoTexto }).ToArray();
+        public IEnumerable<Producto> GetProductos() =>
+            bLAdministracion.ObtenerProductos(4, true, new Producto { Id = 0, Sku = string.Empty }).ToArray();
         [HttpGet("productoPorId/{tipoId}/{id}")]
-        public IEnumerable<Producto> GetProducto(byte tipoId, int id) =>
+        public IEnumerable<Producto> GetProductos(byte tipoId, int id) =>
             bLAdministracion.ObtenerProductos(tipoId, false, new Producto { Id = id }).ToArray();
         [HttpGet("productoPorValor/{esSku}/{datoTexto}")]
-        public IEnumerable<Producto> GetProducto(bool esSku, string datoTexto) =>
-            bLAdministracion.ObtenerProductos(4, esSku, new Producto { Id = 0, Sku = datoTexto }).ToArray();
+        public IEnumerable<Producto> GetProductos(bool esSku, string nombre) =>
+            bLAdministracion.ObtenerProductos(4, esSku, new Producto { Id = 0, Sku = nombre }).ToArray();
         [HttpDelete("producto")]
-        public ActionResult DelProducto(int id) =>
+        public ActionResult DelProductos(int id) =>
             bLAdministracion.BorrarProducto(new Producto { Id = id }) ? Ok() : BadRequest();
         [HttpPost("producto")]
         public ActionResult<Producto> PostProducto(Producto producto) =>

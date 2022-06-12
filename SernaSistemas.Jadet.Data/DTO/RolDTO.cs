@@ -4,14 +4,14 @@ using System.Linq;
 
 namespace SernaSistemas.Jadet.Data.DTO
 {
-    public class RolDTO
+    public class RolDto
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
 
-        public static RolDTO ToDTO(dynamic rol)
+        public static RolDto ToDTO(dynamic rol)
         {
-            return new RolDTO
+            return new RolDto
             {
                 Id = rol.Id,
                 Nombre = rol.Nombre
@@ -19,9 +19,9 @@ namespace SernaSistemas.Jadet.Data.DTO
         }
     }
 
-    public class RolesDTO:List<RolDTO>
+    public class RolesDto:List<RolDto>
     {
-        public static List<RolDTO> ToDTO(List<Rol> roles) =>
-            roles.Select(r => RolDTO.ToDTO(r)).ToList();
+        public static List<RolDto> ToDTO(List<Rol> roles) =>
+            roles.Select(r => RolDto.ToDTO(r)).ToList();
     }
 }

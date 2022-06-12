@@ -5,14 +5,14 @@ namespace SernaSistemas.Jadet.BLogic
 {
     public interface IBLVenta
     {
-        IEnumerable<Estatus> ObtenerEstatuses(Estatus estatus);
-        IEnumerable<Catalogo> ObtenerCatalogos(Catalogo catalogo);
+        IEnumerable<Estatus> ObtenerEstatuses(bool esId, Estatus estatus);
+        IEnumerable<Catalogo> ObtenerCatalogos(bool esId, Catalogo catalogo);
         IEnumerable<Usuario> ObtenerUsuarios(Usuario usuario);
-        IEnumerable<Producto> ObtenerProductos(Producto producto);
-        IEnumerable<Nota> ObtenerNotas(Nota nota);
-        IEnumerable<Detalle> ObtenerDetalles(Detalle detalle);
-        IEnumerable<NotaTicket> ObtenerNotasTickets(NotaTicket notaTicket);
-        IEnumerable<NotaComentario> ObtenerComentarios(NotaComentario notaComentario);
+        IEnumerable<Producto> ObtenerProductos(byte idTipo, bool esSku, Producto producto);
+        IEnumerable<Nota> ObtenerNotas(byte tipoId, Nota nota);
+        IEnumerable<Detalle> ObtenerDetalles(byte idTipo, Detalle detalle);
+        IEnumerable<NotaTicket> ObtenerNotasTickets(bool esId, NotaTicket notaTicket);
+        IEnumerable<NotaComentario> ObtenerComentarios(bool esId, NotaComentario notaComentario);
         IEnumerable<Nota> ObtenerCarritos(Usuario usuario);
 
         bool GuardarProducto(ref Producto producto);

@@ -9,7 +9,7 @@ namespace SernaSistemas.Jadet.BLogic
         Sesion CerrarSesion(Usuario usuario);
 
         IEnumerable<TipoEstatus> ObtenerTiposEstatus(TipoEstatus tipoEstatus);
-        IEnumerable<Estatus> ObtenerEstatuses(Estatus estatus);
+        IEnumerable<Estatus> ObtenerEstatuses(bool esId, Estatus estatus);
         IEnumerable<Rol> ObtenerRoles(Rol rol);
         IEnumerable<Usuario> ObtenerUsuarios(Usuario usuario);
 

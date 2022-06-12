@@ -321,7 +321,7 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones.Tests {
         public void guardarNuevoClienteTest() {
             try {
                 var responseNuevo = servicio.guardarCliente(new ClienteRequest {
-                    IdCliente = new Guid(),
+                    IdCliente = Guid.Empty,
                     Direccion = "Dirección nueva " + DateTime.Today.ToString("yyyyMMddhhmm"),
                     Foto = Encoding.UTF8.GetBytes("FOTO"),
                     IdEstatus = 1,
@@ -683,7 +683,7 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones.Tests {
         public void listarClientesTest() {
             try {
                 var response = servicio.listarClientes(new ClienteRequest {
-                    IdCliente = new Guid(),
+                    IdCliente = Guid.Empty,
                     IdRol = 0
                 });
                 foreach (var item in response.Items)

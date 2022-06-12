@@ -10,7 +10,7 @@ namespace SernaSistemas.Jadet.WCF.Implementaciones {
             DataAccess.DataAccess da = new DataAccess.DataAccess {
                 CadenaConexion = ConfigurationManager.ConnectionStrings["jadetBD"].ConnectionString
             };
-            var resultado = da.guardarUsuario(new DataAccess.Usuario {
+            var resultado = da.GuardarUsuario(new DataAccess.Usuario {
                 Direccion = request.Direccion,
                 Foto = request.Foto,
                 Id = request.Id,

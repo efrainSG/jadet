@@ -11,7 +11,7 @@ namespace SernaSistemas.Jadet.Data.Repository
         /// </summary>
         /// <param name="tipo"></param>
         /// <returns></returns>
-        TiposEstatusDTO ObtenerTiposEstatus(TipoEstatusDTO tipo);
+        TiposEstatusDto ObtenerTiposEstatus(TipoEstatusDto tipo);
         #endregion
 
         #region Estatus
@@ -20,7 +20,7 @@ namespace SernaSistemas.Jadet.Data.Repository
         /// </summary>
         /// <param name="estatus"></param>
         /// <returns></returns>
-        EstatusesDTO ObtenerEstatuses(EstatusDTO estatus);
+        EstatusesDto ObtenerEstatuses(EstatusDto estatus);
         #endregion
 
         #region Rol
@@ -29,19 +29,19 @@ namespace SernaSistemas.Jadet.Data.Repository
         /// </summary>
         /// <param name="rol"></param>
         /// <returns></returns>
-        bool BorrarRol(ref RolDTO rol);
+        bool BorrarRol(ref RolDto rol);
         /// <summary>
         /// Para guardar un nuevo rol o su actualización.
         /// </summary>
         /// <param name="rol"></param>
         /// <returns></returns>
-        bool GuardarRol(ref RolDTO rol);
+        bool GuardarRol(ref RolDto rol);
         /// <summary>
         /// Para obtener uno o más roles.
         /// </summary>
         /// <param name="rol"></param>
         /// <returns></returns>
-        RolesDTO ObtenerRoles(RolDTO rol);
+        RolesDto ObtenerRoles(RolDto rol);
         #endregion
 
         #region Usuario
@@ -50,19 +50,19 @@ namespace SernaSistemas.Jadet.Data.Repository
         /// </summary>
         /// <param name="usuario"></param>
         /// <returns></returns>
-        bool BorrarUsuario(ref UsuarioDTO usuario);
+        bool BorrarUsuario(ref UsuarioDto usuario);
         /// <summary>
         /// Para guardar un nuevo usuario o su actualización.
         /// </summary>
         /// <param name="rol"></param>
         /// <returns></returns>
-        bool GuardarUsuario(ref UsuarioDTO usuario);
+        bool GuardarUsuario(ref UsuarioDto usuario);
         /// <summary>
         /// Para obtener uno o más usuarios.
         /// </summary>
         /// <param name="rol"></param>
         /// <returns></returns>
-        UsuariosDTO ObtenerUsuarios(UsuarioDTO usuario);
+        UsuariosDto ObtenerUsuarios(UsuarioDto usuario);
         #endregion
     }
 }

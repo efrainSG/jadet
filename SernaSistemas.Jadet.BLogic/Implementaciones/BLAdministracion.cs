@@ -1,11 +1,8 @@
 ﻿using SernaSistemas.Jadet.Comun.Modelos;
 using SernaSistemas.Jadet.Data.DTO;
 using SernaSistemas.Jadet.Data.Repository;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SernaSistemas.Jadet.BLogic
 {
@@ -20,55 +17,55 @@ namespace SernaSistemas.Jadet.BLogic
 
         public bool BorrarCatalogo(Catalogo catalogo)
         {
-            CatalogoDTO _catalogo = CatalogoDTO.ToDTO(catalogo);
+            CatalogoDto _catalogo = CatalogoDto.ToDTO(catalogo);
             return dBAdministracion.BorrarCatalogo(ref _catalogo);
         }
 
         public bool BorrarDetalle(Detalle detalle)
         {
-            DetalleDTO _detalle = DetalleDTO.ToDTO(detalle);
+            DetalleDto _detalle = DetalleDto.ToDTO(detalle);
             return dBAdministracion.BorrarDetalle(ref _detalle);
         }
 
         public bool BorrarEstatus(Estatus estatus)
         {
-            EstatusDTO estatusDTO = EstatusDTO.ToDTO(estatus);
+            EstatusDto estatusDTO = EstatusDto.ToDTO(estatus);
             return dBAdministracion.BorrarEstatus(ref estatusDTO);
         }
 
         public bool BorrarNota(Nota nota)
         {
-            NotaDTO notaDTO = NotaDTO.ToDTO(nota);
+            NotaDto notaDTO = NotaDto.ToDTO(nota);
             return dBAdministracion.BorrarNota(ref notaDTO);
         }
 
         public bool BorrarNotaComentario(NotaComentario notaComentario)
         {
-            NotaComentarioDTO notaComentarioDTO = NotaComentarioDTO.ToDTO(notaComentario);
+            NotaComentarioDto notaComentarioDTO = NotaComentarioDto.ToDTO(notaComentario);
             return dBAdministracion.BorrarNotaComentario(ref notaComentarioDTO);
         }
 
         public bool BorrarProducto(Producto producto)
         {
-            ProductoDTO productoDTO = ProductoDTO.ToDTO(producto);
+            ProductoDto productoDTO = ProductoDto.ToDTO(producto);
             return dBAdministracion.BorrarProducto(ref productoDTO);
         }
 
         public bool BorrarTipoCatalogo(TipoCatalogo tipoCatalogo)
         {
-            TipoCatalogoDTO tipoCatalogoDTO = TipoCatalogoDTO.ToDTO(tipoCatalogo);
+            TipoCatalogoDto tipoCatalogoDTO = TipoCatalogoDto.ToDTO(tipoCatalogo);
             return dBAdministracion.BorrarTipoCatalogo(ref tipoCatalogoDTO);
         }
 
         public bool BorrarTipoEstatus(TipoEstatus tipoEstatus)
         {
-            TipoEstatusDTO tipoEstatusDTO = TipoEstatusDTO.ToDTO(tipoEstatus);
+            TipoEstatusDto tipoEstatusDTO = TipoEstatusDto.ToDTO(tipoEstatus);
             return dBAdministracion.BorrarTipoEstatus(ref tipoEstatusDTO);
         }
 
         public bool GuardarCatalogo(ref Catalogo catalogo)
         {
-            CatalogoDTO catalogoDTO = CatalogoDTO.ToDTO(catalogo);
+            CatalogoDto catalogoDTO = CatalogoDto.ToDTO(catalogo);
             bool resultado = dBAdministracion.GuardarCatalogo(ref catalogoDTO);
             catalogo = Catalogo.ToModel(catalogoDTO);
             return resultado;
@@ -76,7 +73,7 @@ namespace SernaSistemas.Jadet.BLogic
 
         public bool GuardarDetalle(ref Detalle detalle)
         {
-            DetalleDTO detalleDTO = DetalleDTO.ToDTO(detalle);
+            DetalleDto detalleDTO = DetalleDto.ToDTO(detalle);
             bool resultado = dBAdministracion.GuardarDetalle(ref detalleDTO);
             detalle = Detalle.ToModel(detalleDTO);
             return resultado;
@@ -84,7 +81,7 @@ namespace SernaSistemas.Jadet.BLogic
 
         public bool GuardarEstatus(ref Estatus estatus)
         {
-            EstatusDTO estatusDTO = EstatusDTO.ToDTO(estatus);
+            EstatusDto estatusDTO = EstatusDto.ToDTO(estatus);
             bool resultado = dBAdministracion.GuardarEstatus(ref estatusDTO);
             estatus = Estatus.ToModel(estatusDTO);
             return resultado;
@@ -92,7 +89,7 @@ namespace SernaSistemas.Jadet.BLogic
 
         public bool GuardarNota(ref Nota nota)
         {
-            NotaDTO notaDTO = NotaDTO.ToDTO(nota);
+            NotaDto notaDTO = NotaDto.ToDTO(nota);
             bool resultado = dBAdministracion.GuardarNota(ref notaDTO);
             nota = Nota.ToModel(notaDTO);
             return resultado;
@@ -100,7 +97,7 @@ namespace SernaSistemas.Jadet.BLogic
 
         public bool GuardarProducto(ref Producto producto)
         {
-            ProductoDTO productoDTO = ProductoDTO.ToDTO(producto);
+            ProductoDto productoDTO = ProductoDto.ToDTO(producto);
             bool resultado = dBAdministracion.GuardarProducto(ref productoDTO);
             producto = Producto.ToModel(productoDTO);
             return resultado;
@@ -108,7 +105,7 @@ namespace SernaSistemas.Jadet.BLogic
 
         public bool GuardarTipoCatalogo(ref TipoCatalogo tipoCatalogo)
         {
-            TipoCatalogoDTO tipoCatalogoDTO = TipoCatalogoDTO.ToDTO(tipoCatalogo);
+            TipoCatalogoDto tipoCatalogoDTO = TipoCatalogoDto.ToDTO(tipoCatalogo);
             bool resultado = dBAdministracion.GuardarTipoCatalogo(ref tipoCatalogoDTO);
             tipoCatalogo = TipoCatalogo.ToModel(tipoCatalogoDTO);
             return resultado;
@@ -116,7 +113,7 @@ namespace SernaSistemas.Jadet.BLogic
 
         public bool GuardarTipoEstatus(ref TipoEstatus tipoEstatus)
         {
-            TipoEstatusDTO tipoEstatusDTO = TipoEstatusDTO.ToDTO(tipoEstatus);
+            TipoEstatusDto tipoEstatusDTO = TipoEstatusDto.ToDTO(tipoEstatus);
             bool resultado = dBAdministracion.GuardarTipoEstatus(ref tipoEstatusDTO);
             tipoEstatus = TipoEstatus.ToModel(tipoEstatusDTO);
             return resultado;
@@ -125,7 +122,7 @@ namespace SernaSistemas.Jadet.BLogic
         #region Obtenciones
         public IEnumerable<Catalogo> ObtenerCatalogos(bool esId, Catalogo catalogo)
         {
-            CatalogoDTO catalogoDTO = new CatalogoDTO { Nombre = catalogo.Nombre };
+            CatalogoDto catalogoDTO = new() { Nombre = catalogo.Nombre };
             if (esId)
             {
                 catalogoDTO.Id = catalogo.Id;
@@ -141,7 +138,7 @@ namespace SernaSistemas.Jadet.BLogic
 
         public IEnumerable<NotaComentario> ObtenerComentarios(bool esId, NotaComentario notaComentario)
         {
-            NotaComentarioDTO notaComentarioDTO = new NotaComentarioDTO();
+            NotaComentarioDto notaComentarioDTO = new();
             if (esId)
             {
                 notaComentarioDTO.Id = notaComentario.Id;
@@ -156,7 +153,7 @@ namespace SernaSistemas.Jadet.BLogic
 
         public IEnumerable<Detalle> ObtenerDetalles(byte idTipo, Detalle detalle)
         {
-            DetalleDTO detalleDTO = new DetalleDTO();
+            DetalleDto detalleDTO = new();
             switch (idTipo)
             {
                 case 0:
@@ -177,7 +174,7 @@ namespace SernaSistemas.Jadet.BLogic
 
         public IEnumerable<Estatus> ObtenerEstatuses(bool esId, Estatus estatus)
         {
-            EstatusDTO estatusDTO = new EstatusDTO { Nombre = estatus.Nombre };
+            EstatusDto estatusDTO = new() { Nombre = estatus.Nombre };
             if (esId)
             {
                 estatusDTO.Id = estatus.Id;
@@ -186,13 +183,13 @@ namespace SernaSistemas.Jadet.BLogic
             {
                 estatusDTO.IdTipoEstatus = estatus.Id;
             }
-            return dBAdministracion.ObtenerEstatuses(EstatusDTO.ToDTO(estatus))
+            return dBAdministracion.ObtenerEstatuses(EstatusDto.ToDTO(estatus))
                 .Select(e => Estatus.ToModel(e));
         }
 
         public IEnumerable<Nota> ObtenerNotas(byte tipoId, Nota nota)
         {
-            NotaDTO notaDTO = new NotaDTO { IdCliente = nota.IdCliente };
+            NotaDto notaDTO = new() { IdCliente = nota.IdCliente };
             switch (tipoId)
             {
                 case 0:
@@ -210,13 +207,13 @@ namespace SernaSistemas.Jadet.BLogic
                 default:
                     break;
             }
-            return dBAdministracion.ObtenerNotas(NotaDTO.ToDTO(nota))
+            return dBAdministracion.ObtenerNotas(NotaDto.ToDTO(nota))
                 .Select(n => Nota.ToModel(n));
         }
 
         public IEnumerable<NotaTicket> ObtenerNotasTickets(bool esId, NotaTicket notaTicket)
         {
-            NotaTicketDTO notaTicketDTO = new NotaTicketDTO();
+            NotaTicketDto notaTicketDTO = new();
             if (esId)
             {
                 notaTicketDTO.Id = notaTicket.Id;
@@ -231,7 +228,7 @@ namespace SernaSistemas.Jadet.BLogic
 
         public IEnumerable<Producto> ObtenerProductos(byte idTipo, bool esSku, Producto producto)
         {
-            ProductoDTO productoDTO = new ProductoDTO();
+            ProductoDto productoDTO = new();
             switch (idTipo)
             {
                 case 0:
@@ -263,13 +260,13 @@ namespace SernaSistemas.Jadet.BLogic
 
         public IEnumerable<TipoCatalogo> ObtenerTiposCatalogo(TipoCatalogo tipoCatalogo)
         {
-            return dBAdministracion.ObtenerTiposCatalogos(TipoCatalogoDTO.ToDTO(tipoCatalogo))
+            return dBAdministracion.ObtenerTiposCatalogos(TipoCatalogoDto.ToDTO(tipoCatalogo))
                 .Select(t => TipoCatalogo.ToModel(t));
         }
 
         public IEnumerable<TipoEstatus> ObtenerTiposEstatus(TipoEstatus tipoEstatus)
         {
-            return dBAdministracion.ObtenerTiposEstatus(TipoEstatusDTO.ToDTO(tipoEstatus))
+            return dBAdministracion.ObtenerTiposEstatus(TipoEstatusDto.ToDTO(tipoEstatus))
             .Select(t => TipoEstatus.ToModel(t));
         }
         #endregion

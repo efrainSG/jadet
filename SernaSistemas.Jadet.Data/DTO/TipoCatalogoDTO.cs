@@ -4,13 +4,13 @@ using System.Linq;
 
 namespace SernaSistemas.Jadet.Data.DTO
 {
-    public class TipoCatalogoDTO
+    public class TipoCatalogoDto
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
-        public static TipoCatalogoDTO ToDTO(dynamic tipoEstatus)
+        public static TipoCatalogoDto ToDTO(dynamic tipoEstatus)
         {
-            return new TipoCatalogoDTO
+            return new TipoCatalogoDto
             {
                 Id = tipoEstatus.Id,
                 Nombre = tipoEstatus.Nombre
@@ -18,9 +18,9 @@ namespace SernaSistemas.Jadet.Data.DTO
         }
     }
 
-    public class TiposCatalogosDTO: List<TipoCatalogoDTO>
+    public class TiposCatalogosDto: List<TipoCatalogoDto>
     {
-        public static List<TipoCatalogoDTO> ToDTO (List<TipoCatalogo> tiposCatalogo) =>
-            tiposCatalogo.Select(t => TipoCatalogoDTO.ToDTO(t)).ToList();
+        public static List<TipoCatalogoDto> ToDTO (List<TipoCatalogo> tiposCatalogo) =>
+            tiposCatalogo.Select(t => TipoCatalogoDto.ToDTO(t)).ToList();
     }
 }

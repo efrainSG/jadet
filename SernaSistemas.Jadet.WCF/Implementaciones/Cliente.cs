@@ -26,19 +26,19 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
     }
     public CarritoResponse nuevoCarrito(CarritoRequest request)
     {
-        Nota _nota = da.guardarNota(Nota.ToModel(request));
+        Nota _nota = da.GuardarNota(Nota.ToModel(request));
         return NotaResponse.ToResponse(_nota) as CarritoResponse;
     }
 
     public ItemCarritoResponse agregarACarrito(ItemCarritoRequest request)
     {
-        var _respuesta = da.guardarDetalle(DetalleNota.ToModel(request));
+        var _respuesta = da.GuardarDetalle(DetalleNota.ToModel(request));
         return DetalleNotaResponse.ToResponse(_respuesta) as ItemCarritoResponse;
     }
 
     public BaseResponse quitarDelCarrito(ItemCarritoRequest request)
     {
-        var _respuesta = da.borrarDetalle(request.Id);
+        var _respuesta = da.BorrarDetalle(request.Id);
         return new BaseResponse
         {
             ErrorMensaje = _respuesta.ErrorMensaje,
@@ -48,7 +48,7 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
 
     public CarritoResponse vaciarCarrito(CarritoRequest request)
     {
-        var _respuesta = da.vaciarCarrito(request.Folio);
+        var _respuesta = da.VaciarCarrito(request.Folio);
         return new CarritoResponse
         {
             ErrorMensaje = _respuesta.ErrorMensaje,
@@ -69,7 +69,7 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
     {
         var _nota = da.listarNota(Nota.ToModel(request)).FirstOrDefault();
         _nota.IdEstatus = 7;
-        da.guardarNota(Nota.ToModel(_nota));
+        da.GuardarNota(Nota.ToModel(_nota));
         return new BaseResponse
         {
             ErrorMensaje = string.Empty,
@@ -130,7 +130,7 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
 
     public NotaComentarioResponse guardarComentario(NotaComentarioRequest request)
     {
-        var _response = da.guardarComentario(ComentarioNota.ToModel(request));
+        var _response = da.GuardarComentario(ComentarioNota.ToModel(request));
         return NotaComentarioResponse.ToResponse(_response);
     }
 

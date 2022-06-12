@@ -7,32 +7,40 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Jadet.Controllers {
-    public class AdministradorController : Controller {
+namespace Jadet.Controllers
+{
+    public class AdministradorController : Controller
+    {
         // GET: Administrador
-        public ActionResult Index() {
+        public ActionResult Index()
+        {
             if (Session["usuario"] != null)
                 return View();
-            else {
+            else
+            {
                 Session.Clear();
                 return RedirectToAction("Index", "Home");
             }
         }
         #region Carga de listas
-        public ActionResult Productos() {
-            if (Session["usuario"] == null) {
+        public ActionResult Productos()
+        {
+            if (Session["usuario"] == null)
+            {
                 Session.Clear();
                 return RedirectToAction("Index", "Home");
             }
             listaproductosmodel productos = new listaproductosmodel();
             var servicio = new AdministradorClient();
-            var response = servicio.listarProductos(new ProductoRequest {
+            var response = servicio.listarProductos(new ProductoRequest
+            {
                 Id = 0
             });
             var tipos = servicio.listarCatalogo(new CatalogoRequest { Id = 0 });
             var responseCategorias = servicio.listarCatalogo(new CatalogoRequest { IdTipoCatalogo = 0 });
             productos.Items.AddRange(
-                response.Items.OrderBy(p=>p.IdTipo).Select(p => new productomodel {
+                response.Items.OrderBy(p => p.IdTipo).Select(p => new productomodel
+                {
                     Descripcion = p.Descripcion,
                     ErrorMensaje = p.ErrorMensaje,
                     ErrorNumero = p.ErrorNumero,
@@ -53,24 +61,29 @@ namespace Jadet.Controllers {
             return View(productos);
         }
 
-        public ActionResult Guias() {
+        public ActionResult Guias()
+        {
             return View();
         }
 
-        public ActionResult Clientes() {
-            if (Session["usuario"] == null) {
+        public ActionResult Clientes()
+        {
+            if (Session["usuario"] == null)
+            {
                 Session.Clear();
                 return RedirectToAction("Index", "Home");
             }
 
             listaclientesmodel clientes = new listaclientesmodel();
             var servicio = new AdministradorServicio.AdministradorClient();
-            var response = servicio.listarClientes(new ClienteRequest {
-                IdCliente = new Guid(),
+            var response = servicio.listarClientes(new ClienteRequest
+            {
+                IdCliente = Guid.Empty,
                 IdRol = 2
             });
             clientes.Items.AddRange(
-                response.Items.Select(p => new clientemodel {
+                response.Items.Select(p => new clientemodel
+                {
                     Nombre = p.Nombre,
                     usuario = p.UserName,
                     Direccion = p.Direccion,
@@ -84,28 +97,34 @@ namespace Jadet.Controllers {
             return View(clientes);
         }
 
-        public ActionResult Notas() {
-            if (Session["usuario"] == null) {
+        public ActionResult Notas()
+        {
+            if (Session["usuario"] == null)
+            {
                 Session.Clear();
                 return RedirectToAction("Index", "Home");
             }
 
             listaNotaModel notas = new listaNotaModel();
             var servicio = new AdministradorServicio.AdministradorClient();
-            var response = servicio.listarNotas(new NotaRequest {
+            var response = servicio.listarNotas(new NotaRequest
+            {
                 Folio = 0,
                 Fecha = null,
                 IdEstatus = 0
             });
-            var responseClientes = servicio.listarClientes(new ClienteRequest {
-                IdCliente = new Guid(),
+            var responseClientes = servicio.listarClientes(new ClienteRequest
+            {
+                IdCliente = Guid.Empty,
                 IdRol = 2
             });
-            var responseTipos = servicio.listarCatalogo(new CatalogoRequest {
+            var responseTipos = servicio.listarCatalogo(new CatalogoRequest
+            {
                 Id = 0,
                 IdTipoCatalogo = 0
             });
-            var responseEstatus = servicio.listarEstatus(new EstatusRequest {
+            var responseEstatus = servicio.listarEstatus(new EstatusRequest
+            {
                 Id = 0,
                 IdTipoEstatus = 0
             });
@@ -113,7 +132,8 @@ namespace Jadet.Controllers {
             notas.Items.AddRange(
                 response.Items
                 //.Where(p => p.IdEstatus != 6)
-                .Select(p => new notaModel {
+                .Select(p => new notaModel
+                {
                     Fecha = p.Fecha,
                     FechaEnvio = p.FechaEnvio,
                     Folio = p.Folio,
@@ -134,25 +154,30 @@ namespace Jadet.Controllers {
             return View(notas);
         }
 
-        public ActionResult Configuracion() {
-            if (Session["usuario"] == null) {
+        public ActionResult Configuracion()
+        {
+            if (Session["usuario"] == null)
+            {
                 Session.Clear();
                 return RedirectToAction("Index", "Home");
             }
             var servicio = new AdministradorClient();
-            var response = servicio.listarCatalogo(new CatalogoRequest {
+            var response = servicio.listarCatalogo(new CatalogoRequest
+            {
                 Id = 0,
                 IdTipoCatalogo = 0
             });
             var resultado = new listacatalogoModel();
-            resultado.Items.AddRange(response.Items.Select(i => new catalogoModel {
+            resultado.Items.AddRange(response.Items.Select(i => new catalogoModel
+            {
                 Id = i.Id,
                 IdTipoCatalogo = i.IdTipoCatalogo,
                 Nombre = i.Nombre,
                 Tabla = "CATÁLOGO"
             }));
             var response2 = servicio.listarEstatus(new EstatusRequest { Id = 0, IdTipoEstatus = 0 });
-            resultado.Items.AddRange(response2.Items.Select(i => new catalogoModel {
+            resultado.Items.AddRange(response2.Items.Select(i => new catalogoModel
+            {
                 Id = i.Id,
                 IdTipoCatalogo = i.IdTipoEstatus,
                 Nombre = i.Nombre,
@@ -162,8 +187,10 @@ namespace Jadet.Controllers {
         }
 
         [HttpGet]
-        public ActionResult DetalleNota(int folio) {
-            if (Session["usuario"] == null) {
+        public ActionResult DetalleNota(int folio)
+        {
+            if (Session["usuario"] == null)
+            {
                 Session.Clear();
                 return RedirectToAction("Index", "Home");
             }
@@ -171,14 +198,15 @@ namespace Jadet.Controllers {
             notacompletaModel model;
             var response = servicio.cargarNota(new NotaRequest { Folio = folio });
             var responsedetalle = servicio.cargarDetalleNota(new DetalleNotaRequest { IdNota = folio });
-            var responseClientes = servicio.listarClientes(new ClienteRequest { IdCliente = new Guid(), IdRol = 2 });
+            var responseClientes = servicio.listarClientes(new ClienteRequest { IdCliente = Guid.Empty, IdRol = 2 });
             var responseTipos = servicio.listarCatalogo(new CatalogoRequest { Id = 0, IdTipoCatalogo = 0 });
             var responseEstatus = servicio.listarEstatus(new EstatusRequest { Id = 0, IdTipoEstatus = 0 });
             var responseItems = servicio.listarDetalleNota(new DetalleNotaRequest { IdNota = folio });
             var productos = servicio.listarProductos(new ProductoRequest { Id = 0 });
             var comentarios = servicio.listarComentarioNota(new NotaComentarioRequest { IdNota = folio }).Items;
             var tickets = servicio.listarTicketNota(new NotaTicketRequest { IdNota = folio }).Items;
-            model = new notacompletaModel {
+            model = new notacompletaModel
+            {
                 Fecha = response.Fecha,
                 FechaEnvio = response.FechaEnvio,
                 Folio = response.Folio,
@@ -195,13 +223,15 @@ namespace Jadet.Controllers {
                 MontoUSD = response.MontoUSD,
                 SaldoMXN = response.SaldoMXN,
                 SaldoUSD = response.SaldoUSD,
-                Comentarios = comentarios.Select(i => new Comentariomodel {
+                Comentarios = comentarios.Select(i => new Comentariomodel
+                {
                     Id = i.Id,
                     Fecha = i.Fecha,
                     FolioNota = i.IdNota,
                     Mensaje = i.Comentario
                 }).ToList(),
-                Tickets = tickets.Select(i => new Ticketmodel {
+                Tickets = tickets.Select(i => new Ticketmodel
+                {
                     Id = i.Id,
                     Fecha = i.Fecha,
                     IdNota = i.IdNota,
@@ -210,7 +240,8 @@ namespace Jadet.Controllers {
                     MontoMXN = i.MontoMXN
                 }).ToList()
             };
-            model.Items.AddRange(responseItems.Items.Select(i => new detallenotaModel {
+            model.Items.AddRange(responseItems.Items.Select(i => new detallenotaModel
+            {
                 Cantidad = i.Cantidad,
                 Id = i.Id,
                 IdNota = i.IdNota,
@@ -224,15 +255,18 @@ namespace Jadet.Controllers {
         }
 
         [HttpGet]
-        public ActionResult Tickets(int folio) {
-            if (Session["usuario"] == null) {
+        public ActionResult Tickets(int folio)
+        {
+            if (Session["usuario"] == null)
+            {
                 Session.Clear();
                 return RedirectToAction("Index", "Home");
             }
             var servicio = new AdministradorClient();
             var listatickets = new listaTicketsmodel();
             var response = servicio.listarTicketNota(new NotaTicketRequest { IdNota = folio });
-            listatickets.Items.AddRange(response.Items.Select(i => new Ticketmodel {
+            listatickets.Items.AddRange(response.Items.Select(i => new Ticketmodel
+            {
                 Id = i.Id,
                 Fecha = i.Fecha,
                 IdNota = i.IdNota,
@@ -244,8 +278,10 @@ namespace Jadet.Controllers {
         }
 
         [HttpGet]
-        public ActionResult Comentarios(int folio) {
-            if (Session["usuario"] == null) {
+        public ActionResult Comentarios(int folio)
+        {
+            if (Session["usuario"] == null)
+            {
                 Session.Clear();
                 return RedirectToAction("Index", "Home");
             }
@@ -254,16 +290,19 @@ namespace Jadet.Controllers {
             var response = servicio.listarComentarioNota(new NotaComentarioRequest { IdNota = folio });
 
 
-            listacomentarios.Items.AddRange(response.Items.Where(i=>i.IdComentarioAnterior==0).Select(i => new Comentariomodel {
+            listacomentarios.Items.AddRange(response.Items.Where(i => i.IdComentarioAnterior == 0).Select(i => new Comentariomodel
+            {
                 Id = (i.IdComentarioAnterior == 0) ? i.Id : i.IdComentarioAnterior,
                 Fecha = i.Fecha,
                 FolioNota = i.IdNota,
                 Mensaje = i.Comentario,
                 IdPadre = i.IdComentarioAnterior
-            }).OrderBy(i=>i.Id));
-            foreach (var item in listacomentarios.Items) {
+            }).OrderBy(i => i.Id));
+            foreach (var item in listacomentarios.Items)
+            {
                 item.Items = new System.Collections.Generic.List<Comentariomodel>();
-                item.Items.AddRange(response.Items.Where(i => i.IdComentarioAnterior == item.Id).Select(i => new Comentariomodel {
+                item.Items.AddRange(response.Items.Where(i => i.IdComentarioAnterior == item.Id).Select(i => new Comentariomodel
+                {
                     Id = (i.IdComentarioAnterior == 0) ? i.Id : i.IdComentarioAnterior,
                     Fecha = i.Fecha,
                     FolioNota = i.IdNota,
@@ -277,19 +316,25 @@ namespace Jadet.Controllers {
 
 
         [HttpPost]
-        public JsonResult guardarProducto(productomodel model, HttpPostedFileBase imgArch) {
-            if (Session["usuario"] == null) {
+        public JsonResult guardarProducto(productomodel model, HttpPostedFileBase imgArch)
+        {
+            if (Session["usuario"] == null)
+            {
                 Session.Clear();
                 return Json(new { respuesta = new ProductoResponse() }, JsonRequestBehavior.AllowGet);
-            } else {
+            }
+            else
+            {
                 var servicio = new AdministradorClient();
                 var archivo = Request.Files[0];
-                if (archivo != null && archivo.ContentLength > 0) {
+                if (archivo != null && archivo.ContentLength > 0)
+                {
                     string _nomArch = Path.GetFileName(archivo.FileName);
                     string _ruta = Path.Combine(Server.MapPath("~/Content/productos"), _nomArch);
                     archivo.SaveAs(_ruta);
                 }
-                var response = servicio.guardarProducto(new ProductoRequest {
+                var response = servicio.guardarProducto(new ProductoRequest
+                {
                     AplicaExistencias = model.AplicaExistencias,
                     Descripcion = model.Descripcion,
                     Existencias = model.Existencias,
@@ -308,13 +353,18 @@ namespace Jadet.Controllers {
         }
 
         [HttpPost]
-        public JsonResult eliminarProducto(productomodel model) {
-            if (Session["usuario"] == null) {
+        public JsonResult eliminarProducto(productomodel model)
+        {
+            if (Session["usuario"] == null)
+            {
                 Session.Clear();
                 return Json(new ProductoResponse(), JsonRequestBehavior.AllowGet);
-            } else {
+            }
+            else
+            {
                 var servicio = new AdministradorClient();
-                var response = servicio.bajaProducto(new ProductoRequest {
+                var response = servicio.bajaProducto(new ProductoRequest
+                {
                     Id = model.Id,
                 });
                 return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
@@ -322,13 +372,18 @@ namespace Jadet.Controllers {
         }
 
         [HttpPost]
-        public JsonResult guardarCatalogo(catalogoModel model) {
-            if (Session["usuario"] == null) {
+        public JsonResult guardarCatalogo(catalogoModel model)
+        {
+            if (Session["usuario"] == null)
+            {
                 Session.Clear();
                 return Json(new { respuesta = new CatalogoResponse() }, JsonRequestBehavior.AllowGet);
-            } else {
+            }
+            else
+            {
                 var servicio = new AdministradorClient();
-                var response = servicio.guardarCatalogo(new CatalogoRequest {
+                var response = servicio.guardarCatalogo(new CatalogoRequest
+                {
                     Id = model.Id,
                     Nombre = model.Nombre,
                     IdTipoCatalogo = model.IdTipoCatalogo
@@ -338,13 +393,18 @@ namespace Jadet.Controllers {
         }
 
         [HttpPost]
-        public JsonResult eliminarCatalogo(catalogoModel model) {
-            if (Session["usuario"] == null) {
+        public JsonResult eliminarCatalogo(catalogoModel model)
+        {
+            if (Session["usuario"] == null)
+            {
                 Session.Clear();
                 return Json(new { respuesta = new ProductoResponse() }, JsonRequestBehavior.AllowGet);
-            } else {
+            }
+            else
+            {
                 var servicio = new AdministradorClient();
-                var response = servicio.bajaCatalogo(new CatalogoRequest {
+                var response = servicio.bajaCatalogo(new CatalogoRequest
+                {
                     Id = model.Id,
                     Nombre = model.Nombre,
                     IdTipoCatalogo = model.IdTipoCatalogo
@@ -354,13 +414,18 @@ namespace Jadet.Controllers {
         }
 
         [HttpPost]
-        public JsonResult guardarEstatus(catalogoModel model) {
-            if (Session["usuario"] == null) {
+        public JsonResult guardarEstatus(catalogoModel model)
+        {
+            if (Session["usuario"] == null)
+            {
                 Session.Clear();
                 return Json(new { respuesta = new ProductoResponse() }, JsonRequestBehavior.AllowGet);
-            } else {
+            }
+            else
+            {
                 var servicio = new AdministradorClient();
-                var response = servicio.guardarEstatus(new EstatusRequest {
+                var response = servicio.guardarEstatus(new EstatusRequest
+                {
                     Id = model.Id,
                     Nombre = model.Nombre,
                     IdTipoEstatus = model.IdTipoCatalogo
@@ -370,13 +435,18 @@ namespace Jadet.Controllers {
         }
 
         [HttpPost]
-        public JsonResult eliminarEstatus(catalogoModel model) {
-            if (Session["usuario"] == null) {
+        public JsonResult eliminarEstatus(catalogoModel model)
+        {
+            if (Session["usuario"] == null)
+            {
                 Session.Clear();
                 return Json(new ProductoResponse(), JsonRequestBehavior.AllowGet);
-            } else {
+            }
+            else
+            {
                 var servicio = new AdministradorClient();
-                var response = servicio.bajaEstatus(new EstatusRequest {
+                var response = servicio.bajaEstatus(new EstatusRequest
+                {
                     Id = model.Id,
                     Nombre = model.Nombre
                 });
@@ -385,13 +455,18 @@ namespace Jadet.Controllers {
         }
 
         [HttpPost]
-        public JsonResult guardarCliente(clientemodel model) {
-            if (Session["usuario"] == null) {
+        public JsonResult guardarCliente(clientemodel model)
+        {
+            if (Session["usuario"] == null)
+            {
                 Session.Clear();
                 return Json(new { respuesta = new ClienteResponse() }, JsonRequestBehavior.AllowGet);
-            } else {
+            }
+            else
+            {
                 var servicio = new AdministradorClient();
-                var response = servicio.guardarCliente(new ClienteRequest {
+                var response = servicio.guardarCliente(new ClienteRequest
+                {
                     Direccion = model.Direccion,
                     IdCliente = model.IdCliente,
                     IdEstatus = model.IdEstatus,
@@ -408,42 +483,55 @@ namespace Jadet.Controllers {
         }
 
         [HttpPost]
-        public JsonResult eliminarCliente(clientemodel model) {
-            if (Session["usuario"] == null) {
+        public JsonResult eliminarCliente(clientemodel model)
+        {
+            if (Session["usuario"] == null)
+            {
                 Session.Clear();
                 return Json(new { respuesta = new ClienteResponse() }, JsonRequestBehavior.AllowGet);
-            } else {
+            }
+            else
+            {
                 var servicio = new AdministradorClient();
-                var response = servicio.bajaCliente(new ClienteRequest {
+                var response = servicio.bajaCliente(new ClienteRequest
+                {
                     IdCliente = model.IdCliente,
                 });
                 return Json(new { respuesta = response }, JsonRequestBehavior.AllowGet);
             }
         }
 
-        public JsonResult ObtenerNota(int folio) {
-            if (Session["usuario"] == null) {
+        public JsonResult ObtenerNota(int folio)
+        {
+            if (Session["usuario"] == null)
+            {
                 Session.Clear();
                 return Json(new { respuesta = new ClienteResponse() }, JsonRequestBehavior.AllowGet);
             }
             var servicio = new AdministradorClient();
-            var preresponse = servicio.cargarNota(new NotaRequest {
+            var preresponse = servicio.cargarNota(new NotaRequest
+            {
                 Folio = folio
             });
-            var responseClientes = servicio.listarClientes(new ClienteRequest {
+            var responseClientes = servicio.listarClientes(new ClienteRequest
+            {
                 IdCliente = preresponse.IdCliente
             });
-            var responseTipos = servicio.listarCatalogo(new CatalogoRequest {
+            var responseTipos = servicio.listarCatalogo(new CatalogoRequest
+            {
                 Id = preresponse.IdTipo
             });
-            var responseEstatus = servicio.listarEstatus(new EstatusRequest {
+            var responseEstatus = servicio.listarEstatus(new EstatusRequest
+            {
                 Id = preresponse.IdEstatus
             });
-            var responsePaqueterias = servicio.listarCatalogo(new CatalogoRequest {
+            var responsePaqueterias = servicio.listarCatalogo(new CatalogoRequest
+            {
                 Id = preresponse.IdPaqueteria
             });
 
-            notaModel response = new notaModel {
+            notaModel response = new notaModel
+            {
                 Cliente = responseClientes.Items.FirstOrDefault().Nombre,
                 IdCliente = preresponse.IdCliente,
                 Estatus = responseEstatus.Items.FirstOrDefault().Nombre,
@@ -464,13 +552,18 @@ namespace Jadet.Controllers {
             return Json(response, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
-        public JsonResult guardarNota(notaModel model) {
-            if (Session["usuario"] == null) {
+        public JsonResult guardarNota(notaModel model)
+        {
+            if (Session["usuario"] == null)
+            {
                 Session.Clear();
                 return Json(new { respuesta = new ClienteResponse() }, JsonRequestBehavior.AllowGet);
-            } else {
+            }
+            else
+            {
                 var servicio = new AdministradorClient();
-                var response = servicio.guardarNota(new NotaRequest {
+                var response = servicio.guardarNota(new NotaRequest
+                {
                     Fecha = model.Fecha,
                     FechaEnvio = model.FechaEnvio,
                     Folio = model.Folio,
@@ -489,13 +582,18 @@ namespace Jadet.Controllers {
         }
 
         [HttpPost]
-        public JsonResult eliminarNota(notaModel model) {
-            if (Session["usuario"] == null) {
+        public JsonResult eliminarNota(notaModel model)
+        {
+            if (Session["usuario"] == null)
+            {
                 Session.Clear();
                 return Json(new { respuesta = new ClienteResponse() }, JsonRequestBehavior.AllowGet);
-            } else {
+            }
+            else
+            {
                 var servicio = new AdministradorClient();
-                var response = servicio.bajaNota(new NotaRequest {
+                var response = servicio.bajaNota(new NotaRequest
+                {
                     Fecha = model.Fecha,
                     FechaEnvio = model.FechaEnvio,
                     Folio = model.Folio,
@@ -514,13 +612,18 @@ namespace Jadet.Controllers {
         }
 
         [HttpPost]
-        public ActionResult guardarComentario(Comentariomodel model) {
-            if (Session["usuario"] == null) {
+        public ActionResult guardarComentario(Comentariomodel model)
+        {
+            if (Session["usuario"] == null)
+            {
                 Session.Clear();
                 return RedirectToAction("Index", "Home");
-            } else {
+            }
+            else
+            {
                 var servicio = new AdministradorClient();
-                var response = servicio.guardarComentarioNota(new NotaComentarioRequest {
+                var response = servicio.guardarComentarioNota(new NotaComentarioRequest
+                {
                     Fecha = DateTime.Now,
                     Id = model.Id,
                     Comentario = model.Mensaje,
@@ -531,50 +634,62 @@ namespace Jadet.Controllers {
             }
         }
 
-        public JsonResult obtenerDiccionario(int IdTipo) {
-            if (Session["usuario"] == null) {
+        public JsonResult obtenerDiccionario(int IdTipo)
+        {
+            if (Session["usuario"] == null)
+            {
                 Session.Clear();
                 return Json(new { respuesta = new ClienteResponse() }, JsonRequestBehavior.AllowGet);
             }
             var servicio = new AdministradorClient();
-            var response = servicio.listarCatalogo(new CatalogoRequest {
+            var response = servicio.listarCatalogo(new CatalogoRequest
+            {
                 IdTipoCatalogo = IdTipo
             });
 
             return Json(response.Items.Select(e => new { id = e.Id, nombre = e.Nombre }).ToArray(), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult obtenerTiposCatalogos(int IdTipo) {
-            if (Session["usuario"] == null) {
+        public JsonResult obtenerTiposCatalogos(int IdTipo)
+        {
+            if (Session["usuario"] == null)
+            {
                 Session.Clear();
                 return Json(new { respuesta = new ClienteResponse() }, JsonRequestBehavior.AllowGet);
             }
             var servicio = new AdministradorClient();
-            var response = servicio.listarTipoCatalogo(new TipoCatalogoRequest {
+            var response = servicio.listarTipoCatalogo(new TipoCatalogoRequest
+            {
                 Id = IdTipo
             });
             return Json(response.Items.Select(e => new { id = e.Id, nombre = e.Nombre }).ToArray(), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult obtenerEstatus(int IdTipo) {
-            if (Session["usuario"] == null) {
+        public JsonResult obtenerEstatus(int IdTipo)
+        {
+            if (Session["usuario"] == null)
+            {
                 Session.Clear();
                 return Json(new { respuesta = new ClienteResponse() }, JsonRequestBehavior.AllowGet);
             }
             var servicio = new AdministradorClient();
-            var response = servicio.listarEstatus(new EstatusRequest {
+            var response = servicio.listarEstatus(new EstatusRequest
+            {
                 Id = IdTipo
             });
             return Json(response.Items.Select(e => new { id = e.Id, nombre = e.Nombre, Tipo = e.IdTipoEstatus }).ToArray(), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult obtenerTipoEstatus(int IdTipo) {
-            if (Session["usuario"] == null) {
+        public JsonResult obtenerTipoEstatus(int IdTipo)
+        {
+            if (Session["usuario"] == null)
+            {
                 Session.Clear();
                 return Json(new { respuesta = new ClienteResponse() }, JsonRequestBehavior.AllowGet);
             }
             var servicio = new AdministradorClient();
-            var response = servicio.listarTipoEstatus(new TipoEstatusRequest {
+            var response = servicio.listarTipoEstatus(new TipoEstatusRequest
+            {
                 Id = IdTipo
             });
             return Json(response.Items.Select(e => new { id = e.Id, nombre = e.Nombre }).ToArray(), JsonRequestBehavior.AllowGet);

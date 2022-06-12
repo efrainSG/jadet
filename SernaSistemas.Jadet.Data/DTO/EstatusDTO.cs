@@ -5,15 +5,15 @@ using System.Linq;
 
 namespace SernaSistemas.Jadet.Data.DTO
 {
-    public class EstatusDTO
+    public class EstatusDto
     {
         public int Id { get; set; }
         public int IdTipoEstatus { get; set; }
         public string Nombre { get; set; }
 
-        public static EstatusDTO ToDTO(dynamic estatus)
+        public static EstatusDto ToDTO(dynamic estatus)
         {
-            return new EstatusDTO
+            return new EstatusDto
             {
                 Id = estatus.Id,
                 IdTipoEstatus = estatus.IdTipoEstatus,
@@ -22,9 +22,9 @@ namespace SernaSistemas.Jadet.Data.DTO
         }
     }
 
-    public class EstatusesDTO: List<EstatusDTO>
+    public class EstatusesDto: List<EstatusDto>
     {
-        internal static IEnumerable<EstatusDTO> ToDTO(List<Estatus> estatuses) =>
-            estatuses.Select(e => EstatusDTO.ToDTO(e)).ToList();
+        internal static IEnumerable<EstatusDto> ToDTO(List<Estatus> estatuses) =>
+            estatuses.Select(e => EstatusDto.ToDTO(e)).ToList();
     }
 }

@@ -20,7 +20,7 @@ namespace SernaSistemas.Jadet.Data.Repository
             contexto = dbContext as BDJadetContext;
         }
 
-        public bool BorrarCatalogo(ref CatalogoDTO catalogo)
+        public bool BorrarCatalogo(ref CatalogoDto catalogo)
         {
             int id = catalogo.Id;
             Catalogo _catalogo = contexto.Catalogos.FirstOrDefault(c => c.Id == id);
@@ -36,7 +36,7 @@ namespace SernaSistemas.Jadet.Data.Repository
             return false;
         }
 
-        public bool BorrarDetalle(ref DetalleDTO detalle)
+        public bool BorrarDetalle(ref DetalleDto detalle)
         {
             int id = detalle.Id;
             Detalle _detalle = contexto.Detalles.FirstOrDefault(d => d.Id == id);
@@ -54,7 +54,7 @@ namespace SernaSistemas.Jadet.Data.Repository
             return false;
         }
 
-        public bool BorrarEstatus(ref EstatusDTO estatus)
+        public bool BorrarEstatus(ref EstatusDto estatus)
         {
             int id = estatus.Id;
             Estatus _estatus = contexto.Estatuses.FirstOrDefault(e => e.Id == id);
@@ -70,7 +70,7 @@ namespace SernaSistemas.Jadet.Data.Repository
             return false;
         }
 
-        public bool BorrarNota(ref NotaDTO nota)
+        public bool BorrarNota(ref NotaDto nota)
         {
             int id = nota.Folio;
             Nota _nota = contexto.Notas.FirstOrDefault(n => n.Folio == id);
@@ -90,7 +90,7 @@ namespace SernaSistemas.Jadet.Data.Repository
             return false;
         }
 
-        public bool BorrarNotaComentario(ref NotaComentarioDTO notaComentario)
+        public bool BorrarNotaComentario(ref NotaComentarioDto notaComentario)
         {
             int id = notaComentario.Id;
             NotasComentario comentario = contexto.NotasComentarios.FirstOrDefault(c => c.Id == id);
@@ -104,7 +104,7 @@ namespace SernaSistemas.Jadet.Data.Repository
             return false;
         }
 
-        public bool BorrarProducto(ref ProductoDTO producto)
+        public bool BorrarProducto(ref ProductoDto producto)
         {
             int id = producto.Id;
             Producto _producto = contexto.Productos.FirstOrDefault(p => p.Id == id);
@@ -124,7 +124,7 @@ namespace SernaSistemas.Jadet.Data.Repository
             return false;
         }
 
-        public bool BorrarTipoCatalogo(ref TipoCatalogoDTO tipoCatalogo)
+        public bool BorrarTipoCatalogo(ref TipoCatalogoDto tipoCatalogo)
         {
             int id = tipoCatalogo.Id;
             TipoCatalogo _tipoCatalogo = contexto.TipoCatalogos.FirstOrDefault(t => t.Id == id);
@@ -137,7 +137,7 @@ namespace SernaSistemas.Jadet.Data.Repository
             return false;
         }
 
-        public bool BorrarTipoEstatus(ref TipoEstatusDTO tipo)
+        public bool BorrarTipoEstatus(ref TipoEstatusDto tipo)
         {
             int id = tipo.Id;
             TipoEstatus _tipo = contexto.TipoEstatuses.FirstOrDefault(t => t.Id == id);
@@ -150,7 +150,7 @@ namespace SernaSistemas.Jadet.Data.Repository
             return false;
         }
 
-        public bool GuardarCatalogo(ref CatalogoDTO catalogo)
+        public bool GuardarCatalogo(ref CatalogoDto catalogo)
         {
             int id = catalogo.Id;
             int idTipo = catalogo.IdTipoCatalogo;
@@ -167,12 +167,12 @@ namespace SernaSistemas.Jadet.Data.Repository
 
             int resultado = contexto.SaveChanges();
 
-            catalogo = CatalogoDTO.ToDTO(_catalogo);
+            catalogo = CatalogoDto.ToDTO(_catalogo);
 
             return resultado != 0;
         }
 
-        public bool GuardarDetalle(ref DetalleDTO detalle)
+        public bool GuardarDetalle(ref DetalleDto detalle)
         {
             int id = detalle.Id;
             int idNota = detalle.IdNota;
@@ -196,12 +196,12 @@ namespace SernaSistemas.Jadet.Data.Repository
 
             int resultado = contexto.SaveChanges();
 
-            detalle = DetalleDTO.ToDTO(_detalle);
+            detalle = DetalleDto.ToDTO(_detalle);
 
             return resultado != 0;
         }
 
-        public bool GuardarEstatus(ref EstatusDTO estatus)
+        public bool GuardarEstatus(ref EstatusDto estatus)
         {
             int id = estatus.Id;
             int idTipo = estatus.IdTipoEstatus;
@@ -218,12 +218,12 @@ namespace SernaSistemas.Jadet.Data.Repository
 
             int resultado = contexto.SaveChanges();
 
-            estatus = EstatusDTO.ToDTO(_estatus);
+            estatus = EstatusDto.ToDTO(_estatus);
 
             return resultado != 0;
         }
 
-        public bool GuardarNota(ref NotaDTO nota)
+        public bool GuardarNota(ref NotaDto nota)
         {
             int folio = nota.Folio;
             int idTipo = nota.IdTipo;
@@ -255,12 +255,12 @@ namespace SernaSistemas.Jadet.Data.Repository
 
             int resultado = contexto.SaveChanges();
 
-            nota = NotaDTO.ToDTO(_nota);
+            nota = NotaDto.ToDTO(_nota);
 
             return resultado != 0;
         }
 
-        public bool GuardarNotaComentario(ref NotaComentarioDTO notaComentario)
+        public bool GuardarNotaComentario(ref NotaComentarioDto notaComentario)
         {
             int id = notaComentario.Id;
             int idNota = notaComentario.IdNota;
@@ -283,13 +283,13 @@ namespace SernaSistemas.Jadet.Data.Repository
 
             int resultado = contexto.SaveChanges();
 
-            notaComentario = NotaComentarioDTO.ToDTO(_notaComentario);
+            notaComentario = NotaComentarioDto.ToDTO(_notaComentario);
 
             return resultado != 0;
 
         }
 
-        public bool GuardarProducto(ref ProductoDTO producto)
+        public bool GuardarProducto(ref ProductoDto producto)
         {
             int id = producto.Id;
             int idCatalogo = producto.IdCatalogo;
@@ -312,11 +312,11 @@ namespace SernaSistemas.Jadet.Data.Repository
 
             int resultado = contexto.SaveChanges();
 
-            producto = ProductoDTO.ToDTO(_producto);
+            producto = ProductoDto.ToDTO(_producto);
             return resultado != 0;
         }
 
-        public bool GuardarTipoCatalogo(ref TipoCatalogoDTO tipoCatalogo)
+        public bool GuardarTipoCatalogo(ref TipoCatalogoDto tipoCatalogo)
         {
             int id = tipoCatalogo.Id;
             TipoCatalogo _tipoCatalogo = contexto.TipoCatalogos.FirstOrDefault(e => e.Id == id);
@@ -329,11 +329,11 @@ namespace SernaSistemas.Jadet.Data.Repository
             _tipoCatalogo.Nombre = tipoCatalogo.Nombre;
 
             int resultado = contexto.SaveChanges();
-            tipoCatalogo = TipoCatalogoDTO.ToDTO(_tipoCatalogo);
+            tipoCatalogo = TipoCatalogoDto.ToDTO(_tipoCatalogo);
             return resultado != 0;
         }
 
-        public bool GuardarTipoEstatus(ref TipoEstatusDTO tipo)
+        public bool GuardarTipoEstatus(ref TipoEstatusDto tipo)
         {
             int id = tipo.Id;
 
@@ -345,209 +345,209 @@ namespace SernaSistemas.Jadet.Data.Repository
             }
             _tipo.Nombre = tipo.Nombre;
             int resultado = contexto.SaveChanges();
-            tipo = TipoEstatusDTO.ToDTO(_tipo);
+            tipo = TipoEstatusDto.ToDTO(_tipo);
             return resultado != 0;
         }
 
-        public CatalogosDTO ObtenerCatalogos(CatalogoDTO catalogo)
+        public CatalogosDto ObtenerCatalogos(CatalogoDto catalogo)
         {
-            CatalogosDTO resultado = new CatalogosDTO();
+            CatalogosDto resultado = new CatalogosDto();
             if (catalogo.Id != 0)
             {
-                resultado.AddRange(CatalogosDTO.ToDTO(contexto.Catalogos.Where(c => c.Id == catalogo.Id).ToList()));
+                resultado.AddRange(CatalogosDto.ToDTO(contexto.Catalogos.Where(c => c.Id == catalogo.Id).ToList()));
             }
             else if (catalogo.IdTipoCatalogo != 0)
             {
-                resultado.AddRange(CatalogosDTO.ToDTO(
+                resultado.AddRange(CatalogosDto.ToDTO(
                     contexto.Catalogos.Where(c => c.IdTipoCatalogo == catalogo.IdTipoCatalogo).ToList()
                     ));
             }
             else if (!string.IsNullOrEmpty(catalogo.Nombre))
             {
-                resultado.AddRange(CatalogosDTO.ToDTO(
+                resultado.AddRange(CatalogosDto.ToDTO(
                     contexto.Catalogos.Where(c => c.Nombre.ToUpper().Contains(catalogo.Nombre.ToUpper())).ToList()
                     ));
             }
             else
             {
-                resultado.AddRange(CatalogosDTO.ToDTO(contexto.Catalogos.ToList()));
+                resultado.AddRange(CatalogosDto.ToDTO(contexto.Catalogos.ToList()));
             }
             return resultado;
         }
 
-        public DetallesDTO ObtenerDetalles(DetalleDTO detalle)
+        public DetallesDto ObtenerDetalles(DetalleDto detalle)
         {
-            DetallesDTO resultado = new DetallesDTO();
+            DetallesDto resultado = new DetallesDto();
             if (detalle.Id != 0)
             {
-                resultado.AddRange(DetallesDTO.ToDTO(contexto.Detalles.Where(d => d.Id == detalle.Id).ToList()));
+                resultado.AddRange(DetallesDto.ToDTO(contexto.Detalles.Where(d => d.Id == detalle.Id).ToList()));
             }
             else if (detalle.IdNota != 0)
             {
-                resultado.AddRange(DetallesDTO.ToDTO(contexto.Detalles.Where(d => d.IdNota == detalle.IdNota).ToList()));
+                resultado.AddRange(DetallesDto.ToDTO(contexto.Detalles.Where(d => d.IdNota == detalle.IdNota).ToList()));
             }
             else if (detalle.IdProducto != 0)
             {
-                resultado.AddRange(DetallesDTO.ToDTO(contexto.Detalles.Where(d => d.IdProducto == detalle.IdProducto).ToList()));
+                resultado.AddRange(DetallesDto.ToDTO(contexto.Detalles.Where(d => d.IdProducto == detalle.IdProducto).ToList()));
             }
             else
             {
-                resultado.AddRange(DetallesDTO.ToDTO(contexto.Detalles.ToList()));
+                resultado.AddRange(DetallesDto.ToDTO(contexto.Detalles.ToList()));
             }
             return resultado;
         }
 
-        public EstatusesDTO ObtenerEstatuses(EstatusDTO estatus)
+        public EstatusesDto ObtenerEstatuses(EstatusDto estatus)
         {
-            EstatusesDTO resultado = new EstatusesDTO();
+            EstatusesDto resultado = new EstatusesDto();
             if (estatus.Id != 0)
             {
-                resultado.AddRange(EstatusesDTO.ToDTO(contexto.Estatuses.Where(e => e.Id == estatus.Id).ToList()));
+                resultado.AddRange(EstatusesDto.ToDTO(contexto.Estatuses.Where(e => e.Id == estatus.Id).ToList()));
             }
             else if (estatus.IdTipoEstatus != 0)
             {
-                resultado.AddRange(EstatusesDTO.ToDTO(contexto.Estatuses.Where(e => e.IdTipoEstatus == estatus.IdTipoEstatus).ToList()));
+                resultado.AddRange(EstatusesDto.ToDTO(contexto.Estatuses.Where(e => e.IdTipoEstatus == estatus.IdTipoEstatus).ToList()));
             }
             else if (!string.IsNullOrEmpty(estatus.Nombre))
             {
-                resultado.AddRange(EstatusesDTO.ToDTO(
+                resultado.AddRange(EstatusesDto.ToDTO(
                     contexto.Estatuses.Where(e => e.Nombre.ToUpper().Contains(estatus.Nombre.ToUpper())).ToList()));
             }
             return resultado;
         }
 
-        public NotasDTO ObtenerNotas(NotaDTO nota)
+        public NotasDto ObtenerNotas(NotaDto nota)
         {
-            NotasDTO resultado = new NotasDTO();
+            NotasDto resultado = new NotasDto();
             if (nota.Folio != 0)
             {
-                resultado.AddRange(NotasDTO.ToDTO(contexto.Notas.Where(n => n.Folio == nota.Folio).ToList()));
+                resultado.AddRange(NotasDto.ToDTO(contexto.Notas.Where(n => n.Folio == nota.Folio).ToList()));
             }
             else if (nota.IdEstatus != 0)
             {
-                resultado.AddRange(NotasDTO.ToDTO(contexto.Notas.Where(n => n.IdEstatus == nota.IdEstatus).ToList()));
+                resultado.AddRange(NotasDto.ToDTO(contexto.Notas.Where(n => n.IdEstatus == nota.IdEstatus).ToList()));
             }
             else if (nota.IdPaqueteria != 0)
             {
-                resultado.AddRange(NotasDTO.ToDTO(contexto.Notas.Where(n => n.IdPaqueteria == nota.IdPaqueteria).ToList()));
+                resultado.AddRange(NotasDto.ToDTO(contexto.Notas.Where(n => n.IdPaqueteria == nota.IdPaqueteria).ToList()));
             }
             else if (nota.IdTipo != 0)
             {
-                resultado.AddRange(NotasDTO.ToDTO(contexto.Notas.Where(n => n.IdTipo == nota.IdTipo).ToList()));
+                resultado.AddRange(NotasDto.ToDTO(contexto.Notas.Where(n => n.IdTipo == nota.IdTipo).ToList()));
             }
             else if (nota.IdCliente != Guid.Empty)
             {
-                resultado.AddRange(NotasDTO.ToDTO(contexto.Notas.Where(n => n.IdCliente == nota.IdCliente).ToList()));
+                resultado.AddRange(NotasDto.ToDTO(contexto.Notas.Where(n => n.IdCliente == nota.IdCliente).ToList()));
             }
             else
             {
-                resultado.AddRange(NotasDTO.ToDTO(contexto.Notas.ToList()));
+                resultado.AddRange(NotasDto.ToDTO(contexto.Notas.ToList()));
             }
             return resultado;
         }
 
-        public NotasComentariosDTO ObtenerNotasComentarios(NotaComentarioDTO notaComentario)
+        public NotasComentariosDto ObtenerNotasComentarios(NotaComentarioDto notaComentario)
         {
-            NotasComentariosDTO resultado = new NotasComentariosDTO();
+            NotasComentariosDto resultado = new NotasComentariosDto();
             if (notaComentario.Id != 0)
             {
-                resultado.AddRange(NotasComentariosDTO.ToDTO(contexto.NotasComentarios.Where(n => n.Id == notaComentario.Id).ToList()));
+                resultado.AddRange(NotasComentariosDto.ToDTO(contexto.NotasComentarios.Where(n => n.Id == notaComentario.Id).ToList()));
             }
             else if (notaComentario.IdNota != 0)
             {
-                resultado.AddRange(NotasComentariosDTO.ToDTO(contexto.NotasComentarios.Where(n => n.IdNota == notaComentario.IdNota).ToList()));
+                resultado.AddRange(NotasComentariosDto.ToDTO(contexto.NotasComentarios.Where(n => n.IdNota == notaComentario.IdNota).ToList()));
             }
             else
             {
-                resultado.AddRange(NotasComentariosDTO.ToDTO(contexto.NotasComentarios.ToList()));
+                resultado.AddRange(NotasComentariosDto.ToDTO(contexto.NotasComentarios.ToList()));
             }
             return resultado;
         }
 
-        public NotasTicketsDTO ObtenerNotasTickets(NotaTicketDTO notaTicket)
+        public NotasTicketsDto ObtenerNotasTickets(NotaTicketDto notaTicket)
         {
-            NotasTicketsDTO resultado = new NotasTicketsDTO();
+            NotasTicketsDto resultado = new NotasTicketsDto();
             if (notaTicket.Id != 0)
             {
-                resultado.AddRange(NotasTicketsDTO.ToDTO(contexto.NotasTickets.Where(n => n.Id == notaTicket.Id).ToList()));
+                resultado.AddRange(NotasTicketsDto.ToDTO(contexto.NotasTickets.Where(n => n.Id == notaTicket.Id).ToList()));
             }
             else if (notaTicket.IdNota != 0)
             {
-                resultado.AddRange(NotasTicketsDTO.ToDTO(contexto.NotasTickets.Where(n => n.IdNota == notaTicket.IdNota).ToList()));
+                resultado.AddRange(NotasTicketsDto.ToDTO(contexto.NotasTickets.Where(n => n.IdNota == notaTicket.IdNota).ToList()));
             }
             else
             {
-                resultado.AddRange(NotasTicketsDTO.ToDTO(contexto.NotasTickets.ToList()));
+                resultado.AddRange(NotasTicketsDto.ToDTO(contexto.NotasTickets.ToList()));
             }
             return resultado;
         }
 
-        public ProductosDTO ObtenerProductos(ProductoDTO producto)
+        public ProductosDto ObtenerProductos(ProductoDto producto)
         {
-            ProductosDTO resultado = new ProductosDTO();
+            ProductosDto resultado = new ProductosDto();
             if (producto.Id != 0)
             {
-                resultado.AddRange(ProductosDTO.ToDTO(contexto.Productos.Where(p => p.Id == producto.Id).ToList()));
+                resultado.AddRange(ProductosDto.ToDTO(contexto.Productos.Where(p => p.Id == producto.Id).ToList()));
             }
             else if (producto.IdCatalogo != 0)
             {
-                resultado.AddRange(ProductosDTO.ToDTO(contexto.Productos.Where(p => p.IdCatalogo == producto.IdCatalogo).ToList()));
+                resultado.AddRange(ProductosDto.ToDTO(contexto.Productos.Where(p => p.IdCatalogo == producto.IdCatalogo).ToList()));
             }
             else if (producto.IdEstatus != 0)
             {
-                resultado.AddRange(ProductosDTO.ToDTO(contexto.Productos.Where(p => p.IdEstatus == producto.IdEstatus).ToList()));
+                resultado.AddRange(ProductosDto.ToDTO(contexto.Productos.Where(p => p.IdEstatus == producto.IdEstatus).ToList()));
             }
             else if (producto.IdTipoNota != 0)
             {
-                resultado.AddRange(ProductosDTO.ToDTO(contexto.Productos.Where(p => p.IdTipoNota == producto.IdTipoNota).ToList()));
+                resultado.AddRange(ProductosDto.ToDTO(contexto.Productos.Where(p => p.IdTipoNota == producto.IdTipoNota).ToList()));
             }
             else if (!string.IsNullOrEmpty(producto.Sku))
             {
-                resultado.AddRange(ProductosDTO.ToDTO(contexto.Productos.Where(p => p.Sku.ToUpper().Contains(producto.Sku.ToUpper())).ToList()));
+                resultado.AddRange(ProductosDto.ToDTO(contexto.Productos.Where(p => p.Sku.ToUpper().Contains(producto.Sku.ToUpper())).ToList()));
             }
             else if (!string.IsNullOrEmpty(producto.Nombre))
             {
-                resultado.AddRange(ProductosDTO.ToDTO(contexto.Productos.Where(p => p.Nombre.ToUpper().Contains(producto.Nombre.ToUpper())).ToList()));
+                resultado.AddRange(ProductosDto.ToDTO(contexto.Productos.Where(p => p.Nombre.ToUpper().Contains(producto.Nombre.ToUpper())).ToList()));
             }
             else
             {
-                resultado.AddRange(ProductosDTO.ToDTO(contexto.Productos.ToList()));
+                resultado.AddRange(ProductosDto.ToDTO(contexto.Productos.ToList()));
             }
             return resultado;
         }
 
-        public TiposCatalogosDTO ObtenerTiposCatalogos(TipoCatalogoDTO tipoCatalogo)
+        public TiposCatalogosDto ObtenerTiposCatalogos(TipoCatalogoDto tipoCatalogo)
         {
-            TiposCatalogosDTO resultado = new TiposCatalogosDTO();
+            TiposCatalogosDto resultado = new TiposCatalogosDto();
             if (tipoCatalogo.Id != 0)
             {
-                resultado.AddRange(TiposCatalogosDTO.ToDTO(contexto.TipoCatalogos.Where(t => t.Id == tipoCatalogo.Id).ToList()));
+                resultado.AddRange(TiposCatalogosDto.ToDTO(contexto.TipoCatalogos.Where(t => t.Id == tipoCatalogo.Id).ToList()));
             }
             else if (!string.IsNullOrEmpty(tipoCatalogo.Nombre))
             {
-                resultado.AddRange(TiposCatalogosDTO.ToDTO(contexto.TipoCatalogos.Where(t => t.Nombre.ToUpper().Contains(tipoCatalogo.Nombre.ToUpper())).ToList()));
+                resultado.AddRange(TiposCatalogosDto.ToDTO(contexto.TipoCatalogos.Where(t => t.Nombre.ToUpper().Contains(tipoCatalogo.Nombre.ToUpper())).ToList()));
             }
             else
             {
-                resultado.AddRange(TiposCatalogosDTO.ToDTO(contexto.TipoCatalogos.ToList()));
+                resultado.AddRange(TiposCatalogosDto.ToDTO(contexto.TipoCatalogos.ToList()));
             }
             return resultado;
         }
 
-        public TiposEstatusDTO ObtenerTiposEstatus(TipoEstatusDTO tipo)
+        public TiposEstatusDto ObtenerTiposEstatus(TipoEstatusDto tipo)
         {
-            TiposEstatusDTO resultado = new TiposEstatusDTO();
+            TiposEstatusDto resultado = new TiposEstatusDto();
             if (tipo.Id != 0)
             {
-                resultado.AddRange(TiposEstatusDTO.ToDTO(contexto.TipoEstatuses.Where(t => t.Id == tipo.Id).ToList()));
+                resultado.AddRange(TiposEstatusDto.ToDTO(contexto.TipoEstatuses.Where(t => t.Id == tipo.Id).ToList()));
             }
             else if (!string.IsNullOrEmpty(tipo.Nombre))
             {
-                resultado.AddRange(TiposEstatusDTO.ToDTO(contexto.TipoEstatuses.Where(t => t.Id == tipo.Id).ToList()));
+                resultado.AddRange(TiposEstatusDto.ToDTO(contexto.TipoEstatuses.Where(t => t.Id == tipo.Id).ToList()));
             }
             else
             {
-                resultado.AddRange(TiposEstatusDTO.ToDTO(contexto.TipoEstatuses.ToList()));
+                resultado.AddRange(TiposEstatusDto.ToDTO(contexto.TipoEstatuses.ToList()));
             }
             return resultado;
         }

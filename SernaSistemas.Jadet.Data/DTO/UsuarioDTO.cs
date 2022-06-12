@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace SernaSistemas.Jadet.Data.DTO
 {
-    public class UsuarioDTO
+    public class UsuarioDto
     {
         public Guid Id { get; set; }
         public int IdRol { get; set; }
@@ -18,9 +18,9 @@ namespace SernaSistemas.Jadet.Data.DTO
         public byte[] Foto { get; set; }
         public byte[] Passwd { get; set; }
 
-        public static UsuarioDTO ToDTO(dynamic usuario)
+        public static UsuarioDto ToDTO(dynamic usuario)
         {
-            return new UsuarioDTO
+            return new UsuarioDto
             {
                 Id = usuario.Id,
                 IdRol = usuario.IdRol,
@@ -36,9 +36,9 @@ namespace SernaSistemas.Jadet.Data.DTO
         }
     }
 
-    public class UsuariosDTO : List<UsuarioDTO>
+    public class UsuariosDto : List<UsuarioDto>
     {
-        public static List<UsuarioDTO> ToDTO(List<Usuario> usuarios) =>
-            usuarios.Select(u => UsuarioDTO.ToDTO(u)).ToList();
+        public static List<UsuarioDto> ToDTO(List<Usuario> usuarios) =>
+            usuarios.Select(u => UsuarioDto.ToDTO(u)).ToList();
     }
 }

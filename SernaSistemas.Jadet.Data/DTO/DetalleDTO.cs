@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace SernaSistemas.Jadet.Data.DTO
 {
-    public class DetalleDTO
+    public class DetalleDto
     {
         public int Id { get; set; }
         public int IdNota { get; set; }
@@ -12,9 +12,9 @@ namespace SernaSistemas.Jadet.Data.DTO
         public int Cantidad { get; set; }
         public decimal PrecioMXN { get; set; }
         public decimal PrecioUSD { get; set; }
-        public static DetalleDTO ToDTO(dynamic detalle)
+        public static DetalleDto ToDTO(dynamic detalle)
         {
-            return new DetalleDTO
+            return new DetalleDto
             {
                 Id = detalle.Id,
                 IdNota = detalle.IdNota,
@@ -26,9 +26,9 @@ namespace SernaSistemas.Jadet.Data.DTO
         }
     }
 
-    public class DetallesDTO : List<DetalleDTO>
+    public class DetallesDto : List<DetalleDto>
     {
-        public static List<DetalleDTO> ToDTO(List<Detalle> detalles) =>
-            detalles.Select(d => DetalleDTO.ToDTO(d)).ToList();
+        public static List<DetalleDto> ToDTO(List<Detalle> detalles) =>
+            detalles.Select(d => DetalleDto.ToDTO(d)).ToList();
     }
 }

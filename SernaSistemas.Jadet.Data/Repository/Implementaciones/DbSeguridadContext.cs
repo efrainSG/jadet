@@ -19,7 +19,7 @@ namespace SernaSistemas.Jadet.Data.Repository
             contexto = dbContext as BDJadetContext;
         }
 
-        public bool BorrarRol(ref RolDTO rol)
+        public bool BorrarRol(ref RolDto rol)
         {
             int id = rol.Id;
             Rol _rol = contexto.Rols.FirstOrDefault(r => r.Id == id);
@@ -31,7 +31,7 @@ namespace SernaSistemas.Jadet.Data.Repository
             return false;
         }
 
-        public bool BorrarUsuario(ref UsuarioDTO usuario)
+        public bool BorrarUsuario(ref UsuarioDto usuario)
         {
             Guid id = usuario.Id;
             int idRol = usuario.IdRol;
@@ -46,7 +46,7 @@ namespace SernaSistemas.Jadet.Data.Repository
             return false;
         }
 
-        public bool GuardarRol(ref RolDTO rol)
+        public bool GuardarRol(ref RolDto rol)
         {
             int id = rol.Id;
             Rol _rol = contexto.Rols.FirstOrDefault(r => r.Id == id);
@@ -61,7 +61,7 @@ namespace SernaSistemas.Jadet.Data.Repository
             return resultado != 0;
         }
 
-        public bool GuardarUsuario(ref UsuarioDTO usuario)
+        public bool GuardarUsuario(ref UsuarioDto usuario)
         {
             Guid id = usuario.Id;
             int idRol = usuario.IdRol;
@@ -73,8 +73,7 @@ namespace SernaSistemas.Jadet.Data.Repository
                 Usuario _usuario = contexto.Usuarios.FirstOrDefault(u => u.Id == id);
                 if (_usuario == null)
                 {
-                    _usuario = new Usuario();
-                    _usuario.Id = Guid.NewGuid();
+                    _usuario = new Usuario { Id = Guid.NewGuid() };
                     contexto.Usuarios.Add(_usuario);
                 }
                 _usuario.Direccion = usuario.Direccion;
@@ -93,90 +92,90 @@ namespace SernaSistemas.Jadet.Data.Repository
             return false;
         }
 
-        public EstatusesDTO ObtenerEstatuses(EstatusDTO estatus)
+        public EstatusesDto ObtenerEstatuses(EstatusDto estatus)
         {
-            EstatusesDTO resultado = new EstatusesDTO();
+            EstatusesDto resultado = new EstatusesDto();
             if (estatus.Id != 0)
             {
-                resultado.AddRange(EstatusesDTO.ToDTO(contexto.Estatuses.Where(e => e.Id == estatus.Id).ToList()));
+                resultado.AddRange(EstatusesDto.ToDTO(contexto.Estatuses.Where(e => e.Id == estatus.Id).ToList()));
             }
             else if (!string.IsNullOrEmpty(estatus.Nombre))
             {
-                resultado.AddRange(EstatusesDTO.ToDTO(
+                resultado.AddRange(EstatusesDto.ToDTO(
                     contexto.Estatuses.Where(e => e.Nombre.ToUpper().Contains(estatus.Nombre.ToUpper())).ToList())
                     );
             }
             else
             {
-                resultado.AddRange(EstatusesDTO.ToDTO(contexto.Estatuses.ToList()));
+                resultado.AddRange(EstatusesDto.ToDTO(contexto.Estatuses.ToList()));
             }
             return resultado;
         }
 
-        public RolesDTO ObtenerRoles(RolDTO rol)
+        public RolesDto ObtenerRoles(RolDto rol)
         {
-            RolesDTO resultado = new RolesDTO();
+            RolesDto resultado = new RolesDto();
             if (rol.Id != 0)
             {
-                resultado.AddRange(RolesDTO.ToDTO(contexto.Rols.Where(r => r.Id == rol.Id).ToList()));
+                resultado.AddRange(RolesDto.ToDTO(contexto.Rols.Where(r => r.Id == rol.Id).ToList()));
             }
             else if (!string.IsNullOrEmpty(rol.Nombre))
             {
-                resultado.AddRange(RolesDTO.ToDTO(
+                resultado.AddRange(RolesDto.ToDTO(
                     contexto.Rols.Where(r => r.Nombre.ToUpper().Contains(rol.Nombre.ToUpper())).ToList())
                     );
             }
             else
             {
-                resultado.AddRange(RolesDTO.ToDTO(contexto.Rols.ToList()));
+                resultado.AddRange(RolesDto.ToDTO(contexto.Rols.ToList()));
             }
             return resultado;
         }
 
-        public TiposEstatusDTO ObtenerTiposEstatus(TipoEstatusDTO tipo)
+        public TiposEstatusDto ObtenerTiposEstatus(TipoEstatusDto tipo)
         {
-            TiposEstatusDTO resultado = new TiposEstatusDTO();
+            TiposEstatusDto resultado = new TiposEstatusDto();
             if (tipo.Id != 0)
             {
-                resultado.AddRange(TiposEstatusDTO.ToDTO(contexto.TipoEstatuses.Where(t => t.Id == tipo.Id).ToList()));
+                resultado.AddRange(TiposEstatusDto.ToDTO(contexto.TipoEstatuses.Where(t => t.Id == tipo.Id).ToList()));
             }
             else if (!string.IsNullOrEmpty(tipo.Nombre))
             {
-                resultado.AddRange(TiposEstatusDTO.ToDTO(
+                resultado.AddRange(TiposEstatusDto.ToDTO(
                     contexto.TipoEstatuses.Where(t => t.Nombre.ToUpper().Contains(tipo.Nombre.ToUpper())).ToList())
                     );
             }
             else
             {
-                resultado.AddRange(TiposEstatusDTO.ToDTO(contexto.TipoEstatuses.ToList()));
+                resultado.AddRange(TiposEstatusDto.ToDTO(contexto.TipoEstatuses.ToList()));
             }
             return resultado;
         }
 
-        public UsuariosDTO ObtenerUsuarios(UsuarioDTO usuario)
+        public UsuariosDto ObtenerUsuarios(UsuarioDto usuario)
         {
-            UsuariosDTO resultado = new UsuariosDTO();
+            UsuariosDto resultado = new UsuariosDto();
             if (usuario.Id != Guid.Empty)
             {
-                resultado.AddRange(UsuariosDTO.ToDTO(contexto.Usuarios.Where(u => u.Id == usuario.Id).ToList()));
+                resultado.AddRange(UsuariosDto.ToDTO(contexto.Usuarios.Where(u => u.Id == usuario.Id).ToList()));
             }
             else if (usuario.IdEstatus != 0)
             {
-                resultado.AddRange(UsuariosDTO.ToDTO(contexto.Usuarios.Where(u => u.IdEstatus == usuario.IdEstatus).ToList()));
+                resultado.AddRange(UsuariosDto.ToDTO(contexto.Usuarios.Where(u => u.IdEstatus == usuario.IdEstatus).ToList()));
             }
             else if (usuario.IdRol != 0)
             {
-                resultado.AddRange(UsuariosDTO.ToDTO(contexto.Usuarios.Where(u => u.IdRol == usuario.IdRol).ToList()));
+                resultado.AddRange(UsuariosDto.ToDTO(contexto.Usuarios.Where(u => u.IdRol == usuario.IdRol).ToList()));
             }
             else if (!string.IsNullOrEmpty(usuario.NomUsuario))
             {
-                resultado.AddRange(UsuariosDTO.ToDTO(
+                resultado.AddRange(UsuariosDto.ToDTO(
                     contexto.Usuarios.Where(u => u.Usuario1.ToUpper().Contains(usuario.NomUsuario.ToUpper())).ToList())
                     );
             }
             else if (!string.IsNullOrEmpty(usuario.Nombre))
             {
-                resultado.AddRange(UsuariosDTO.ToDTO(
+                resultado.AddRange(UsuariosDto.ToDTO(
                     contexto.Usuarios.Where(u => u.Nombre.ToUpper().Contains(usuario.Nombre.ToUpper())).ToList())
                     );
             }

@@ -28,7 +28,7 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
 
         public BaseResponse bajaCatalogo(CatalogoRequest request)
         {
-            ResultadoBorrado resultado = da.borrarCatalogo(request.Id);
+            ResultadoBorrado resultado = da.BorrarCatalogo(request.Id);
             return new BaseResponse
             {
                 ErrorMensaje = resultado.ErrorMensaje,
@@ -38,7 +38,7 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
 
         public BaseResponse bajaCliente(ClienteRequest request)
         {
-            var resultado = da.borrarUsuario(request.IdCliente);
+            var resultado = da.BorrarUsuario(request.IdCliente);
             return new BaseResponse
             {
                 ErrorMensaje = resultado.ErrorMensaje,
@@ -48,7 +48,7 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
 
         public NotaComentarioResponse bajaComentarioNota(NotaComentarioRequest request)
         {
-            var resultado = da.borrarComentario(request.Id);
+            var resultado = da.BorrarComentario(request.Id);
             return new NotaComentarioResponse
             {
                 ErrorMensaje = resultado.ErrorMensaje,
@@ -58,7 +58,7 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
 
         public DetalleNotaResponse bajaDetalleNota(DetalleNotaRequest request)
         {
-            var resultado = da.borrarDetalle(request.Id);
+            var resultado = da.BorrarDetalle(request.Id);
             return new DetalleNotaResponse
             {
                 ErrorMensaje = resultado.ErrorMensaje,
@@ -68,7 +68,7 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
 
         public BaseResponse bajaEstatus(EstatusRequest request)
         {
-            var resultado = da.borrarEstatus(request.Id);
+            var resultado = da.BorrarEstatus(request.Id);
             return new BaseResponse
             {
                 ErrorMensaje = resultado.ErrorMensaje,
@@ -78,7 +78,7 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
 
         public NotaResponse bajaNota(NotaRequest request)
         {
-            var resultado = da.borrarNota(request.Folio);
+            var resultado = da.BorrarNota(request.Folio);
             return new NotaResponse
             {
                 ErrorMensaje = resultado.ErrorMensaje,
@@ -88,7 +88,7 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
 
         public ProductoResponse bajaProducto(ProductoRequest request)
         {
-            var resultado = da.borrarProducto(request.Id);
+            var resultado = da.BorrarProducto(request.Id);
             return new ProductoResponse
             {
                 ErrorMensaje = resultado.ErrorMensaje,
@@ -98,7 +98,7 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
 
         public NotaTicketResponse bajaTicketNota(NotaTicketRequest request)
         {
-            var resultado = da.borrarTicket(request.Id);
+            var resultado = da.BorrarTicket(request.Id);
             return new NotaTicketResponse
             {
                 ErrorMensaje = resultado.ErrorMensaje,
@@ -182,37 +182,37 @@ namespace SernaSisitemas.Jadet.WCF.Implementaciones
 
         public CatalogoResponse guardarCatalogo(CatalogoRequest request)
         {
-            var resultado = da.guardarCatalogo(Catalogo.ToModel(request));
+            var resultado = da.GuardarCatalogo(Catalogo.ToModel(request));
             return CatalogoResponse.ToResponse(resultado);
         }
 
         public ClienteResponse guardarCliente(ClienteRequest request)
         {
-            var resultado = da.guardarUsuario(Usuario.ToModel(request));
+            var resultado = da.GuardarUsuario(Usuario.ToModel(request));
             return ClienteResponse.ToResponse(resultado);
         }
 
         public NotaComentarioResponse guardarComentarioNota(NotaComentarioRequest request)
         {
-            var resultado = da.guardarComentario(ComentarioNota.ToModel(request));
+            var resultado = da.GuardarComentario(ComentarioNota.ToModel(request));
             return NotaComentarioResponse.ToResponse(resultado);
         }
 
         public DetalleNotaResponse guardarDetalleNota(DetalleNotaRequest request)
         {
-            var resultado = da.guardarDetalle(DetalleNota.ToModel(request));
+            var resultado = da.GuardarDetalle(DetalleNota.ToModel(request));
             return DetalleNotaResponse.ToResponse(resultado);
         }
 
         public EstatusResponse guardarEstatus(EstatusRequest request)
         {
-            var resultado = da.guardarEstatus(Estatus.ToModel(request));
+            var resultado = da.GuardarEstatus(Estatus.ToModel(request));
             return EstatusResponse.ToResponse(resultado);
         }
 
         public NotaResponse guardarNota(NotaRequest request)
         {
-            var resultado = da.guardarNota(Nota.ToModel(request));
+            var resultado = da.GuardarNota(Nota.ToModel(request));
             return NotaResponse.ToResponse(resultado);
         }
 

@@ -10,10 +10,10 @@ namespace SernaSistemas.Jadet.BLogic
     public interface IBLConfiguracion
     {
         IEnumerable<TipoEstatus> ObtenerTiposEstatus(TipoEstatus tipoEstatus);
-        IEnumerable<Estatus> ObtenerEstatuses(Estatus estatus);
+        IEnumerable<Estatus> ObtenerEstatuses(bool esId, Estatus estatus);
         IEnumerable<TipoCatalogo> ObtenerTiposCatalogo(TipoCatalogo tipoCatalogo);
-        IEnumerable<Catalogo> ObtenerCatalogos(Catalogo catalogo);
-        IEnumerable<Producto> ObtenerProductos(Producto producto);
+        IEnumerable<Catalogo> ObtenerCatalogos(bool esId, Catalogo catalogo);
+        IEnumerable<Producto> ObtenerProductos(byte idTipo, bool esSku, Producto producto);
 
         bool GuardarTipoEstatus(ref TipoEstatus tipoEstatus);
         bool GuardarEstatus(ref Estatus estatus);

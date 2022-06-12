@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace SernaSistemas.Jadet.Data.DTO
 {
-    public class NotaComentarioDTO
+    public class NotaComentarioDto
     {
         public int Id { get; set; }
         public int IdNota { get; set; }
@@ -13,9 +13,9 @@ namespace SernaSistemas.Jadet.Data.DTO
         public string Comentario { get; set; }
         public DateTime Fecha { get; set; }
 
-        public static NotaComentarioDTO ToDTO(dynamic notaComentario)
+        public static NotaComentarioDto ToDTO(dynamic notaComentario)
         {
-            return new NotaComentarioDTO
+            return new NotaComentarioDto
             {
                 Id = notaComentario.Id,
                 IdNota = notaComentario.IdNota,
@@ -26,9 +26,9 @@ namespace SernaSistemas.Jadet.Data.DTO
         }
     }
 
-    public class NotasComentariosDTO: List<NotaComentarioDTO>
+    public class NotasComentariosDto: List<NotaComentarioDto>
     {
-        public static List<NotaComentarioDTO> ToDTO(List<NotasComentario> comentarios) =>
-            comentarios.Select(c => NotaComentarioDTO.ToDTO(c)).ToList();
+        public static List<NotaComentarioDto> ToDTO(List<NotasComentario> comentarios) =>
+            comentarios.Select(c => NotaComentarioDto.ToDTO(c)).ToList();
     }
 }

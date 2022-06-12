@@ -1,11 +1,9 @@
 ﻿using SernaSistemas.Jadet.Comun.Modelos;
-using SernaSistemas.Jadet.DAccess.DTO;
-using SernaSistemas.Jadet.DAccess.Repository;
+using SernaSistemas.Jadet.Data.DTO;
+using SernaSistemas.Jadet.Data.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SernaSistemas.Jadet.BLogic
 {
@@ -19,13 +17,13 @@ namespace SernaSistemas.Jadet.BLogic
         }
         public bool BorrarRol(Rol rol)
         {
-            RolDTO rolDTO = RolDTO.ToDTO(rol);
+            RolDto rolDTO = RolDto.ToDTO(rol);
             return dbSeguridadContext.BorrarRol(ref rolDTO);
         }
 
         public bool BorrarUsuario(Usuario usuario)
         {
-            UsuarioDTO usuarioDTO = UsuarioDTO.ToDTO(usuario);
+            UsuarioDto usuarioDTO = UsuarioDto.ToDTO(usuario);
             return dbSeguridadContext.BorrarUsuario(ref usuarioDTO);
         }
 
@@ -36,7 +34,7 @@ namespace SernaSistemas.Jadet.BLogic
 
         public bool GuardarRol(ref Rol rol)
         {
-            RolDTO rolDTO = RolDTO.ToDTO(rol);
+            RolDto rolDTO = RolDto.ToDTO(rol);
             var resultado = dbSeguridadContext.GuardarRol(ref rolDTO);
             rol = Rol.ToModel(rolDTO);
             return resultado;
@@ -44,7 +42,7 @@ namespace SernaSistemas.Jadet.BLogic
 
         public bool GuardarUsuario(ref Usuario usuario)
         {
-            UsuarioDTO usuarioDTO = UsuarioDTO.ToDTO(usuario);
+            UsuarioDto usuarioDTO = UsuarioDto.ToDTO(usuario);
             var resultado = dbSeguridadContext.GuardarUsuario(ref usuarioDTO);
             usuario = Usuario.ToModel(usuarioDTO);
             return resultado;
@@ -55,27 +53,27 @@ namespace SernaSistemas.Jadet.BLogic
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Estatus> ObtenerEstatuses(Estatus estatus)
+        public IEnumerable<Estatus> ObtenerEstatuses(bool esId, Estatus estatus)
         {
-            return dbSeguridadContext.ObtenerEstatuses(EstatusDTO.ToDTO(estatus))
+            return dbSeguridadContext.ObtenerEstatuses(EstatusDto.ToDTO(estatus))
                 .Select(e => Estatus.ToModel(e));
         }
 
         public IEnumerable<Rol> ObtenerRoles(Rol rol)
         {
-            return dbSeguridadContext.ObtenerRoles(RolDTO.ToDTO(rol))
+            return dbSeguridadContext.ObtenerRoles(RolDto.ToDTO(rol))
                 .Select(r => Rol.ToModel(r));
         }
 
         public IEnumerable<TipoEstatus> ObtenerTiposEstatus(TipoEstatus tipoEstatus)
         {
-            return dbSeguridadContext.ObtenerTiposEstatus(TipoEstatusDTO.ToDTO(tipoEstatus))
+            return dbSeguridadContext.ObtenerTiposEstatus(TipoEstatusDto.ToDTO(tipoEstatus))
                 .Select(t=> TipoEstatus.ToModel(t));
         }
 
         public IEnumerable<Usuario> ObtenerUsuarios(Usuario usuario)
         {
-            return dbSeguridadContext.ObtenerUsuarios(UsuarioDTO.ToDTO(usuario))
+            return dbSeguridadContext.ObtenerUsuarios(UsuarioDto.ToDTO(usuario))
                 .Select(u => Usuario.ToModel(u));
         }
     }

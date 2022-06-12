@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace SernaSistemas.Jadet.Data.DTO
 {
-    public class NotaTicketDTO
+    public class NotaTicketDto
     {
         public int Id { get; set; }
         public int IdNota { get; set; }
@@ -14,9 +14,9 @@ namespace SernaSistemas.Jadet.Data.DTO
         public decimal MontoMXN { get; set; }
         public decimal MontoUSD { get; set; }
 
-        public static NotaTicketDTO ToDTO(dynamic notaTicket)
+        public static NotaTicketDto ToDTO(dynamic notaTicket)
         {
-            return new NotaTicketDTO
+            return new NotaTicketDto
             {
                 Id = notaTicket.Id,
                 IdNota = notaTicket.IdNota,
@@ -28,9 +28,9 @@ namespace SernaSistemas.Jadet.Data.DTO
         }
     }
 
-    public class NotasTicketsDTO : List<NotaTicketDTO>
+    public class NotasTicketsDto : List<NotaTicketDto>
     {
-        public static List<NotaTicketDTO> ToDTO(List<NotasTicket> notasTickets) =>
-            notasTickets.Select(n => NotaTicketDTO.ToDTO(n)).ToList();
+        public static List<NotaTicketDto> ToDTO(List<NotasTicket> notasTickets) =>
+            notasTickets.Select(n => NotaTicketDto.ToDTO(n)).ToList();
     }
 }

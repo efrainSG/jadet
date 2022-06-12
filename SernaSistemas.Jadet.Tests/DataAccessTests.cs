@@ -31,7 +31,7 @@ namespace SernaSistemas.Jadet.DataAccess.Tests
                 var item = da.listarCatalogo(new Catalogo { Id = 0, IdTipoCatalogo = 0 })
                     .OrderByDescending(c => c.Id)
                     .FirstOrDefault();
-                var resultado = da.borrarCatalogo(item.Id);
+                var resultado = da.BorrarCatalogo(item.Id);
                 Console.WriteLine("Error número: {0}\nMensaje: {1}\n",
                     resultado.ErrorNumero,
                     resultado.ErrorMensaje
@@ -51,7 +51,7 @@ namespace SernaSistemas.Jadet.DataAccess.Tests
                 var item = da.listarEstatus(new Estatus { Id = 0, IdTipoEstatus = 0 })
                     .OrderByDescending(c => c.Id)
                     .FirstOrDefault();
-                var resultado = da.borrarEstatus(item.Id);
+                var resultado = da.BorrarEstatus(item.Id);
                 Console.WriteLine("Error número: {0}\nMensaje: {1}\n",
                     resultado.ErrorNumero,
                     resultado.ErrorMensaje
@@ -68,10 +68,10 @@ namespace SernaSistemas.Jadet.DataAccess.Tests
         {
             try
             {
-                var usuarioId = da.listarUsuario(new Usuario { Id = new Guid(), IdRol = 2 })
+                var usuarioId = da.listarUsuario(new Usuario { Id = Guid.Empty, IdRol = 2 })
                     .OrderByDescending(u => u.Id).FirstOrDefault().Id;
 
-                var item = da.borrarUsuario(usuarioId);
+                var item = da.BorrarUsuario(usuarioId);
 
                 Console.WriteLine("Error número: {0}\nMensaje: {1}\n",
                     item.ErrorNumero,
@@ -92,7 +92,7 @@ namespace SernaSistemas.Jadet.DataAccess.Tests
                 var producto = da.listarProductos(0).OrderByDescending(i => i.Id).FirstOrDefault();
                 if (producto != null)
                 {
-                    var resultado = da.borrarProducto(producto.Id);
+                    var resultado = da.BorrarProducto(producto.Id);
                     Console.WriteLine("Error número: {0}\nMensaje: {1}\n",
                         resultado.ErrorNumero,
                         resultado.ErrorMensaje
@@ -134,7 +134,7 @@ namespace SernaSistemas.Jadet.DataAccess.Tests
         {
             try
             {
-                var resultado = da.guardarCatalogo(new Catalogo
+                var resultado = da.GuardarCatalogo(new Catalogo
                 {
                     Id = 0,
                     IdTipoCatalogo = 1,
@@ -154,7 +154,7 @@ namespace SernaSistemas.Jadet.DataAccess.Tests
         {
             try
             {
-                var resultado = da.guardarEstatus(new Estatus
+                var resultado = da.GuardarEstatus(new Estatus
                 {
                     Id = 0,
                     IdTipoEstatus = 1,
@@ -174,7 +174,7 @@ namespace SernaSistemas.Jadet.DataAccess.Tests
         {
             try
             {
-                var resultado = da.guardarUsuario(new Usuario
+                var resultado = da.GuardarUsuario(new Usuario
                 {
                     Id = new Guid("25079902-9FAA-4B66-9093-43029827F2FD"),
                     Nombre = "USUARIO ADMINISTRADOR",
@@ -209,7 +209,7 @@ namespace SernaSistemas.Jadet.DataAccess.Tests
                 var producto = da.listarProductos(0).OrderByDescending(p => p.Id).FirstOrDefault();
                 if (producto != null)
                 {
-                    var resultado = da.guardarDetalle(new DetalleNota
+                    var resultado = da.GuardarDetalle(new DetalleNota
                     {
                         Id = 0,
                         IdNota = nota.Folio,
@@ -240,7 +240,7 @@ namespace SernaSistemas.Jadet.DataAccess.Tests
             try
             {
                 var cliente = da.listarUsuario(new Usuario { IdRol = 2 }).FirstOrDefault();
-                var resultado = da.guardarNota(new Nota
+                var resultado = da.GuardarNota(new Nota
                 {
                     Fecha = DateTime.Today,
                     FechaEnvio = DateTime.Today.AddDays(7),
@@ -279,7 +279,7 @@ namespace SernaSistemas.Jadet.DataAccess.Tests
                     IdTipo = 0
                 }).FirstOrDefault();
 
-                var resultado = da.guardarComentario(new ComentarioNota
+                var resultado = da.GuardarComentario(new ComentarioNota
                 {
                     Fecha = DateTime.Today,
                     Id = 0,
@@ -385,7 +385,7 @@ namespace SernaSistemas.Jadet.DataAccess.Tests
             {
                 var resultado = da.listarUsuario(new Usuario
                 {
-                    Id = new Guid(),
+                    Id = Guid.Empty,
                     IdRol = 0
                 });
                 Console.WriteLine("--------------- Tipo de usuarios ---------------");

@@ -64,37 +64,37 @@ namespace SernaSistemas.Jadet.BLogic
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Catalogo> ObtenerCatalogos(Catalogo catalogo)
+        public IEnumerable<Catalogo> ObtenerCatalogos(bool esId, Catalogo catalogo)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<NotaComentario> ObtenerComentarios(NotaComentario notaComentario)
+        public IEnumerable<NotaComentario> ObtenerComentarios(bool esId, NotaComentario notaComentario)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Detalle> ObtenerDetalles(Detalle detalle)
+        public IEnumerable<Detalle> ObtenerDetalles(byte idTipo, Detalle detalle)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Estatus> ObtenerEstatuses(Estatus estatus)
+        public IEnumerable<Estatus> ObtenerEstatuses(bool esId, Estatus estatus)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Nota> ObtenerNotas(Nota nota)
+        public IEnumerable<Nota> ObtenerNotas(byte idTipo, Nota nota)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<NotaTicket> ObtenerNotasTickets(NotaTicket notaTicket)
+        public IEnumerable<NotaTicket> ObtenerNotasTickets(bool esId, NotaTicket notaTicket)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Producto> ObtenerProductos(Producto producto)
+        public IEnumerable<Producto> ObtenerProductos(byte idTipo, bool esSku, Producto producto)
         {
             throw new NotImplementedException();
         }
