@@ -87,19 +87,63 @@ namespace SernaSistemas.Jadet.BLogic
 
         public IEnumerable<Catalogo> ObtenerCatalogos(bool esId, Catalogo catalogo)
         {
-            return dbConfiguracion.ObtenerCatalogos(CatalogoDto.ToDTO(catalogo))
+            CatalogoDto catalogoDTO = new() { Nombre = catalogo.Nombre };
+            if (esId)
+            {
+                catalogoDTO.Id = catalogo.Id;
+            }
+            else
+            {
+                catalogoDTO.IdTipoCatalogo = catalogo.Id;
+            }
+            return dbConfiguracion.ObtenerCatalogos(catalogoDTO)
                 .Select(c => Catalogo.ToModel(c));
         }
 
         public IEnumerable<Estatus> ObtenerEstatuses(bool esId, Estatus estatus)
         {
-            return dbConfiguracion.ObtenerEstatuses(EstatusDto.ToDTO(estatus))
+            EstatusDto estatusDTO = new() { Nombre = estatus.Nombre };
+            if (esId)
+            {
+                estatusDTO.Id = estatus.Id;
+            }
+            else
+            {
+                estatusDTO.IdTipoEstatus = estatus.Id;
+            }
+            return dbConfiguracion.ObtenerEstatuses(estatusDTO)
                 .Select(e => Estatus.ToModel(e));
         }
 
-        public IEnumerable<Producto> ObtenerProductos(byte isTipo, bool esSku, Producto producto)
+        public IEnumerable<Producto> ObtenerProductos(byte idTipo, bool esSku, Producto producto)
         {
-            return dbConfiguracion.ObtenerProductos(ProductoDto.ToDTO(producto))
+            ProductoDto productoDTO = new();
+            switch (idTipo)
+            {
+                case 0:
+                    productoDTO.Id = producto.Id;
+                    break;
+                case 1:
+                    productoDTO.IdCatalogo = producto.Id;
+                    break;
+                case 2:
+                    productoDTO.IdEstatus = producto.Id;
+                    break;
+                case 3:
+                    productoDTO.IdTipoNota = producto.Id;
+                    break;
+                default:
+                    if (esSku)
+                    {
+                        productoDTO.Sku = producto.Sku;
+                    }
+                    else
+                    {
+                        producto.Nombre = producto.Sku;
+                    }
+                    break;
+            }
+            return dbConfiguracion.ObtenerProductos(productoDTO)
                 .Select(p => Producto.ToModel(p));
         }
 

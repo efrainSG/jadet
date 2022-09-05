@@ -71,8 +71,20 @@ namespace SernaSistemas.Jadet.BLogic
                 .Select(t=> TipoEstatus.ToModel(t));
         }
 
-        public IEnumerable<Usuario> ObtenerUsuarios(Usuario usuario)
+        public IEnumerable<Usuario> ObtenerUsuarios(byte idTipo, bool esUsr, Usuario usuario)
         {
+            UsuarioDto usuarioDto = new UsuarioDto();
+            switch (idTipo)
+            {
+                case 0: 
+                    usuarioDto.Id = usuario.Id;
+                    break;
+                    case 1:
+                    usuarioDto.IdEstatus = usuario.IdEstatus;
+
+                default:
+                    break;
+            }
             return dbSeguridadContext.ObtenerUsuarios(UsuarioDto.ToDTO(usuario))
                 .Select(u => Usuario.ToModel(u));
         }

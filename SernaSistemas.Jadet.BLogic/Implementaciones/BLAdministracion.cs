@@ -183,7 +183,7 @@ namespace SernaSistemas.Jadet.BLogic
             {
                 estatusDTO.IdTipoEstatus = estatus.Id;
             }
-            return dBAdministracion.ObtenerEstatuses(EstatusDto.ToDTO(estatus))
+            return dBAdministracion.ObtenerEstatuses(estatusDTO)
                 .Select(e => Estatus.ToModel(e));
         }
 

@@ -251,5 +251,19 @@ namespace SernaSistemas.Jadet.API.Controllers.V1
         public IEnumerable<NotaTicket> GetNotaTicket(bool esId, int id) =>
             bLAdministracion.ObtenerNotasTickets(esId, new NotaTicket { Id = id }).ToArray();
         #endregion
+
+        private void none(List<int> arr)
+        {
+            if (arr.Count == 5)
+            {
+                Int64 minimum = arr.OrderBy(x => Convert.ToInt64(x)).SkipLast(1).Sum();
+                Int64 maximum = arr.OrderBy(x => Convert.ToInt64(x)).Skip(1).Sum();
+                Console.WriteLine("{0} {1}", minimum, maximum);
+            }
+            else
+            {
+                Console.WriteLine("Error");
+            }
+        }
     }
 }
